@@ -11,4 +11,8 @@ Project content for my coding agents: one folder per project, plus session hando
 | `<Project>/refs/` | Reference images and files for the brief | Me |
 | `handoffs/` | Session handoffs for moving between sessions and devices | `/handoff` |
 
-Images and other binaries are stored with Git LFS (see `.gitattributes`). Run `git lfs install` once per device before cloning.
+Images and other binaries are stored with Git LFS (see `.gitattributes`). The setup steps below include `git lfs install`.
+
+## Set up a device
+
+Setup for Windows, macOS, and Linux is in the [ai-toolkit README](https://github.com/5amMickey/ai-toolkit#set-up-a-device). It clones this repo next to `ai-toolkit`, and the installer sets `PROJ_DOCS` from there.
