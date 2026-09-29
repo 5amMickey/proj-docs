@@ -35,3 +35,15 @@ Brief: `HoudiniSource/docs/briefs/dawn_safezone_fx.md`. Interaction and enemy be
 - [x] Placed `SafeZone_Stone` at (4000, -5000, 0), radius 2000, in the gym's safe-zone area
 - [x] Works in PIE (checked by the combat session): X activates it, dome, cracks and orb show from the game camera, light attacks are blocked inside the lit dome
 - [ ] Mike judges the dome look: tint vs veins from the game camera. Dome is capped at 7 m tall so the camera stays above it.
+
+## Combat round 2: Shala takes damage (combat session)
+
+Decisions (Mike, 2026-09-29): health shown as a plain bar (not hearts, restyle later); A becomes a dodge with i-frames (the "dash" is RT: sprint, or gap-closer when locked on); death respawns at the last lit safe-zone stone; goblins get swipe + lunge, each with a ground marker that fills over the wind-up (no colour flash); a light attack from a sprint is a narrow forward thrust, a heavy from a sprint is a spin around her, both with a long recovery on a miss (shorter on a hit, combat session's suggestion); goblin health bars stay for now.
+
+- [ ] Shala health (CSV), taking damage, hit stagger, on-screen health bar
+- [ ] A = dodge: toward the stick (sidestep when locked on), invulnerable window, cancels attack recovery
+- [ ] Death: respawn at the last lit stone (else level start), full health, goblins reset
+- [ ] Goblin attacks: swipe + lunge in a CSV, wind-up with a filling ground marker, hits Shala
+- [ ] Sprint attacks: thrust (box hit shape) and spin (circle), per weapon, RecoveryOnHit
+- [ ] CSV switch for goblin health bars
+- [ ] Docs, play-test in the gym, commit and push
