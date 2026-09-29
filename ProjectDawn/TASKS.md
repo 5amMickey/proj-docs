@@ -68,3 +68,15 @@ Open for next time:
 - [ ] Mike: keep one direction for a whole light combo, and/or shorter light lunges? (offered after the camera fix)
 - [ ] Mike play-tests: slide length, heavy lunge distance (LungeDistance on Heavy rows), dodge timing vs goblin wind-ups, sprint thrust/spin
 - [ ] Block/parry on Y
+
+## Combat round 4: hit-stop and combo debug (combat session, 2026-09-30)
+
+Mike's requests, relayed by the VFX session. Pushed as ProjectDawn bd3c811.
+- [x] Slide re-sprint: holding sprint during a slide finishes the wind-up after the slide ends (was dropped when SlidingTime = SlideChargeTime)
+- [x] HitStop per attack (AttackStats.csv); landed hits hold the combat clock; GetCurrentHitStop() for Hit FX
+- [x] bComboOnlyOnHit switch (off by default)
+- [x] bShowComboDebug: a line per press on screen and as "Combo:" in the Output Log
+- [x] Fix: a queued press was dropped when a press and the chain timer fired the queue in the same frame
+- [ ] Mike: light-combo turning (options: turn cap per swing, only fresh presses aim, one direction per combo, slow turn)
+- [ ] Mike: "heavy moves on the heavy weapon, one attack button" (discuss before building)
+- [ ] Mike play-tests: heavy hold (0.5 s = charge bar, then lunge), slide re-sprint, hit-stop feel, then decide bComboOnlyOnHit
