@@ -64,7 +64,7 @@ Decisions (Mike, 2026-09-29): health shown as a plain bar (not hearts, restyle l
 Done and pushed (ProjectDawn 51284ff): gamepad A light/interact, B dodge, X heavy, Y reserved for block/parry; three-light combo with ComboCooldown and SwingInterval; finisher after one or two lights; SlidingTime 0.5; "A  Talk" prompt on the HUD; boundary walls round the gym; camera lag 10; camera boom absolute rotation (fixed the rotated-frame flash). VFX session: flashes and screen shake toned down.
 
 Open for next time:
-- [ ] Mike: how should the charge heavy be reworked? (options offered: tap = quick swing with charge only past a hold threshold; release-to-strike with no auto overhead; just retune ChargeTime)
+- [x] (81a3ba5, hold threshold chosen: tap swings on press, held 0.2 s = charge; hold path untested in PIE, needs Mike) Mike: how should the charge heavy be reworked? (options offered: tap = quick swing with charge only past a hold threshold; release-to-strike with no auto overhead; just retune ChargeTime)
 - [ ] Mike: keep one direction for a whole light combo, and/or shorter light lunges? (offered after the camera fix)
 - [ ] Mike play-tests: slide length, heavy lunge distance (LungeDistance on Heavy rows), dodge timing vs goblin wind-ups, sprint thrust/spin
 - [ ] Block/parry on Y
