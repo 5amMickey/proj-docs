@@ -86,9 +86,10 @@ Mike's requests, relayed by the VFX session. Pushed as ProjectDawn bd3c811.
 - [x] Attack punch partly restored after the camera fix (ProjectDawn 5e71767): impact frame on heavy hits, heavy flash disc back, shake 0.3 light / 0.7 heavy
 - [x] Hit FX freezes for each attack's HitStop and shakes the struck enemy's mesh (ProjectDawn ec78290)
 - [x] Houdini: lunge drill cone and wind ribbon (HoudiniSource a995e44, builder 11, brief docs/briefs/dawn_lunge_fx.md)
-- [ ] Charge glow grows with GetChargeRatio(), pops at full, holds until release (NS script and C++ patch ready; waiting for the combat push and an editor with a working asset registry)
-- [ ] UE: import the lunge meshes, M_VFX_LungeDrill, NS_Attack_Lunge (script ready)
-- [ ] Hit FX plays the lunge drill on OnChargedLunge (asked the combat session for the delegate; C++ patch ready)
+- [x] Charge glow grows with GetChargeRatio(), pops at full, holds until release (ProjectDawn b3df378; not seen in PIE, needs a held button)
+- [x] UE: lunge meshes imported (drill 100 cm), M_VFX_LungeDrill, NS_Attack_Lunge; checked in a looped Simulate preview (b3df378)
+- [x] Hit FX plays the lunge drill on OnChargedLunge (combat 9216b5c), lunges of 100 cm or more only (b3df378)
+- [ ] Mike: drill on the heavy weapon's early-release lunge too (300 cm), or light weapon only?
 - [ ] Mike play-tests: hit-stop and enemy shake, charge glow, lunge drill
 
 ## Combat round 5: charge on release (combat session, 2026-09-30)
