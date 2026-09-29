@@ -77,7 +77,7 @@ Mike's requests, relayed by the VFX session. Pushed as ProjectDawn bd3c811.
 - [x] bComboOnlyOnHit switch (off by default)
 - [x] bShowComboDebug: a line per press on screen and as "Combo:" in the Output Log
 - [x] Fix: a queued press was dropped when a press and the chain timer fired the queue in the same frame
-- [ ] Mike: light-combo turning (options: turn cap per swing, only fresh presses aim, one direction per combo, slow turn)
+- [x] Light-combo turning: turn cap per swing, ComboTurnLimit 45 (9216b5c)
 - [ ] Mike: "heavy moves on the heavy weapon, one attack button" (discuss before building)
 - [ ] Mike play-tests: heavy hold (0.5 s = charge bar, then lunge), slide re-sprint, hit-stop feel, then decide bComboOnlyOnHit
 
@@ -90,3 +90,15 @@ Mike's requests, relayed by the VFX session. Pushed as ProjectDawn bd3c811.
 - [ ] UE: import the lunge meshes, M_VFX_LungeDrill, NS_Attack_Lunge (script ready)
 - [ ] Hit FX plays the lunge drill on OnChargedLunge (asked the combat session for the delegate; C++ patch ready)
 - [ ] Mike play-tests: hit-stop and enemy shake, charge glow, lunge drill
+
+## Combat round 5: charge on release (combat session, 2026-09-30)
+
+Pushed as ProjectDawn 9216b5c.
+- [x] Neither weapon auto-fires at full charge; OnChargeFull fires once
+- [x] Light weapon: tap X = sweep, hold and release = lunge that grows with the charge, ChargeTime 0.45, full lunge 280 cm
+- [x] Heavy rows renamed: Heavy (tap), ChargedEarly, Charged (was Overhead)
+- [x] SlidingTime 0.75 (between the sticky 0.5 and the overshooting 1.0)
+- [x] PressBufferTime 0.4 for "combo didn't reset" (best guess: stale queued presses firing late; not reproduced)
+- [x] OnChargedLunge and public GetChargeRatio for the VFX session's drill and charge glow
+- [ ] Mike play-tests: charge feel on both weapons, slide transitions, turn limit, combo reset (check the "Combo:" log lines if it happens again)
+- [ ] Mike: one attack button with moves per weapon (still open)
