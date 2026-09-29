@@ -80,3 +80,13 @@ Mike's requests, relayed by the VFX session. Pushed as ProjectDawn bd3c811.
 - [ ] Mike: light-combo turning (options: turn cap per swing, only fresh presses aim, one direction per combo, slow turn)
 - [ ] Mike: "heavy moves on the heavy weapon, one attack button" (discuss before building)
 - [ ] Mike play-tests: heavy hold (0.5 s = charge bar, then lunge), slide re-sprint, hit-stop feel, then decide bComboOnlyOnHit
+
+## VFX round 3: hit-stop, charge glow, lunge drill (VFX session, 2026-09-30)
+
+- [x] Attack punch partly restored after the camera fix (ProjectDawn 5e71767): impact frame on heavy hits, heavy flash disc back, shake 0.3 light / 0.7 heavy
+- [x] Hit FX freezes for each attack's HitStop and shakes the struck enemy's mesh (ProjectDawn ec78290)
+- [x] Houdini: lunge drill cone and wind ribbon (HoudiniSource a995e44, builder 11, brief docs/briefs/dawn_lunge_fx.md)
+- [ ] Charge glow grows with GetChargeRatio(), pops at full, holds until release (NS script and C++ patch ready; waiting for the combat push and an editor with a working asset registry)
+- [ ] UE: import the lunge meshes, M_VFX_LungeDrill, NS_Attack_Lunge (script ready)
+- [ ] Hit FX plays the lunge drill on OnChargedLunge (asked the combat session for the delegate; C++ patch ready)
+- [ ] Mike play-tests: hit-stop and enemy shake, charge glow, lunge drill
