@@ -58,3 +58,13 @@ Decisions (Mike, 2026-09-29): health shown as a plain bar (not hearts, restyle l
 - [x] Goblin death: dust-and-rock poof with sparkle on AGoblin::OnEnemyDied
 - [x] Review pass: all systems seen in Simulate or PIE; found and fixed the slash meshes rendering with the default material. Timing and size tuning still wants Mike's play-test
 - [ ] Afterimage on dodge once Shala has a real mesh
+
+## Combat round 3: feel fixes (combat session, 2026-09-29)
+
+Done and pushed (ProjectDawn 51284ff): gamepad A light/interact, B dodge, X heavy, Y reserved for block/parry; three-light combo with ComboCooldown and SwingInterval; finisher after one or two lights; SlidingTime 0.5; "A  Talk" prompt on the HUD; boundary walls round the gym; camera lag 10; camera boom absolute rotation (fixed the rotated-frame flash). VFX session: flashes and screen shake toned down.
+
+Open for next time:
+- [ ] Mike: how should the charge heavy be reworked? (options offered: tap = quick swing with charge only past a hold threshold; release-to-strike with no auto overhead; just retune ChargeTime)
+- [ ] Mike: keep one direction for a whole light combo, and/or shorter light lunges? (offered after the camera fix)
+- [ ] Mike play-tests: slide length, heavy lunge distance (LungeDistance on Heavy rows), dodge timing vs goblin wind-ups, sprint thrust/spin
+- [ ] Block/parry on Y
