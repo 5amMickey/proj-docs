@@ -51,10 +51,10 @@ Decisions (Mike, 2026-09-29): health shown as a plain bar (not hearts, restyle l
 
 ## VFX round 2 (Mike, 2026-09-29: "do all of the list, minus lightning, and all new requests")
 
-- [ ] Heavy charge-up: `NS_Attack_ChargeUp` loops on OnChargeStarted, pops `NS_Attack_ImpactHeavy` on OnChargeFull, stops on OnAttackStarted or when she leaves AttackCharging
-- [ ] Dodge: dust kick-off, speed streaks, landing puff (needs OnDodged from the combat session)
-- [ ] Shala hurt (ECS_Staggered): red-white burst, red flash on her, bigger shake
-- [ ] Shala death (ECS_Dead): big dust burst; respawn (OnShalaRespawned): blue beam, ring, sparkle
-- [ ] Goblin death: dust-and-rock poof with sparkle (needs an enemy-died hook from the combat session)
-- [ ] Tuning pass on the attack effects in Simulate from the game camera
+- [x] Heavy charge-up: `NS_Attack_ChargeUp` loops on OnChargeStarted, pops `NS_Attack_ImpactHeavy` on OnChargeFull, stops on OnAttackStarted or when she leaves AttackCharging
+- [x] Dodge: dust kick-off and speed streaks on OnDodged (landing puff dropped: footsteps resume after it)
+- [x] Shala hurt (ECS_Staggered): red-white burst, red flash on her, bigger shake
+- [x] Shala death (ECS_Dead): big dust burst; respawn (OnShalaRespawned): blue beam, ring, sparkle
+- [x] Goblin death: dust-and-rock poof with sparkle on AGoblin::OnEnemyDied
+- [x] Review pass: all systems seen in Simulate or PIE; found and fixed the slash meshes rendering with the default material. Timing and size tuning still wants Mike's play-test
 - [ ] Afterimage on dodge once Shala has a real mesh
