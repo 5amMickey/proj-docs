@@ -40,10 +40,11 @@ Brief: `HoudiniSource/docs/briefs/dawn_safezone_fx.md`. Interaction and enemy be
 
 Decisions (Mike, 2026-09-29): health shown as a plain bar (not hearts, restyle later); A becomes a dodge with i-frames (the "dash" is RT: sprint, or gap-closer when locked on); death respawns at the last lit safe-zone stone; goblins get swipe + lunge, each with a ground marker that fills over the wind-up (no colour flash); a light attack from a sprint is a narrow forward thrust, a heavy from a sprint is a spin around her, both with a long recovery on a miss (shorter on a hit, combat session's suggestion); goblin health bars stay for now.
 
-- [ ] Shala health (CSV), taking damage, hit stagger, on-screen health bar
-- [ ] A = dodge: toward the stick (sidestep when locked on), invulnerable window, cancels attack recovery
-- [ ] Death: respawn at the last lit stone (else level start), full health, goblins reset
-- [ ] Goblin attacks: swipe + lunge in a CSV, wind-up with a filling ground marker, hits Shala
-- [ ] Sprint attacks: thrust (box hit shape) and spin (circle), per weapon, RecoveryOnHit
-- [ ] CSV switch for goblin health bars
-- [ ] Docs, play-test in the gym, commit and push
+- [x] Shala health (CSV), taking damage, hit stagger, on-screen health bar (b85fbfe)
+- [x] A = dodge: toward the stick (sidestep when locked on), invulnerable window, cancels attack recovery. Built; i-frames and the cancel not yet tested with held input
+- [x] Death: respawn at the last lit stone (else level start), full health, goblins reset. Tested both cases in PIE
+- [x] Goblin attacks: swipe + lunge in a CSV, wind-up with a filling ground marker, hits Shala. Tested in PIE
+- [x] Sprint attacks: thrust (box hit shape) and spin (circle), per weapon, RecoveryOnHit. Built; needs a held sprint to test
+- [x] CSV switch for goblin health bars (bShowHealthBar)
+- [x] Docs, commit and push
+- [ ] Mike play-tests on the controller: dodge timing vs goblin wind-ups, sprint thrust/spin, charge, goblin mesh facing
