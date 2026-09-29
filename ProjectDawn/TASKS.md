@@ -14,3 +14,23 @@ Brief: `HoudiniSource/docs/briefs/dawn_dust_kit.md`. Look: `ProjectDawn/Unreal/S
 - [x] `UShalaDustVFXComponent` on `AShalaCharacter` fires the systems from `GetCurrentState()`; footsteps by distance. Builds and loads (2026-09-29). Emitter fix: mesh emitters need SolveForcesAndVelocity or they don't render.
 - [x] Each system seen in Simulate from the game camera: charge swirl + motes, slide shards, takeoff crescent + rocks
 - [ ] Mike plays the gym (hold K) and tunes timing/scale. Takeoff wall and ring weren't caught on camera; check they read at game speed. Dust is close in value to the grey gym floor.
+
+## Attack FX (prototype)
+
+Brief: `HoudiniSource/docs/briefs/dawn_attack_fx.md`. Hooks: `UShalaCombatComponent::OnAttackHit` (added by the combat session).
+
+- [x] Houdini: slash arcs (light 150°, heavy 220°) and impact atlas (sparkle, burst, radial lines, flash disc)
+- [x] UE: `M_VFX_Slash`, `M_VFX_ImpactSprite`, `M_VFX_HitFlash` (overlay), `M_PP_ImpactFrame` (black-and-white frame)
+- [x] Niagara: `NS_Attack_SlashLight/Heavy`, `NS_Attack_ImpactLight/Heavy`
+- [x] `UShalaHitFXComponent`: slash per swing; per hit an impact burst, white flash, hit-stop (0.05 / 0.12 s), camera shake (`UShalaHitCameraShake`), heavy-only impact frame
+- [ ] Play-test hits on the goblins and tune timing, sizes and hit-stop length. Not yet seen in play.
+
+## Safe zone (prototype)
+
+Brief: `HoudiniSource/docs/briefs/dawn_safezone_fx.md`. Interaction and enemy behaviour are the combat session's (X routing, goblins giving up).
+
+- [x] Houdini: stone block, dome shell, orb, crack-vein texture
+- [x] `IDawnInteractable` (Interact, GetInteractPrompt) and `ADawnSafeZone` (IsInsideActiveZone, ZoneRadius, idle/activate/active FX)
+- [x] Materials and Niagara: `M_VFX_OrbDome`, `M_VFX_OrbCore`, `M_SafeZone_Stone`, `NS_SafeZone_Idle/Activate/Active`
+- [x] Placed `SafeZone_Stone` at (4000, -5000, 0), radius 2000, in the gym's safe-zone area
+- [ ] Mike activates it with X in play and judges the dome: tint vs veins from the game camera. Dome is capped at 7 m tall so the camera stays above it.
