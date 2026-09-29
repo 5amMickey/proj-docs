@@ -48,3 +48,13 @@ Decisions (Mike, 2026-09-29): health shown as a plain bar (not hearts, restyle l
 - [x] CSV switch for goblin health bars (bShowHealthBar)
 - [x] Docs, commit and push
 - [ ] Mike play-tests on the controller: dodge timing vs goblin wind-ups, sprint thrust/spin, charge, goblin mesh facing
+
+## VFX round 2 (Mike, 2026-09-29: "do all of the list, minus lightning, and all new requests")
+
+- [ ] Heavy charge-up: `NS_Attack_ChargeUp` loops on OnChargeStarted, pops `NS_Attack_ImpactHeavy` on OnChargeFull, stops on OnAttackStarted or when she leaves AttackCharging
+- [ ] Dodge: dust kick-off, speed streaks, landing puff (needs OnDodged from the combat session)
+- [ ] Shala hurt (ECS_Staggered): red-white burst, red flash on her, bigger shake
+- [ ] Shala death (ECS_Dead): big dust burst; respawn (OnShalaRespawned): blue beam, ring, sparkle
+- [ ] Goblin death: dust-and-rock poof with sparkle (needs an enemy-died hook from the combat session)
+- [ ] Tuning pass on the attack effects in Simulate from the game camera
+- [ ] Afterimage on dodge once Shala has a real mesh
