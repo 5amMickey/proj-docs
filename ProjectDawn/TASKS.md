@@ -33,4 +33,5 @@ Brief: `HoudiniSource/docs/briefs/dawn_safezone_fx.md`. Interaction and enemy be
 - [x] `IDawnInteractable` (Interact, GetInteractPrompt) and `ADawnSafeZone` (IsInsideActiveZone, ZoneRadius, idle/activate/active FX)
 - [x] Materials and Niagara: `M_VFX_OrbDome`, `M_VFX_OrbCore`, `M_SafeZone_Stone`, `NS_SafeZone_Idle/Activate/Active`
 - [x] Placed `SafeZone_Stone` at (4000, -5000, 0), radius 2000, in the gym's safe-zone area
-- [ ] Mike activates it with X in play and judges the dome: tint vs veins from the game camera. Dome is capped at 7 m tall so the camera stays above it.
+- [x] Works in PIE (checked by the combat session): X activates it, dome, cracks and orb show from the game camera, light attacks are blocked inside the lit dome
+- [ ] Mike judges the dome look: tint vs veins from the game camera. Dome is capped at 7 m tall so the camera stays above it.
