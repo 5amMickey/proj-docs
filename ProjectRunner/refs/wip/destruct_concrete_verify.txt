@@ -1,0 +1,51 @@
+== contents
+== matrix: 4 presets x 3 states x 3 seeds
+[preset 0 state 0 seed 0] 0.38s static 12 tris (0 interior prims) | gc 35 pieces 12 clusters 688 tris | rebar 0 tris | rubble 0
+[preset 0 state 0 seed 1] 0.13s static 12 tris (0 interior prims) | gc 35 pieces 9 clusters 680 tris | rebar 0 tris | rubble 0
+[preset 0 state 0 seed 2] 0.14s static 12 tris (0 interior prims) | gc 35 pieces 10 clusters 668 tris | rebar 0 tris | rubble 0
+[preset 0 state 1 seed 0] 0.63s static 1470 tris (1259 interior prims) | gc 40 pieces 11 clusters 2208 tris | rebar 2320 tris | rubble 25
+[preset 0 state 1 seed 1] 0.45s static 2204 tris (1894 interior prims) | gc 43 pieces 12 clusters 2898 tris | rebar 2212 tris | rubble 26
+[preset 0 state 1 seed 2] 0.49s static 2002 tris (1713 interior prims) | gc 44 pieces 12 clusters 2674 tris | rebar 2260 tris | rubble 25
+[preset 0 state 2 seed 0] 0.58s static 1954 tris (1522 interior prims) | gc 36 pieces 13 clusters 2924 tris | rebar 7012 tris | rubble 72
+[preset 0 state 2 seed 1] 0.62s static 3330 tris (2751 interior prims) | gc 41 pieces 9 clusters 4342 tris | rebar 6928 tris | rubble 77
+[preset 0 state 2 seed 2] 0.52s static 1408 tris (1053 interior prims) | gc 39 pieces 14 clusters 2370 tris | rebar 7072 tris | rubble 79
+[preset 1 state 0 seed 0] 0.14s static 28 tris (0 interior prims) | gc 22 pieces 3 clusters 620 tris | rebar 0 tris | rubble 0
+[preset 1 state 0 seed 1] 0.14s static 28 tris (0 interior prims) | gc 22 pieces 5 clusters 616 tris | rebar 0 tris | rubble 0
+[preset 1 state 0 seed 2] 0.14s static 28 tris (0 interior prims) | gc 22 pieces 7 clusters 608 tris | rebar 0 tris | rubble 0
+[preset 1 state 1 seed 0] 0.42s static 1104 tris (922 interior prims) | gc 26 pieces 4 clusters 1646 tris | rebar 644 tris | rubble 17
+[preset 1 state 1 seed 1] 0.42s static 920 tris (729 interior prims) | gc 26 pieces 5 clusters 1508 tris | rebar 680 tris | rubble 16
+[preset 1 state 1 seed 2] 0.42s static 1228 tris (1044 interior prims) | gc 27 pieces 6 clusters 1812 tris | rebar 652 tris | rubble 14
+[preset 1 state 2 seed 0] 0.46s static 686 tris (560 interior prims) | gc 23 pieces 4 clusters 1298 tris | rebar 1236 tris | rubble 43
+[preset 1 state 2 seed 1] 0.40s static 324 tris (198 interior prims) | gc 22 pieces 5 clusters 916 tris | rebar 1240 tris | rubble 47
+[preset 1 state 2 seed 2] 0.39s static 322 tris (209 interior prims) | gc 22 pieces 5 clusters 990 tris | rebar 1280 tris | rubble 50
+[preset 2 state 0 seed 0] 0.13s static 12 tris (0 interior prims) | gc 10 pieces 4 clusters 168 tris | rebar 0 tris | rubble 0
+[preset 2 state 0 seed 1] 0.13s static 12 tris (0 interior prims) | gc 10 pieces 4 clusters 176 tris | rebar 0 tris | rubble 0
+[preset 2 state 0 seed 2] 0.13s static 12 tris (0 interior prims) | gc 10 pieces 4 clusters 180 tris | rebar 0 tris | rubble 0
+[preset 2 state 1 seed 0] 0.40s static 1062 tris (979 interior prims) | gc 15 pieces 5 clusters 1214 tris | rebar 984 tris | rubble 28
+[preset 2 state 1 seed 1] 0.41s static 1458 tris (1350 interior prims) | gc 16 pieces 4 clusters 1642 tris | rebar 988 tris | rubble 28
+[preset 2 state 1 seed 2] 0.41s static 1696 tris (1555 interior prims) | gc 18 pieces 4 clusters 1940 tris | rebar 1040 tris | rubble 25
+[preset 2 state 2 seed 0] 0.38s static 312 tris (213 interior prims) | gc 10 pieces 4 clusters 540 tris | rebar 1800 tris | rubble 87
+[preset 2 state 2 seed 1] 0.45s static 676 tris (580 interior prims) | gc 11 pieces 3 clusters 916 tris | rebar 1808 tris | rubble 86
+[preset 2 state 2 seed 2] 0.44s static 518 tris (415 interior prims) | gc 11 pieces 3 clusters 760 tris | rebar 1776 tris | rubble 84
+[preset 3 state 0 seed 0] 0.15s static 12 tris (0 interior prims) | gc 47 pieces 12 clusters 1012 tris | rebar 0 tris | rubble 0
+[preset 3 state 0 seed 1] 0.14s static 12 tris (0 interior prims) | gc 47 pieces 12 clusters 948 tris | rebar 0 tris | rubble 0
+[preset 3 state 0 seed 2] 0.14s static 12 tris (0 interior prims) | gc 47 pieces 14 clusters 888 tris | rebar 0 tris | rubble 0
+[preset 3 state 1 seed 0] 0.45s static 1904 tris (1655 interior prims) | gc 55 pieces 13 clusters 2844 tris | rebar 2164 tris | rubble 0
+[preset 3 state 1 seed 1] 0.48s static 3644 tris (3244 interior prims) | gc 62 pieces 11 clusters 4618 tris | rebar 2220 tris | rubble 0
+[preset 3 state 1 seed 2] 0.48s static 2958 tris (2642 interior prims) | gc 59 pieces 14 clusters 3946 tris | rebar 2216 tris | rubble 0
+[preset 3 state 2 seed 0] 0.53s static 1526 tris (1214 interior prims) | gc 48 pieces 15 clusters 2662 tris | rebar 6684 tris | rubble 0
+[preset 3 state 2 seed 1] 0.53s static 2086 tris (1724 interior prims) | gc 50 pieces 13 clusters 3392 tris | rebar 6692 tris | rubble 0
+[preset 3 state 2 seed 2] 0.52s static 1226 tris (924 interior prims) | gc 49 pieces 14 clusters 2386 tris | rebar 6808 tris | rubble 0
+== determinism
+[seed 4 run 1] 0.49s static 2644 tris (2329 interior prims) | gc 46 pieces 10 clusters 3376 tris | rebar 2188 tris | rubble 26
+[seed 4 run 2] 0.45s static 2644 tris (2329 interior prims) | gc 46 pieces 10 clusters 3376 tris | rebar 2188 tris | rubble 26
+[seed 5] 0.45s static 2848 tris (2482 interior prims) | gc 47 pieces 12 clusters 3612 tris | rebar 2248 tris | rubble 23
+== inputs
+[input mesh, no Cd, no impacts] 0.14s static 12 tris (0 interior prims) | gc 21 pieces 6 clusters 416 tris | rebar 0 tris | rubble 0
+[paint on points] 0.82s static 16860 tris (9263 interior prims) | gc 62 pieces 7 clusters 21938 tris | rebar 1268 tris | rubble 26
+[paint on vertices] 0.77s static 16860 tris (9263 interior prims) | gc 62 pieces 7 clusters 21938 tris | rebar 1268 tris | rubble 26
+[world input sphere] 0.44s static 3158 tris (2889 interior prims) | gc 54 pieces 10 clusters 3796 tris | rebar 936 tris | rubble 23
+[loose reference point] 0.47s static 1712 tris (1529 interior prims) | gc 45 pieces 8 clusters 2342 tris | rebar 1240 tris | rubble 25
+== summary
+cook time: max 0.63s, mean 0.37s over 36 matrix cooks
+ALL CHECKS PASSED

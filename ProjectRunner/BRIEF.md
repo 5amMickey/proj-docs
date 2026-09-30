@@ -1,0 +1,72 @@
+# ProjectRunner
+
+Domain: games   Status: building   Updated: 2026-10-01
+
+## What and who
+
+A cyberpunk narrative game in five episodes, following one male lead. It plays like Dispatch, The Walking Dead, and Life is Strange. Each episode is a chain of Sequencer cinematics joined by short playable stretches. In those stretches the player walks through side-on rooms, looks at and uses objects, hacks devices, and makes dialogue choices that later scenes remember. It's a solo narrative game for PC players who like story-driven games. Its systems (interaction, hacking, camera zones, narrative state) are built to carry over to ProjectSilence, a future stealth action game that has its own story and world.
+
+## Done means
+
+Current milestone: G1 Playable scene (blockout). Interior generator milestones (M1–M9) are tracked separately in TASKS.md.
+
+- [ ] `RunnerSandbox_01` builds from the command line (UBT, `RunnerSandbox_01Editor Win64 Development`) with StoryFlow, PhantomInteraction, and PhantomStory enabled and 0 errors.
+- [ ] One blockout level plays start to finish in PIE. It covers: walk (no run or jump), an automatic crouch zone, 2–3 look/use interactions, one hold-to-hack device, a StoryFlow conversation with a timed choice, and a Sequencer cutscene that differs by choice.
+- [ ] Side-on camera zones switch as the player walks. Movement keeps its direction across a camera cut until the stick is released.
+- [ ] A save made mid-scene reloads with StoryFlow flags and the relationship value intact.
+- [ ] A screen recording of each choice branch is saved to `refs/wip/`.
+
+## Stop and ask me when
+
+- Only the global rules apply. While the project is early, build first and I'll adjust afterwards.
+- Push to the GitHub remote only after I've confirmed LFS quota for the first large push.
+
+## Avoid
+
+- Nanite on skinned meshes.
+- Gameplay HUD beyond interact prompts, the hack progress bar, and dialogue choices.
+- AnimGen or other experimental plugins in this project. Try them in `C:\Prod\Sandbox` first.
+- Touching other sessions' editors. ProjectFury uses MCP port 8001 and ProjectDawn uses 8000, so RunnerSandbox uses 8002. Only kill an editor by PID when its command line contains `RunnerSandbox_01`; never use `taskkill /IM`.
+
+## References
+
+- `refs/bar-*.png`, `refs/room-*.{png,jpg}`: interior look and side-on framing, shared with the interior generators.
+- Games: Dispatch (cinematic choices, timed), The Walking Dead (walk and talk), Life is Strange (look/use objects, comments from the lead).
+
+## Where it lives
+
+| What | PC | Mac |
+|---|---|---|
+| Project root and git repo (`Phantom-Break-Studio/ProjectRunner`) | `C:\Prod\ProjectRunner` | n/a |
+| Unreal project | `C:\Prod\ProjectRunner\Unreal\RunnerSandbox_01.uproject` | n/a |
+| Houdini (junction; the `HoudiniSource` repo is the source of truth) | `C:\Prod\ProjectRunner\Houdini` → `Documents\GitHub\HoudiniSource\ProjectCyberRunner` | n/a |
+| Shared UE plugins (PhantomInteraction, PhantomStory; local git repo) | `C:\Prod\_Library\Unreal\Plugins` | n/a |
+| Brief and tasks | `$PROJ_DOCS/ProjectRunner` | `$PROJ_DOCS/ProjectRunner` |
+
+## Domain
+
+- **Engine**: UE 5.8. The project was built from the Game Animation Sample (GASP) 5.8 and uses motion matching on the UEFN Mannequin. Version control is Git with LFS; `Houdini/` is excluded because it lives in HoudiniSource.
+- **Pipeline**: Houdini makes the environments, including the interior generators `mike::room_*`. Exports go from `Houdini/geo/export` to `/Game/Houdini/`, following the `ue5-export` skill.
+- **Budgets**: PC at 60 fps. Characters stay under 20k triangles with 2 material slots, props under 5k, and textures at 2K max. Revisit these once the visual style is settled.
+- **Naming**: follows the `ue5-export` defaults. C++ classes in the Phantom plugins use the `PN` prefix so they don't collide with ProjectAlpha's PhantomCore (`Ph`).
+- **Skeleton**: the UEFN Mannequin drives the animation. Custom low-poly characters rigged on the UE5 skeleton from `asset_charBuilder`/`asset_charRig` replace it later as runtime-retargeted visual overrides, the same way GASP handles Echo and the UE4 Mannequin.
+- **Shared assets**: HDAs and materials come from `C:\Prod\_Library`. PhantomInteraction (no dependencies) is shared with ProjectSilence. PhantomStory depends on StoryFlow. StoryFlow is copied into each project so each one can pin its own version.
+- **Proof**: a UBT build log, and a PIE run of the G1 level with recordings. Houdini assets use `verify-asset`, then a UE import.
+
+## Decisions
+
+Settled. Don't reopen unless I ask.
+
+- 2026-10-01: ProjectRunner becomes this narrative game. `RunnerSandbox_01` grows into it, because it's already a GASP 5.8 project with the characters and the Houdini link.
+- 2026-10-01: Five episodes, each a chain of level sequences with playable stretches in between.
+- 2026-10-01: The camera is side-on (2.5D). A follow camera tracks the player by default. Locked camera zones take over only inside their volumes, and the follow camera takes over again on exit. The player can move in depth inside a room. (Changed from fixed-per-area cameras the same day.)
+- 2026-10-01: Scenes are levels streamed into the persistent level `L_PR_Persistent`. Exit volumes start a Persona 5-style transition: the screen covers in red, a silhouette crowd walks across while the next scene streams in, and the new scene is revealed.
+- 2026-10-01: The player always faces the direction they walk; GASP's strafe and aim modes are off.
+- 2026-10-01: The player walks only; running, jumping, and traversal are off. Crouch happens automatically in crouch zones instead of on a button, and the crouch input stays in the shared plugin for ProjectSilence.
+- 2026-10-01: The first hack is holding a button for a set time. The hack component is built so ProjectSilence can reuse it.
+- 2026-10-01: Dialogue runs on StoryFlow 1.2.3, copied from ProjectAlpha. It supports UE 5.8, has variables, character variables, and save slots, and fires dialogue tags; Inkpot has no confirmed 5.8 build. The Defender pack is a reference only.
+- 2026-10-01: Two shared plugins. PhantomInteraction covers interactables, hold-to-hack, camera zones, and crouch zones. PhantomStory adds the Sequencer bridge (`seq:`/`cam:`/`timer:`/`default:` dialogue tags) and checkpoint saves on top of StoryFlow.
+- 2026-10-01: Dialogue choices are on face buttons in order X, Y, B (two choices: X, Y; keyboard 1, 2, 3). A continues lines with no choices. The HUD draws the conversation, not StoryFlow's mouse widget.
+- 2026-10-01: Choices can be timed, with a default when the timer runs out. Flags are StoryFlow global variables, and relationship values are StoryFlow character variables.
+- 2026-10-01: Background NPCs are spline walkers (`APNWalkerLane`) using GASP walk clips; the transition crowd uses the same lanes with a silhouette material. GASP NPC patrols handle people who stay in a room. AnimGen is tested only in Sandbox.
+- 2026-10-01: The UEFN Mannequin is used for the blockout. The visual style is undecided.
