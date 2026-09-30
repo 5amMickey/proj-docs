@@ -6,7 +6,7 @@
 - [x] Rename to ProjectFury, add the C++ module, MCP on port 8001, Live Coding off, `.gitattributes` for LFS from Dawn
 - [x] Remove jump, traversal, GASP sprint and walk, and crouch on B from `IMC_Sandbox`. Add `IA_FurySprint` (K, RT) and `IA_FuryDodge` (Left Shift, Space, B)
 - [x] Builds and opens in 5.8.3
-- [ ] First commit pushed
+- [x] First commit pushed (e3948b1, 2026-10-01)
 
 ## Stage 1: Dawn movement on GASP
 
