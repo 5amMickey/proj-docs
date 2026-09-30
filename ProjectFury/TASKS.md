@@ -16,4 +16,7 @@
 - [x] F5 reloads `FuryMovement.csv` and `CameraSettings.csv`
 - [x] `Map_FuryGym`: lanes for sprint (50 m), slide (release line and aim targets) and dash (1 m marks); 7 and 8 teleport between the gym and DemoRoom
 - [x] PIE checks with `fury.TestSprint` and `fury.TestDodge`: wind-up turns to the aim, sprint reaches 1200 cm/s, slide eases to 600, dash about 1.4 m
+- [x] Combat Fury on the gamepad: A light, X heavy, LB dodge, RB cycle weapons, Y grab, L3 spell, View takedown, D-pad left/right switch target (2026-10-01)
+- [x] SprintSpeed 1200 to 1100 after Mike's first play
+- [ ] Confirm X heavy on the gamepad; a single press showed no attack in the automated test
 - [ ] Mike's play test and the stage 1 call
