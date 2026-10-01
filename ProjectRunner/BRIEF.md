@@ -60,7 +60,7 @@ Settled. Don't reopen unless I ask.
 - 2026-10-01: ProjectRunner becomes this narrative game. `RunnerSandbox_01` grows into it, because it's already a GASP 5.8 project with the characters and the Houdini link.
 - 2026-10-01: Five episodes, each a chain of level sequences with playable stretches in between.
 - 2026-10-01: The camera is side-on (2.5D). A follow camera tracks the player by default. Locked camera zones take over only inside their volumes, and the follow camera takes over again on exit. The player can move in depth inside a room. (Changed from fixed-per-area cameras the same day.)
-- 2026-10-01: Scenes are levels streamed into the persistent level `L_PR_Persistent`. Exit volumes start a Persona 5-style transition: the screen covers in red, a silhouette crowd walks across while the next scene streams in, and the new scene is revealed.
+- 2026-10-01: Scenes are levels streamed into the persistent level `L_PR_Persistent`. Exit volumes fade the screen to black, stream the next scene in behind the cover, and fade back in. (2026-10-02: the Persona 5 silhouette crowd was removed. `APNTransitionStage` can still show a camera view while loading if one is set.)
 - 2026-10-01: The player always faces the direction they walk; GASP's strafe and aim modes are off.
 - 2026-10-01: The player walks only; running, jumping, and traversal are off. Crouch happens automatically in crouch zones instead of on a button, and the crouch input stays in the shared plugin for ProjectSilence.
 - 2026-10-01: The first hack is holding a button for a set time. The hack component is built so ProjectSilence can reuse it.
@@ -68,5 +68,6 @@ Settled. Don't reopen unless I ask.
 - 2026-10-01: Two shared plugins. PhantomInteraction covers interactables, hold-to-hack, camera zones, and crouch zones. PhantomStory adds the Sequencer bridge (`seq:`/`cam:`/`timer:`/`default:` dialogue tags) and checkpoint saves on top of StoryFlow.
 - 2026-10-01: Dialogue choices are on face buttons in order X, Y, B (two choices: X, Y; keyboard 1, 2, 3). A continues lines with no choices. The HUD draws the conversation, not StoryFlow's mouse widget.
 - 2026-10-01: Choices can be timed, with a default when the timer runs out. Flags are StoryFlow global variables, and relationship values are StoryFlow character variables.
-- 2026-10-01: Background NPCs are spline walkers (`APNWalkerLane`) using GASP walk clips; the transition crowd uses the same lanes with a silhouette material. GASP NPC patrols handle people who stay in a room. AnimGen is tested only in Sandbox.
+- 2026-10-01: Background NPCs are spline walkers (`APNWalkerLane`) using GASP walk clips. GASP NPC patrols handle people who stay in a room. AnimGen is tested only in Sandbox.
 - 2026-10-01: The UEFN Mannequin is used for the blockout. The visual style is undecided.
+- 2026-10-02: The demo uses the UEFN Mannequin for the player and the walkers. Vhoori and the male and female bodies are imported, but they come back only once their rigs match Manny's joint orientations, because live retargeting breaks their arms and fingers.

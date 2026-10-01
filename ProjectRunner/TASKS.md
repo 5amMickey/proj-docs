@@ -43,13 +43,21 @@ Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, 
 - [x] **G1.5 Blockout level.** Two rooms with camera zones, a crouch passage, interactables, a hack device, an NPC with a StoryFlow conversation, and two cutscene variants.
 - [x] **G1.6 Hook up GASP.** The character walks only, uses the interact and hold input, and the move basis comes from the camera zone.
 - [x] **G1.7 StoryFlow script.** The G1 conversation with a timed choice, a flag, and a relationship value.
-- [x] **G1.9 Follow camera and transitions.** A follow camera handles framing everywhere except locked zones. L_G1_Street has passers-by. L_PR_Persistent holds the silhouette-crowd transition stage and streams the scenes. The player faces the direction of movement.
+- [x] **G1.9 Follow camera and transitions.** A follow camera handles framing everywhere except locked zones. L_G1_Street has passers-by. L_PR_Persistent streams the scenes behind a fade to black (the silhouette crowd was removed 2026-10-02). The player faces the direction of movement.
 - [ ] **G1.8 Proof.** Both branches play in PIE, a mid-scene save reloads correctly, and recordings are saved to `refs/wip/`.
   - [x] Automated: `Unreal/Scripts/pr_run_g1_tests.sh` runs `ProjectRunner.G1.Playthrough.{Silent,Truth}` headless. 27/27 checks pass on both branches (2026-10-01). `ProjectRunner.G1.Transition` covers the exit, the return, and a save loaded in another scene, and passes.
   - [x] Stills in `refs/wip/`: `g1_*_cam.png`, `g1_transition_stage.png`, `g1_street_walkers.png`, `g1_follow_start.png`.
   - [ ] Screen recordings of each branch played by hand (needs Mike; OS input is off-limits for agents).
 
+- [ ] **R1 Character rigs on Manny's joint frames.** Vhoori, Male and Female (`asset_charBuilder_10.hiplc`) share Manny's bone names and hierarchy, but their joint orientations differ, so live retargeting breaks their arms and fingers. `ProjectRunner.Rigs.CompareToManny` writes the per-bone gap to `Saved/pr_rig_check.json`.
+  - [ ] Base the skeleton on `geo/fbx/SKM_UEFN_Mannequin.fbx` fitted to each body, instead of building it with `mike::build_joints_*`, Rig Doctor, and Orient Joints.
+  - [ ] Export with the FBX ROP's "Unreal Engine" preset instead of `zupright` with axis conversion.
+  - [ ] Check the ring and pinky phalanges: `buildJoints_Hand_L` doesn't output them in the current scene (70 joints, against 82 in the exported FBXs).
+  - [ ] Re-import. Done when `CompareToManny` reports under 10° on every key bone, and the player and walkers switch back from the UEFN Mannequin.
+
 ## Log
+
+- 2026-10-02: The Persona 5 transition was removed (fade to black now), and the player and walkers went back to the UEFN Mannequin for the demo. G1 tests pass: silent and truth 13/13 steps, transition 9/9.
 
 - 2026-10-01: D0–D7 done. `mike::destruct_concrete::1.0` and `asset_destructBuilder_01.hiplc` were built by `Houdini/scripts/destruct_build/main.py`. `verify.py` ran 44 cooks (4 presets × 3 states × 3 seeds, plus input, paint and impact cases): all checks passed, 0 warnings, max cook 0.63 s. The log and previews are `refs/wip/destruct_concrete_*`. D8 is waiting: the unreal-editor MCP didn't connect this session.
 - 2026-10-01: G1 built. Repos: ProjectRunner (`C:\Prod\ProjectRunner`, remote `Phantom-Break-Studio/ProjectRunner`, not pushed yet) and the plugins (`C:\Prod\_Library\Unreal\Plugins`, local only).
