@@ -42,8 +42,8 @@ Decisions are in the brief (2026-10-02). Work happens in `C:\Prod\Sandbox`. Houd
 
 - [x] **E1 Palette.** Cut Endesga 64 down to material ramps plus neon accents. Save `tex/palette/palette.json` and a swatch image.
 - [x] **E2 Test trim sheet.** `asset_trimBuilder_01.hiplc` builds the strip layout, detail, normals and palette mapping in COPs, and exports BC, N, ORM and E maps at 32 and 64 px/m.
-- [ ] **E3 Test props.** Build a crate and an AC unit with UVs snapped to the strips, and export them as FBX.
-- [ ] **E4 UE test.** Make a blank UE 5.8 project in `C:\Prod\Sandbox\Unreal`, import with nearest filtering and no mips, and save side-on screenshots at both densities.
+- [x] **E3 Test props.** `mike::trim_box::1.0` (`hda/mike.trim_box.1.0.hdalc`) with Crate and AC Unit presets in `asset_propBuilder_01.hiplc`. Every face maps to one strip, and it outputs `unreal_material` for Houdini Engine. `verify_props.py` passes: crate 64 tris, AC unit 48 tris.
+- [ ] **E4 UE test.** Mike creates a GASP 5.8 project as `C:\Prod\Sandbox\Unreal\Sandbox_01`. Copy Houdini Engine from RunnerSandbox, enable the MCP plugin on port 8003, import the trim textures with nearest filtering and no mips, cook `trim_box` through Houdini Engine at both densities, and save side-on screenshots.
 - [ ] **E5 Lock the density** (needs Mike).
 - [ ] **E6 Full prop trim sheet and atlas.**
 - [ ] **E7 Decal atlas and sign atlas.**
