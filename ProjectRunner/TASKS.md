@@ -2,6 +2,8 @@
 
 ## Interior generators (room, bar, clinic, workshop)
 
+**Archived 2026-10-02.** The environment restart moved this work to `HoudiniSource/archive/env_v1/`. Open items below won't be done.
+
 Refs: [refs/](refs/). Side-on, fixed-camera scenes. UE pixelates the render, so detail stays low to mid. Props are modeled in Houdini. Rooms stand alone. Output is emissive materials plus light points. Cameras are placed in UE.
 
 Defaults picked 2026-09-29 (change any of them): Houdini metres, Y up. Floor centred on the origin. Back wall at -Z, front open at +Z. Room 8 x 5 x 3.6 m. Counter 1.1 m high, stool seat 0.75 m, character 1.8 m.
@@ -19,6 +21,8 @@ Scene: `C:\Prod\ProjectRunner\Houdini\asset_interiorBuilder_NN.hiplc`. HDAs go i
 - [ ] **M9 Interior trim sheet and UVs.**
 
 ## Destruction tools (`mike::destruct_*`)
+
+**Archived 2026-10-02.** The environment restart moved this work to `HoudiniSource/archive/env_v1/`. Open items below won't be done.
 
 Brief: `HoudiniSource/docs/briefs/destruct_concrete.md`. Scene: `Houdini/asset_destructBuilder_01.hiplc`. Reference: `HoudiniSource/sandbox/grot_ruins_project_files`.
 
@@ -57,6 +61,7 @@ Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, 
 
 ## Log
 
+- 2026-10-02: Environment restart. Old systems archived to `HoudiniSource/archive/env_v1/` (tag `env-v1-final`). Every archived scene and the facade cook with 0 errors; the renamed building and facade HDAs produce the same point and prim counts as before.
 - 2026-10-02: The Persona 5 transition was removed (fade to black now), and the player and walkers went back to the UEFN Mannequin for the demo. G1 tests pass: silent and truth 13/13 steps, transition 9/9.
 
 - 2026-10-01: D0–D7 done. `mike::destruct_concrete::1.0` and `asset_destructBuilder_01.hiplc` were built by `Houdini/scripts/destruct_build/main.py`. `verify.py` ran 44 cooks (4 presets × 3 states × 3 seeds, plus input, paint and impact cases): all checks passed, 0 warnings, max cook 0.63 s. The log and previews are `refs/wip/destruct_concrete_*`. D8 is waiting: the unreal-editor MCP didn't connect this session.

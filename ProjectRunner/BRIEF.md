@@ -46,7 +46,7 @@ Current milestone: G1 Playable scene (blockout). Interior generator milestones (
 ## Domain
 
 - **Engine**: UE 5.8. The project was built from the Game Animation Sample (GASP) 5.8 and uses motion matching on the UEFN Mannequin. Version control is Git with LFS; `Houdini/` is excluded because it lives in HoudiniSource.
-- **Pipeline**: Houdini makes the environments, including the interior generators `mike::room_*`. Exports go from `Houdini/geo/export` to `/Game/Houdini/`, following the `ue5-export` skill.
+- **Pipeline**: Houdini makes the environments. The first environment systems (`mike::bldg_*`, `mike::room_*`, `mike::destruct_concrete`) are archived in `HoudiniSource/archive/env_v1/`. Exports go from `Houdini/geo/export` to `/Game/Houdini/`, following the `ue5-export` skill.
 - **Budgets**: PC at 60 fps. Characters stay under 20k triangles with 2 material slots, props under 5k, and textures at 2K max. Revisit these once the visual style is settled.
 - **Naming**: follows the `ue5-export` defaults. C++ classes in the Phantom plugins use the `PN` prefix so they don't collide with ProjectAlpha's PhantomCore (`Ph`).
 - **Skeleton**: the UEFN Mannequin drives the animation. Custom low-poly characters rigged on the UE5 skeleton from `asset_charBuilder`/`asset_charRig` replace it later as runtime-retargeted visual overrides, the same way GASP handles Echo and the UE4 Mannequin.
@@ -70,4 +70,5 @@ Settled. Don't reopen unless I ask.
 - 2026-10-01: Choices can be timed, with a default when the timer runs out. Flags are StoryFlow global variables, and relationship values are StoryFlow character variables.
 - 2026-10-01: Background NPCs are spline walkers (`APNWalkerLane`) using GASP walk clips. GASP NPC patrols handle people who stay in a room. AnimGen is tested only in Sandbox.
 - 2026-10-01: The UEFN Mannequin is used for the blockout. The visual style is undecided.
+- 2026-10-02: Environment assets restart from a blank slate. The building, level, room, interior, prop review and destruction systems moved to `HoudiniSource/archive/env_v1/`, latest versions only, renamed to `_01` and 1.0. Git tag `env-v1-final` in HoudiniSource has everything before the move. The ProjectSandbox cyber facade stays active as `asset_facadeBuilder_01` and `mike::cyber_facade::1.0`.
 - 2026-10-02: The demo uses the UEFN Mannequin for the player and the walkers. Vhoori and the male and female bodies are imported, but they come back only once their rigs match Manny's joint orientations, because live retargeting breaks their arms and fingers.
