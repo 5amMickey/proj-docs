@@ -36,6 +36,19 @@ Brief: `HoudiniSource/docs/briefs/destruct_concrete.md`. Scene: `Houdini/asset_d
 - [x] **D7 HDA and proof.** Save `mike.destruct_concrete.1.0.hdalc`, then run the cook matrix and the brief's acceptance checks.
 - [ ] **D8 UE test.** Instance it in RunnerSandbox with a static mesh and a Geometry Collection, and check that the GC breaks in PIE. Save a recording to `refs/wip/`.
 
+## Environment kit (pixel trim)
+
+Decisions are in the brief (2026-10-02). Work happens in `C:\Prod\Sandbox`. Houdini files are in `HoudiniSource/ProjectSandbox`, and the build script is `scripts/trim_build/build.py`.
+
+- [x] **E1 Palette.** Cut Endesga 64 down to material ramps plus neon accents. Save `tex/palette/palette.json` and a swatch image.
+- [x] **E2 Test trim sheet.** `asset_trimBuilder_01.hiplc` builds the strip layout, detail, normals and palette mapping in COPs, and exports BC, N, ORM and E maps at 32 and 64 px/m.
+- [ ] **E3 Test props.** Build a crate and an AC unit with UVs snapped to the strips, and export them as FBX.
+- [ ] **E4 UE test.** Make a blank UE 5.8 project in `C:\Prod\Sandbox\Unreal`, import with nearest filtering and no mips, and save side-on screenshots at both densities.
+- [ ] **E5 Lock the density** (needs Mike).
+- [ ] **E6 Full prop trim sheet and atlas.**
+- [ ] **E7 Decal atlas and sign atlas.**
+- [ ] **E8 Props, tier by tier.**
+
 ## G1 Playable scene (narrative game)
 
 Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, so never touch its editor or MCP. Headless runs target `RunnerSandbox_01` only, and scripts are prefixed `pr_`.
@@ -61,6 +74,7 @@ Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, 
 
 ## Log
 
+- 2026-10-02: E1–E2 done. `HoudiniSource/ProjectSandbox/scripts/trim_build/build.py` builds `asset_trimBuilder_01.hiplc` and exports `tex/prop_trim/{32,64}px/T_PropTrim_{BC,N,ORM,E}.png` plus `tex/palette/`. `verify.py` passes at both densities: every BC pixel is in its strip's ramp, E, roughness and metal match the strip values, flat strips have flat normals, and green is DirectX. 14 test strips use 218 of 512 rows. Quantize outputs bin k as k/(n-1), so tones are snapped to bin centres before the ramp lookup.
 - 2026-10-02: Vex's conversation is three shots: the CAM_Vex two-shot with a hello, over Vex's shoulder onto the player for the player's line, and the reverse onto Vex for the timed choice. Talking moves the player to the NPC's `TalkMark`, and they stay there afterwards. Silent now plays its own profile two-shot, `LS_G1_Silent`. Exits from a scene map played on its own fade to black and fade in at the entry. `pr_build_g1.py` now keeps existing maps (set `PR_REBUILD=1` to rebuild them). Tests: silent and truth 14/14, transition 9/9, scene exit 4/4. Stills: `refs/wip/g1_vex_{shot1,shot2,choice,cutscene}.png`.
 
 - 2026-10-02: Environment restart. Old systems archived to `HoudiniSource/archive/env_v1/` (tag `env-v1-final`). Every archived scene and the facade cook with 0 errors; the renamed building and facade HDAs produce the same point and prim counts as before.
