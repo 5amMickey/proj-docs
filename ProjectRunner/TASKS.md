@@ -53,7 +53,11 @@ Decisions are in the brief (2026-10-02). Work happens in `C:\Prod\Sandbox`. Houd
   - Decal atlas `tex/decal_pixel/T_DecalPixel_{BC,Opacity,N,ORM}.png`: 26 decals at 64 px/m (posters, flyers, stickers, graffiti, stains, rust, cracks, puddle, manhole, drain, road line, arrow, floor tape). UV table in `decals.json`.
   - `mike::pixel_sign::1.0` (`asset_signBuilder_01.hiplc`): trim-sheet board plus glyph quads, eight neon colours, horizontal or vertical, icons as `{name}`.
   - UE: `M_Sign`, `M_Decal`, `MI_Decal_*`; `L_TrimTest` has 3 signs and 21 decals. `verify_decals.py`, `verify_sign_hda.py` and `ue_e7_check.py` pass. Shots `refs/wip/e7_signs_decals.png`, `e7_floor_decals.png`.
-- [ ] **E8 Props, tier by tier.**
+- [ ] **E8 Props, tier by tier.** Review each tier in UE before starting the next.
+  - [x] Tier 1, box + trim: `mike::trim_box::1.3` presets PC tower, server rack, fuse box, utility cabinet, tool chest, washing machine, CRT TV, speaker and wood crate (plus crate, AC unit, vending). New atlas cells in `asset_trimBuilder_05.hiplc`. `verify_props.py` and `ue_props_check.py` pass for all 12 in `L_PropsT1`. Shots `refs/wip/e8_tier1_{left,right}.png`. Waiting on Mike's review.
+  - [ ] Tier 2, box + a little geo: shipping container, condenser, counters, desks, kiosk, water tank, bed, sofa.
+  - [ ] Tier 3, real geometry: stools, chairs, tables, barrels, cones, bollards, lamps, poles, railings, ladders.
+  - [ ] Tier 4, curves: cables, pipes, conduit, lantern strings.
 
 ## G1 Playable scene (narrative game)
 
@@ -80,6 +84,7 @@ Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, 
 
 ## Log
 
+- 2026-10-02: E8 tier 1 done. Each prop is a trim_box preset: side bands add up to the front cell's height, and the width follows the cell plus the two chamfers (4.4 cm each). The Houdini-measured sizes go to `presets.json`, and the UE check compares against them. `ue_stage.py` holds the shared review stage for new levels. Open for review: the wood planks read orange at a distance; the chamfers are wide on the small PC tower.
 - 2026-10-02: E7 done. Glyphs are Yu Gothic Bold rendered with no anti-aliasing by PIL in hython; decals are painted with PIL's aliased primitives, so every texel is exact and verify compares all of them. Things that bit: the image ROP zeroes RGB under alpha 0, so decal opacity is its own map; UE's `decal_size` is half extents; UE decal texcoords are swapped against the atlas, so `M_Decal` swaps them and `ue_e7_import.py` flips V. Facade swap to the pixel glyph atlas is not done (same layout, needs a 512 px atlas in the facade HDA's Glyph Atlas folder).
 - 2026-10-02: E6 done. Atlas cells are painted in Python from palette ramps, not drawn in COPs, so every texel is exact; COPs only rasterise and composite them. Cells use 8-texel clamped gutters and sit 16 texels apart. Cell fronts are split at the side band heights so they share points with the chamfers (no T-junctions). Atlas row uses 464 of 1024 columns and 112 of 260 rows.
 - 2026-10-02: E6a done. Strips: edge_wear, trim_rim, frame_band, paint_teal, paint_red, metal_black, metal_bare, tread_plate, corrugated, wood_planks, plastic, concrete, louvres, vent_slots, hazard, emissive_{cyan,magenta,orange,green,wide}; 764 of 1024 rows. UE mips confirmed by memory size (5504 KB against 4096 KB bare for 1024 x 1024 BGRA8). Left in place, not deleted: `tex/prop_trim/32px/`, `hda/mike.trim_box.1.0.hdalc`, and in UE `/Game/Sandbox/Textures/T32` and `MI_PropTrim_64`.
