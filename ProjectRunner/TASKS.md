@@ -48,7 +48,11 @@ Decisions are in the brief (2026-10-02). Work happens in `C:\Prod\Sandbox`. Houd
 - [x] **E6 Full prop trim sheet and atlas.**
   - [x] E6a Strips. `asset_trimBuilder_03.hiplc`: 20 strips natively at 64 px/m on a 1024 sheet with 8-texel gutters (mip-safe to mip 3). `mike::trim_box::1.1` in `asset_propBuilder_02.hiplc`. UE mips on (simple average, point-sampled). `L_TrimTest` passes; shot `refs/wip/trim_sheet_e6.png`.
   - [x] E6b Atlas cells. `scripts/trim_build/atlas.py` paints ten cells texel by texel (vending front, large fan, AC front, round vent, screen, keypad, gauge, three signs) into `asset_trimBuilder_04.hiplc`. `mike::trim_box::1.2` maps a front face to a cell (AC unit, new Vending preset). verify.py checks every atlas texel; verify_props.py and ue_trim_check.py pass for all three props. Shot `refs/wip/trim_atlas_e6b.png`.
-- [ ] **E7 Decal atlas and sign atlas.**
+- [x] **E7 Decal atlas and sign atlas.** `asset_decalBuilder_01.hiplc` (scripts in `ProjectSandbox/scripts/decal_build/`).
+  - Sign atlas `tex/sign_pixel/T_SignPixel_Glyphs.png`: 512 px, 16 x 16 cells of 32 px (0.5 m glyphs at 64 px/m) in the facade's glyph order, plus 13 icons in cells 243-255. R core, G outline, B halo.
+  - Decal atlas `tex/decal_pixel/T_DecalPixel_{BC,Opacity,N,ORM}.png`: 26 decals at 64 px/m (posters, flyers, stickers, graffiti, stains, rust, cracks, puddle, manhole, drain, road line, arrow, floor tape). UV table in `decals.json`.
+  - `mike::pixel_sign::1.0` (`asset_signBuilder_01.hiplc`): trim-sheet board plus glyph quads, eight neon colours, horizontal or vertical, icons as `{name}`.
+  - UE: `M_Sign`, `M_Decal`, `MI_Decal_*`; `L_TrimTest` has 3 signs and 21 decals. `verify_decals.py`, `verify_sign_hda.py` and `ue_e7_check.py` pass. Shots `refs/wip/e7_signs_decals.png`, `e7_floor_decals.png`.
 - [ ] **E8 Props, tier by tier.**
 
 ## G1 Playable scene (narrative game)
@@ -76,6 +80,7 @@ Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, 
 
 ## Log
 
+- 2026-10-02: E7 done. Glyphs are Yu Gothic Bold rendered with no anti-aliasing by PIL in hython; decals are painted with PIL's aliased primitives, so every texel is exact and verify compares all of them. Things that bit: the image ROP zeroes RGB under alpha 0, so decal opacity is its own map; UE's `decal_size` is half extents; UE decal texcoords are swapped against the atlas, so `M_Decal` swaps them and `ue_e7_import.py` flips V. Facade swap to the pixel glyph atlas is not done (same layout, needs a 512 px atlas in the facade HDA's Glyph Atlas folder).
 - 2026-10-02: E6 done. Atlas cells are painted in Python from palette ramps, not drawn in COPs, so every texel is exact; COPs only rasterise and composite them. Cells use 8-texel clamped gutters and sit 16 texels apart. Cell fronts are split at the side band heights so they share points with the chamfers (no T-junctions). Atlas row uses 464 of 1024 columns and 112 of 260 rows.
 - 2026-10-02: E6a done. Strips: edge_wear, trim_rim, frame_band, paint_teal, paint_red, metal_black, metal_bare, tread_plate, corrugated, wood_planks, plastic, concrete, louvres, vent_slots, hazard, emissive_{cyan,magenta,orange,green,wide}; 764 of 1024 rows. UE mips confirmed by memory size (5504 KB against 4096 KB bare for 1024 x 1024 BGRA8). Left in place, not deleted: `tex/prop_trim/32px/`, `hda/mike.trim_box.1.0.hdalc`, and in UE `/Game/Sandbox/Textures/T32` and `MI_PropTrim_64`.
 - 2026-10-02: E5 locked at 64 px/m. `asset_trimBuilder_02.hiplc` lays the COP network out in sections (input, detail, one column per strip, composite, output) with an overview note; all 10 exported files are byte-identical to `_01`'s and `verify.py` passes. Open: UE textures have no mipmaps, so at distance 64 px/m point-samples to the same look as 32 and shimmers in motion. Turning mips on would show the 32 px/m level automatically at range.
