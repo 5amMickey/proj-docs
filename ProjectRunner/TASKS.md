@@ -43,7 +43,7 @@ Decisions are in the brief (2026-10-02). Work happens in `C:\Prod\Sandbox`. Houd
 - [x] **E1 Palette.** Cut Endesga 64 down to material ramps plus neon accents. Save `tex/palette/palette.json` and a swatch image.
 - [x] **E2 Test trim sheet.** `asset_trimBuilder_01.hiplc` builds the strip layout, detail, normals and palette mapping in COPs, and exports BC, N, ORM and E maps at 32 and 64 px/m.
 - [x] **E3 Test props.** `mike::trim_box::1.0` (`hda/mike.trim_box.1.0.hdalc`) with Crate and AC Unit presets in `asset_propBuilder_01.hiplc`. Every face maps to one strip, and it outputs `unreal_material` for Houdini Engine. `verify_props.py` passes: crate 64 tris, AC unit 48 tris.
-- [ ] **E4 UE test.** Mike creates a GASP 5.8 project as `C:\Prod\Sandbox\Unreal\Sandbox_01`. Copy Houdini Engine from RunnerSandbox, enable the MCP plugin on port 8003, import the trim textures with nearest filtering and no mips, cook `trim_box` through Houdini Engine at both densities, and save side-on screenshots.
+- [x] **E4 UE test.** In `C:\Prod\Sandbox\Unreal\Sandbox_01` (GASP 5.8 with Houdini Engine 3.0 for H22.0.429), `L_TrimTest` holds a crate and an AC unit at each density, cooked live through Houdini Engine. `ue_trim_check.py` passes for all four: 100 x 100 x 100 cm and 80 x 37.5 x 62.5 cm, with the right material. Screenshots are `refs/wip/trim_test_room.png` (8 m framing) and `trim_test_close.png` (3 m).
 - [ ] **E5 Lock the density** (needs Mike).
 - [ ] **E6 Full prop trim sheet and atlas.**
 - [ ] **E7 Decal atlas and sign atlas.**
@@ -74,6 +74,7 @@ Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, 
 
 ## Log
 
+- 2026-10-02: E4 done. The editor is driven through MCP on port 8003 (`ProjectSandbox/scripts/ue/sb_ue.py`, `sb_capture.py`) and UE Python remote execution (`sb_py.py`; MCP's script tool can't import `unreal`). Things that bit: Houdini Engine parameters only exist after instantiation, so set them in `on_post_instantiation_delegate` with a bound method (the delegate counts default arguments). High-res screenshots don't fire while the editor is in the background, but MCP `CaptureViewport` does; it needs an `annotations` block and game view to hide icons.
 - 2026-10-02: E1–E2 done. `HoudiniSource/ProjectSandbox/scripts/trim_build/build.py` builds `asset_trimBuilder_01.hiplc` and exports `tex/prop_trim/{32,64}px/T_PropTrim_{BC,N,ORM,E}.png` plus `tex/palette/`. `verify.py` passes at both densities: every BC pixel is in its strip's ramp, E, roughness and metal match the strip values, flat strips have flat normals, and green is DirectX. 14 test strips use 218 of 512 rows. Quantize outputs bin k as k/(n-1), so tones are snapped to bin centres before the ramp lookup.
 - 2026-10-02: Vex's conversation is three shots: the CAM_Vex two-shot with a hello, over Vex's shoulder onto the player for the player's line, and the reverse onto Vex for the timed choice. Talking moves the player to the NPC's `TalkMark`, and they stay there afterwards. Silent now plays its own profile two-shot, `LS_G1_Silent`. Exits from a scene map played on its own fade to black and fade in at the entry. `pr_build_g1.py` now keeps existing maps (set `PR_REBUILD=1` to rebuild them). Tests: silent and truth 14/14, transition 9/9, scene exit 4/4. Stills: `refs/wip/g1_vex_{shot1,shot2,choice,cutscene}.png`.
 
