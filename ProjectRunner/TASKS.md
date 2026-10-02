@@ -46,6 +46,8 @@ Decisions are in the brief (2026-10-02). Work happens in `C:\Prod\Sandbox`. Houd
 - [x] **E4 UE test.** In `C:\Prod\Sandbox\Unreal\Sandbox_01` (GASP 5.8 with Houdini Engine 3.0 for H22.0.429), `L_TrimTest` holds a crate and an AC unit at each density, cooked live through Houdini Engine. `ue_trim_check.py` passes for all four: 100 x 100 x 100 cm and 80 x 37.5 x 62.5 cm, with the right material. Screenshots are `refs/wip/trim_test_room.png` (8 m framing) and `trim_test_close.png` (3 m).
 - [x] **E5 Lock the density.** 64 px/m (Mike, 2026-10-02). Mipmaps are still open; see the log.
 - [ ] **E6 Full prop trim sheet and atlas.**
+  - [x] E6a Strips. `asset_trimBuilder_03.hiplc`: 20 strips natively at 64 px/m on a 1024 sheet with 8-texel gutters (mip-safe to mip 3). `mike::trim_box::1.1` in `asset_propBuilder_02.hiplc`. UE mips on (simple average, point-sampled). `L_TrimTest` passes; shot `refs/wip/trim_sheet_e6.png`.
+  - [ ] E6b Atlas cells in the bottom 260 rows: fan grille, keypad, meter dial, vending front, screen, warning labels.
 - [ ] **E7 Decal atlas and sign atlas.**
 - [ ] **E8 Props, tier by tier.**
 
@@ -74,6 +76,7 @@ Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, 
 
 ## Log
 
+- 2026-10-02: E6a done. Strips: edge_wear, trim_rim, frame_band, paint_teal, paint_red, metal_black, metal_bare, tread_plate, corrugated, wood_planks, plastic, concrete, louvres, vent_slots, hazard, emissive_{cyan,magenta,orange,green,wide}; 764 of 1024 rows. UE mips confirmed by memory size (5504 KB against 4096 KB bare for 1024 x 1024 BGRA8). Left in place, not deleted: `tex/prop_trim/32px/`, `hda/mike.trim_box.1.0.hdalc`, and in UE `/Game/Sandbox/Textures/T32` and `MI_PropTrim_64`.
 - 2026-10-02: E5 locked at 64 px/m. `asset_trimBuilder_02.hiplc` lays the COP network out in sections (input, detail, one column per strip, composite, output) with an overview note; all 10 exported files are byte-identical to `_01`'s and `verify.py` passes. Open: UE textures have no mipmaps, so at distance 64 px/m point-samples to the same look as 32 and shimmers in motion. Turning mips on would show the 32 px/m level automatically at range.
 - 2026-10-02: E4 done. The editor is driven through MCP on port 8003 (`ProjectSandbox/scripts/ue/sb_ue.py`, `sb_capture.py`) and UE Python remote execution (`sb_py.py`; MCP's script tool can't import `unreal`). Things that bit: Houdini Engine parameters only exist after instantiation, so set them in `on_post_instantiation_delegate` with a bound method (the delegate counts default arguments). High-res screenshots don't fire while the editor is in the background, but MCP `CaptureViewport` does; it needs an `annotations` block and game view to hide icons.
 - 2026-10-02: E1–E2 done. `HoudiniSource/ProjectSandbox/scripts/trim_build/build.py` builds `asset_trimBuilder_01.hiplc` and exports `tex/prop_trim/{32,64}px/T_PropTrim_{BC,N,ORM,E}.png` plus `tex/palette/`. `verify.py` passes at both densities: every BC pixel is in its strip's ramp, E, roughness and metal match the strip values, flat strips have flat normals, and green is DirectX. 14 test strips use 218 of 512 rows. Quantize outputs bin k as k/(n-1), so tones are snapped to bin centres before the ramp lookup.
