@@ -55,9 +55,11 @@ Decisions are in the brief (2026-10-02). Work happens in `C:\Prod\Sandbox`. Houd
   - UE: `M_Sign`, `M_Decal`, `MI_Decal_*`; `L_TrimTest` has 3 signs and 21 decals. `verify_decals.py`, `verify_sign_hda.py` and `ue_e7_check.py` pass. Shots `refs/wip/e7_signs_decals.png`, `e7_floor_decals.png`.
 - [ ] **E8 Props, tier by tier.** Review each tier in UE before starting the next.
   - [x] Tier 1, box + trim: `mike::trim_box::1.3` presets PC tower, server rack, fuse box, utility cabinet, tool chest, washing machine, CRT TV, speaker and wood crate (plus crate, AC unit, vending). New atlas cells in `asset_trimBuilder_05.hiplc`. `verify_props.py` and `ue_props_check.py` pass for all 12 in `L_PropsT1`. Shots `refs/wip/e8_tier1_{left,right}.png`. Waiting on Mike's review.
-  - [ ] Tier 2, box + a little geo: shipping container, condenser, counters, desks, kiosk, water tank, bed, sofa.
-  - [ ] Tier 3, real geometry: stools, chairs, tables, barrels, cones, bollards, lamps, poles, railings, ladders.
-  - [ ] Tier 4, curves: cables, pipes, conduit, lantern strings.
+  - [x] Tier 2, box + a little geo (16): shipping container, container shop, AC condenser, bar and kitchen counters, desk, workbench, kiosk, serving window, water tank, rooftop shack, ticket machine, drinks fridge, arcade cabinet, bed, sofa.
+  - [x] Tier 3, real geometry (29): stool, chair, cafe table, oil and plastic drums, traffic cone, bollard, hydrant, bottles, glasses, pendant lamp, paper lantern, street lamp, desk lamp, utility pole, antenna, satellite dish, railing, ladder, stairs, food cart, hand truck, bike, monitor, TV bracket, security camera, awning, canopy, plant pot.
+  - [x] Tier 4, curves (5): cable run, pipe run, conduit, laundry line, lantern string.
+  - [x] Library: `/Game/Sandbox/Maps/L_PropLibrary` in Sandbox_01, a corridor of bays (T1, T2, T3, T4, Signs, Decals) with labels and a camera per bay. 69 baked static meshes in `/Game/Sandbox/Library/<group>/SM_*` plus 26 decals. `verify_kit.py` (50 presets) and `ue_library_check.py` pass. Shots `refs/wip/library_*.png`. Waiting on Mike's review.
+  - [ ] Not built: cloth (bedding, throws), security grille, cage, sign truss, litter.
 
 ## G1 Playable scene (narrative game)
 
@@ -84,6 +86,7 @@ Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, 
 
 ## Log
 
+- 2026-10-02: E8 tiers 2-4 and the library done. Sheet A was full, so sheet B (`layout_b.py`, `atlas_b.py`, `MI_PropTrimB`) holds the new strips and cells; `build.py` and `verify.py` pick the sheet with `TRIM_SHEET`. `mike::prop_kit::1.0` writes every UV itself (no trim_frame wrangle), which allows partial bands, vertical bands, panels with holes, tubes whose circumference is a strip height, and caps projected from a cell centre. Library props are baked with the Houdini Engine public API (`bake_all_outputs_with_settings`, TO_ACTOR) and the meshes renamed to `SM_<Name>`. Things that bit: a stacked gallery hid each bay behind the previous wall, so the bays sit side by side along one wall; the first capture of a new bay can come back empty while shaders compile.
 - 2026-10-02: E8 tier 1 done. Each prop is a trim_box preset: side bands add up to the front cell's height, and the width follows the cell plus the two chamfers (4.4 cm each). The Houdini-measured sizes go to `presets.json`, and the UE check compares against them. `ue_stage.py` holds the shared review stage for new levels. Open for review: the wood planks read orange at a distance; the chamfers are wide on the small PC tower.
 - 2026-10-02: E7 done. Glyphs are Yu Gothic Bold rendered with no anti-aliasing by PIL in hython; decals are painted with PIL's aliased primitives, so every texel is exact and verify compares all of them. Things that bit: the image ROP zeroes RGB under alpha 0, so decal opacity is its own map; UE's `decal_size` is half extents; UE decal texcoords are swapped against the atlas, so `M_Decal` swaps them and `ue_e7_import.py` flips V. Facade swap to the pixel glyph atlas is not done (same layout, needs a 512 px atlas in the facade HDA's Glyph Atlas folder).
 - 2026-10-02: E6 done. Atlas cells are painted in Python from palette ramps, not drawn in COPs, so every texel is exact; COPs only rasterise and composite them. Cells use 8-texel clamped gutters and sit 16 texels apart. Cell fronts are split at the side band heights so they share points with the chamfers (no T-junctions). Atlas row uses 464 of 1024 columns and 112 of 260 rows.
