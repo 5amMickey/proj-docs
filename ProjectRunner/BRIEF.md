@@ -39,7 +39,7 @@ Current milestone: G1 Playable scene (blockout). Interior generator milestones (
 |---|---|---|
 | Project root and git repo (`Phantom-Break-Studio/ProjectRunner`) | `C:\Prod\ProjectRunner` | n/a |
 | Unreal project | `C:\Prod\ProjectRunner\Unreal\RunnerSandbox_01.uproject` | n/a |
-| Houdini (junction; the `HoudiniSource` repo is the source of truth) | `C:\Prod\ProjectRunner\Houdini` → `Documents\GitHub\HoudiniSource\ProjectCyberRunner` | n/a |
+| Houdini (junction; the `HoudiniSource` repo is the source of truth) | `C:\Prod\ProjectRunner\Houdini` → `Documents\GitHub\HoudiniSource\ProjectRunner` (renamed from `ProjectCyberRunner` 2026-10-07) | n/a |
 | Shared UE plugins (PhantomInteraction, PhantomStory; local git repo) | `C:\Prod\_Library\Unreal\Plugins` | n/a |
 | Brief and tasks | `$PROJ_DOCS/ProjectRunner` | `$PROJ_DOCS/ProjectRunner` |
 | Environment kit tests (Houdini junction to `HoudiniSource\ProjectSandbox`; Unreal folder for the test project) | `C:\Prod\Sandbox` | n/a |
@@ -75,3 +75,6 @@ Settled. Don't reopen unless I ask.
 - 2026-10-02: The demo uses the UEFN Mannequin for the player and the walkers. Vhoori and the male and female bodies are imported, but they come back only once their rigs match Manny's joint orientations, because live retargeting breaks their arms and fingers.
 - 2026-10-02: Environment textures are pixel art baked in Houdini COPs, not pixelated by UE at runtime. Texel density is 32 px/m for everything, characters included. Hero props that get close-ups may use exactly 64 px/m. Shapes are drawn at target resolution, detail is made at higher resolution and box-downsampled, and normals come from the downsampled height. Props share one 512x512 trim sheet with strips in whole texels (2, 4, 8 and 16 px) and an atlas of 32 and 64 px cells. Colours come from about 48 Endesga 64 colours in ramps of 4 to 6 shades, mapped per material; neon colours are for emissive only. No dithering. UE imports use nearest filtering and no mipmaps. The density gets a final check in UE before the full kit is built.
 - 2026-10-02: Texel density is locked at 64 px/m (sheet 1024 x 1024), replacing 32 px/m above. Chosen from the E4 test in `L_TrimTest`.
+- 2026-10-07: The environment kit restarts again, as high-to-low bakes. Each Houdini tool builds Blockout, Low and High from one set of parameters. The High is baked onto the Low with Labs Maps Baker, and new procedural COP textures are made from the bakes. The old trim sheets, atlases and E8 props aren't reused. Brief: `HoudiniSource/docs/briefs/runner_props.md`.
+- 2026-10-07: The 64 px/m lock is reopened. Texel density is a menu (64, 128, 256, 512 px/m) and the pixel-art treatment (box downsample, Endesga 64 quantize) is a separate toggle, both judged side by side in `L_TexelTest`. Endesga 64 stays the source of every hue. Signs and screens use a blurred fill with no text or fonts.
+- 2026-10-07: HDA types are named `<domain>_<subject>_<descriptor>[_<NN>]` and deliverables `SM_<Subject>_<Descriptor>_<NN>`.

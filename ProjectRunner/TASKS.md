@@ -38,6 +38,8 @@ Brief: `HoudiniSource/docs/briefs/destruct_concrete.md`. Scene: `Houdini/asset_d
 
 ## Environment kit (pixel trim)
 
+**Superseded 2026-10-07** by Environment kit 2. Its trim sheets, atlases and props aren't reused.
+
 Decisions are in the brief (2026-10-02). Work happens in `C:\Prod\Sandbox`. Houdini files are in `HoudiniSource/ProjectSandbox`, and the build script is `scripts/trim_build/build.py`.
 
 - [x] **E1 Palette.** Cut Endesga 64 down to material ramps plus neon accents. Save `tex/palette/palette.json` and a swatch image.
@@ -61,6 +63,20 @@ Decisions are in the brief (2026-10-02). Work happens in `C:\Prod\Sandbox`. Houd
   - [x] Library: `/Game/Sandbox/Maps/L_PropLibrary` in Sandbox_01, a corridor of bays (T1, T2, T3, T4, Signs, Decals) with labels and a camera per bay. 69 baked static meshes in `/Game/Sandbox/Library/<group>/SM_*` plus 26 decals. `verify_kit.py` (50 presets) and `ue_library_check.py` pass. Shots `refs/wip/library_*.png`. Waiting on Mike's review.
   - [x] Houdini library: `asset_propLibrary_01.hiplc` (`scripts/library/build_library.py`), the same bays as live HDA nodes (`lib_<group>_<key>`) plus the decals, the four atlases and one facade, with preview shaders and a camera per bay. 73 objects cook with 0 errors.
   - [ ] Not built: cloth (bedding, throws), security grille, cage, sign truss, litter.
+
+## Environment kit 2 (bake to low)
+
+Started 2026-10-07. Brief: `HoudiniSource/docs/briefs/runner_props.md`. Scene `HoudiniSource/ProjectRunner/asset_propBuilder_01.hiplc`, HDAs in `ProjectRunner/hda/`. UE test level `L_TexelTest` in RunnerSandbox_01.
+
+- [ ] **K1 Detail switch.** `mike::env_detail_switch::1.0`: Blockout/Low/High menu, UCX collision from the blockout.
+- [ ] **K2 First prop.** `mike::prop_vending_drinks::1.0`: Blockout, Low (boxes, at most 4-sided polygons, closed, UVs at density), High (bevels, bottles, edge damage, `mat_id`).
+- [ ] **K3 Bake.** `mike::env_bake_maps::1.0`: Labs Maps Baker high to low at the density's resolution.
+- [ ] **K4 Sign fill.** `mike::env_texture_signfill::1.0`: blurred blocks or colour field, no text.
+- [ ] **K5 Texture.** `mike::env_texture_cops::1.0`: BC, N, ORM, E from the bakes. Density menu, Pixel Art toggle, Endesga 64 ramps.
+- [ ] **K6 Export and density test.** `SM_VendingMachine_Drinks_01` plus maps at 64, 128, 256 and 512 px/m, with Pixel Art on and off. Import into `L_TexelTest` with a game-camera bookmark. Mike picks the density.
+- [ ] **K7 Other props.** `mike::prop_terminal_hack`, `mike::prop_acunit_wall`, `mike::prop_sign_neon`, all through the same core.
+- [ ] **K8 Verify.** Every acceptance criterion in the brief, checked with hython output and `lint`.
+- [ ] **K9 UE reimports.** Repoint `SKM_Female_Body_01`, `SKM_Male_Body_01` and `SKM_Cast_Vhoori_01` from `ProjectCyberRunner` to `C:\Prod\ProjectRunner\Houdini\geo\export\`.
 
 ## G1 Playable scene (narrative game)
 
