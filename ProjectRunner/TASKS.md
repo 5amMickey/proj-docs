@@ -96,7 +96,9 @@ Flow: Houdini High and Low with material IDs and vertex colour, then FBX, then P
 - [x] `mike::prop_vending_drinks::2.0`: bottle necks fixed (2026-10-08)
 - [x] `asset_propBuilder_02`: `_low` and `_high` FBX in `geo/bake/`, first Houdini bake (8 maps, 2048) in `tex/VendingMachine_Drinks_01/bake/` (2026-10-08)
 - [x] Designer part materials in `ProjectRunner/substance/materials/`: painted metal, plastic, brushed metal (unmodified copies, ready to restyle) (2026-10-08)
-- [ ] Mike: Painter project, bake, paint, export
+- [x] Painter made optional (2026-10-08): `asset_propBuilder_03` adds fixed ID colours, `prop_texture.sbs` (Designer, headless), a resize COP to 128 px/m, Unreal import scripts, and `/obj/pipeline_vending_drinks` to run it all
+- [ ] Mike: judge the preview level `/Game/Houdini/Preview/L_Preview_VendingMachine_Drinks_01` (old COP 128px, sd_512px, sd_128px_smooth, sd_128px)
+- [ ] Mike: confirm the shrink moves from Pixel8r to Houdini (with no palette or dither, Pixel8r equals a box shrink; Houdini also renormalizes normals)
 - [ ] Pixel8r pass, UE import, MIs, side by side in `L_TexelTest`
 
 ## G1 Playable scene (narrative game)
