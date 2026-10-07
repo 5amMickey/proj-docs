@@ -89,6 +89,16 @@ Skill: `texture-pipeline`. Research: `HoudiniSource/docs/research/texture_pipeli
 - [ ] Load Pixel8r in Painter 7.3 as a filter
 - [ ] Re-texture the four kit 2 props through the new pipeline and compare with the COP versions in `L_TexelTest`
 
+### HD-2D vending machine test (proposed 2026-10-08, waiting on Mike's go-ahead)
+
+Flow: Houdini High and Low with material IDs and vertex colour, then FBX, then Painter bakes and paints with Designer materials, then a UE 5.8 material. Every stage stays editable. Final grid 128 px/m (source at 512 px/m, 2048 map). Two versions in UE: Pixel8r at 128 px/m, and no Pixel8r. Old vending textures and MIs stay in RunnerSandbox for comparison.
+
+- [x] `mike::prop_vending_drinks::2.0`: bottle necks fixed (2026-10-08)
+- [ ] `asset_propBuilder_02`: export `_low` and `_high` FBX for Painter
+- [ ] Designer part materials in `ProjectRunner/substance/`
+- [ ] Mike: Painter project, bake, paint, export
+- [ ] Pixel8r pass, UE import, MIs, side by side in `L_TexelTest`
+
 ## G1 Playable scene (narrative game)
 
 Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, so never touch its editor or MCP. Headless runs target `RunnerSandbox_01` only, and scripts are prefixed `pr_`.
