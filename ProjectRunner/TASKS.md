@@ -84,9 +84,10 @@ Skill: `texture-pipeline`. Research: `HoudiniSource/docs/research/texture_pipeli
 
 - [x] Pixel8r 2 in `Development/_assets/_substance/Pixel8r/` (2026-10-08)
 - [x] Pixel8r 2.72 renders from the command line in Designer 11.2's engine: a 64-pixel grid on a cliff base colour (2026-10-08)
+- [x] Endesga 64 LUT `HoudiniSource/ProjectRunner/substance/pixel8r/T_Endesga64_LUT.png` (from `texture-pipeline/scripts/palette_lut.py`). With it, every output pixel is an Endesga 64 colour: vending machine BC 33 colours, cliff 9 (2026-10-08). The `Custom_Palette` input wasn't exact (max error 51/255).
+- [x] Normals: pixelate with no palette, then renormalize (cliff: 3% of texels more than 5% off unit length) (2026-10-08)
+- [ ] Finding: nearest-colour snapping turns muted colours grey (tan cliff came out grey). Restyle toward palette hues in Designer first, or build per-material ramps like the old COP look. Mike to judge the side-by-sides.
 - [ ] Load Pixel8r in Painter 7.3 as a filter
-- [ ] Make an Endesga 64 palette image for Pixel8r's `Custom_Palette` input and check every output pixel is in the palette
-- [ ] Test Pixel8r on normal maps; decide pixelate base colour only, or all maps
 - [ ] Re-texture the four kit 2 props through the new pipeline and compare with the COP versions in `L_TexelTest`
 
 ## G1 Playable scene (narrative game)

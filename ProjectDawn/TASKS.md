@@ -114,7 +114,8 @@ Skill: `texture-pipeline`. Research: `HoudiniSource/docs/research/texture_pipeli
 
 - [x] Survey sources: about 2,150 `.sbsar` and 2,450 `.sbs` in `Development/_assets`; Fab packs in VaultCache are `.uasset` only (2026-10-08)
 - [x] Prove `.sbsar` renders headless: Labs `sbs_archive` in Houdini, and `sbsrender` in Designer 11.2 (2026-10-08)
-- [ ] Mike: where restyled `.sbs` files live (suggested `ProjectDawn/substance/`), resize methods (re-render and resample, both), pilot set (the four rock types)
+- [x] Decided 2026-10-08: restyled `.sbs` live in `HoudiniSource/ProjectDawn/substance/`; the tool offers both re-render and resample
+- [ ] Mike: confirm the pilot set (suggested: the four rock types)
 - [ ] Brief the Houdini down-res and preview HDA with `/asset-brief`: `.sbsar` list in, cache render, resample filter menu, B/N/AORM/H pack, a row of labelled preview planes, PNG export
 - [ ] Restyle the pilot rock materials in Designer and render them through the tool
 - [ ] Import into UE 5.8 with the skill's settings and compare with the Provencal rocks
