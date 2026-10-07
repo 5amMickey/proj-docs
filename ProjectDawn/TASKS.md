@@ -103,3 +103,18 @@ Pushed as ProjectDawn 9216b5c.
 - [x] OnChargedLunge and public GetChargeRatio for the VFX session's drill and charge glow
 - [ ] Mike play-tests: charge feel on both weapons, slide transitions, turn limit, combo reset (check the "Combo:" log lines if it happens again)
 - [ ] Mike: one attack button with moves per weapon (still open)
+
+## Rock meshes (later)
+
+- [ ] Later briefs: rock mesh generator, then a scatter/instancing tool. Textures come from the texture tool below.
+
+## Texture tool (Designer, Houdini, UE)
+
+Skill: `texture-pipeline`. Research: `HoudiniSource/docs/research/texture_pipeline.md`.
+
+- [x] Survey sources: about 2,150 `.sbsar` and 2,450 `.sbs` in `Development/_assets`; Fab packs in VaultCache are `.uasset` only (2026-10-08)
+- [x] Prove `.sbsar` renders headless: Labs `sbs_archive` in Houdini, and `sbsrender` in Designer 11.2 (2026-10-08)
+- [ ] Mike: where restyled `.sbs` files live (suggested `ProjectDawn/substance/`), resize methods (re-render and resample, both), pilot set (the four rock types)
+- [ ] Brief the Houdini down-res and preview HDA with `/asset-brief`: `.sbsar` list in, cache render, resample filter menu, B/N/AORM/H pack, a row of labelled preview planes, PNG export
+- [ ] Restyle the pilot rock materials in Designer and render them through the tool
+- [ ] Import into UE 5.8 with the skill's settings and compare with the Provencal rocks

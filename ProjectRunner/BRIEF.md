@@ -1,6 +1,6 @@
 # ProjectRunner
 
-Domain: games   Status: building   Updated: 2026-10-01
+Domain: games   Status: building   Updated: 2026-10-08
 
 ## What and who
 
@@ -47,7 +47,7 @@ Current milestone: G1 Playable scene (blockout). Interior generator milestones (
 ## Domain
 
 - **Engine**: UE 5.8. The project was built from the Game Animation Sample (GASP) 5.8 and uses motion matching on the UEFN Mannequin. Version control is Git with LFS; `Houdini/` is excluded because it lives in HoudiniSource.
-- **Pipeline**: Houdini makes the environments. The first environment systems (`mike::bldg_*`, `mike::room_*`, `mike::destruct_concrete`) are archived in `HoudiniSource/archive/env_v1/`. Exports go from `Houdini/geo/export` to `/Game/Houdini/`, following the `ue5-export` skill.
+- **Pipeline**: Houdini makes the environments. The first environment systems (`mike::bldg_*`, `mike::room_*`, `mike::destruct_concrete`) are archived in `HoudiniSource/archive/env_v1/`. Exports go from `Houdini/geo/export` to `/Game/Houdini/`, following the `ue5-export` skill. Textures come from Substance Designer and Painter, with Pixel8r 2 for the pixel-art treatment, following the `texture-pipeline` skill.
 - **Budgets**: PC at 60 fps. Characters stay under 20k triangles with 2 material slots, props under 5k, and textures at 2K max. Revisit these once the visual style is settled.
 - **Naming**: follows the `ue5-export` defaults. C++ classes in the Phantom plugins use the `PN` prefix so they don't collide with ProjectAlpha's PhantomCore (`Ph`).
 - **Skeleton**: the UEFN Mannequin drives the animation. Custom low-poly characters rigged on the UE5 skeleton from `asset_charBuilder`/`asset_charRig` replace it later as runtime-retargeted visual overrides, the same way GASP handles Echo and the UE4 Mannequin.
@@ -73,8 +73,8 @@ Settled. Don't reopen unless I ask.
 - 2026-10-01: The UEFN Mannequin is used for the blockout. The visual style is undecided.
 - 2026-10-02: Environment assets restart from a blank slate. The building, level, room, interior, prop review and destruction systems moved to `HoudiniSource/archive/env_v1/`, latest versions only, renamed to `_01` and 1.0. Git tag `env-v1-final` in HoudiniSource has everything before the move. The ProjectSandbox cyber facade stays active as `asset_facadeBuilder_01` and `mike::cyber_facade::1.0`.
 - 2026-10-02: The demo uses the UEFN Mannequin for the player and the walkers. Vhoori and the male and female bodies are imported, but they come back only once their rigs match Manny's joint orientations, because live retargeting breaks their arms and fingers.
-- 2026-10-02: Environment textures are pixel art baked in Houdini COPs, not pixelated by UE at runtime. Texel density is 32 px/m for everything, characters included. Hero props that get close-ups may use exactly 64 px/m. Shapes are drawn at target resolution, detail is made at higher resolution and box-downsampled, and normals come from the downsampled height. Props share one 512x512 trim sheet with strips in whole texels (2, 4, 8 and 16 px) and an atlas of 32 and 64 px cells. Colours come from about 48 Endesga 64 colours in ramps of 4 to 6 shades, mapped per material; neon colours are for emissive only. No dithering. UE imports use nearest filtering and no mipmaps. The density gets a final check in UE before the full kit is built.
-- 2026-10-02: Texel density is locked at 64 px/m (sheet 1024 x 1024), replacing 32 px/m above. Chosen from the E4 test in `L_TrimTest`.
-- 2026-10-07: The environment kit restarts again, as high-to-low bakes. Each Houdini tool builds Blockout, Low and High from one set of parameters. The High is baked onto the Low with Labs Maps Baker, and new procedural COP textures are made from the bakes. The old trim sheets, atlases and E8 props aren't reused. Brief: `HoudiniSource/docs/briefs/runner_props.md`.
-- 2026-10-07: The 64 px/m lock is reopened. Texel density is a menu (64, 128, 256, 512 px/m) and the pixel-art treatment (box downsample, Endesga 64 quantize) is a separate toggle, both judged side by side in `L_TexelTest`. Endesga 64 stays the source of every hue. Signs and screens use a blurred fill with no text or fonts.
+- 2026-10-02: Environment textures are pixel art made before import, not pixelated by UE at runtime. Pixel-art textures import with nearest filtering and no mipmaps. Endesga 64 is the source of every hue, and there's no dithering.
+- 2026-10-07: The environment kit is built as high-to-low bakes. Each Houdini tool builds Blockout, Low and High from one set of parameters, and the High is baked onto the Low in Houdini with the stock Bake Geometry Textures COP. The old trim sheets, atlases and E8 props aren't reused. Brief: `HoudiniSource/docs/briefs/runner_props.md`.
+- 2026-10-07: Texel density is a menu (64, 128, 256, 512 px/m), judged side by side in `L_TexelTest`. Signs and screens use a blurred fill with no text or fonts.
 - 2026-10-07: HDA types are named `<domain>_<subject>_<descriptor>[_<NN>]` and deliverables `SM_<Subject>_<Descriptor>_<NN>`.
+- 2026-10-08: Textures are made in Substance Designer and Painter from the Houdini bakes, following the `texture-pipeline` skill that every game project shares. Pixel8r 2 does the pixel-art treatment, with Endesga 64 as its palette image and dithering off.

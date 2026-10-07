@@ -78,6 +78,17 @@ Started 2026-10-07. Brief: `HoudiniSource/docs/briefs/runner_props.md`. Scene `H
 - [x] **K8 Verify.** 2026-10-07: 39/39 checks per prop, lint passes on 8 HDAs and 8 networks. Every acceptance criterion in the brief, checked with hython output and `lint`.
 - [ ] **K9 UE reimports.** Blocked on the editor MCP: it can't read or set import source paths or reimport skeletal meshes. Do it by hand (Reimport With New File). Repoint `SKM_Female_Body_01`, `SKM_Male_Body_01` and `SKM_Cast_Vhoori_01` from `ProjectCyberRunner` to `C:\Prod\ProjectRunner\Houdini\geo\export\`.
 
+## Textures (Designer, Painter, Pixel8r)
+
+Skill: `texture-pipeline`. Research: `HoudiniSource/docs/research/texture_pipeline.md`.
+
+- [x] Pixel8r 2 in `Development/_assets/_substance/Pixel8r/` (2026-10-08)
+- [x] Pixel8r 2.72 renders from the command line in Designer 11.2's engine: a 64-pixel grid on a cliff base colour (2026-10-08)
+- [ ] Load Pixel8r in Painter 7.3 as a filter
+- [ ] Make an Endesga 64 palette image for Pixel8r's `Custom_Palette` input and check every output pixel is in the palette
+- [ ] Test Pixel8r on normal maps; decide pixelate base colour only, or all maps
+- [ ] Re-texture the four kit 2 props through the new pipeline and compare with the COP versions in `L_TexelTest`
+
 ## G1 Playable scene (narrative game)
 
 Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, so never touch its editor or MCP. Headless runs target `RunnerSandbox_01` only, and scripts are prefixed `pr_`.
