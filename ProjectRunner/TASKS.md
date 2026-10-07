@@ -73,10 +73,10 @@ Started 2026-10-07. Brief: `HoudiniSource/docs/briefs/runner_props.md`. Scene `H
 - [x] **K3 Bake.** `mike::env_bake_maps::1.0`: stock Bake Geometry Textures COP (Labs Maps Baker is deprecated, removed in H23) at the density's resolution, Supersample 1/2/4x, Ray Offset so parts sitting proud of the shell win.
 - [x] **K4 Sign fill.** `mike::env_texture_signfill::1.0`: blurred blocks or colour field, no text.
 - [x] **K5 Texture.** `mike::env_texture_cops::1.0`: BC, N, ORM, E from the bakes. Density menu, Pixel Art toggle, Endesga 64 ramps.
-- [ ] **K6 Export and density test.** Houdini side done 2026-10-07: FBX plus maps at 64-512 px/m, Pixel Art on and off, in `ProjectRunner/tex/<Asset>/<density>px[_smooth]/`. UE import waiting on Mike (editor or Python plugin). `SM_VendingMachine_Drinks_01` plus maps at 64, 128, 256 and 512 px/m, with Pixel Art on and off. Import into `L_TexelTest` with a game-camera bookmark. Mike picks the density.
+- [ ] **K6 Export and density test.** Houdini side done 2026-10-07: FBX plus maps at 64-512 px/m, Pixel Art on and off, in `ProjectRunner/tex/<Asset>/<density>px[_smooth]/`. UE: 4 meshes, 128 textures (Pixel Art sets nearest-filtered and uncompressed), `/Game/Houdini/Materials/M_EnvProp` and 32 instances `MI_<Asset>_<density>px[_smooth]` imported 2026-10-07 under `/Game/Houdini/Props/`. `/Game/ProjectRunner/Maps/L_TexelTest` exists (copy of Template_Default) but isn't laid out: the editor won't leave `L_PR_Persistent` while it has unsaved changes. `SM_VendingMachine_Drinks_01` plus maps at 64, 128, 256 and 512 px/m, with Pixel Art on and off. Import into `L_TexelTest` with a game-camera bookmark. Mike picks the density.
 - [x] **K7 Other props.** `mike::prop_terminal_hack`, `mike::prop_acunit_wall`, `mike::prop_sign_neon`, all through the same core.
 - [x] **K8 Verify.** 2026-10-07: 39/39 checks per prop, lint passes on 8 HDAs and 8 networks. Every acceptance criterion in the brief, checked with hython output and `lint`.
-- [ ] **K9 UE reimports.** Repoint `SKM_Female_Body_01`, `SKM_Male_Body_01` and `SKM_Cast_Vhoori_01` from `ProjectCyberRunner` to `C:\Prod\ProjectRunner\Houdini\geo\export\`.
+- [ ] **K9 UE reimports.** Blocked on the editor MCP: it can't read or set import source paths or reimport skeletal meshes. Do it by hand (Reimport With New File). Repoint `SKM_Female_Body_01`, `SKM_Male_Body_01` and `SKM_Cast_Vhoori_01` from `ProjectCyberRunner` to `C:\Prod\ProjectRunner\Houdini\geo\export\`.
 
 ## G1 Playable scene (narrative game)
 
