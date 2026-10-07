@@ -35,7 +35,7 @@ Each stage ends in a play test that decides the next. Stop at any gate.
 ## Avoid
 
 - Editing Combat Fury's Blueprints for stage 1. Dawn's movement is added at runtime by `UFuryPlayerSubsystem`.
-- Killing editors by image name. ProjectFury's editor is killed only by PID when its command line contains `ProjectFury`. MCP ports: Dawn 8000, Fury 8001, Runner 8002.
+- Killing editors by image name. ProjectFury's editor is killed only by PID when its command line contains `ProjectFury`. MCP ports: Fury 8001, Runner 8002, Dawn 8003, Alpha 8004, Sandbox 8005, AssetPacks 8006.
 - Live Coding. It's off for ProjectFury because it blocks UBT builds for every project on the shared engine install.
 
 ## Where it lives

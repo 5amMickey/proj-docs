@@ -26,7 +26,7 @@ Current milestone: G1 Playable scene (blockout). Interior generator milestones (
 - Nanite on skinned meshes.
 - Gameplay HUD beyond interact prompts, the hack progress bar, and dialogue choices.
 - AnimGen or other experimental plugins in this project. Try them in `C:\Prod\Sandbox` first.
-- Touching other sessions' editors. ProjectFury uses MCP port 8001 and ProjectDawn uses 8000, so RunnerSandbox uses 8002. Only kill an editor by PID when its command line contains `RunnerSandbox_01`; never use `taskkill /IM`.
+- Touching other sessions' editors. RunnerSandbox's MCP port is 8002. MCP ports: Fury 8001, Runner 8002, Dawn 8003, Alpha 8004, Sandbox 8005, AssetPacks 8006. Only kill an editor by PID when its command line contains `RunnerSandbox_01`; never use `taskkill /IM`.
 
 ## References
 
