@@ -89,13 +89,13 @@ Skill: `texture-pipeline`. Research: `HoudiniSource/docs/research/texture_pipeli
 - [ ] Load Pixel8r in Painter 7.3 as a filter
 - [ ] Re-texture the four kit 2 props through the new pipeline and compare with the COP versions in `L_TexelTest`
 
-### HD-2D vending machine test (proposed 2026-10-08, waiting on Mike's go-ahead)
+### HD-2D vending machine test (approved 2026-10-08)
 
 Flow: Houdini High and Low with material IDs and vertex colour, then FBX, then Painter bakes and paints with Designer materials, then a UE 5.8 material. Every stage stays editable. Final grid 128 px/m (source at 512 px/m, 2048 map). Two versions in UE: Pixel8r at 128 px/m, and no Pixel8r. Old vending textures and MIs stay in RunnerSandbox for comparison.
 
 - [x] `mike::prop_vending_drinks::2.0`: bottle necks fixed (2026-10-08)
-- [ ] `asset_propBuilder_02`: export `_low` and `_high` FBX for Painter
-- [ ] Designer part materials in `ProjectRunner/substance/`
+- [x] `asset_propBuilder_02`: `_low` and `_high` FBX in `geo/bake/`, first Houdini bake (8 maps, 2048) in `tex/VendingMachine_Drinks_01/bake/` (2026-10-08)
+- [x] Designer part materials in `ProjectRunner/substance/materials/`: painted metal, plastic, brushed metal (unmodified copies, ready to restyle) (2026-10-08)
 - [ ] Mike: Painter project, bake, paint, export
 - [ ] Pixel8r pass, UE import, MIs, side by side in `L_TexelTest`
 
