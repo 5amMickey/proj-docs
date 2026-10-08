@@ -119,3 +119,15 @@ Skill: `texture-pipeline`. Research: `HoudiniSource/docs/research/texture_pipeli
 - [ ] Brief the Houdini down-res and preview HDA with `/asset-brief`: `.sbsar` list in, cache render, resample filter menu, B/N/AORM/H pack, a row of labelled preview planes, PNG export
 - [ ] Restyle the pilot rock materials in Designer and render them through the tool
 - [ ] Import into UE 5.8 with the skill's settings and compare with the Provencal rocks
+
+## Environment tiling sets (Designer, Dawn and Alpha)
+
+Brief: `HoudiniSource/docs/briefs/env_tiling_sets.md`. Decided 2026-10-09: tiling materials first (trim sheets later), Designer only, a shared look subgraph with a preset per project, sources in `HoudiniSource/shared/substance/`, Provencal masters in UE.
+
+- [x] Write the brief (2026-10-09)
+- [ ] `provencal_look.sbs` look subgraph and `presets/{dawn,alpha}.json`
+- [ ] Wrappers: cobblestone, flagstone, plaster_rough, cliff_rock
+- [ ] `render.ps1`: 32 PNGs, seam check, AORM and normal checks
+- [ ] Migrate `MM_Master_Default` and `MM_Master_VertexPaint_Wall` into Alpha
+- [ ] Import with `ue_run.py` into both projects, with a preview level each
+- [ ] Mike signs off on the look
