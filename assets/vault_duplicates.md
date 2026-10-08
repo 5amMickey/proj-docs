@@ -1,8 +1,21 @@
 # VaultCache duplicates
 
-Generated 2026-10-08 11:24. Read-only scan: nothing was moved or deleted. Pack descriptions and asset counts are in [packs_unreal.md](packs_unreal.md). This file covers where each copy sits and what is safe to clear.
+Generated 2026-10-08 11:24. Pack descriptions and asset counts are in [packs_unreal.md](packs_unreal.md). The tables below show the state before the clean-up. The next section records what changed.
 
-## Summary
+## Clean-up done 2026-10-08
+
+C: went from 25.8 GB free to 212 GB.
+
+- Every pack except Dark Ruins now lives in `C:\Prod\AssetPacks\Content` (UE 5.8). The 26 group 2 folders were moved there from their old projects, with their `__ExternalActors__` and `__ExternalObjects__` subfolders. Cavern Mahal moved up out of the nested folder. Guitarist (`MusicalRockMotions`) and Container Houses (`ContainersHouseCH`) were copied in from the vault.
+- AssetPacks now has PCG, PCGGeometryScriptInterop (Military Trench) and Water (Abandoned Sea Platform) enabled.
+- Each removed project's `Config` and `.uproject` are kept in `C:\Prod\AssetPacks\PackConfigs\<Project>` for input, collision and render settings. The MoCap Online FBX, Maya and MotionBuilder sources are in `C:\Prod\AssetPacks\SourceFiles\MCO_Mocap_Basics`.
+- Deleted, not recycled: the projects AbandonedSeaPlatform, CCASubwayTrainTerminal, CitySubwayTunnel, DerelictCorridorMegascans, EasyComboBuffering, MilitaryTrenchMegascansSa, ModularSciFiFactory, RomanVolcanicTemple and ProjectDawnPrototype (on GitHub, nothing unpushed).
+- Deleted, not recycled: 73 VaultCache pack folders. Before deleting, every file (92,676 in total) was checked for the same path and size in its project copy. Four files differ because they were edited in the projects: Combat Fury `IMC_Sandbox` and `DemoRoom_BuiltData`, and Provencal `Main` and `Main_BuiltData`. Their Fab originals are gone locally.
+- Deleted: Intermediate and DerivedDataCache in ProjectAlpha, ProjectRunner, ProjectDawn, Sandbox and AssetPacks.
+- City Sample moved from the vault to `Documents\Unreal Projects\CitySample` (all 149,286 files). It ships a 22.5 GB DerivedDataCache pak, which was kept.
+- Kept: Dark Ruins Megascans as its own project (UE 5.6), Game Animation Sample in ProjectRunner and Sandbox, the FabLibrary FBX caches, and the vault copies of Guitarist and Container Houses.
+
+## Summary (before clean-up)
 
 - C: has 30 GB free of 1 TB. VaultCache holds 284 GB: 76 pack folders plus FabLibrary.
 - Project copies are full file copies, not hard links (checked with `fsutil hardlink list`). Deleting a vault copy frees its full size.
