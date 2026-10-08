@@ -1,6 +1,6 @@
 # ProjectRunner
 
-Domain: games   Status: building   Updated: 2026-10-08
+Domain: games   Status: building   Updated: 2026-10-09
 
 ## What and who
 
@@ -79,3 +79,4 @@ Settled. Don't reopen unless I ask.
 - 2026-10-07: HDA types are named `<domain>_<subject>_<descriptor>[_<NN>]` and deliverables `SM_<Subject>_<Descriptor>_<NN>`.
 - 2026-10-08: The look is HD-2D: higher-resolution, full-colour textures pixelated at the end. Textures are made in Substance Designer and Painter from the Houdini bakes, following the `texture-pipeline` skill that every game project shares. Pixel8r 2 pixelates them with no palette and no dithering; the Endesga 64 palette is dropped because snapping limited the colours.
 - 2026-10-08: Unique props run start to end from one TOP network in the builder scene: Houdini builds and bakes, a Designer graph (`substance/prop_texture.sbs`) textures each part by `mat_id`, Houdini shrinks to the texel density, and Unreal imports through the editor bridge when it answers, headless when it doesn't, then opens a preview level. Painter is optional: an export in `tex/<Asset>/painter/` replaces the Designer textures. Painter stays at 7.3.
+- 2026-10-09: Environment pieces are approved on a Houdini render before any UE import. Down-res and pixelation come after approval. Facades use a trim sheet for trims plus tiling wall surfaces, in one master material whose instance sets every zone colour. Brief: `HoudiniSource/docs/briefs/runner_facade_trim.md`.

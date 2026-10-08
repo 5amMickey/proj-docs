@@ -101,6 +101,21 @@ Flow: Houdini High and Low with material IDs and vertex colour, then FBX, then P
 - [ ] Mike: confirm the shrink moves from Pixel8r to Houdini (with no palette or dither, Pixel8r equals a box shrink; Houdini also renormalizes normals)
 - [ ] Pixel8r pass, UE import, MIs, side by side in `L_TexelTest`
 
+## Facade trim sheet (`mike::env_facade_trim`, `mike::env_facade_modules`)
+
+Started 2026-10-09. Brief: `HoudiniSource/docs/briefs/runner_facade_trim.md`. Scene: `HoudiniSource/ProjectRunner/asset_facadeBuilder_01.hiplc`. Milestone 1 ends at Mike's approval of the render. Nothing goes to UE before that.
+
+- [ ] **F1 Profiles and High.** One profile curve per extruded strip, swept 8 m, with `mat_id` per zone.
+- [ ] **F2 Layout and bake.** 7 strips with 8 px gutters on a 4096 x 2048 sheet, baked with `env_bake_maps`.
+- [ ] **F3 Sheet and surfaces.** `T_FacadeTrim_{BC,N,ORM,M}` and the plaster, brick and metal tiling surfaces from Designer.
+- [ ] **F4 Modules.** Wall, window, shopfront, ledge, cornice, pilaster and plinth on the 0.4 m grid, with UV0 on strips or wall metres and UV1 (variation, surface ID).
+- [ ] **F5 Sample facade.** 4 bays, 3 floors plus ground, one convex corner.
+- [ ] **F6 Look render.** Karma, a MaterialX tint shader, 3 presets x 3 cameras plus the sheet, and a contact sheet in `render/facade_trim/`.
+- [ ] **F7 Gate.** Mike approves the contact sheet.
+- [ ] **F8 Labs adapter.** `mike::env_facade_labs::1.0` with `labs::building_generator::4.0` on a test blockout on the grid.
+- [ ] **F9 Down-res.** Density from the menu, pixelation on and off, compared in renders.
+- [ ] **F10 Export and UE.** `SM_Facade_*`, `M_FacadeTrim`, `M_FacadeGlass`, and an MI per preset.
+
 ## G1 Playable scene (narrative game)
 
 Brief: [BRIEF.md](BRIEF.md). A peer Claude session works in another UE project, so never touch its editor or MCP. Headless runs target `RunnerSandbox_01` only, and scripts are prefixed `pr_`.
