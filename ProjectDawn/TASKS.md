@@ -125,9 +125,10 @@ Skill: `texture-pipeline`. Research: `HoudiniSource/docs/research/texture_pipeli
 Brief: `HoudiniSource/docs/briefs/env_tiling_sets.md`. Decided 2026-10-09: tiling materials first (trim sheets later), Designer only, a shared look subgraph with a preset per project, sources in `HoudiniSource/shared/substance/`, Provencal masters in UE.
 
 - [x] Write the brief (2026-10-09)
-- [ ] `provencal_look.sbs` look subgraph and `presets/{dawn,alpha}.json`
-- [ ] Wrappers: cobblestone, flagstone, plaster_rough, cliff_rock
-- [ ] `render.ps1`: 32 PNGs, seam check, AORM and normal checks
+- [x] `provencal_look.sbs` look subgraph and `presets/{dawn,alpha}.json` (2026-10-09)
+- [x] Wrappers: cobblestone, flagstone, plaster_rough, cliff_rock (2026-10-09)
+- [x] `render.ps1`: 32 PNGs, seam check, AORM and normal checks (2026-10-09; PlasterRough B fails the seam check by a 1.7/255 step inherited from the source)
+- [ ] Mike tunes the Dawn and Alpha presets in Designer against Provencal
 - [ ] Migrate `MM_Master_Default` and `MM_Master_VertexPaint_Wall` into Alpha
 - [ ] Import with `ue_run.py` into both projects, with a preview level each
 - [ ] Mike signs off on the look
