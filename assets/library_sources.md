@@ -1,12 +1,30 @@
 # Source asset library catalog
 
-Surveyed 2026-10-08. Library root: `C:\Users\GameDevPC0403\Documents\Development\_assets`. All paths below are relative to that root.
+Refreshed 2026-10-08 12:05. The last run was 2026-10-08 05:20. Library root: `C:\Users\GameDevPC0403\Documents\Development\_assets`. All paths below are relative to that root.
 
 The survey was read-only. It used file and folder names, counts and the small readmes. No binary was opened and no archive was extracted.
 
+## Added since last refresh
+
+Nothing is new.
+
+- Substance: 4,043 `.sbsar` and `.sbs` files, the same paths as the last CSV. 0 added, 0 removed. No row carries `new 2026-10-08`.
+- No file or folder anywhere in the library was created after 05:20. I checked creation and modified times.
+- One file was edited: `_substance\JM-Breakdown-Handpaint-Designer-SBS-01A\...\Brk_HandPaint_Wall_01A.sbs`, modified 06:43. It is not new. Its CSV row says so in `notes`.
+- Removed from `_houdini` (its folder changed at 06:30). The file count there fell from 26,629 to 6,602 and the folder count from 49 to 42:
+  - `Tech Track` (19,136 files: the Unity project with SideFX workshop HDAs and hips).
+  - `Polar_Camera_files_nocache` (389 files).
+  - `COPs` (five COP zips and a mega-file zip with video). The loose `COPS_MegaFile.zip` and `cop_py_snippets.zip` remain.
+  - `solaris_demo_files` (62 hips).
+  - `Source_Files` (`Stair_tool.hda`, `stairs_Tutorial.hip`).
+  - Loose archives `rbd4rt_source_files.zip`, `gamesworkshop_artist_track2.zip`, `Elderwood_Unreal_Project_Files.zip`, `GROT_UE.zip`.
+  - Two more folders are gone that the last catalog never named. I can't tell from names alone whether any of this was moved or deleted. Check before relying on an old note that points into these.
+- Rows for removed items are dropped from sections 1, 3, 4 and 5. The Dawn and Runner picks that pointed at `Desert_Terrain`, `spaceshipPartMaker` and `SideFX__spaceship` (all in Tech Track) are replaced or removed.
+- Not new but missing from the last catalog: `Houdini - Mech_Animations_v1` and `Houdini - export_splines_between_houdini_and_unreal`. Both date from 2026-09-26. They are listed in section 3.5 now.
+
 ## How to read this
 
-- Counts skip macOS junk: `._*` resource-fork files and `.DS_Store`. The raw tree has 60,346 files. After that filter it has 43,193.
+- Counts skip macOS junk: `._*` resource-fork files and `.DS_Store`. The raw tree has 39,060 files. After that filter it has 23,166. The last run saw 60,346 and 43,193. The whole drop is in `_houdini`.
 - Archives (`.zip`, `.rar`, `.7z`) were not opened. Their contents are not counted. Many sit next to a folder with the same name, so they are probably duplicates of it.
 - The library has 2,135 `.sbsar` and 1,908 `.sbs` files. Of those, 839 are not materials: stock dependency graphs, autosave copies, and helper copies inside `.resources` folders. The CSV keeps them and tags them in the `collection` column.
 - Bucketing uses filename keywords only. If a Substance Database file matches no keyword, its parent category folder (Wood, Metal, Tiles and so on) decides the bucket. Names are a guide, not a check of what the material looks like.
@@ -14,63 +32,62 @@ The survey was read-only. It used file and folder names, counts and the small re
 - Licences seen in the readmes: Substance Material Collection V1 allows commercial use but not redistribution. Substance-Texture-Pack is personal use unless a commercial licence was bought. Everything else has no licence file. Treat paid course and marketplace content (Gumroad, cmiVFX, Rebelway, VFX Apprentice, Elderwood, EPC) as not redistributable.
 - `_houdini/Houdini-resources/Mac-Pro.hlic` is a Houdini licence file. Keep it out of any repo.
 
-Companion file: `library_substance.csv` in this folder. One row per `.sbsar` and `.sbs`: name, extension, bucket, stylized, has_sbs_source, collection, path.
+Companion file: `library_substance.csv` in this folder. One row per `.sbsar` and `.sbs`: name, extension, bucket, stylized, has_sbs_source, collection, path, notes. The `notes` column holds `new 2026-10-08` for rows added since the last run (none this time), plus a few flags.
 
 ## 1. Collections
 
 ### Substance materials
 
-| Collection | Type | What's in it | Counts by file type | Path |
-|---|---|---|---|---|
-| Substance Source | Substance materials | Adobe Substance Source set. Scanned and photo-style materials (food, skin, fabric, rock, paint, pottery) and 149 `stylized_*` materials. Flat folder. No `.sbs` sources. | 555 .sbsar | `Substance Source` |
-| Substance_Database_2.1 (whole) | Substance materials | The Substance Database in four layouts: game textures, bitmap-based, procedural. Most procedural materials come as both `.sbs` and `.sbsar`. | 1,530 .sbsar, 1,240 .sbs, 588 .sbsprs, 199 .png, 30 .bmp, 30 .jpg, 1 .tif | `Substance_Database_2.1` |
-| Database 2.0 GameTextures, Part 1 and Part 2 | Substance materials | 300 game-ready materials, flat folders. Common prefixes: metal_ (55), ground_ (42), concrete_ (32), brick_ (31), wood_ (23), tile_ (22), roof_ (12), rock_ (9). `.sbsar` only. | 300 .sbsar (150 + 150) | `Substance_Database_2.1\Substance_Database_2.0_GameTextures_Sbsar_Part1`, `..._Part2` |
-| Database 2.1 BitmapBased, Sbsar | Substance materials | Photo-based materials with a `_bitmap` suffix. Folders: Bricks, Concrete, Fabric, Ground, Grunge, Manmade, Marble, Metal, Nature, Pavement, Plaster, Stone, Synthetic, Tiles, Wood. | 141 .sbsar | `Substance_Database_2.1\Substance_Database_2.1_BitmapBased_Sbsar` |
-| Database 2.1 BitmapBased, Sbs | Substance materials | Sources for the set above, with preview PNGs. Each `.resources` folder holds a copy of the `Bitmap2Material_3` helper. | 178 .sbs, 139 .sbsar (helper copies), 177 .png, 1 .tif | `Substance_Database_2.1\Substance_Database_2.1_BitmapBased_Sbs` |
-| Database 2.1 Procedural, Sbsar | Substance materials | `Classic_Materials` and `PBR_Materials`, each split by category: Abstract, Bricks, Buildings, Concrete, Fabric, Food, Ground, Manmade, Metal, Nature, Organic, Paper, Pavement, Plaster, Roads, Roofing, Runtime, Sci-Fi, Scrap, Skies, Sports, Stone, Synthetic, Tiles, Wallpapers, Water, Wood. | 950 .sbsar, 588 .sbsprs (presets) | `Substance_Database_2.1\Substance_Database_2.1_Procedural_Sbsar` |
-| Database 2.1 Procedural, Sbs | Substance materials | Sources for every procedural `.sbsar` above, plus `GrungeMaps` (15 grunge graphs) and `Input_Textures` (17). | 1,062 .sbs, 30 .bmp, 30 .jpg, 22 .png | `Substance_Database_2.1\Substance_Database_2.1_Procedural_Sbs` |
-| Substance-Texture-Pack | Substance materials | Seven quick-made materials: Cloudy_Marble, Earthshatter, Fleshy_Tissue, Gold_Veined_Marble, Painted_Mandala, Stylised_Rocks, Vintage_Tiles. The readme says they are experiments, best at 2048 px, and personal use unless licensed. | 7 .sbsar, 1 .rar, 1 .txt | `Substance-Texture-Pack` |
-| Substance_Material_Collection_V1 | Substance materials | Chris Hodgson's 14 materials as `.sbs` with their dependencies: Alien_Red_Weed, Black_Sand, Brick_Wall, Cooled_Lava, Desert_Rock, Forest_Floor, Jungle_Rock_face, Medieval_Stone_Wall, Peeling_Painted_Plaster, Porous_Rock, Rock, Rocky_Black_Sand, Sea_Foam, Terracotta_Tiles. | 28 .sbs, 3 .tif, 1 .txt | `Substance_Material_Collection_V1` |
+| Collection | Type | What's in it | Counts by file type | Path | Notes |
+|---|---|---|---|---|---|
+| Substance Source | Substance materials | Adobe Substance Source set. Scanned and photo-style materials (food, skin, fabric, rock, paint, pottery) and 149 `stylized_*` materials. Flat folder. No `.sbs` sources. | 555 .sbsar | `Substance Source` | |
+| Substance_Database_2.1 (whole) | Substance materials | The Substance Database in four layouts: game textures, bitmap-based, procedural. Most procedural materials come as both `.sbs` and `.sbsar`. | 1,530 .sbsar, 1,240 .sbs, 588 .sbsprs, 199 .png, 30 .bmp, 30 .jpg, 1 .tif | `Substance_Database_2.1` | |
+| Database 2.0 GameTextures, Part 1 and Part 2 | Substance materials | 300 game-ready materials, flat folders. Common prefixes: metal_ (55), ground_ (42), concrete_ (32), brick_ (31), wood_ (23), tile_ (22), roof_ (12), rock_ (9). `.sbsar` only. | 300 .sbsar (150 + 150) | `Substance_Database_2.1\Substance_Database_2.0_GameTextures_Sbsar_Part1`, `..._Part2` | |
+| Database 2.1 BitmapBased, Sbsar | Substance materials | Photo-based materials with a `_bitmap` suffix. Folders: Bricks, Concrete, Fabric, Ground, Grunge, Manmade, Marble, Metal, Nature, Pavement, Plaster, Stone, Synthetic, Tiles, Wood. | 141 .sbsar | `Substance_Database_2.1\Substance_Database_2.1_BitmapBased_Sbsar` | |
+| Database 2.1 BitmapBased, Sbs | Substance materials | Sources for the set above, with preview PNGs. Each `.resources` folder holds a copy of the `Bitmap2Material_3` helper. | 178 .sbs, 139 .sbsar (helper copies), 177 .png, 1 .tif | `Substance_Database_2.1\Substance_Database_2.1_BitmapBased_Sbs` | |
+| Database 2.1 Procedural, Sbsar | Substance materials | `Classic_Materials` and `PBR_Materials`, each split by category: Abstract, Bricks, Buildings, Concrete, Fabric, Food, Ground, Manmade, Metal, Nature, Organic, Paper, Pavement, Plaster, Roads, Roofing, Runtime, Sci-Fi, Scrap, Skies, Sports, Stone, Synthetic, Tiles, Wallpapers, Water, Wood. | 950 .sbsar, 588 .sbsprs (presets) | `Substance_Database_2.1\Substance_Database_2.1_Procedural_Sbsar` | |
+| Database 2.1 Procedural, Sbs | Substance materials | Sources for every procedural `.sbsar` above, plus `GrungeMaps` (15 grunge graphs) and `Input_Textures` (17). | 1,062 .sbs, 30 .bmp, 30 .jpg, 22 .png | `Substance_Database_2.1\Substance_Database_2.1_Procedural_Sbs` | |
+| Substance-Texture-Pack | Substance materials | Seven quick-made materials: Cloudy_Marble, Earthshatter, Fleshy_Tissue, Gold_Veined_Marble, Painted_Mandala, Stylised_Rocks, Vintage_Tiles. The readme says they are experiments, best at 2048 px, and personal use unless licensed. | 7 .sbsar, 1 .rar, 1 .txt | `Substance-Texture-Pack` | |
+| Substance_Material_Collection_V1 | Substance materials | Chris Hodgson's 14 materials as `.sbs` with their dependencies: Alien_Red_Weed, Black_Sand, Brick_Wall, Cooled_Lava, Desert_Rock, Forest_Floor, Jungle_Rock_face, Medieval_Stone_Wall, Peeling_Painted_Plaster, Porous_Rock, Rock, Rocky_Black_Sand, Sea_Foam, Terracotta_Tiles. | 28 .sbs, 3 .tif, 1 .txt | `Substance_Material_Collection_V1` | |
 
 ### Substance graphs and tools
 
-| Collection | Type | What's in it | Counts by file type | Path |
-|---|---|---|---|---|
-| _substance (whole) | Substance graphs/tools | Mixed bin of Designer graphs, tutorial files, filters and archives. Of 542 `.sbs`/`.sbsar`, 74 are stand-alone graphs. The rest are stock dependency graphs or autosave copies. | 516 .sbs, 26 .sbsar, 20 .zip, 5 .rar, 132 .tga, 64 .png, 29 .jpg, 10 .tif (822 files) | `_substance` |
-| _substance / Pixel8r | Substance graphs/tools | Pixel8r pixelation filter in versions 2.01, 2.5 and 2.72. Also a Boombox example: two Painter projects, bakes, final PBR and flat-diffuse TGAs, a LUT PNG, two FBX. | 3 .sbsar, 2 .spp, 2 .fbx, 8 .png, 7 .tga, 1 .zip | `_substance\Pixel8r` |
-| _substance / Bruno_Pixel_Stroke, Bruno_Cracks_Generator, Bruno_Caustics_Generator | Substance graphs/tools | Three single-purpose generators by one author, each with `.sbs` source, `.sbsar` and a readme. Cracks and Caustics also have an SD5 version. | 2 to 4 .sbs and .sbsar each, 1 .txt each | `_substance\Bruno_*` |
-| _substance / Adam Capone Stylized | Substance graphs/tools | Stylized Concrete, Grass, Metal and Wood graphs, plus a HeightPreview tool. | 6 .sbs (3 are autosave), 1 .sbsar, 1 .rar | `_substance\Adam Capone Stylized` |
-| _substance / JRO_StylizedRocks_Files, JRO_Scifi_Hull_Files | Substance graphs/tools | Two single materials with `.sbs` and `.sbsar`, preview renders and Toolbag scenes. | 1 .sbs + 1 .sbsar each, 21 image files, 5 .tbscene | `_substance\JRO_*` |
-| _substance / SDNodes_Vol1_Files | Substance graphs/tools | Utility nodes: curvature advanced, direction mask, height level mask, multi blend, wetness mask, with example graphs and a readme PDF. | 9 .sbs, 1 .pdf | `_substance\SDNodes_Vol1_Files` |
-| _substance / Substance2017LibraryLite | Substance graphs/tools | Small library of Designer helper graphs: AddToGround, EdgeVariation, edge_detect_v002, FloodFills, PushEdges, Rocks, ShiftRocks, SimpleOutputs, a preview library. | 9 .sbs, 6 .jpg, 1 .txt | `_substance\Substance2017LibraryLite` |
-| _substance / 1MAFX Noise Pack and Noise | Textures | Two folders of 30 noise textures each. Same counts, so one is likely a copy. | 30 .tga + 1 .jpg each | `_substance\1MAFX Noise Pack`, `_substance\Noise` |
-| _substance / JM-Breakdown-Handpaint-Designer-SBS-01A | Tutorial/course | Hand-painted wall breakdown: `Brk_HandPaint_Wall_01A.sbs`, a PDF, an HCL helper. 260 of the `.sbs` are stock dependency nodes. | 260 .sbs, 2 .sbsar, 7 .tga, 1 .pdf, 1 .png | `_substance\JM-Breakdown-Handpaint-Designer-SBS-01A` |
-| _substance / Overwatch Material Studies | Tutorial/course | One main graph with its dependencies and raw maps (Bricks, Busan Wood 1 and 2, Metal, ParisRoof). A second copy sits in `substance-designer`. | 169 .sbs, 30 .tga, 1 .sbsar | `_substance\Overwatch Material Studies` |
-| _substance / single-graph folders | Substance graphs/tools | Metal_roof, metal_planes_lucas_zilke, Red_Rock_zipped, rockheight, stone_carver_01, textures-sbsar (stone_carver_01 and an anime rock zip), vfx_patterns_01, arcane-wall-tutorial, Substance Project Files (Dete filters), dependencies (Filter_DilationOrErosion, nondirectional_warp), optimizeGraph (Python plugin), Textures (22 PNG), _brushes (brush set PDF, .abr), .autosave. | Images: 22 .png in Textures, 23 .png in vfx_patterns_01, 21 .jpg in arcane-wall-tutorial, 6 .tga each in Metal_roof, metal_planes_lucas_zilke and Red_Rock_zipped | `_substance\<folder>` |
-| _substance / loose files | Substance graphs/tools | 3dex_stylized_medieval_wall, carbon_fiber, Designer_Template, DeteBaseSetup, DeteDirectionalWarp, FloodFillExample, GameEngine_Template, grid_perforated, MultiDirectionalWarpGrayscale, Shields, steel_galvanized, sci-fi_rock, stone_carver_01, SubstanceDesignerWorkshop-TylerOliver, T_baseSetup, Texel_checker, WaterColorEffect. Archives: AnimeRocks.rar, Easy_cliffs (non-uniform directional warp) zip, SoMuchMaterials_Update_604.zip, zips of most folders. One tutorial video. | 14 .sbs, 3 .sbsar, 17 .zip, 3 .rar, 1 .mp4 | `_substance` |
-| substance-designer | Substance graphs/tools | Smaller second bin. Copies of Overwatch Material Studies, arcane-wall-tutorial and the Designer templates, plus Cobblestone_cjw_02, grass_pattern_01, the Color Wheel node and the optimizeGraph Designer plugin (install steps in its readme). | 120 .sbs, 1 .sbsar, 27 .tga, 21 .jpg, 2 .zip, 1 .7z, 1 .rar, 1 .py | `substance-designer` |
-| _Substance_Documents_ | Substance graphs/tools | A Substance Painter user folder. `plugins\SoMuchPainter` is a QML plugin (bake mesh maps, rebuild texture sets, set sky). `shelf` holds the SoMuchMaterials set: 8 `.sbsar` (plus 8 hidden copies), 10 export presets, 6 project templates, 3 shaders, 1 smart material, 15 environment PNGs. | 16 .sbsar, 11 .qml, 10 .spexp, 6 .spt, 6 .glsl, 1 .spsm, 20 .png, 3 .tga | `_Substance_Documents_` |
+| Collection | Type | What's in it | Counts by file type | Path | Notes |
+|---|---|---|---|---|---|
+| _substance (whole) | Substance graphs/tools | Mixed bin of Designer graphs, tutorial files, filters and archives. Of 542 `.sbs`/`.sbsar`, 74 are stand-alone graphs. The rest are stock dependency graphs or autosave copies. | 516 .sbs, 26 .sbsar, 20 .zip, 5 .rar, 132 .tga, 64 .png, 29 .jpg, 10 .tif (822 files) | `_substance` | |
+| _substance / Pixel8r | Substance graphs/tools | Pixel8r pixelation filter in versions 2.01, 2.5 and 2.72. Also a Boombox example: two Painter projects, bakes, final PBR and flat-diffuse TGAs, a LUT PNG, two FBX. | 3 .sbsar, 2 .spp, 2 .fbx, 8 .png, 7 .tga, 1 .zip | `_substance\Pixel8r` | |
+| _substance / Bruno_Pixel_Stroke, Bruno_Cracks_Generator, Bruno_Caustics_Generator | Substance graphs/tools | Three single-purpose generators by one author, each with `.sbs` source, `.sbsar` and a readme. Cracks and Caustics also have an SD5 version. | 2 to 4 .sbs and .sbsar each, 1 .txt each | `_substance\Bruno_*` | |
+| _substance / Adam Capone Stylized | Substance graphs/tools | Stylized Concrete, Grass, Metal and Wood graphs, plus a HeightPreview tool. | 6 .sbs (3 are autosave), 1 .sbsar, 1 .rar | `_substance\Adam Capone Stylized` | |
+| _substance / JRO_StylizedRocks_Files, JRO_Scifi_Hull_Files | Substance graphs/tools | Two single materials with `.sbs` and `.sbsar`, preview renders and Toolbag scenes. | 1 .sbs + 1 .sbsar each, 21 image files, 5 .tbscene | `_substance\JRO_*` | |
+| _substance / SDNodes_Vol1_Files | Substance graphs/tools | Utility nodes: curvature advanced, direction mask, height level mask, multi blend, wetness mask, with example graphs and a readme PDF. | 9 .sbs, 1 .pdf | `_substance\SDNodes_Vol1_Files` | |
+| _substance / Substance2017LibraryLite | Substance graphs/tools | Small library of Designer helper graphs: AddToGround, EdgeVariation, edge_detect_v002, FloodFills, PushEdges, Rocks, ShiftRocks, SimpleOutputs, a preview library. | 9 .sbs, 6 .jpg, 1 .txt | `_substance\Substance2017LibraryLite` | |
+| _substance / 1MAFX Noise Pack and Noise | Textures | Two folders of 30 noise textures each. Same counts, so one is likely a copy. | 30 .tga + 1 .jpg each | `_substance\1MAFX Noise Pack`, `_substance\Noise` | |
+| _substance / JM-Breakdown-Handpaint-Designer-SBS-01A | Tutorial/course | Hand-painted wall breakdown: `Brk_HandPaint_Wall_01A.sbs`, a PDF, an HCL helper. 260 of the `.sbs` are stock dependency nodes. | 260 .sbs, 2 .sbsar, 7 .tga, 1 .pdf, 1 .png | `_substance\JM-Breakdown-Handpaint-Designer-SBS-01A` | `Brk_HandPaint_Wall_01A.sbs` edited 06:43 after the last run. Not new. |
+| _substance / Overwatch Material Studies | Tutorial/course | One main graph with its dependencies and raw maps (Bricks, Busan Wood 1 and 2, Metal, ParisRoof). A second copy sits in `substance-designer`. | 169 .sbs, 30 .tga, 1 .sbsar | `_substance\Overwatch Material Studies` | |
+| _substance / single-graph folders | Substance graphs/tools | Metal_roof, metal_planes_lucas_zilke, Red_Rock_zipped, rockheight, stone_carver_01, textures-sbsar (stone_carver_01 and an anime rock zip), vfx_patterns_01, arcane-wall-tutorial, Substance Project Files (Dete filters), dependencies (Filter_DilationOrErosion, nondirectional_warp), optimizeGraph (Python plugin), Textures (22 PNG), _brushes (brush set PDF, .abr), .autosave. | Images: 22 .png in Textures, 23 .png in vfx_patterns_01, 21 .jpg in arcane-wall-tutorial, 6 .tga each in Metal_roof, metal_planes_lucas_zilke and Red_Rock_zipped | `_substance\<folder>` | |
+| _substance / loose files | Substance graphs/tools | 3dex_stylized_medieval_wall, carbon_fiber, Designer_Template, DeteBaseSetup, DeteDirectionalWarp, FloodFillExample, GameEngine_Template, grid_perforated, MultiDirectionalWarpGrayscale, Shields, steel_galvanized, sci-fi_rock, stone_carver_01, SubstanceDesignerWorkshop-TylerOliver, T_baseSetup, Texel_checker, WaterColorEffect. Archives: AnimeRocks.rar, Easy_cliffs (non-uniform directional warp) zip, SoMuchMaterials_Update_604.zip, zips of most folders. One tutorial video. | 14 .sbs, 3 .sbsar, 17 .zip, 3 .rar, 1 .mp4 | `_substance` | |
+| substance-designer | Substance graphs/tools | Smaller second bin. Copies of Overwatch Material Studies, arcane-wall-tutorial and the Designer templates, plus Cobblestone_cjw_02, grass_pattern_01, the Color Wheel node and the optimizeGraph Designer plugin (install steps in its readme). | 120 .sbs, 1 .sbsar, 27 .tga, 21 .jpg, 2 .zip, 1 .7z, 1 .rar, 1 .py | `substance-designer` | |
+| _Substance_Documents_ | Substance graphs/tools | A Substance Painter user folder. `plugins\SoMuchPainter` is a QML plugin (bake mesh maps, rebuild texture sets, set sky). `shelf` holds the SoMuchMaterials set: 8 `.sbsar` (plus 8 hidden copies), 10 export presets, 6 project templates, 3 shaders, 1 smart material, 15 environment PNGs. | 16 .sbsar, 11 .qml, 10 .spexp, 6 .spt, 6 .glsl, 1 .spsm, 20 .png, 3 .tga | `_Substance_Documents_` | |
 
 ### Houdini
 
-| Collection | Type | What's in it | Counts by file type | Path |
-|---|---|---|---|---|
-| _houdini (whole) | Houdini tools/HDAs | 49 folders and 101 loose files: HDAs, `.hip` scenes, course project files, Unreal and Unity project folders, tool zips. Section 3 lists them. | 26,629 files: 584 .hda/.hdalc (+2 .otl), 364 .hip/.hiplc/.hipnc, 147 .zip/.rar, 3,212 .uasset, 233 .fbx, 295 .exr, 70 .usd. 627 of the HDA and hip files are `_bakNN` autosaves. | `_houdini` |
-| _houdini / Tech Track | Houdini tools/HDAs | Looks like a Unity project (DLLs, `.meta`) with SideFX workshop HDAs and hips: terrain, spaceship parts, block placer, VAT, Labs examples, PDG workshop. | 19,136 files, 21 .hda, 18 .hip, 8 archives | `_houdini\Tech Track` |
-| _houdini / houdini-indie-pixels-tutorials | Houdini tools/HDAs | Indie Pixel race-track toolkit: `ip_*` HDAs for terrain, rocks, trees, fences, scatter, stamps, track and guard rails. | 625 files, 428 .hda, 148 .hip, 17 .zip (mostly `_bak` copies) | `_houdini\houdini-indie-pixels-tutorials` |
-| _houdini / Unreal project folders | Houdini tools/HDAs | Full UE projects with Houdini sources: Elderwood Overlook (1,164 files), loopableLiquid (933), GROT_UE (654), EPC_colosseum (638), Polar_Camera (389). | .uasset, .umap, .uproject, .bgeo, .fbx | `_houdini\Elderwood - Unreal Project Files`, `loopableLiquid`, `GROT_UE`, `EPC_colosseum`, `Polar_Camera_files_nocache` |
-| _houdini / UI_GameInputs_TextureOnly_Universal_Version | Textures | UI input glyph pack: Keyboard_Mouse and four gamepad sets (P4, P5, S, X). A `key.txt` is present. Keep it out of repos. | 1,106 files, mostly .png, some .svg | `_houdini\UI_GameInputs_TextureOnly_Universal_Version` |
-| _houdini / animation-mocap | Animation | See section 4. | 18 .zip, 11 .fbx | `_houdini\animation-mocap` |
-| _houdini / COPs and Texture_Synthesis | Houdini tools/HDAs | Copernicus (COP) files: five COPs zips and a "COPs Mega File" with a video, plus a Texture_Synthesis COP network dump. | 6 .zip, 1 .mp4, 225 network files | `_houdini\COPs`, `_houdini\Texture_Synthesis` |
+| Collection | Type | What's in it | Counts by file type | Path | Notes |
+|---|---|---|---|---|---|
+| _houdini (whole) | Houdini tools/HDAs | 42 folders and 97 loose files: HDAs, `.hip` scenes, course project files, Unreal project folders, tool zips. Section 3 lists them. | 6,602 files: 562 .hda/.hdalc, 310 .hip/.hiplc/.hipnc, 127 .zip/.rar, 2,960 .uasset, 187 .fbx, 148 .exr. 627 of the HDA and hip files are `_bakNN` autosaves. | `_houdini` | Down from 26,629 files and 49 folders at the last run. Nothing new. Removed items are listed at the top. |
+| _houdini / houdini-indie-pixels-tutorials | Houdini tools/HDAs | Indie Pixel race-track toolkit: `ip_*` HDAs for terrain, rocks, trees, fences, scatter, stamps, track and guard rails. | 625 files, 428 .hda, 148 .hip, 17 .zip (mostly `_bak` copies) | `_houdini\houdini-indie-pixels-tutorials` | |
+| _houdini / Unreal project folders | Houdini tools/HDAs | Full UE projects with Houdini sources: Elderwood Overlook (1,164 files), loopableLiquid (933), GROT_UE (654), EPC_colosseum (638). | .uasset, .umap, .uproject, .bgeo, .fbx | `_houdini\Elderwood - Unreal Project Files`, `loopableLiquid`, `GROT_UE`, `EPC_colosseum` | `Polar_Camera_files_nocache` (389 files) removed. |
+| _houdini / UI_GameInputs_TextureOnly_Universal_Version | Textures | UI input glyph pack: Keyboard_Mouse and four gamepad sets (P4, P5, S, X). A `key.txt` is present. Keep it out of repos. | 1,106 files, mostly .png, some .svg | `_houdini\UI_GameInputs_TextureOnly_Universal_Version` | |
+| _houdini / animation-mocap | Animation | See section 4. | 18 .zip, 11 .fbx | `_houdini\animation-mocap` | |
+| _houdini / Texture_Synthesis | Houdini tools/HDAs | A saved Copernicus (COP) network named `COPs_Intro`. The loose `COPS_MegaFile.zip` and `cop_py_snippets.zip` sit next to it. | 226 files: .def, .parm, .userdata, .init, .net, .postitdef | `_houdini\Texture_Synthesis` | The `COPs` folder is gone. |
 
 ### Animation, VFX, courses
 
-| Collection | Type | What's in it | Counts by file type | Path |
-|---|---|---|---|---|
-| Universal Animation Library 2 [Standard] | Animation | One zip (10 MB, not opened) and two preview images. | 1 .zip, 2 .png | `Universal Animation Library 2[Standard]` |
-| VFX-Apprentice / Project Files | VFX course/files | VFX Apprentice course files: 2D hand-drawn FX levels 1 and 2 (Toon Boom `.tvg` drawings), 3D hand-crafted VFX levels 1 and 2 (Unity, Unreal Niagara, Krita, Substance Designer), Apprenticeship Level 3 (Tradigital_FX), and a Free Download Files folder. | 5,854 files: 1,953 .uasset, 961 .tvg, 878 .txt, 660 .tvg~, 279 .png, 243 .ini, 189 .tga | `VFX-Apprentice\Project Files` |
-| VFX_RTFX | VFX course/files | Real-time FX element library. `Sources` has 55 frame-sequence folders (Energy, Snow, Sparks, Smoke, Electricity, Blizzard, grunge and concrete backgrounds). `previews` has rendered samples. | 5,298 files: 1,851 .mp4, 1,809 .jpg, 1,564 .png, 49 .swf, 24 .mov | `VFX_RTFX` |
-| Gumroad - Environment Art Mastery by Thiago Kafke (Standard Edition) | Tutorial/course | Extras only, no videos. Maya tools (`.mel`, random placement script), Unreal tools (54 `.uasset`), Photoshop normal-to-AO and normal tools, Substance PBR templates, demo textures, a scale reference FBX, and a link list for module 21 (performance optimization). | 115 files: 54 .uasset, 27 .png, 7 .mel, 6 .tga, 4 .txt, 4 .sbs, 2 .atn | `Gumroad - Environment Art Mastery by Thiago Kafke (Standard Edition)` |
+| Collection | Type | What's in it | Counts by file type | Path | Notes |
+|---|---|---|---|---|---|
+| Universal Animation Library 2 [Standard] | Animation | One zip (10 MB, not opened) and two preview images. | 1 .zip, 2 .png | `Universal Animation Library 2[Standard]` | |
+| VFX-Apprentice / Project Files | VFX course/files | VFX Apprentice course files: 2D hand-drawn FX levels 1 and 2 (Toon Boom `.tvg` drawings), 3D hand-crafted VFX levels 1 and 2 (Unity, Unreal Niagara, Krita, Substance Designer), Apprenticeship Level 3 (Tradigital_FX), and a Free Download Files folder. | 5,854 files: 1,953 .uasset, 961 .tvg, 878 .txt, 660 .tvg~, 279 .png, 243 .ini, 189 .tga | `VFX-Apprentice\Project Files` | |
+| VFX_RTFX | VFX course/files | Real-time FX element library. `Sources` has 55 frame-sequence folders (Energy, Snow, Sparks, Smoke, Electricity, Blizzard, grunge and concrete backgrounds). `previews` has rendered samples. | 5,298 files: 1,851 .mp4, 1,809 .jpg, 1,564 .png, 49 .swf, 24 .mov | `VFX_RTFX` | |
+| Gumroad - Environment Art Mastery by Thiago Kafke (Standard Edition) | Tutorial/course | Extras only, no videos. Maya tools (`.mel`, random placement script), Unreal tools (54 `.uasset`), Photoshop normal-to-AO and normal tools, Substance PBR templates, demo textures, a scale reference FBX, and a link list for module 21 (performance optimization). | 115 files: 54 .uasset, 27 .png, 7 .mel, 6 .tga, 4 .txt, 4 .sbs, 2 .atn | `Gumroad - Environment Art Mastery by Thiago Kafke (Standard Edition)` | |
 
 ## 2. Substance materials by category
 
@@ -268,7 +285,7 @@ The 173 Stylized files hold 163 distinct names. They break down by what the name
 
 ## 3. Houdini tools (`_houdini`)
 
-All descriptions come from file and folder names. Nothing was opened. "Looks like" means a guess from the name. The totals: 154 HDA files (129 distinct names) and 169 hip files (164 distinct names), after dropping `_bakNN` autosaves. Most HDAs here are `.hda`. HoudiniSource uses `.hdalc`, so expect to re-save anything you pull in.
+All descriptions come from file and folder names. Nothing was opened. "Looks like" means a guess from the name. The totals: 130 HDA files (105 distinct names) and 115 hip files (110 distinct names), after dropping `_bakNN` autosaves. The last run counted 154 and 169; the difference is the removed folders. Most HDAs here are `.hda`. HoudiniSource uses `.hdalc`, so expect to re-save anything you pull in.
 
 ### 3.1 Loose HDAs (16)
 
@@ -297,10 +314,9 @@ All descriptions come from file and folder names. Nothing was opened. "Looks lik
 | Caelus | 16 `sop_elyssa.*` HDAs: building_generator, Wall_Generator, Combine_Wall_Modules, Building_Roof_Generator, Tower_Roof_Generator, tower_generator, Dormer_Generator, chimney_generator, place_dormers_and_chimneys, aqueduct_generator, terrain_model_generator, terrain_shader, plus `sop_elyssac` SpireGenerator, WindowGenerator, generate_tile_texture, texture_building_walls. Scene `Caelus.hip`. | Medieval and ancient town builder: walls, roofs, dormers, chimneys, towers, spires, windows, aqueducts, terrain and wall textures. |
 | Gamejam_starterkit, GameJamStarterKit-UnrealEngine5, HE_Starter_Kit_Unity | Edge_Damage, Foliage_maker, Level_gen_WFC, Placement_tool, Platform_maker, Psd_Level, Rock, Terrain_Tool, Tree, TrimT_Tool, pipe, walls_tool, Road_tool_2D. Same set three times (GameJam_, HE_ prefixes). | Houdini Engine starter kit for game jams: edge wear, foliage, wave-function-collapse levels, placement, platforms, level from PSD, rocks, trees, trim tool, walls, pipes, 2D roads. Unity and UE5 versions. |
 | houdini-indie-pixels-tutorials | `ip_*` HDAs: terrain_creator, moutain_stamps, stamp_exporter, rock_generator, evergreen_tree_creator, unreal_scatter_trees, generic_placement_tool, perimeter_fence, gaurd_rail(s)_creator, basic_track_creator, track_bumpers_creator, road_bumper_creator, road_cone_generator, tire_stack_generator, sweep_curve_helper, my_box, plus test HDAs. Scene `Race_Track_Tools_001.hip`. | Indie Pixel race-track toolkit for UE. The terrain, rock, tree and scatter tools are general. |
-| Tech Track | boxscatter, deform, Desert_Terrain, EverGreen.otl, geo_boolean, geo_merge, he_polyreduce, HEU* (Houdini Engine for Unity), mountainMaker, randomized_sphere, SideFX__spaceship, silhouette_Maker, spaceshipPartMaker, TerrainGenerator, UnityTreeGen, Sop_course.block, Sop_course.block_placer. Hips: VAT, invoke, Labs PolyScalpel and MergeSplines, groom, pivot painter, PDG workshop. | SideFX workshop material for Unity and Houdini Engine. |
 | houdiniTraining | aw_bridge_generator.hdalc, aw_bridge_tool, aw_training_001..003, path_bridge_test01 | Bridge generator and training scenes (mostly `_bak` copies). |
 | Radu Cius cyberpunk escalator | Procedural_Escalator_V1.hdalc, ProceduralEscalator.hiplc, ciusr.beta.rbd_to_fbx_old.1.0.hdalc, group_select_test.hdalc, 4 zips | Procedural cyberpunk escalator and an RBD-to-FBX exporter. |
-| levelbuilder_source_files, unity, Source_Files | Level_Builder_Tutorial_File.hda, Level_Builder_Tool_Tutorial*.hip(lc), Stair_tool.hda, stairs_Tutorial.hip, VAT3_Tutorial_Unity.hip | Level builder tool tutorial and a stair tool, with Unity files. |
+| levelbuilder_source_files, unity | Level_Builder_Tutorial_File.hda, Level_Builder_Tool_Tutorial*.hip(lc), VAT3_Tutorial_Unity.hip, Unity packages | Level builder tool tutorial, with Unity files. |
 | Project Titan | Titan_StackingTool.hda, Tutorial_cloth_tool.hda, Vat_Chararcter_Tutorial.hip, 15 zips (ad boards, pyro smoke, tree pivot painter, building generator, rail, cloth tool) | Titan tutorial set. |
 | EPC_colosseum | place_radial_geometry.1.0.hda, sop_Labs.material_slots_from_groups.1.0.hda, Marcello.hip(lc), Textures.hip | Colosseum project: radial placement and material slots from groups. |
 | Cable Tool | tutorial_cable.1.0.hda, Cable_Tutorial_setup.hip, trim PNG | Cable generator. |
@@ -323,7 +339,7 @@ All descriptions come from file and folder names. Nothing was opened. "Looks lik
 | Kinefx_biharmonic_skin, Kinefx_fbik_hips, Kinefx_straight_skeleton | KineFX skinning, FBIK and skeleton demos. |
 | Flowfield_01, flowmap_viz_bug, lattice+uv+displacement+wsnormal, heightfield_cutout, hair_v2, pyroBonfire_DEMO, Applied.Houdini.Boat, Rebelway_CHOPs_demo_v01, ap_foreach_primitive_group_alternative | Single-topic experiments: flow fields, flow maps, lattice, heightfield cutout, hair, pyro bonfire, boat, CHOPs, foreach. |
 | Procedural Lamp: Lamp.hiplc + 3 Painter smart materials (Lamp Metal, Paint, Plastic) | Procedural lamp with matching Painter materials. |
-| DryadBiomeInitializeDemo, RoadNetworks, Polar_Camera (polarCamera, skyboxLoop), solaris_demo_files (62 hips: asset setups for barrel, baskets, book, bookshelf, broom, bucket, clay jar, cooking pot), MBA01 sci-fi magic blast (8 chapters), vertex_animation_textures.3.0.pdg | Biome init, road networks, polar camera and skybox loop, Solaris asset setups, VFX course chapters, VAT 3.0. |
+| DryadBiomeInitializeDemo, RoadNetworks, MBA01 sci-fi magic blast (8 chapters), vertex_animation_textures.3.0.pdg | Biome init, road networks, VFX course chapters, VAT 3.0. |
 | IndiePixel_HoudiniTerrain_001 (loose zip, with `backup` of 12 autosaves) | Terrain scene. |
 
 ### 3.4 Tool zips (not opened)
@@ -339,22 +355,23 @@ Names only. The folder or hip listed above may already hold the unpacked version
 | scifi_door_source_files.zip, scifi_panels_sourcefiles.zip, scifi_stairs_sourcefiles.zip, scifi_terminal_source_files.zip | Sci-fi door, wall panels, stairs and terminal sources. |
 | custom_terrace_toshare.zip, TERRACE_2.0.zip, moon_crater_toshare.zip, heightfieldtexturing.zip, MPM_landslide.zip, desert_project_files.zip, procedural_desert_ue5.zip | Terrain: terraces, craters, heightfield texturing, landslide sim, desert. |
 | Lucen Grass Breakdown.zip, biome_demo8.zip, coral_synapse.zip | Grass breakdown, biome demo, coral. |
-| rbd4rt_source_files.zip, RBD_CuttingPlane.zip, RBD_GuidedSims.zip, Houdini - Real-time_Destruction_in_Houdini_and_Unreal | Destruction and RBD. |
-| conditional_vertex_animation_textures.zip, HoudiniNiagara.zip, PDG_DEMO.zip, COPS_MegaFile.zip, cop_py_snippets.zip | VAT, Niagara export, PDG demo, Copernicus (COP) file and Python snippets. |
+| RBD_CuttingPlane.zip, RBD_GuidedSims.zip, Houdini - Real-time_Destruction_in_Houdini_and_Unreal | Destruction and RBD. |
+| conditional_vertex_animation_textures.zip, HoudiniNiagara.zip, PDG_DEMO.zip, COPS_MegaFile.zip, cop_py_snippets.zip | VAT, Niagara export, PDG demo, Copernicus (COP) mega-file and Python snippets. |
 | IP_HDA_Tips_Tricks.zip, ip_hou_fbx_exporting_assets.zip, ip_python_001_assets.zip, IP_Python_002_Assets.zip, IndiePixel_HoudiniTerrain_001.zip | Indie Pixel tips: HDA, FBX export, Python, terrain. |
 | RigBuilder_tutorialFiles.zip, Sofia_Rig.zip, sofia_rig2.zip, Harry_content.zip, Erik_v1.zip, Andrey_Polywink.zip | Rigs and characters. Polywink looks like face blendshape work. |
 | levelbuilder_source_files.zip, Gamejam_starterkit2.zip, HE_starterkit_unreal.zip, HE_Starter_Kit_Unity.zip, GameJamStarterKit-UnrealEngine5.zip | Level builder and starter kit packages. |
-| dungeon_props.zip, bar_scene_proxy.zip, pirate_content.zip, SKYLARK_UE.zip, GROT_UE.zip, EPC_01.zip, Elderwood_Unreal_Project_Files.zip, gamesworkshop_artist_track2.zip | Scene and project packages. |
+| dungeon_props.zip, bar_scene_proxy.zip, pirate_content.zip, SKYLARK_UE.zip, EPC_01.zip | Scene and project packages. |
 | Pyro_Smoke_Tutorial.zip, RoadNetworks.zip, Texture_Synthesis.zip, titan_stacking_tool_project_files.zip, solaris_demo_files2.zip, public_sidefx_buildinggenerator_01.hip.zip, Tutorial_Building_Generator.zip, H21SplashScreen.zip, Intro To Procedural Modeling Houdini Fundamentals Course Week1.zip, projectfiles.rar | Archives of folders above, a Houdini 21 splash screen, a fundamentals course week. |
 
-### 3.5 Packages, COPs and large project folders
+### 3.5 Packages and large project folders
 
 | Item | What it looks like |
 |---|---|
 | Houdini-resources/packages: AGJSandbox.json, BVCDemos.json, BVCSandbox.json, ProjectDawnPrototype.json, ProjectDawnSandbox.json; HoudiniPackagesBase.json | Houdini package files for other projects, including two ProjectDawn ones. Not read. |
-| COPs: COPS_Colorful_Plate, COPS_Hanging_Towel, COPS_Metal_Vase, COPS_Woven_Basket zips, COPs Mega File (zip + video) | Copernicus material and texture setups for four props. |
-| Texture_Synthesis (225 files) | Saved COP network named `COPs_Intro`. |
-| Elderwood - Unreal Project Files (ElderwoodOverlook.uproject), GROT_UE, loopableLiquid, EPC_colosseum, Polar_Camera_files_nocache | Full UE projects: an overlook environment, a GROT project, liquid loops, a colosseum, a polar camera setup. |
+| Texture_Synthesis (226 files) | Saved COP network named `COPs_Intro`. |
+| Elderwood - Unreal Project Files (ElderwoodOverlook.uproject), GROT_UE, loopableLiquid, EPC_colosseum | Full UE projects: an overlook environment, a GROT project, liquid loops, a colosseum. |
+| Houdini - Mech_Animations_v1 (Mech_Animations_v1.zip, unreal_project.zip) | Mech animation scenes and an Unreal project, both zipped. Not opened. |
+| Houdini - export_splines_between_houdini_and_unreal (HoudiniUnrealSplines.zip, 1080p video) | Spline export between Houdini and Unreal, with a video. |
 | UI_GameInputs_TextureOnly_Universal_Version | UI input glyph PNG and SVG pack. |
 | Erik (FBX + base color + normal) | One character mesh. |
 
@@ -370,9 +387,8 @@ Names only. The folder or hip listed above may already hold the unpacked version
 - **cmiVFX Procedural Lake House Building Creation**: three-volume Houdini building course with OBJ models and scenes.
 - **Houdini Procedural Lake Houses Volume 1**: first volume of the same course as separate project files.
 - **Houdini Hive GDC 2023**: three workflow example scenes (rocks to Unreal, ZBrush to Painter, cliff).
-- **Tech Track** (`_houdini`): SideFX workshop files for Unity and Houdini Engine.
 - **houdini-indie-pixels-tutorials**: Indie Pixel race-track tool series.
-- **Rebelway CHOPs demo, gamesworkshop_artist_track2.zip, Intro To Procedural Modeling Houdini Fundamentals Week1**: single lessons or course weeks.
+- **Rebelway CHOPs demo, Intro To Procedural Modeling Houdini Fundamentals Week1**: single lessons or course weeks.
 - **Substance tutorials** (`_substance`, `substance-designer`): JM-Breakdown-Handpaint (PDF plus graph), Overwatch Material Studies, arcane-wall-tutorial, SDNodes Vol 1 (readme PDF), SubstanceDesignerWorkshop-TylerOliver, Easy cliffs with non-uniform directional warp (zip and a video), Lynn Chen brush set (PDF, .abr).
 
 ## 5. Good fits
@@ -416,7 +432,7 @@ Substance tools for Dawn: Adam Capone Stylized (Concrete, Grass, Metal, Wood gra
 Houdini tools for Dawn
 
 - Cliffs and rocks: AL tools - CliffBundle - v6.1.zip, Elderwood_Cliffs.hip, Houdini Hive Example01_RocksToUnreal and Example03_Cliff, Procedural_Cliffs_QTutorial.hip, ip_rock_generator, HE/GameJam Rock.hda, ip_moutain_stamps, ip_stamp_exporter.
-- Terrain and biome: HE_Terrain_Tool, ip_terrain_creator, IndiePixel_HoudiniTerrain_001, Desert_Terrain, TERRACE_2.0.zip, heightfieldtexturing.zip, DryadBiomeInitializeDemo, biome_demo8.zip.
+- Terrain and biome: HE_Terrain_Tool, ip_terrain_creator, IndiePixel_HoudiniTerrain_001, desert_project_files.zip, procedural_desert_ue5.zip, TERRACE_2.0.zip, heightfieldtexturing.zip, DryadBiomeInitializeDemo, biome_demo8.zip.
 - Vegetation: HE/GameJam Tree and Foliage_maker, ip_evergreen_tree_creator, ip_unreal_scatter_trees, Lucen Grass Breakdown.zip, Tutorial_Ivy and Ivy_generator.
 - Buildings and walls: the Caelus set (walls, roofs, dormers, chimneys, towers, windows, wall textures), HE/GameJam walls_tool and TrimT_Tool, Floor_maker, Balk, Stairs, Fence, Lake House scenes, Level_Builder_Tutorial_File.
 - Props and placement: Tutorial_fence, ip_perimeter_fence, ip_generic_placement_tool, HE/GameJam Placement_tool and Edge_Damage, aw_bridge_generator, cgcBridge, skylark_wooden_bridge_tutorial, dungeon_props, Freek Hoekstra dungeon scenes.
@@ -451,10 +467,10 @@ Substance helpers: SMM_* SoMuchMaterials shelf, TK_PBR_Templates (Gumroad), Texe
 
 Houdini tools for Runner
 
-- Cyberpunk: Radu Cius Procedural_Escalator_V1.hdalc and its RBD-to-FBX exporter, scifi_door, scifi_panels, scifi_stairs and scifi_terminal source zips, TUT_ad_boards.hda, spaceshipPartMaker and SideFX__spaceship (Tech Track).
+- Cyberpunk: Radu Cius Procedural_Escalator_V1.hdalc and its RBD-to-FBX exporter, scifi_door, scifi_panels, scifi_stairs and scifi_terminal source zips, TUT_ad_boards.hda.
 - City and buildings: city_builder_DEMO and City_Builder_Box, Building_Generator, PUBLIC_SideFX_BuildingGenerator_01, Tutorial_Building_Generator, Building_Tool, RoadNetworks, Oscar_highway_generator.
 - Detail: Cable Tool and Hanging_Cables, Pipe_tool, Floor_maker, Stairs, Procedural Lamp (Lamp.hiplc with Painter materials), HE/GameJam Psd_Level (level from a PSD, suits a side-on layout).
-- Texture work: Houdini Texel Density Tool, COPs set (Copernicus), Texture_Synthesis, vertex animation texture scenes.
+- Texture work: Houdini Texel Density Tool, COPS_MegaFile.zip and cop_py_snippets.zip (Copernicus), Texture_Synthesis, vertex animation texture scenes.
 - UI: UI_GameInputs glyph pack (keyboard, mouse, four gamepad sets).
 
 Animation and VFX for Runner: Universal Animation Library 2, the locomotion, gesture and rifle packs in `animation-mocap`, VFX_RTFX Energy, Electricity, Sparks, Smoke and the SFX Interface, Glitch, Hit and Explosion previews, VFX-Apprentice hand-drawn 2D FX and Unreal Niagara sandbox.
