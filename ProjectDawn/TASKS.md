@@ -128,8 +128,8 @@ Brief: `HoudiniSource/docs/briefs/env_tiling_sets.md`. Decided 2026-10-09: tilin
 - [x] `provencal_look.sbs` look subgraph and `presets/{dawn,alpha}.json` (2026-10-09)
 - [x] Wrappers: cobblestone, flagstone, plaster_rough, cliff_rock (2026-10-09)
 - [x] `render.ps1`: 32 PNGs, seam check, AORM and normal checks (2026-10-09; PlasterRough B fails the seam check by a 1.7/255 step inherited from the source)
-- [x] Rebuild all surfaces from scratch in the 3dex style and add WoodPlanks (Mike, 2026-10-09: chunkier stones, varied gaps, bigger cobbles, 3dex plaster and wood, less cliff micro detail). 40 PNGs pass the checks
-- [ ] Mike reviews the round-2 look; then tune the Dawn and Alpha presets
+- [ ] Mike tunes the Dawn and Alpha presets in Designer against Provencal
+- [ ] Resume the look another time. Mike's notes (2026-10-09): chunkier shapes with varied spacing, slightly larger cobbles with more varied gaps, plaster and wood like `_substance/3dex_stylized_medieval_wall.sbs`, less micro detail on the cliff. A from-scratch rebuild in the 3dex style was tried and rejected the same day (HoudiniSource a1a7292, reverted in f32a6e3)
 - [ ] Migrate `MM_Master_Default` and `MM_Master_VertexPaint_Wall` into Alpha
 - [ ] Import with `ue_run.py` into both projects, with a preview level each
 - [ ] Mike signs off on the look
