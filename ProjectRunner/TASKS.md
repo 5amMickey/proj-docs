@@ -105,12 +105,12 @@ Flow: Houdini High and Low with material IDs and vertex colour, then FBX, then P
 
 Started 2026-10-09. Brief: `HoudiniSource/docs/briefs/runner_facade_trim.md`. Scene: `HoudiniSource/ProjectRunner/asset_facadeBuilder_01.hiplc`. Milestone 1 ends at Mike's approval of the render. Nothing goes to UE before that.
 
-- [ ] **F1 Profiles and High.** One profile curve per extruded strip, swept 8 m, with `mat_id` per zone.
-- [ ] **F2 Layout and bake.** 7 strips with 8 px gutters on a 4096 x 2048 sheet, baked with `env_bake_maps`.
-- [ ] **F3 Sheet and surfaces.** `T_FacadeTrim_{BC,N,ORM,M}` and the plaster, brick and metal tiling surfaces from Designer.
-- [ ] **F4 Modules.** Wall, window, shopfront, ledge, cornice, pilaster and plinth on the 0.4 m grid, with UV0 on strips or wall metres and UV1 (variation, surface ID).
-- [ ] **F5 Sample facade.** 4 bays, 3 floors plus ground, one convex corner.
-- [ ] **F6 Look render.** Karma, a MaterialX tint shader, 3 presets x 3 cameras plus the sheet, and a contact sheet in `render/facade_trim/`.
+- [x] **F1 Profiles and High.** 8 strips, each a low and a high profile; the High is swept 8 m with rounded corners, bumps and chipped edges (2026-10-09).
+- [x] **F2 Layout and bake.** Strips are their unrolled profile length at 512 px/m with 8 px gutters: 2,136 of 4,096 rows on a 4096² sheet (planned 4096 x 2048; it didn't fit). Baked with `bakegeometrytextures::2.0` in the builder, not `env_bake_maps` (square only). The zone mask comes from a single-mesh bake of the Low (2026-10-09).
+- [x] **F3 Sheet and surfaces.** `T_FacadeTrim_{BC,N,ORM,M}` (M is RGB; accent = 1 - R - G - B) and plaster, brick and ribbed metal from Database 2.1 at 1024 (2026-10-09).
+- [x] **F4 Modules.** 13 modules on the 0.4 m grid through the new `mike::env_facade_sweep::1.0` (2026-10-09).
+- [x] **F5 Sample facade.** 4 + 2 bays, 3 floors plus ground, a convex corner; 1,444 tris (2026-10-09).
+- [x] **F6 Look render.** 9 Karma renders, `render/facade_trim/contact_sheet.png` and `sheet_maps.png`. `verify_m1.py` 18/18, lint passes on 3 HDAs and 5 networks (2026-10-09).
 - [ ] **F7 Gate.** Mike approves the contact sheet.
 - [ ] **F8 Labs adapter.** `mike::env_facade_labs::1.0` with `labs::building_generator::4.0` on a test blockout on the grid.
 - [ ] **F9 Down-res.** Density from the menu, pixelation on and off, compared in renders.
