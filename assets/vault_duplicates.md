@@ -13,7 +13,8 @@ C: went from 25.8 GB free to 212 GB.
 - Deleted, not recycled: 73 VaultCache pack folders. Before deleting, every file (92,676 in total) was checked for the same path and size in its project copy. Four files differ because they were edited in the projects: Combat Fury `IMC_Sandbox` and `DemoRoom_BuiltData`, and Provencal `Main` and `Main_BuiltData`. Their Fab originals are gone locally.
 - Deleted: Intermediate and DerivedDataCache in ProjectAlpha, ProjectRunner, ProjectDawn, Sandbox and AssetPacks.
 - City Sample moved from the vault to `Documents\Unreal Projects\CitySample` (all 149,286 files). It ships a 22.5 GB DerivedDataCache pak, which was kept.
-- Kept: Dark Ruins Megascans as its own project (UE 5.6), Game Animation Sample in ProjectRunner and Sandbox, the FabLibrary FBX caches, and the vault copies of Guitarist and Container Houses.
+- Recycled after a file-by-file check against AssetPacks: the vault copies of Guitarist and Container Houses.
+- Kept: Dark Ruins Megascans as its own project (UE 5.6), Game Animation Sample in ProjectRunner and Sandbox, and the FabLibrary FBX caches. VaultCache now holds only FabLibrary.
 
 ## Summary (before clean-up)
 
