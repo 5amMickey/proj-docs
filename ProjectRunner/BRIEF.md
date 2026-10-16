@@ -1,6 +1,6 @@
 # ProjectRunner
 
-Domain: games   Status: building   Updated: 2026-10-09
+Domain: games   Status: building   Updated: 2026-10-15
 
 ## What and who
 
@@ -42,6 +42,7 @@ Current milestone: G1 Playable scene (blockout). Interior generator milestones (
 | Houdini (junction; the `HoudiniSource` repo is the source of truth) | `C:\Prod\ProjectRunner\Houdini` → `Documents\GitHub\HoudiniSource\ProjectRunner` (renamed from `ProjectCyberRunner` 2026-10-07) | n/a |
 | Shared UE plugins (PhantomInteraction, PhantomStory; local git repo) | `C:\Prod\_Library\Unreal\Plugins` | n/a |
 | Brief and tasks | `$PROJ_DOCS/ProjectRunner` | `$PROJ_DOCS/ProjectRunner` |
+| Branded docs: theme, deck and Word templates (guide: `brand.md`; studio kit: `$PROJ_DOCS/brand`) | `C:\Prod\ProjectRunner\Docs` | n/a |
 | Environment kit tests (Houdini junction to `HoudiniSource\ProjectSandbox`; Unreal folder for the test project) | `C:\Prod\Sandbox` | n/a |
 
 ## Domain
@@ -80,3 +81,6 @@ Settled. Don't reopen unless I ask.
 - 2026-10-08: The look is HD-2D: higher-resolution, full-colour textures pixelated at the end. Textures are made in Substance Designer and Painter from the Houdini bakes, following the `texture-pipeline` skill that every game project shares. Pixel8r 2 pixelates them with no palette and no dithering; the Endesga 64 palette is dropped because snapping limited the colours.
 - 2026-10-08: Unique props run start to end from one TOP network in the builder scene: Houdini builds and bakes, a Designer graph (`substance/prop_texture.sbs`) textures each part by `mat_id`, Houdini shrinks to the texel density, and Unreal imports through the editor bridge when it answers, headless when it doesn't, then opens a preview level. Painter is optional: an export in `tex/<Asset>/painter/` replaces the Designer textures. Painter stays at 7.3.
 - 2026-10-09: Environment pieces are approved on a Houdini render before any UE import. Down-res and pixelation come after approval. Facades use a trim sheet for trims plus tiling wall surfaces, in one master material whose instance sets every zone colour. Brief: `HoudiniSource/docs/briefs/runner_facade_trim.md`.
+- 2026-10-10: Tool review (`HoudiniSource/docs/reviews/runner_tools.md`, scene `ProjectSandbox/asset_toolReview_01`). The environment carries on from three ProjectSandbox tools, now moved into `HoudiniSource/ProjectRunner`: `cyber_facade` (scene `asset_facadeBuilder_02`), `env_city_generator` 2.0 (`asset_cityBuilder_02`) and `env_derelict_corridor` 2.0 (`asset_corridorBuilder_01`). The facade trim sheet and modules (2026-10-09) and the room shell are archived in `HoudiniSource/archive/env_v2/`. The props kit and its bake and texture pipeline (2026-10-07/08) are held until Mike decides to keep or rework them. From env_v1, fire escapes, stairs, entrances, shanty boxes, roof tanks, antennas, exhaust fans, billboards and the shopfront stall are marked to keep; how they come back is open.
+- 2026-10-15: Pitch push for the CMF Prototyping final intake (closes 2026-11-10): deck, application, landing page, vertical slice video and teaser. Plan: `pitch-plan.md`. The title on every application is "Project Runner". The team is the 2024 list minus Taia DeBona, still being confirmed. The UEFN Mannequin plays the lead for now; Vhoori is in the cast, not the lead. The environment mixes Houdini pieces with owned packs. Both textures-only and whole-screen pixel treatments get tested, with smooth depth of field after the pixel step. No AI-generated images in any pitch or application material.
+- 2026-10-16: Look test result: treatment A, textures only (nearest filtering, pixelated textures), with depth of field from the camera. No whole-screen pixel grid. `L_LookTest` is the startup map while the look is tested; switch `EditorStartupMap` and `GameDefaultMap` back to `L_PR_Persistent` for G1 playthroughs.

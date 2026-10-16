@@ -1,5 +1,49 @@
 # ProjectRunner tasks
 
+## Pitch, CMF Prototyping and trailer (intake closes 2026-11-10)
+
+Plan: [pitch-plan.md](pitch-plan.md). CMF rules: [cmf/requirements.md](cmf/requirements.md). Refs: [refs/visual-reference.md](refs/visual-reference.md). Assets: [asset-pull-index.md](asset-pull-index.md).
+
+- [x] P0 Index Development folder, CMF rules, refs and project state (2026-10-15).
+- [x] P1 Mike answered the open questions (2026-10-15).
+- [x] P2 Title, canon and one-page story. Draft in `story/one-pager.md` (2026-10-15); 60 "(draft)" inventions and 8 questions wait on Mike.
+- [x] P3 Look test: three pixel treatments on one side-on street shot. Renders 2026-10-15 in `refs/wip/looktest/`. Mike picked A, textures only (2026-10-16). `L_LookTest` is now the startup and default game map, playable with PRGameMode and a follow camera with depth of field (`Scripts/pr_setup_looktest_play.py`).
+  - [ ] Mike walks the street and gives notes on the look.
+- [ ] P4b Trailer route, five areas (`pitch-plan.md` B2)
+  - [x] Import Mike's three mechs (`Scripts/pr_import_mechs.py`; the FBX clips are single poses, so walk and fly cycles are still needed)
+  - [x] Block out all five areas in the C layout (`Scripts/pr_build_trailer.py`, maps in `/Game/ProjectRunner/Maps/Trailer/`; renders in `refs/wip/trailer/blockout_2026-10-16/`)
+  - [x] Walk between areas both ways for testing (2026-10-16): each area's exit opens the next at `Start`; walking off an area's start opens the previous one at `End`, a few metres before its exit (`Scripts/pr_trailer_links.py`). Area 1 and area 5 link both ways. Checked in PIE, the full loop forward and back.
+  - [ ] Decide the lead's gait options. For level testing, `pr.TestRun` (on by default) runs, with Left Shift or the left stick to sprint; `pr.TestRun 0` is the G1 walk. G1 tests force the walk and haven't been rerun since (2026-10-16).
+  - [ ] Dress area 1, Wasteland (packs, mechs on paths, rain and thunder, wall and gate)
+  - [ ] Dress area 2, Waystation and market. First pass done 2026-10-16 (`Scripts/pr_dress_tr02_waystation.py`: trusses, floodlights, weld sparks, wet floor, storefront spill, bulbs, cranes). Still to do: pack props for the tech piles and stalls, crowd, rain.
+  - [ ] Dress area 3, Food alley. First pass done 2026-10-16 (`Scripts/pr_dress_tr03_alley.py`: Big Slum Alley both sides, lanterns; widened to about twice the showcase width and the blocked mouth opened, 2026-10-16). Still to do: food stalls and props, crowd eating and drinking, remove signs with readable text, corner dressing.
+  - [ ] Dress area 4, Red-light district
+  - [ ] Dress area 5, Station market
+- [ ] P4 Vertical slice scene: street into one interior, final look, G1 systems.
+- [ ] P5 Gameplay capture (both branches) and 60-75 s teaser, hosted on links that will stay live for 5 months.
+- [ ] P6 Pitch deck.
+- [ ] P7 CMF documents: D1-D19 in [pitch-plan.md](pitch-plan.md) workstream D (10 to make, 9 to add). Drafts in `cmf/drafts/`.
+  - [x] First drafts of D6, D7, D8, D11-D18 (2026-10-15). Gaps marked "Needs Mike" in each file.
+  - [x] D1 originality (about 5 pages), D2 summary, D10 Dialogue fields drafted (2026-10-15). Market numbers still in brackets until D3/D4 land.
+  - [ ] D3 market study, D4 revenue model (in progress).
+  - [ ] D5 budget: waits on team hours, rates and financing.
+- [ ] P8 Nice-to-haves from the plan, as time allows.
+- [x] P8a Landing page built at `C:\Prod\ProjectRunner\Web\` (2026-10-15). Needs contact email, press kit link, final copy and look-test images.
+- [ ] P9 Mike signs forms and adds company records (D5, D6, D8, D14-D17).
+- [ ] P10 Submit in Dialogue by 2026-11-06.
+
+### Branded documents (started 2026-10-16)
+
+Source files: `Documents\Development\branding` (Phantom Break Studio business cards, v14). Studio colours stay fixed. Each game uses them with its own palette and theme. "Phantom Break Studio" is the display name, and "Phantom Break Inc." is used only where the legal name is required.
+
+- [x] B1 Studio kit in `$PROJ_DOCS/brand/`: logos, ghost, pattern, colours, fonts, `tokens.css`, `BRAND.md` (2026-10-16). Logos cut from the card SVGs and checked in a Brave render.
+- [x] B2 Project Runner theme: `ProjectRunner/brand.md` and `C:\Prod\ProjectRunner\Docs\brand\runner-theme.css` (2026-10-16).
+- [x] B3 Landing page restyled with the Runner theme and studio frame (`Web/`). Previews in `Web/_preview/` (2026-10-16).
+- [x] B4 Pitch deck template: HTML slides rendered to a 16:9 PDF with Brave (`Docs\deck\`), 10 layouts (2026-10-16). P6 builds the real deck on it.
+- [x] B5 Word templates: studio letterhead and a Project Runner document, Roboto embedded, checked with a LibreOffice render (2026-10-16).
+- [ ] B6 Mike reviews the kit: Runner palette, pixel font for game headings, contact email for the site.
+- [x] B7 Landing page restyled to the Indie Folk Fest reference (panels with tabs, coral story band, quote, city image, studio footer) and moved to Tailwind v4 with the deck (2026-10-16). Site ground is slate-deep; deck stays night. Open: hero line art (slot only), `[filler]` text on the Gameplay cards, `[draft]` episode and quote copy.
+
 ## Interior generators (room, bar, clinic, workshop)
 
 **Archived 2026-10-02.** The environment restart moved this work to `HoudiniSource/archive/env_v1/`. Open items below won't be done.
@@ -101,6 +145,17 @@ Flow: Houdini High and Low with material IDs and vertex colour, then FBX, then P
 - [ ] Mike: confirm the shrink moves from Pixel8r to Houdini (with no palette or dither, Pixel8r equals a box shrink; Houdini also renormalizes normals)
 - [ ] Pixel8r pass, UE import, MIs, side by side in `L_TexelTest`
 
+## Room shell (`mike::env_room_shell`)
+
+Started 2026-10-08. Brief: `HoudiniSource/docs/briefs/runner_room.md`. Built live in the open Houdini session, scene to be saved as `HoudiniSource/ProjectRunner/asset_roomBuilder_01.hiplc`.
+
+- [x] **R1 Kit.** 1 m pieces (wall, low wall, door, window, glass, post, tile, rail) with UVs at density, packed by `name`.
+- [x] **R2 Footprint and balcony cells.** Flatten, ray-test cell centres, subtract cutters.
+- [x] **R3 Wall slots, openings, posts.**
+- [x] **R4 Walls, levels, floor, balcony build, output, Show Stage.**
+- [x] **R5 HDA.** `hda/mike.env_room_shell.1.0.hdalc`.
+- [ ] **R6 Three layouts.** `/obj/room_layout_01..03` cook with 0 errors and 0 warnings. Captures are `refs/wip/room_shell_layout_0{1,2,3}.png` and `_02_back.png`. HDA lint passes. Still open: save the scene as `asset_roomBuilder_01.hiplc` and lint the builder network.
+
 ## Facade trim sheet (`mike::env_facade_trim`, `mike::env_facade_modules`)
 
 Started 2026-10-09. Brief: `HoudiniSource/docs/briefs/runner_facade_trim.md`. Scene: `HoudiniSource/ProjectRunner/asset_facadeBuilder_01.hiplc`. Milestone 1 ends at Mike's approval of the render. Nothing goes to UE before that.
@@ -115,6 +170,23 @@ Started 2026-10-09. Brief: `HoudiniSource/docs/briefs/runner_facade_trim.md`. Sc
 - [ ] **F8 Labs adapter.** `mike::env_facade_labs::1.0` with `labs::building_generator::4.0` on a test blockout on the grid.
 - [ ] **F9 Down-res.** Density from the menu, pixelation on and off, compared in renders.
 - [ ] **F10 Export and UE.** `SM_Facade_*`, `M_FacadeTrim`, `M_FacadeGlass`, and an MI per preset.
+
+## City generator (`mike::env_city_generator`)
+
+Started 2026-10-09. Brief: `HoudiniSource/docs/briefs/city_generator.md`. Built headless in hython. Scene: `HoudiniSource/ProjectSandbox/asset_cityBuilder_01.hiplc`.
+
+- [x] **C1 Split tool.** `mike::env_split_guillotine::1.0` cuts every piece over its size limit each pass, with an optional street or alley gap. It's used for both streets and lots. 2 km: 10,492 lots in 0.65 s.
+- [x] **C2 Roads, corridors, blocks.** Random or input road graph. Blocks are the bounds minus road and corridor slabs from `mike::env_ribbon_slabs::1.0`. PolyExpand 2D on the graph failed in 11 of 120 cases.
+- [x] **C3 Zones, streets, lots, massing.**
+- [x] **C4 Ground and export.** Carriageway, sidewalks, curbs, tiles, PCG points, centrelines. Tile FBX through the `/obj/export_tiles` TOP network.
+- [x] **C5 HDA and builder scene.** Show Stage, help, tooltips, ROPs. Lint passes on 3 HDAs and 5 networks.
+- [x] **C6 Verify.** 19 of 19 checks pass, and a 120-case sweep cooks with 0 errors and 0 warnings (2026-10-09).
+- [ ] **C8 v2 tensor-field roads and Tokyo style.** Brief: `HoudiniSource/docs/briefs/city_generator_v2.md`. Scene: `HoudiniSource/ProjectSandbox/asset_cityBuilder_02.hiplc`.
+  - [x] `env_road_tensorfield`, `env_road_streamlines` (approved `trace_streamlines`), `env_fill_lanes`, `env_lots_frontage`, `env_buildings_massing`; split and ribbon HDAs extended in place.
+  - [x] `env_city_generator::2.0` and the builder scene: three test cities shown through `OUT_Preview`, Tokyo deliverables written.
+  - [x] Lint passes on 9 HDAs and 5 networks. Verify: 23 of 25 checks pass, including a 64-case sweep with 0 issues and 15.2 s at 2 km (2026-10-09, HoudiniSource `43f320d`). Plots: `refs/wip/citygen_v2_{tokyo,tokyo_rail,grid}.png`.
+  - [ ] Open: in `city_tokyo_rail`, major roads come within 90 m of each other (limit 96 m) and 13.9% of road ends are dead ends (limit 10%), where the rail fields pull roads parallel.
+- [ ] **C7 UE check.** Load Alembic into Static Mesh Spawner in Sandbox, and import the ground tiles. Not started: the unreal-editor MCP server didn't connect on 2026-10-09.
 
 ## G1 Playable scene (narrative game)
 
