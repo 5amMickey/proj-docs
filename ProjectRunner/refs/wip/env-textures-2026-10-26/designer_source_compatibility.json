@@ -1,0 +1,542 @@
+{
+  "purpose": "Source compatibility only. Default source appearance is not a proposed or approved look.",
+  "designer_version": "11.2.2 build 5117",
+  "output": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01",
+  "materials": [
+    {
+      "name": "painted_metal",
+      "source": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\substance\\materials\\painted_metal.sbs",
+      "source_sha256_before": "9424f8717447ce986c3da54c1e843842ec1c5f85855361baab1f3982878bcbb5",
+      "compile": {
+        "exit_code": 0,
+        "seconds": 1.16,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\compile.log"
+      },
+      "info": {
+        "exit_code": 0,
+        "seconds": 0.08,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\info.log"
+      },
+      "render": {
+        "exit_code": 0,
+        "seconds": 0.51,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\render.log"
+      },
+      "images": [
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\ambient_occlusion.png",
+          "channel": "ambient_occlusion",
+          "width": 256,
+          "height": 256,
+          "sha256": "7288dedbf00ca0b652f2002f0439f57fafe11d9a0e8449611421c7c2cede619f"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\basecolor.png",
+          "channel": "basecolor",
+          "width": 256,
+          "height": 256,
+          "sha256": "c67c29807322d12128a66e79e66d15cb89edaef64d5280849263bdb910b6a853"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\diffuse.png",
+          "channel": "diffuse",
+          "width": 256,
+          "height": 256,
+          "sha256": "c67c29807322d12128a66e79e66d15cb89edaef64d5280849263bdb910b6a853"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\glossiness.png",
+          "channel": "glossiness",
+          "width": 256,
+          "height": 256,
+          "sha256": "8635d4acfc136692419088f6653c1f397e7d921b566d6276d47c65d1b6b06d2f"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\height.png",
+          "channel": "height",
+          "width": 256,
+          "height": 256,
+          "sha256": "97ff2cc9b5e1ee6ef78e0b940da53e5e20c041fbf72e942b5c5fcac39be71bcc"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\metallic.png",
+          "channel": "metallic",
+          "width": 256,
+          "height": 256,
+          "sha256": "5a853866790e6cab62c53858425ee1169b914efcc05aae7ac7720ac47e976e10"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\normal.png",
+          "channel": "normal",
+          "width": 256,
+          "height": 256,
+          "sha256": "4bb91994540a208125b48115da208bdb84cbe88bceb77f5cae886a81abe2e0fe"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\roughness.png",
+          "channel": "roughness",
+          "width": 256,
+          "height": 256,
+          "sha256": "0d365245fed9691524fcc9c06cda4353b5ed9c6b55a74fce5887aa7174e9e0c6"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\painted_metal\\specular.png",
+          "channel": "specular",
+          "width": 256,
+          "height": 256,
+          "sha256": "2c23fe00fa1d686d029135125ce78b4811b370256753d029ce3e0df4e3d4c431"
+        }
+      ],
+      "missing_channels": [],
+      "source_sha256_after": "9424f8717447ce986c3da54c1e843842ec1c5f85855361baab1f3982878bcbb5",
+      "source_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "metal_corrugated_002",
+      "source": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\substance\\materials\\metal_corrugated_002.sbs",
+      "source_sha256_before": "769174e28ae54383f4feabf4c41c7ea94f1534a10af6246bd25070acec3c6578",
+      "compile": {
+        "exit_code": 0,
+        "seconds": 1.93,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\compile.log"
+      },
+      "info": {
+        "exit_code": 0,
+        "seconds": 0.05,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\info.log"
+      },
+      "render": {
+        "exit_code": 0,
+        "seconds": 0.34,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\render.log"
+      },
+      "images": [
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\ambient_occlusion.png",
+          "channel": "ambient_occlusion",
+          "width": 256,
+          "height": 256,
+          "sha256": "daeba4238e5ffcf19dedfcc8c335191aa144ee448da0fab4bee9b9fe18a300be"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\basecolor.png",
+          "channel": "basecolor",
+          "width": 256,
+          "height": 256,
+          "sha256": "ef5bc110b76ac78173c9f7695890415337606bef020739c3a1490c88371742f1"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\diffuse.png",
+          "channel": "diffuse",
+          "width": 256,
+          "height": 256,
+          "sha256": "1075203444851afc547a49ba544133136609506916902418e75e1b825861cc2f"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\glossiness.png",
+          "channel": "glossiness",
+          "width": 256,
+          "height": 256,
+          "sha256": "4c31656fe50dcddb5e29ed71d6c545f30879f99c9029f71f06dc0c7e46b14c67"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\height.png",
+          "channel": "height",
+          "width": 256,
+          "height": 256,
+          "sha256": "f7ed80858f102b977be51e7fcfb7582c77ca275dec7f93a69b0ffa808f7d85c8"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\metallic.png",
+          "channel": "metallic",
+          "width": 256,
+          "height": 256,
+          "sha256": "9204adaa56818dea2d9b1005179a6ce4a2ab4d6cb36aca591fba871d91e8d48d"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\normal.png",
+          "channel": "normal",
+          "width": 256,
+          "height": 256,
+          "sha256": "2e283e5fc8322e7ef0eefc992e1266cf11d3a84d047fc34701b26d4304335d5e"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\roughness.png",
+          "channel": "roughness",
+          "width": 256,
+          "height": 256,
+          "sha256": "074470c5bead95f0fadf12a9b858d1e23a9b1c4c3ca3b4209ed7c8ea8287a16f"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\metal_corrugated_002\\specular.png",
+          "channel": "specular",
+          "width": 256,
+          "height": 256,
+          "sha256": "52baaeb63076d4027e52024fd75911d5e7f4b2034dc893966ddb66512ee5fa4c"
+        }
+      ],
+      "missing_channels": [],
+      "source_sha256_after": "769174e28ae54383f4feabf4c41c7ea94f1534a10af6246bd25070acec3c6578",
+      "source_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "brushed_metal",
+      "source": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\substance\\materials\\brushed_metal.sbs",
+      "source_sha256_before": "7ae7e3837970bc1ff66f6b8c97cc1e8721489de4265f8976af817d9bc33b9ee8",
+      "compile": {
+        "exit_code": 0,
+        "seconds": 0.67,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\compile.log"
+      },
+      "info": {
+        "exit_code": 0,
+        "seconds": 0.04,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\info.log"
+      },
+      "render": {
+        "exit_code": 0,
+        "seconds": 0.32,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\render.log"
+      },
+      "images": [
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\ambient_occlusion.png",
+          "channel": "ambient_occlusion",
+          "width": 256,
+          "height": 256,
+          "sha256": "83fa577eb8de4f75a3fcbe71f3305b6a814152e53a0620359d789483487e61b4"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\basecolor.png",
+          "channel": "basecolor",
+          "width": 256,
+          "height": 256,
+          "sha256": "10284ce6d98e6273d2ab736b2d0bdfa2c8ecadacf971af44ff6b280bb34ef8dc"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\diffuse.png",
+          "channel": "diffuse",
+          "width": 256,
+          "height": 256,
+          "sha256": "d573f582fbf6270b7c35f78a0881643a6624ff240b53e8fb43d356c60dc12040"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\glossiness.png",
+          "channel": "glossiness",
+          "width": 256,
+          "height": 256,
+          "sha256": "64f0ea177c2ced9cc69903a432fca55e299d7edcc2567cec422c953a017a6c8c"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\height.png",
+          "channel": "height",
+          "width": 256,
+          "height": 256,
+          "sha256": "118c33e6bda2ce328e6f6e84a68a34d0b43d4300ab56f535ee6d1a96d10f63a7"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\metallic.png",
+          "channel": "metallic",
+          "width": 256,
+          "height": 256,
+          "sha256": "8fd874b379964c7706d8092629b4a601ba64fe0cbf687c846b25050d5e09db3d"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\normal.png",
+          "channel": "normal",
+          "width": 256,
+          "height": 256,
+          "sha256": "0944a80d9032e45fc450c9282af31141008a049289a52dc97f988e51a578aa4f"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\roughness.png",
+          "channel": "roughness",
+          "width": 256,
+          "height": 256,
+          "sha256": "54a04d0e3dd8371addea7dd9d568887b08c04990829439a134fce7f8383dee0a"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brushed_metal\\specular.png",
+          "channel": "specular",
+          "width": 256,
+          "height": 256,
+          "sha256": "e11025173546559415b629747e3f4d2f21af44052acbde85b48890fb71af0c0b"
+        }
+      ],
+      "missing_channels": [],
+      "source_sha256_after": "7ae7e3837970bc1ff66f6b8c97cc1e8721489de4265f8976af817d9bc33b9ee8",
+      "source_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "plastic",
+      "source": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\substance\\materials\\plastic.sbs",
+      "source_sha256_before": "8b4790dcf547c4e43cf2f0dd34ac063c36f66be9f9394cdb0890efd265209691",
+      "compile": {
+        "exit_code": 0,
+        "seconds": 0.35,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\compile.log"
+      },
+      "info": {
+        "exit_code": 0,
+        "seconds": 0.04,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\info.log"
+      },
+      "render": {
+        "exit_code": 0,
+        "seconds": 0.24,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\render.log"
+      },
+      "images": [
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\ambient_occlusion.png",
+          "channel": "ambient_occlusion",
+          "width": 256,
+          "height": 256,
+          "sha256": "4e464c5040cb6a0c95bffcc173eeaeafc4b2874b51a51975793e1016d9763586"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\basecolor.png",
+          "channel": "basecolor",
+          "width": 256,
+          "height": 256,
+          "sha256": "204ee117cd20af77da4ea9d47e627d1cc9e85f29014c258abd2e94b077cdae15"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\diffuse.png",
+          "channel": "diffuse",
+          "width": 256,
+          "height": 256,
+          "sha256": "204ee117cd20af77da4ea9d47e627d1cc9e85f29014c258abd2e94b077cdae15"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\glossiness.png",
+          "channel": "glossiness",
+          "width": 256,
+          "height": 256,
+          "sha256": "e2d67ea6e6e4f8be577c65e7b1b03d8f5839d3a78bc783055eaa6edee0895891"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\height.png",
+          "channel": "height",
+          "width": 256,
+          "height": 256,
+          "sha256": "c703c7ac3ece3bad13125b4811517c52176cab7ed9bb42c6e67bf8789ec4c36f"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\metallic.png",
+          "channel": "metallic",
+          "width": 256,
+          "height": 256,
+          "sha256": "5a853866790e6cab62c53858425ee1169b914efcc05aae7ac7720ac47e976e10"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\normal.png",
+          "channel": "normal",
+          "width": 256,
+          "height": 256,
+          "sha256": "ce4aea2c85a66a5ebb4947881c5e9dd8a18ac66c6ca8bc07df24d821696e372e"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\roughness.png",
+          "channel": "roughness",
+          "width": 256,
+          "height": 256,
+          "sha256": "11d7b331fd25528ddb578f1b1bc668e07adf4441264c95cc0c61d1bcd59bfe59"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\plastic\\specular.png",
+          "channel": "specular",
+          "width": 256,
+          "height": 256,
+          "sha256": "2c23fe00fa1d686d029135125ce78b4811b370256753d029ce3e0df4e3d4c431"
+        }
+      ],
+      "missing_channels": [],
+      "source_sha256_after": "8b4790dcf547c4e43cf2f0dd34ac063c36f66be9f9394cdb0890efd265209691",
+      "source_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "stucco_001",
+      "source": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\substance\\materials\\stucco_001.sbs",
+      "source_sha256_before": "39cbe6dfa9fa3a3b76c7a9314f46c9f00737b6ad658ff11c0fb970f940b74147",
+      "compile": {
+        "exit_code": 0,
+        "seconds": 0.45,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\compile.log"
+      },
+      "info": {
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\info.log"
+      },
+      "render": {
+        "exit_code": 0,
+        "seconds": 0.21,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\render.log"
+      },
+      "images": [
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\ambient_occlusion.png",
+          "channel": "ambient_occlusion",
+          "width": 256,
+          "height": 256,
+          "sha256": "ccfc1054996048371b75aa160b450958492f4b852499f4bc22d970c5dd2f5fec"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\basecolor.png",
+          "channel": "basecolor",
+          "width": 256,
+          "height": 256,
+          "sha256": "db62b33cfc37df242031a8f3332750d2ac8cbf89d98efe32a89656f08bbc92a3"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\diffuse.png",
+          "channel": "diffuse",
+          "width": 256,
+          "height": 256,
+          "sha256": "db62b33cfc37df242031a8f3332750d2ac8cbf89d98efe32a89656f08bbc92a3"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\glossiness.png",
+          "channel": "glossiness",
+          "width": 256,
+          "height": 256,
+          "sha256": "f979b0c12bc220c5a6929c7782f52dea3d89570c6b84595968e94593459b0cf6"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\height.png",
+          "channel": "height",
+          "width": 256,
+          "height": 256,
+          "sha256": "aea21609057b2a9a894458abed26c49e0aac68bda78a85b6098c119162240685"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\metallic.png",
+          "channel": "metallic",
+          "width": 256,
+          "height": 256,
+          "sha256": "5a853866790e6cab62c53858425ee1169b914efcc05aae7ac7720ac47e976e10"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\normal.png",
+          "channel": "normal",
+          "width": 256,
+          "height": 256,
+          "sha256": "ab366ffd54c076b8dab487162f2d8b82e370dfe9acf48251da6aadba078ed0c8"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\roughness.png",
+          "channel": "roughness",
+          "width": 256,
+          "height": 256,
+          "sha256": "45fb4f0c106bc14947327eba397a08d5456bf949602a62c88c9ef4b53d6624ff"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\stucco_001\\specular.png",
+          "channel": "specular",
+          "width": 256,
+          "height": 256,
+          "sha256": "2c23fe00fa1d686d029135125ce78b4811b370256753d029ce3e0df4e3d4c431"
+        }
+      ],
+      "missing_channels": [],
+      "source_sha256_after": "39cbe6dfa9fa3a3b76c7a9314f46c9f00737b6ad658ff11c0fb970f940b74147",
+      "source_unchanged": true,
+      "passed": true
+    },
+    {
+      "name": "brick_wall_001",
+      "source": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\substance\\materials\\brick_wall_001.sbs",
+      "source_sha256_before": "add54218df69bc846fcac70232caa37e9dd413a021cddd8669faccb0f5a070ca",
+      "compile": {
+        "exit_code": 0,
+        "seconds": 0.48,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\compile.log"
+      },
+      "info": {
+        "exit_code": 0,
+        "seconds": 0.03,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\info.log"
+      },
+      "render": {
+        "exit_code": 0,
+        "seconds": 0.21,
+        "log": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\render.log"
+      },
+      "images": [
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\ambient_occlusion.png",
+          "channel": "ambient_occlusion",
+          "width": 256,
+          "height": 256,
+          "sha256": "0ea40c81a8c90033045d62bacaea18e03b1320c22850d6015c753cbbe12c2867"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\basecolor.png",
+          "channel": "basecolor",
+          "width": 256,
+          "height": 256,
+          "sha256": "4ec60884650cfac99a1aa398bcead5a907658b405929377c30befc20f924c84d"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\diffuse.png",
+          "channel": "diffuse",
+          "width": 256,
+          "height": 256,
+          "sha256": "4ec60884650cfac99a1aa398bcead5a907658b405929377c30befc20f924c84d"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\glossiness.png",
+          "channel": "glossiness",
+          "width": 256,
+          "height": 256,
+          "sha256": "5a0b2d99a72503412bc412dfbefdf117e539bfec92a444a1f2fbef6de22e04eb"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\height.png",
+          "channel": "height",
+          "width": 256,
+          "height": 256,
+          "sha256": "a1088823bde6df5d986d07664afb28f0e4c9bab5f356e7840a447c04f7e9be40"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\metallic.png",
+          "channel": "metallic",
+          "width": 256,
+          "height": 256,
+          "sha256": "5a853866790e6cab62c53858425ee1169b914efcc05aae7ac7720ac47e976e10"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\normal.png",
+          "channel": "normal",
+          "width": 256,
+          "height": 256,
+          "sha256": "233a92e32a708d8758c8d2415d3b4b2f700198da1a724826f4722385cc5cf658"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\roughness.png",
+          "channel": "roughness",
+          "width": 256,
+          "height": 256,
+          "sha256": "1db099c163dd671194077657057add88c1b8400c26f41e58aa5983bc6fd903d1"
+        },
+        {
+          "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\backup\\texture_preflight_20261026_01\\brick_wall_001\\specular.png",
+          "channel": "specular",
+          "width": 256,
+          "height": 256,
+          "sha256": "2c23fe00fa1d686d029135125ce78b4811b370256753d029ce3e0df4e3d4c431"
+        }
+      ],
+      "missing_channels": [],
+      "source_sha256_after": "add54218df69bc846fcac70232caa37e9dd413a021cddd8669faccb0f5a070ca",
+      "source_unchanged": true,
+      "passed": true
+    }
+  ],
+  "passed": true
+}

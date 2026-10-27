@@ -1,0 +1,49 @@
+{
+  "i": 0,
+  "phase": "check",
+  "next": 1792986728.3388562,
+  "views": [
+    [
+      "AllKits",
+      "Piece_SM_ClinicKit_Surgical_Chair"
+    ],
+    [
+      "AllKits",
+      "Piece_SM_CyberVehicleKit_Armoured_Van"
+    ],
+    [
+      "AllKits",
+      "Piece_SM_StationKit_Skybridge_Gate_4m"
+    ],
+    [
+      "AllKits",
+      "Kit_ClinicKit"
+    ],
+    [
+      "AllKits",
+      "Kit_TechKit"
+    ],
+    [
+      "AllKits",
+      "Kit_CorpKit"
+    ],
+    [
+      "AllKits",
+      "Kit_VehicleKit"
+    ],
+    [
+      "AllKits",
+      "Kit_GroundKit"
+    ]
+  ],
+  "paths": [],
+  "errors": [
+    "Traceback (most recent call last):\n  File \"C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\substance\\environment_02\\ue_capture_full_set_01.py\", line 59, in tick\n    elif time.time()>state['deadline']:raise RuntimeError('Screenshot did not appear: '+state['pending'])\n                                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Screenshot did not appear: C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_existing_kits_01/AllKits_Piece_SM_ClinicKit_Surgical_Chair.png\n"
+  ],
+  "busy": true,
+  "map": "AllKits",
+  "frame": 97363,
+  "pending": "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_existing_kits_01/AllKits_Piece_SM_ClinicKit_Surgical_Chair.png",
+  "deadline": 1792986845.3388562,
+  "complete": false
+}

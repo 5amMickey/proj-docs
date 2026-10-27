@@ -1,0 +1,17 @@
+{
+  "i": 0,
+  "phase": "check",
+  "next": 1792971006.054486,
+  "frame": 5263,
+  "paths": [
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue02/Neutral_Overview.png"
+  ],
+  "errors": [
+    "Capture file did not appear: C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue02/Neutral_Overview.png"
+  ],
+  "map": "Neutral",
+  "busy": true,
+  "cam": "/Game/ProjectRunner/TextureReview/Env01/L_EnvTextureReview_01_Neutral.L_EnvTextureReview_01_Neutral:PersistentLevel.CameraActor_0",
+  "deadline": 1792971060.054486,
+  "complete": false
+}

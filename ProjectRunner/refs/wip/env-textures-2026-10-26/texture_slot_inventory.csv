@@ -1,0 +1,35 @@
+slot,kind,size,layout,repeat_m,kits,status,board,owner
+M_CyberMarket_Trim,trim,2048x2048,14 strips,2m across U,AlleyKit; ConnectorKit; ContainerKit; FoodKit; GroundKit; MeatKit; RoofKit; ShopKit; SignKit; SlumKit; SoftKit; StackKit; StallKit; StreetKit; StructKit; WorkshopKit,Template only,RUN-114,Codex proposed; Mike approves
+M_Wall_Tiling,tile,2048x2048,tile,2.0x2.0,AlleyKit; RoofKit,Reference only,RUN-116,Codex proposed; Mike approves
+M_Road_Tiling,tile,2048x3072,tile,4.0x6.0,,Reference only,RUN-116,Codex proposed; Mike approves
+M_Paving_Tiling,tile,2048x2048,tile,2.0x2.0,AlleyKit; RoofKit,Reference only,RUN-116,Codex proposed; Mike approves
+M_Glass_Tiling,tile,1024x1024,tile,1.0x1.0,AlleyKit; FoodKit; MeatKit; ShopKit; SoftKit,Reference only,RUN-116,Codex proposed; Mike approves
+M_Cardboard_Tiling,tile,512x512,tile,0.5x0.5,ShopKit; SoftKit,Reference only,RUN-116,Codex proposed; Mike approves
+M_Asphalt_Tiling,tile,2048x2048,tile,4.0x4.0,,Reference only,RUN-116,Codex proposed; Mike approves
+M_WallTile_Tiling,tile,1024x1024,tile,1.0x1.0,,Reference only,RUN-116,Codex proposed; Mike approves
+M_Decal_Atlas,atlas,2048x2048,4x4 cells,,ContainerKit; GroundKit,Reference only,RUN-113,Codex proposed; Mike approves
+M_Glyph_Atlas,atlas,2048x2048,4x4 cells,,SignKit,Reference only,RUN-117,Codex proposed; Mike approves
+M_Screen_Atlas,atlas,2048x2048,3x3 cells,,AlleyKit; FoodKit; SignKit; StreetKit,Reference only,RUN-117,Codex proposed; Mike approves
+M_Meat_Atlas,atlas,1024x1024,2x2 cells,,MeatKit,Reference only,RUN-113,Codex proposed; Mike approves
+M_Street_Atlas,atlas,2048x2048,4x4 cells,,AlleyKit; RoofKit; StreetKit,Reference only,RUN-113,Codex proposed; Mike approves
+M_Food_Atlas,atlas,1024x1024,4x4 cells,,FoodKit,Reference only,RUN-113,Codex proposed; Mike approves
+M_Vehicle_Atlas,atlas,2048x2048,2x4 cells,,,Reference only,RUN-113,Codex proposed; Mike approves
+M_Shop_Atlas,atlas,2048x2048,4x4 cells,,AlleyKit; ShopKit,Reference only,RUN-113,Codex proposed; Mike approves
+M_Sign_Atlas,atlas,2048x2048,4x4 cells,,AlleyKit; RoofKit; SignKit,Reference only,RUN-117,Codex proposed; Mike approves
+M_FX_Atlas,atlas,1024x1024,4x4 cells,,GroundKit,Reference only,RUN-113,Codex proposed; Mike approves
+M_FloorTile_Tiling,tile,2048x2048,tile,2.0x2.0,,Reference only,RUN-116,Codex proposed; Mike approves
+M_Tactile_Tiling,tile,512x512,tile,0.6x0.6,,Reference only,RUN-116,Codex proposed; Mike approves
+M_Ceiling_Tiling,tile,1024x1024,tile,1.0x1.0,,Reference only,RUN-116,Codex proposed; Mike approves
+M_Cutout_Atlas,atlas,2048x2048,4x4 cells,,AlleyKit,Reference only,RUN-113,Codex proposed; Mike approves
+M_Litter_Atlas,atlas,1024x1024,4x4 cells,,,Reference only,RUN-113,Codex proposed; Mike approves
+M_Station_Atlas,atlas,2048x2048,4x4 cells,,,Reference only,RUN-117,Codex proposed; Mike approves
+M_Interior_Atlas,atlas,2048x2048,4x4 cells,,,Reference only,RUN-113,Codex proposed; Mike approves
+M_Damage_Atlas,atlas,2048x2048,4x4 cells,,,Reference only,RUN-113,Codex proposed; Mike approves
+M_Kei_Atlas,atlas,2048x2048,2x2 cells,,,Reference only,RUN-113,Codex proposed; Mike approves
+M_Clinic_Atlas,atlas,2048x2048,4x4 cells,,,Reference only,RUN-113,Codex proposed; Mike approves
+M_Workshop_Atlas,atlas,1024x1024,4x4 cells,,WorkshopKit,Reference only,RUN-113,Codex proposed; Mike approves
+M_Tech_Atlas,atlas,2048x2048,4x4 cells,,,Reference only,RUN-113,Codex proposed; Mike approves
+M_Holo_Atlas,atlas,2048x2048,4x4 cells,,,Reference only,RUN-117,Codex proposed; Mike approves
+M_Corp_Atlas,atlas,2048x2048,4x4 cells,,,Reference only,RUN-113,Codex proposed; Mike approves
+M_CyberVehicle_Atlas,atlas,2048x2048,2x4 cells,,,Reference only,RUN-113,Codex proposed; Mike approves
+M_Atmos_Atlas,atlas,1024x1024,4x4 cells,,,Reference only,RUN-113,Codex proposed; Mike approves

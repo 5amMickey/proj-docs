@@ -1,0 +1,41 @@
+{
+  "i": 5,
+  "phase": "load",
+  "next": 1792986951.2938397,
+  "views": [
+    [
+      "AllKits",
+      "Piece_SM_ClinicKit_Surgical_Chair"
+    ],
+    [
+      "AllKits",
+      "Piece_SM_CyberVehicleKit_Armoured_Van"
+    ],
+    [
+      "AllKits",
+      "Piece_SM_StationKit_Skybridge_Gate_4m"
+    ],
+    [
+      "AllKits",
+      "Kit_ClinicKit"
+    ],
+    [
+      "AllKits",
+      "Kit_TechKit"
+    ]
+  ],
+  "paths": [
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_existing_kits_02/AllKits_Piece_SM_ClinicKit_Surgical_Chair.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_existing_kits_02/AllKits_Piece_SM_CyberVehicleKit_Armoured_Van.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_existing_kits_02/AllKits_Piece_SM_StationKit_Skybridge_Gate_4m.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_existing_kits_02/AllKits_Kit_ClinicKit.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_existing_kits_02/AllKits_Kit_TechKit.png"
+  ],
+  "errors": [],
+  "busy": true,
+  "map": "AllKits",
+  "frame": 100473,
+  "pending": "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_existing_kits_02/AllKits_Kit_TechKit.png",
+  "deadline": 1792987068.2938397,
+  "complete": true
+}

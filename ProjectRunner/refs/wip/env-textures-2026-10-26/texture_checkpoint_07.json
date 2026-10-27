@@ -1,0 +1,40 @@
+{
+  "full_set_approved": true,
+  "engine_batch_01_complete": true,
+  "engine_review": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\proj-docs\\ProjectRunner\\refs\\wip\\env-textures-2026-10-26\\review_unreal_01.html",
+  "engine_assets": "/Game/ProjectRunner/TextureReview/Env02",
+  "verified_texture_maps": 254,
+  "verified_material_sets": 34,
+  "textured_kit_copies": 185,
+  "kit_bound_sets": 16,
+  "gallery_only_sets": 18,
+  "gpu_id_maps_passed": 24,
+  "source_mesh_files_unchanged": 185,
+  "commits_permitted": false,
+  "pixelation": false,
+  "extension": {
+    "user_approved": true,
+    "instruction": "Extend this task to prepare and review the missing kits",
+    "source_pieces": 350,
+    "kits": 24,
+    "status": "Houdini preparation and UV review"
+  },
+  "checklist": [
+    {
+      "step": "Import all approved textures and create materials",
+      "complete": true
+    },
+    {
+      "step": "Apply materials to 185 current kit copies and capture Unreal review",
+      "complete": true
+    },
+    {
+      "step": "Prepare and review the 350 missing source pieces in Houdini",
+      "complete": false
+    },
+    {
+      "step": "Import approved missing pieces and verify full kit coverage",
+      "complete": false
+    }
+  ]
+}

@@ -1,0 +1,369 @@
+{
+  "files": [
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Trim_BC.png",
+      "bytes": 124662,
+      "sha256": "50b09bf9351db82b1a86238c1bb32eedba7862a8d5360ba17173ff9f6786ebe1",
+      "min": [
+        34,
+        44,
+        42
+      ],
+      "max": [
+        247,
+        202,
+        154
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Trim_N.png",
+      "bytes": 71474,
+      "sha256": "eb9f2f4896e820ecb074833e7a4f2141ee10e7582bc599dd6544caf0703b69e5",
+      "min": [
+        119,
+        123,
+        255
+      ],
+      "max": [
+        136,
+        132,
+        255
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Trim_ORM.png",
+      "bytes": 58352,
+      "sha256": "bf8066210734636e81f280a001db305ad541930b401de74014bf6d2ecb862547",
+      "min": [
+        226,
+        110,
+        0
+      ],
+      "max": [
+        253,
+        240,
+        204
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Trim_M.png",
+      "bytes": 19009,
+      "sha256": "60c6c4ecbdfb7d2953eea15f20d1ec5e366d1267e502ce06169ee9ab4c341d8d",
+      "min": [
+        0,
+        0,
+        255
+      ],
+      "max": [
+        255,
+        55,
+        255
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Trim_E.png",
+      "bytes": 13632,
+      "sha256": "3b6c340c1d21fe983db9b75e126c793a0f9d888e6ed11efaec554695f0d311e5",
+      "min": [
+        0,
+        0,
+        0
+      ],
+      "max": [
+        247,
+        194,
+        148
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Trim_H.png",
+      "bytes": 30212,
+      "sha256": "8d7c58da5006d4987da32f0a872688ad30e2560906ad5060f3827da368edd7c4",
+      "min": 69,
+      "max": 167
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Wall_BC.png",
+      "bytes": 36701,
+      "sha256": "3eb51c665684a1f805e5542a4f4e1a0f77ad29b27ed0c749f7e90a44df521878",
+      "min": [
+        153,
+        150,
+        130
+      ],
+      "max": [
+        168,
+        166,
+        144
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Wall_N.png",
+      "bytes": 17865,
+      "sha256": "11671cdd4bf77345ba3e127246f708ec6dedfd98cf67ae35d9fca34dc0482ffa",
+      "min": [
+        128,
+        128,
+        255
+      ],
+      "max": [
+        128,
+        128,
+        255
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Wall_ORM.png",
+      "bytes": 36400,
+      "sha256": "af1b86e782798beb8c05c71af3b23b4b8c8de2507408ffe04eea74e96727926c",
+      "min": [
+        242,
+        217,
+        0
+      ],
+      "max": [
+        242,
+        230,
+        0
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Wall_M.png",
+      "bytes": 17865,
+      "sha256": "040f7e53d7ef101fa0d0cbf983646ed2dcffffd1db4b9120844c349f96d28157",
+      "min": [
+        0,
+        0,
+        255
+      ],
+      "max": [
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Wall_E.png",
+      "bytes": 13295,
+      "sha256": "2f2bc05a6c96b86c86f9d2d605a86d30317fa79ae945f39cdfda5e8658a62d33",
+      "min": [
+        0,
+        0,
+        0
+      ],
+      "max": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\A_Restrained\\T_Wall_H.png",
+      "bytes": 9538,
+      "sha256": "85228d86d8e1a81ac4ab00ce7c47dc6c9b65e7c84db8053f5c71e0cfed62e2a0",
+      "min": 128,
+      "max": 128
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Trim_BC.png",
+      "bytes": 119997,
+      "sha256": "730c847fe53820206adeadbe13a479e76fdffa3c288b8b0504ad5f480e87939d",
+      "min": [
+        35,
+        45,
+        43
+      ],
+      "max": [
+        247,
+        202,
+        160
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Trim_N.png",
+      "bytes": 71474,
+      "sha256": "eb9f2f4896e820ecb074833e7a4f2141ee10e7582bc599dd6544caf0703b69e5",
+      "min": [
+        119,
+        123,
+        255
+      ],
+      "max": [
+        136,
+        132,
+        255
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Trim_ORM.png",
+      "bytes": 58352,
+      "sha256": "bf8066210734636e81f280a001db305ad541930b401de74014bf6d2ecb862547",
+      "min": [
+        226,
+        110,
+        0
+      ],
+      "max": [
+        253,
+        240,
+        204
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Trim_M.png",
+      "bytes": 19174,
+      "sha256": "39d4717f8d05a1bb0982273f4d993f4fae6fe701f668515e2699ee12363b61d2",
+      "min": [
+        0,
+        0,
+        255
+      ],
+      "max": [
+        255,
+        197,
+        255
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Trim_E.png",
+      "bytes": 13632,
+      "sha256": "3b6c340c1d21fe983db9b75e126c793a0f9d888e6ed11efaec554695f0d311e5",
+      "min": [
+        0,
+        0,
+        0
+      ],
+      "max": [
+        247,
+        194,
+        148
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Trim_H.png",
+      "bytes": 30212,
+      "sha256": "8d7c58da5006d4987da32f0a872688ad30e2560906ad5060f3827da368edd7c4",
+      "min": 69,
+      "max": 167
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Wall_BC.png",
+      "bytes": 36687,
+      "sha256": "54ef40786da8202200fc42f7d5634f7e6f082cf404373995e3667ed75e69d7b3",
+      "min": [
+        153,
+        150,
+        130
+      ],
+      "max": [
+        183,
+        181,
+        157
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Wall_N.png",
+      "bytes": 17865,
+      "sha256": "11671cdd4bf77345ba3e127246f708ec6dedfd98cf67ae35d9fca34dc0482ffa",
+      "min": [
+        128,
+        128,
+        255
+      ],
+      "max": [
+        128,
+        128,
+        255
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Wall_ORM.png",
+      "bytes": 36400,
+      "sha256": "af1b86e782798beb8c05c71af3b23b4b8c8de2507408ffe04eea74e96727926c",
+      "min": [
+        242,
+        217,
+        0
+      ],
+      "max": [
+        242,
+        230,
+        0
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Wall_M.png",
+      "bytes": 17865,
+      "sha256": "040f7e53d7ef101fa0d0cbf983646ed2dcffffd1db4b9120844c349f96d28157",
+      "min": [
+        0,
+        0,
+        255
+      ],
+      "max": [
+        0,
+        0,
+        255
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Wall_E.png",
+      "bytes": 13295,
+      "sha256": "2f2bc05a6c96b86c86f9d2d605a86d30317fa79ae945f39cdfda5e8658a62d33",
+      "min": [
+        0,
+        0,
+        0
+      ],
+      "max": [
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\tex\\environment_01\\B_Worn\\T_Wall_H.png",
+      "bytes": 9538,
+      "sha256": "85228d86d8e1a81ac4ab00ce7c47dc6c9b65e7c84db8053f5c71e0cfed62e2a0",
+      "min": 128,
+      "max": 128
+    }
+  ],
+  "checks": {
+    "A_Restrained_Trim_normal_length_error": 0.002227430848379841,
+    "A_Restrained_Trim_tint_codes": [
+      0,
+      64,
+      128,
+      191,
+      255
+    ],
+    "A_Restrained_Wall_normal_length_error": 1.5378582249425676e-05,
+    "A_Restrained_Wall_tint_codes": [
+      0
+    ],
+    "B_Worn_Trim_normal_length_error": 0.002227430848379841,
+    "B_Worn_Trim_tint_codes": [
+      0,
+      64,
+      128,
+      191,
+      255
+    ],
+    "B_Worn_Wall_normal_length_error": 1.5378582249425676e-05,
+    "B_Worn_Wall_tint_codes": [
+      0
+    ],
+    "Trim_changed_colour_fraction": 0.10756134986877441,
+    "Trim_mean_colour_difference_8bit": 1.8659829298655193,
+    "Trim_A_mean_U_edge_difference_8bit": 1.5377604166666667,
+    "Wall_changed_colour_fraction": 0.6506705284118652,
+    "Wall_mean_colour_difference_8bit": 9.982239882151285,
+    "Wall_A_mean_U_edge_difference_8bit": 4.25390625
+  },
+  "source": {
+    "path": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\substance\\environment_01\\runner_environment_04.sbs",
+    "sha256": "4de0e2c979012b11bb9eada873664a2336934990552ca11c65ac209125effcdd"
+  },
+  "passed": true
+}

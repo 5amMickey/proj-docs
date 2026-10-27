@@ -1,0 +1,355 @@
+{
+  "root": "/Game/ProjectRunner/TextureReview/Env01",
+  "imports": [
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_BC.T_Trim_BC",
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_N.T_Trim_N",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_NORMALMAP: 1>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_ORM.T_Trim_ORM",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_M.T_Trim_M",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_NEAREST: 0>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_E.T_Trim_E",
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_H.T_Trim_H",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_BC.T_Wall_BC",
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_N.T_Wall_N",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_NORMALMAP: 1>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_ORM.T_Wall_ORM",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_M.T_Wall_M",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_NEAREST: 0>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_E.T_Wall_E",
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_H.T_Wall_H",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_BC.T_Trim_BC",
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_N.T_Trim_N",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_NORMALMAP: 1>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_ORM.T_Trim_ORM",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_M.T_Trim_M",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_NEAREST: 0>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_E.T_Trim_E",
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_H.T_Trim_H",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_BC.T_Wall_BC",
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_N.T_Wall_N",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_NORMALMAP: 1>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_ORM.T_Wall_ORM",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_M.T_Wall_M",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>",
+      "filter": "<TextureFilter.TF_NEAREST: 0>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_E.T_Wall_E",
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    },
+    {
+      "asset": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_H.T_Wall_H",
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>"
+    }
+  ],
+  "materials": [
+    "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim",
+    "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Wall.MI_A_Restrained_Wall",
+    "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim",
+    "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Wall.MI_B_Worn_Wall"
+  ],
+  "maps": [
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/L_EnvTextureReview_01_Neutral",
+      "assignments": [
+        {
+          "actor": "A_Restrained_AlleyKit_Wall_Shutter_2x3",
+          "slot": "M_Wall_Tiling",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Wall.MI_A_Restrained_Wall"
+        },
+        {
+          "actor": "A_Restrained_AlleyKit_Wall_Shutter_2x3",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_BackWall_1m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_Counter_1m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_Crate_50",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_Awning_2m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_Lantern_Paper",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_Sign_Hanging",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "B_Worn_AlleyKit_Wall_Shutter_2x3",
+          "slot": "M_Wall_Tiling",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Wall.MI_B_Worn_Wall"
+        },
+        {
+          "actor": "B_Worn_AlleyKit_Wall_Shutter_2x3",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_BackWall_1m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_Counter_1m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_Crate_50",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_Awning_2m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_Lantern_Paper",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_Sign_Hanging",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        }
+      ],
+      "saved": true
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/L_EnvTextureReview_01_Night",
+      "assignments": [
+        {
+          "actor": "A_Restrained_AlleyKit_Wall_Shutter_2x3",
+          "slot": "M_Wall_Tiling",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Wall.MI_A_Restrained_Wall"
+        },
+        {
+          "actor": "A_Restrained_AlleyKit_Wall_Shutter_2x3",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_BackWall_1m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_Counter_1m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_Crate_50",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_Awning_2m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_Lantern_Paper",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "A_Restrained_StallKit_Sign_Hanging",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim"
+        },
+        {
+          "actor": "B_Worn_AlleyKit_Wall_Shutter_2x3",
+          "slot": "M_Wall_Tiling",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Wall.MI_B_Worn_Wall"
+        },
+        {
+          "actor": "B_Worn_AlleyKit_Wall_Shutter_2x3",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_BackWall_1m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_Counter_1m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_Crate_50",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_Awning_2m",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_Lantern_Paper",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        },
+        {
+          "actor": "B_Worn_StallKit_Sign_Hanging",
+          "slot": "M_CyberMarket_Trim",
+          "material": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim"
+        }
+      ],
+      "saved": true
+    }
+  ],
+  "errors": [],
+  "original_mesh_slots_unchanged": true
+}

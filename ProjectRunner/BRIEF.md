@@ -1,6 +1,6 @@
 # ProjectRunner
 
-Domain: games   Status: building   Updated: 2026-10-15
+Domain: games   Status: building   Updated: 2026-10-23
 
 ## What and who
 
@@ -24,9 +24,9 @@ Current milestone: G1 Playable scene (blockout). Interior generator milestones (
 ## Avoid
 
 - Nanite on skinned meshes.
-- Gameplay HUD beyond interact prompts, the hack progress bar, and dialogue choices.
-- AnimGen or other experimental plugins in this project. Try them in `C:\Prod\Sandbox` first.
-- Touching other sessions' editors. RunnerSandbox's MCP port is 8002. MCP ports: Fury 8001, Runner 8002, Dawn 8003, Alpha 8004, Sandbox 8005, AssetPacks 8006. Only kill an editor by PID when its command line contains `RunnerSandbox_01`; never use `taskkill /IM`.
+- Gameplay HUD beyond interact prompts, the hack progress, dialogue choices, subtitles, corner notices ("Vex will remember that."), and the hold-to-skip prompt in cutscenes. Menus (title, pause, settings, log) are fine.
+- AnimGen or other experimental plugins in this project. Try them in a separate sandbox project first. The old `C:\Prod\Sandbox` was archived to `C:\Prod\_archive\Sandbox` on 2026-10-26.
+- Touching other sessions' editors. RunnerSandbox's MCP port is 8002. MCP ports: Fury 8001, Runner 8002, Dawn 8003, Alpha 8004, PipelineSandbox 8005, AssetPacks 8006. Only kill an editor by PID when its command line contains `RunnerSandbox_01`; never use `taskkill /IM`.
 
 ## References
 
@@ -40,10 +40,11 @@ Current milestone: G1 Playable scene (blockout). Interior generator milestones (
 | Project root and git repo (`Phantom-Break-Studio/ProjectRunner`) | `C:\Prod\ProjectRunner` | n/a |
 | Unreal project | `C:\Prod\ProjectRunner\Unreal\RunnerSandbox_01.uproject` | n/a |
 | Houdini (junction; the `HoudiniSource` repo is the source of truth) | `C:\Prod\ProjectRunner\Houdini` → `Documents\GitHub\HoudiniSource\ProjectRunner` (renamed from `ProjectCyberRunner` 2026-10-07) | n/a |
-| Shared UE plugins (PhantomInteraction, PhantomStory; local git repo) | `C:\Prod\_Library\Unreal\Plugins` | n/a |
+| Shared UE plugins (PhantomInteraction, PhantomStory, PhantomScript; local git repo) | `C:\Prod\_Library\Unreal\Plugins` | n/a |
 | Brief and tasks | `$PROJ_DOCS/ProjectRunner` | `$PROJ_DOCS/ProjectRunner` |
 | Branded docs: theme, deck and Word templates (guide: `brand.md`; studio kit: `$PROJ_DOCS/brand`) | `C:\Prod\ProjectRunner\Docs` | n/a |
-| Environment kit tests (Houdini junction to `HoudiniSource\ProjectSandbox`; Unreal folder for the test project) | `C:\Prod\Sandbox` | n/a |
+| Environment kit tests (Houdini junction to `HoudiniSource\ProjectSandbox`; Unreal folder for the test project). Archived 2026-10-26, not in use | `C:\Prod\_archive\Sandbox` | n/a |
+| ProjectDev kit library: frozen Blender night-market kits (513 pieces, 27 kits) to import or rebuild in Houdini. Read-only source; its `AGENTS.md` has the rules. Local git, never pushed. | `D:\projects\ProjectDev` | n/a |
 
 ## Domain
 
@@ -65,10 +66,10 @@ Settled. Don't reopen unless I ask.
 - 2026-10-01: Scenes are levels streamed into the persistent level `L_PR_Persistent`. Exit volumes fade the screen to black, stream the next scene in behind the cover, and fade back in. (2026-10-02: the Persona 5 silhouette crowd was removed. `APNTransitionStage` can still show a camera view while loading if one is set.)
 - 2026-10-01: The player always faces the direction they walk; GASP's strafe and aim modes are off.
 - 2026-10-01: The player walks only; running, jumping, and traversal are off. Crouch happens automatically in crouch zones instead of on a button, and the crouch input stays in the shared plugin for ProjectSilence.
-- 2026-10-01: The first hack is holding a button for a set time. The hack component is built so ProjectSilence can reuse it.
+- 2026-10-01: The first hack is holding a button for a set time. The hack component is built so ProjectSilence can reuse it. (Changed 2026-10-21, see below.)
 - 2026-10-01: Dialogue runs on StoryFlow 1.2.3, copied from ProjectAlpha. It supports UE 5.8, has variables, character variables, and save slots, and fires dialogue tags; Inkpot has no confirmed 5.8 build. The Defender pack is a reference only.
 - 2026-10-01: Two shared plugins. PhantomInteraction covers interactables, hold-to-hack, camera zones, and crouch zones. PhantomStory adds the Sequencer bridge (`seq:`/`cam:`/`timer:`/`default:` dialogue tags) and checkpoint saves on top of StoryFlow.
-- 2026-10-01: Dialogue choices are on face buttons in order X, Y, B (two choices: X, Y; keyboard 1, 2, 3). A continues lines with no choices. The HUD draws the conversation, not StoryFlow's mouse widget.
+- 2026-10-01: Dialogue choices are on face buttons in order X, Y, B (two choices: X, Y; keyboard 1, 2, 3). A continues lines with no choices. The HUD draws the conversation, not StoryFlow's mouse widget. (Changed 2026-10-21: two choices sit on left and right, see below.)
 - 2026-10-01: Choices can be timed, with a default when the timer runs out. Flags are StoryFlow global variables, and relationship values are StoryFlow character variables.
 - 2026-10-01: Background NPCs are spline walkers (`APNWalkerLane`) using GASP walk clips. GASP NPC patrols handle people who stay in a room. AnimGen is tested only in Sandbox.
 - 2026-10-01: The UEFN Mannequin is used for the blockout. The visual style is undecided.
@@ -84,3 +85,16 @@ Settled. Don't reopen unless I ask.
 - 2026-10-10: Tool review (`HoudiniSource/docs/reviews/runner_tools.md`, scene `ProjectSandbox/asset_toolReview_01`). The environment carries on from three ProjectSandbox tools, now moved into `HoudiniSource/ProjectRunner`: `cyber_facade` (scene `asset_facadeBuilder_02`), `env_city_generator` 2.0 (`asset_cityBuilder_02`) and `env_derelict_corridor` 2.0 (`asset_corridorBuilder_01`). The facade trim sheet and modules (2026-10-09) and the room shell are archived in `HoudiniSource/archive/env_v2/`. The props kit and its bake and texture pipeline (2026-10-07/08) are held until Mike decides to keep or rework them. From env_v1, fire escapes, stairs, entrances, shanty boxes, roof tanks, antennas, exhaust fans, billboards and the shopfront stall are marked to keep; how they come back is open.
 - 2026-10-15: Pitch push for the CMF Prototyping final intake (closes 2026-11-10): deck, application, landing page, vertical slice video and teaser. Plan: `pitch-plan.md`. The title on every application is "Project Runner". The team is the 2024 list minus Taia DeBona, still being confirmed. The UEFN Mannequin plays the lead for now; Vhoori is in the cast, not the lead. The environment mixes Houdini pieces with owned packs. Both textures-only and whole-screen pixel treatments get tested, with smooth depth of field after the pixel step. No AI-generated images in any pitch or application material.
 - 2026-10-16: Look test result: treatment A, textures only (nearest filtering, pixelated textures), with depth of field from the camera. No whole-screen pixel grid. `L_LookTest` is the startup map while the look is tested; switch `EditorStartupMap` and `GameDefaultMap` back to `L_PR_Persistent` for G1 playthroughs.
+- 2026-10-16: Purchased packs stay local and out of git, starting with Big Slum Alley (`Content/SlumAlley`, 2.8 GB). Anyone building `L_LookTest` or the food alley copies the pack in from `C:\Prod\AssetPacks`. Same for Future Slums (`Content/TheFloatingSlums`, the Wasteland set) and the CastleTown ground textures (`Content/CastleTown`).
+- 2026-10-16: Signs. Pack signs that carry text stay as they are for now. Signs we make use an emissive texture with no text.
+- 2026-10-16: Trailer mechs move along paths, started by triggers as the lead walks (`APRPathMover`). Fliers carry a sweeping searchlight and rovers a headlight. No walk or fly cycles yet.
+- 2026-10-21: UI follows Dispatch. Dialogue plays as film subtitles and moves on by itself after each line's reading time (or its audio); choices appear only when a line has them. A line with choices plays as a subtitle first; then the subtitle slides up, the choices appear below it, and their timer starts half a second later. Choices are drawn where their button is: one choice on the bottom button, two on left and right, three on left, top and right. Keyboard picks by order (1, 2, 3).
+- 2026-10-21: StoryFlow leaves the project. Scenes are written in Scrivener and imported straight from the `.scriv` folder into a new PhantomStory that runs dialogue itself. The StoryFlow-based plugin is kept, renamed PhantomStoryFlow, and not enabled. (Replaces the 2026-10-01 StoryFlow decisions; tracked in TASKS.md "Scrivener story pipeline".)
+- 2026-10-21: Controller prompts show button positions, not letters, like Nintendo's guides: a diamond of four dots with the one to press filled. Keyboard prompts show the key. Prompts follow the last device used.
+- 2026-10-21: The first hack is one press that plays a short cinematic: an over-the-shoulder shot of the lead and the device while a breach bar fills, "access granted", a shot of the door sliding open, then back to play. This is the starting point for the hacking minigame.
+- 2026-10-22: The ProjectDev night-market kits (513 pieces) are the base for Runner's environment pieces. They live in `C:\Prod\ProjectDev`, read-only. Their UE imports stay local and out of Runner git; Mike backs them up to his server.
+- 2026-10-22: Every kit piece is re-UV'd in Houdini onto the ProjectDev trim sheet (1024 px/m), to remove stretching. New and re-UV'd pieces are reviewed in a labelled Houdini asset museum before any UE import. Houdini scenes and outputs stay in HoudiniSource.
+- 2026-10-22: Architecture (walls, facades) is rebuilt as connected surfaces cut into trim-strip bands, not stacked separate parts. `cyber_facade` is too dense and gets revisited using the kits.
+- 2026-10-22: Repeated kit pieces (cardboard boxes, shelves and other families) become HDAs.
+- 2026-10-22: Cables are placed in UE through a Houdini Engine cable tool (Labs Cable Generator look). Every cable gets a gentle wind sway from its material; no physics cables for now.
+- 2026-10-23: Cinematics are blocked out with Shot Blocker, a Python editor tool in the PhantomScript plugin (Python so engine updates don't break a C++ build). A `SEQ:` flag in the script marks cinematic dialogue, and the importer splits it into one level sequence per run of lines between choices, because Sequencer can't branch. Line IDs survive rewrites, and voice files, shots and animations are anchored to them.

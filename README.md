@@ -10,6 +10,7 @@ Project content for my coding agents: one folder per project, plus session hando
 | `<Project>/TASKS.md` | Checklist for work that spans many steps | The agent, as it works |
 | `<Project>/refs/` | Reference images and files for the brief | Me |
 | `handoffs/` | Session handoffs for moving between sessions and devices | `/handoff` |
+| `brand/` | Phantom Break Studio brand kit: logos, colours, fonts, `tokens.css`. Each game's theme sits in its own folder. | The agent, from the business card files |
 
 Images and other binaries are stored with Git LFS (see `.gitattributes`). The setup steps below include `git lfs install`.
 

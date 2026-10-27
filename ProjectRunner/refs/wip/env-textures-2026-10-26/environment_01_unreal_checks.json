@@ -1,0 +1,237 @@
+{
+  "instances": [
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Trim.MI_A_Restrained_Trim",
+      "bindings": {
+        "BC": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_BC.T_Trim_BC",
+        "N": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_N.T_Trim_N",
+        "ORM": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_ORM.T_Trim_ORM",
+        "M": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_M.T_Trim_M",
+        "E": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_E.T_Trim_E"
+      }
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_A_Restrained_Wall.MI_A_Restrained_Wall",
+      "bindings": {
+        "BC": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_BC.T_Wall_BC",
+        "N": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_N.T_Wall_N",
+        "ORM": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_ORM.T_Wall_ORM",
+        "M": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_M.T_Wall_M",
+        "E": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_E.T_Wall_E"
+      }
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Trim.MI_B_Worn_Trim",
+      "bindings": {
+        "BC": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_BC.T_Trim_BC",
+        "N": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_N.T_Trim_N",
+        "ORM": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_ORM.T_Trim_ORM",
+        "M": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_M.T_Trim_M",
+        "E": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_E.T_Trim_E"
+      }
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Materials/MI_B_Worn_Wall.MI_B_Worn_Wall",
+      "bindings": {
+        "BC": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_BC.T_Wall_BC",
+        "N": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_N.T_Wall_N",
+        "ORM": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_ORM.T_Wall_ORM",
+        "M": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_M.T_Wall_M",
+        "E": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_E.T_Wall_E"
+      }
+    }
+  ],
+  "textures": [
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_BC.T_Trim_BC",
+      "width": 2048,
+      "height": 2048,
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_N.T_Trim_N",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_NORMALMAP: 1>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_ORM.T_Trim_ORM",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_M.T_Trim_M",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "filter": "<TextureFilter.TF_NEAREST: 0>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Trim_E.T_Trim_E",
+      "width": 2048,
+      "height": 2048,
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_BC.T_Wall_BC",
+      "width": 2048,
+      "height": 2048,
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_N.T_Wall_N",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_NORMALMAP: 1>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_ORM.T_Wall_ORM",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_M.T_Wall_M",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "filter": "<TextureFilter.TF_NEAREST: 0>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/A_Restrained/T_Wall_E.T_Wall_E",
+      "width": 2048,
+      "height": 2048,
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_BC.T_Trim_BC",
+      "width": 2048,
+      "height": 2048,
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_N.T_Trim_N",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_NORMALMAP: 1>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_ORM.T_Trim_ORM",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_M.T_Trim_M",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "filter": "<TextureFilter.TF_NEAREST: 0>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Trim_E.T_Trim_E",
+      "width": 2048,
+      "height": 2048,
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_BC.T_Wall_BC",
+      "width": 2048,
+      "height": 2048,
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_N.T_Wall_N",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_NORMALMAP: 1>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_ORM.T_Wall_ORM",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_M.T_Wall_M",
+      "width": 2048,
+      "height": 2048,
+      "srgb": false,
+      "compression": "<TextureCompressionSettings.TC_MASKS: 2>",
+      "filter": "<TextureFilter.TF_NEAREST: 0>",
+      "mips": "<TextureMipGenSettings.TMGS_NO_MIPMAPS: 13>"
+    },
+    {
+      "path": "/Game/ProjectRunner/TextureReview/Env01/Textures/B_Worn/T_Wall_E.T_Wall_E",
+      "width": 2048,
+      "height": 2048,
+      "srgb": true,
+      "compression": "<TextureCompressionSettings.TC_BC7: 11>",
+      "filter": "<TextureFilter.TF_DEFAULT: 3>",
+      "mips": "<TextureMipGenSettings.TMGS_FROM_TEXTURE_GROUP: 0>"
+    }
+  ],
+  "errors": [],
+  "material_statistics": {
+    "num_vertex_shader_instructions": 153,
+    "num_pixel_shader_instructions": 246,
+    "num_samplers": 6,
+    "num_vertex_texture_samples": 3,
+    "num_pixel_texture_samples": 5,
+    "num_virtual_texture_samples": 0
+  },
+  "original_mesh_slots_unchanged": true,
+  "passed": true
+}

@@ -1,0 +1,18 @@
+{
+  "page": "review_full_set_01.html",
+  "texture_sets": 34,
+  "atlas_cells": 321,
+  "strip_and_cell_crops_checked": 335,
+  "view_modes_checked": 134,
+  "unique_inlined_images_decoded": 83,
+  "desktop_width": 728,
+  "desktop_content_height": 1510,
+  "mobile_width": 380,
+  "mobile_content_height": 1650,
+  "horizontal_overflow": false,
+  "final_browser_errors": [],
+  "crop_check_note": "The first smoke check searched the entire CSS string and matched NaN inside base64 image data. The corrected check examines numeric CSS properties only; all 335 crops passed.",
+  "visual_review": "All atlas families and tiling surfaces inspected through Designer renders. Corrected cell placement, categorical tint blending, alpha previews, fabric folds and cell-specific symbols before this review.",
+  "engine_verified": false,
+  "full_set_approved": false
+}

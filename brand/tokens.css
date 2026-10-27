@@ -1,0 +1,46 @@
+/* Phantom Break Studio brand tokens. Source: business card v14 (Development\branding).
+   Studio colours are fixed. Each game sets the --theme-* values in its own theme file.
+   Copy this file into a project; don't link to it across folders. */
+
+@font-face {
+  font-family: "Roboto";
+  src: url("fonts/Roboto-VF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 75% 100%;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Roboto";
+  src: url("fonts/Roboto-Italic-VF.woff2") format("woff2");
+  font-weight: 100 900;
+  font-stretch: 75% 100%;
+  font-style: italic;
+  font-display: swap;
+}
+
+:root {
+  /* Studio colours. Use these for the logo, ghost, studio credit and contact block. */
+  --pb-coral: #f05658;       /* logo, ghost QR, studio accent */
+  --pb-slate: #374a58;       /* ink on light, card back */
+  --pb-slate-deep: #1d262e;  /* logo shadow on dark */
+  --pb-plum: #4b3e70;        /* logo shadow on light */
+  --pb-cream: #fef9f5;       /* card front, paper */
+  --pb-white: #ffffff;
+
+  /* Type. The card name is Roboto at weight 800, width 75%. */
+  --pb-font: "Roboto", "Helvetica Neue", Arial, sans-serif;
+  --pb-display-weight: 800;
+  --pb-display-stretch: 75%;
+
+  /* Studio theme. A game theme file overrides all of these. */
+  --theme-bg: var(--pb-cream);
+  --theme-bg-raised: var(--pb-white);
+  --theme-line: #e4ddd6;
+  --theme-text: var(--pb-slate);
+  --theme-muted: #5f6f7b;
+  --theme-accent: var(--pb-coral);    /* large text, rules and fills only on cream (3.3:1) */
+  --theme-accent-ink: var(--pb-white);
+  --theme-accent-2: var(--pb-plum);
+  --theme-logo: url("logo/pb-logo-light.svg");
+}

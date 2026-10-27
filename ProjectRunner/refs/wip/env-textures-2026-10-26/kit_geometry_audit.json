@@ -1,0 +1,5277 @@
+{
+  "houdini_version": "22.0.466",
+  "source": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner",
+  "assets": [
+    {
+      "piece": "SM_AlleyKit_AC_Unit",
+      "kit": "AlleyKit",
+      "points": 74,
+      "primitives": 78,
+      "slots": {
+        "M_CyberMarket_Trim": 78
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 3,
+        "RubberSeal": 15,
+        "GrateVent": 4,
+        "Pipe": 24,
+        "BareBevel": 32
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_2m",
+      "kit": "AlleyKit",
+      "points": 124,
+      "primitives": 97,
+      "slots": {
+        "M_Wall_Tiling": 2,
+        "M_CyberMarket_Trim": 95
+      },
+      "trim_strips": {
+        "Concrete": 3,
+        "Pipe": 72,
+        "BareBevel": 20
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_Cage_CornerL_1m",
+      "kit": "AlleyKit",
+      "points": 257,
+      "primitives": 162,
+      "slots": {
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 7,
+        "M_CyberMarket_Trim": 154
+      },
+      "trim_strips": {
+        "Concrete": 22,
+        "BareBevel": 40,
+        "PaintedMetalPanel": 16,
+        "Pipe": 76
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_Cage_CornerR_1m",
+      "kit": "AlleyKit",
+      "points": 257,
+      "primitives": 162,
+      "slots": {
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 7,
+        "M_CyberMarket_Trim": 154
+      },
+      "trim_strips": {
+        "Concrete": 22,
+        "BareBevel": 40,
+        "PaintedMetalPanel": 16,
+        "Pipe": 76
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_Cage_Straight_2m",
+      "kit": "AlleyKit",
+      "points": 198,
+      "primitives": 113,
+      "slots": {
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_CyberMarket_Trim": 109
+      },
+      "trim_strips": {
+        "Concrete": 7,
+        "BareBevel": 20,
+        "PaintedMetalPanel": 6,
+        "Pipe": 76
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_CageCard_CornerL_1m",
+      "kit": "AlleyKit",
+      "points": 113,
+      "primitives": 88,
+      "slots": {
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 7,
+        "M_CyberMarket_Trim": 78,
+        "M_Cutout_Atlas": 2
+      },
+      "trim_strips": {
+        "Concrete": 22,
+        "BareBevel": 40,
+        "PaintedMetalPanel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_CageCard_CornerR_1m",
+      "kit": "AlleyKit",
+      "points": 113,
+      "primitives": 88,
+      "slots": {
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 7,
+        "M_CyberMarket_Trim": 78,
+        "M_Cutout_Atlas": 2
+      },
+      "trim_strips": {
+        "Concrete": 22,
+        "BareBevel": 40,
+        "PaintedMetalPanel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_CageCard_Straight_2m",
+      "kit": "AlleyKit",
+      "points": 50,
+      "primitives": 38,
+      "slots": {
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_CyberMarket_Trim": 33,
+        "M_Cutout_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 7,
+        "BareBevel": 20,
+        "PaintedMetalPanel": 6
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_Concrete_CornerL_1m",
+      "kit": "AlleyKit",
+      "points": 81,
+      "primitives": 70,
+      "slots": {
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 7,
+        "M_CyberMarket_Trim": 62
+      },
+      "trim_strips": {
+        "Concrete": 22,
+        "BareBevel": 40
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_Concrete_CornerR_1m",
+      "kit": "AlleyKit",
+      "points": 81,
+      "primitives": 70,
+      "slots": {
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 7,
+        "M_CyberMarket_Trim": 62
+      },
+      "trim_strips": {
+        "Concrete": 22,
+        "BareBevel": 40
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_Concrete_Straight_2m",
+      "kit": "AlleyKit",
+      "points": 38,
+      "primitives": 31,
+      "slots": {
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_CyberMarket_Trim": 27
+      },
+      "trim_strips": {
+        "Concrete": 7,
+        "BareBevel": 20
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_Steel_CornerL_1m",
+      "kit": "AlleyKit",
+      "points": 56,
+      "primitives": 50,
+      "slots": {
+        "M_Wall_Tiling": 2,
+        "M_CyberMarket_Trim": 48
+      },
+      "trim_strips": {
+        "Concrete": 2,
+        "Pipe": 30,
+        "BareBevel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_Steel_CornerR_1m",
+      "kit": "AlleyKit",
+      "points": 56,
+      "primitives": 50,
+      "slots": {
+        "M_Wall_Tiling": 2,
+        "M_CyberMarket_Trim": 48
+      },
+      "trim_strips": {
+        "Concrete": 2,
+        "Pipe": 30,
+        "BareBevel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_Steel_Straight_2m",
+      "kit": "AlleyKit",
+      "points": 44,
+      "primitives": 21,
+      "slots": {
+        "M_Wall_Tiling": 2,
+        "M_CyberMarket_Trim": 19
+      },
+      "trim_strips": {
+        "Concrete": 1,
+        "Pipe": 18
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_SteelCard_CornerL_1m",
+      "kit": "AlleyKit",
+      "points": 29,
+      "primitives": 26,
+      "slots": {
+        "M_Wall_Tiling": 2,
+        "M_CyberMarket_Trim": 22,
+        "M_Cutout_Atlas": 2
+      },
+      "trim_strips": {
+        "Concrete": 2,
+        "Pipe": 12,
+        "BareBevel": 8
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_SteelCard_CornerR_1m",
+      "kit": "AlleyKit",
+      "points": 29,
+      "primitives": 26,
+      "slots": {
+        "M_Wall_Tiling": 2,
+        "M_CyberMarket_Trim": 22,
+        "M_Cutout_Atlas": 2
+      },
+      "trim_strips": {
+        "Concrete": 2,
+        "Pipe": 12,
+        "BareBevel": 8
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Balcony_SteelCard_Straight_2m",
+      "kit": "AlleyKit",
+      "points": 22,
+      "primitives": 10,
+      "slots": {
+        "M_Wall_Tiling": 2,
+        "M_CyberMarket_Trim": 7,
+        "M_Cutout_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 1,
+        "Pipe": 6
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_FireEscape_Card_CornerL_1m",
+      "kit": "AlleyKit",
+      "points": 78,
+      "primitives": 56,
+      "slots": {
+        "M_CyberMarket_Trim": 54,
+        "M_Cutout_Atlas": 2
+      },
+      "trim_strips": {
+        "GrateVent": 16,
+        "PaintedMetalPanel": 2,
+        "RivetEdge": 2,
+        "Pipe": 18,
+        "BareBevel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_FireEscape_Card_CornerR_1m",
+      "kit": "AlleyKit",
+      "points": 78,
+      "primitives": 56,
+      "slots": {
+        "M_CyberMarket_Trim": 54,
+        "M_Cutout_Atlas": 2
+      },
+      "trim_strips": {
+        "GrateVent": 16,
+        "PaintedMetalPanel": 2,
+        "RivetEdge": 2,
+        "Pipe": 18,
+        "BareBevel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_FireEscape_Card_Straight_2m",
+      "kit": "AlleyKit",
+      "points": 66,
+      "primitives": 39,
+      "slots": {
+        "M_CyberMarket_Trim": 38,
+        "M_Cutout_Atlas": 1
+      },
+      "trim_strips": {
+        "GrateVent": 16,
+        "PaintedMetalPanel": 1,
+        "RivetEdge": 1,
+        "Pipe": 12,
+        "BareBevel": 8
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_FireEscape_CornerL_1m",
+      "kit": "AlleyKit",
+      "points": 105,
+      "primitives": 80,
+      "slots": {
+        "M_CyberMarket_Trim": 80
+      },
+      "trim_strips": {
+        "GrateVent": 16,
+        "PaintedMetalPanel": 2,
+        "RivetEdge": 2,
+        "Pipe": 36,
+        "BareBevel": 24
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_FireEscape_CornerR_1m",
+      "kit": "AlleyKit",
+      "points": 105,
+      "primitives": 80,
+      "slots": {
+        "M_CyberMarket_Trim": 80
+      },
+      "trim_strips": {
+        "GrateVent": 16,
+        "PaintedMetalPanel": 2,
+        "RivetEdge": 2,
+        "Pipe": 36,
+        "BareBevel": 24
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_FireEscape_Ladder_3m",
+      "kit": "AlleyKit",
+      "points": 144,
+      "primitives": 88,
+      "slots": {
+        "M_CyberMarket_Trim": 88
+      },
+      "trim_strips": {
+        "Pipe": 72,
+        "BareBevel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_FireEscape_Platform",
+      "kit": "AlleyKit",
+      "points": 184,
+      "primitives": 132,
+      "slots": {
+        "M_CyberMarket_Trim": 132
+      },
+      "trim_strips": {
+        "GrateVent": 16,
+        "PaintedMetalPanel": 3,
+        "RivetEdge": 3,
+        "Pipe": 78,
+        "BareBevel": 32
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_FireEscape_Stairs_3m",
+      "kit": "AlleyKit",
+      "points": 536,
+      "primitives": 344,
+      "slots": {
+        "M_CyberMarket_Trim": 344
+      },
+      "trim_strips": {
+        "GrateVent": 180,
+        "RivetEdge": 34,
+        "BareBevel": 68,
+        "RubberSeal": 2,
+        "PaintedMetalPanel": 12,
+        "Pipe": 48
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_FireEscape_Straight_2m",
+      "kit": "AlleyKit",
+      "points": 88,
+      "primitives": 50,
+      "slots": {
+        "M_CyberMarket_Trim": 50
+      },
+      "trim_strips": {
+        "GrateVent": 16,
+        "PaintedMetalPanel": 1,
+        "RivetEdge": 1,
+        "Pipe": 24,
+        "BareBevel": 8
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_Door_2x3",
+      "kit": "AlleyKit",
+      "points": 160,
+      "primitives": 56,
+      "slots": {
+        "M_CyberMarket_Trim": 56
+      },
+      "trim_strips": {
+        "Concrete": 29,
+        "PaintedMetalPanel": 4,
+        "GrateVent": 1,
+        "RivetEdge": 2,
+        "BareBevel": 20
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_GlassFront_2x3",
+      "kit": "AlleyKit",
+      "points": 464,
+      "primitives": 136,
+      "slots": {
+        "M_CyberMarket_Trim": 122,
+        "M_Glass_Tiling": 3,
+        "M_Shop_Atlas": 6,
+        "M_Sign_Atlas": 1,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3
+      },
+      "trim_strips": {
+        "Concrete": 21,
+        "BareBevel": 44,
+        "PaintedMetalPanel": 30,
+        "LEDBar": 1,
+        "RivetEdge": 5,
+        "RubberSeal": 1,
+        "WoodPlank": 20
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_GlassFront_2x4",
+      "kit": "AlleyKit",
+      "points": 488,
+      "primitives": 142,
+      "slots": {
+        "M_CyberMarket_Trim": 128,
+        "M_Glass_Tiling": 3,
+        "M_Shop_Atlas": 6,
+        "M_Sign_Atlas": 1,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3
+      },
+      "trim_strips": {
+        "Concrete": 27,
+        "BareBevel": 44,
+        "PaintedMetalPanel": 30,
+        "LEDBar": 1,
+        "RivetEdge": 5,
+        "RubberSeal": 1,
+        "WoodPlank": 20
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShopElectronics_2x3",
+      "kit": "AlleyKit",
+      "points": 414,
+      "primitives": 108,
+      "slots": {
+        "M_CyberMarket_Trim": 93,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_Shop_Atlas": 6,
+        "M_Glass_Tiling": 5
+      },
+      "trim_strips": {
+        "Concrete": 21,
+        "LEDBar": 1,
+        "PaintedMetalPanel": 36,
+        "BareBevel": 17,
+        "WoodPlank": 10,
+        "RivetEdge": 5,
+        "RubberSeal": 1,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShopNoodleBar_2x3",
+      "kit": "AlleyKit",
+      "points": 368,
+      "primitives": 159,
+      "slots": {
+        "M_CyberMarket_Trim": 153,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_Shop_Atlas": 2
+      },
+      "trim_strips": {
+        "Concrete": 21,
+        "LEDBar": 1,
+        "WoodPlank": 12,
+        "BareBevel": 59,
+        "RivetEdge": 30,
+        "RubberSeal": 24,
+        "PaintedMetalPanel": 4,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShopOpen_2x3",
+      "kit": "AlleyKit",
+      "points": 274,
+      "primitives": 73,
+      "slots": {
+        "M_CyberMarket_Trim": 68,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_Screen_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 21,
+        "LEDBar": 1,
+        "PaintedMetalPanel": 10,
+        "WoodPlank": 12,
+        "BareBevel": 22,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShopOpen_2x4",
+      "kit": "AlleyKit",
+      "points": 298,
+      "primitives": 79,
+      "slots": {
+        "M_CyberMarket_Trim": 74,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_Screen_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 27,
+        "LEDBar": 1,
+        "PaintedMetalPanel": 10,
+        "WoodPlank": 12,
+        "BareBevel": 22,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShopOpen_4x3",
+      "kit": "AlleyKit",
+      "points": 446,
+      "primitives": 118,
+      "slots": {
+        "M_CyberMarket_Trim": 113,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_Screen_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 33,
+        "LEDBar": 1,
+        "PaintedMetalPanel": 18,
+        "WoodPlank": 12,
+        "BareBevel": 46,
+        "ScreenGlow": 1,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShopOpen_4x4",
+      "kit": "AlleyKit",
+      "points": 470,
+      "primitives": 124,
+      "slots": {
+        "M_CyberMarket_Trim": 119,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_Screen_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 39,
+        "LEDBar": 1,
+        "PaintedMetalPanel": 18,
+        "WoodPlank": 12,
+        "BareBevel": 46,
+        "ScreenGlow": 1,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShopPharmacy_2x3",
+      "kit": "AlleyKit",
+      "points": 446,
+      "primitives": 116,
+      "slots": {
+        "M_CyberMarket_Trim": 100,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_Shop_Atlas": 7,
+        "M_Glass_Tiling": 5
+      },
+      "trim_strips": {
+        "Concrete": 21,
+        "LEDBar": 1,
+        "PaintedMetalPanel": 40,
+        "BareBevel": 17,
+        "WoodPlank": 12,
+        "RivetEdge": 6,
+        "RubberSeal": 1,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_Shutter_2x3",
+      "kit": "AlleyKit",
+      "points": 138,
+      "primitives": 35,
+      "slots": {
+        "M_CyberMarket_Trim": 35
+      },
+      "trim_strips": {
+        "Concrete": 21,
+        "CorrugatedRustMetal": 6,
+        "RubberSeal": 2,
+        "PaintedMetalPanel": 4,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_Shutter_2x4",
+      "kit": "AlleyKit",
+      "points": 174,
+      "primitives": 44,
+      "slots": {
+        "M_CyberMarket_Trim": 44
+      },
+      "trim_strips": {
+        "Concrete": 27,
+        "CorrugatedRustMetal": 9,
+        "RubberSeal": 2,
+        "PaintedMetalPanel": 4,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShutterRow_4x3",
+      "kit": "AlleyKit",
+      "points": 138,
+      "primitives": 35,
+      "slots": {
+        "M_CyberMarket_Trim": 35
+      },
+      "trim_strips": {
+        "Concrete": 21,
+        "CorrugatedRustMetal": 6,
+        "RubberSeal": 2,
+        "PaintedMetalPanel": 4,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShutterRow_4x4",
+      "kit": "AlleyKit",
+      "points": 194,
+      "primitives": 49,
+      "slots": {
+        "M_CyberMarket_Trim": 48,
+        "M_Sign_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 27,
+        "CorrugatedRustMetal": 9,
+        "RubberSeal": 2,
+        "PaintedMetalPanel": 8,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShutterRow_6x3",
+      "kit": "AlleyKit",
+      "points": 138,
+      "primitives": 35,
+      "slots": {
+        "M_CyberMarket_Trim": 35
+      },
+      "trim_strips": {
+        "Concrete": 21,
+        "CorrugatedRustMetal": 6,
+        "RubberSeal": 2,
+        "PaintedMetalPanel": 4,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShutterRow_6x4",
+      "kit": "AlleyKit",
+      "points": 194,
+      "primitives": 49,
+      "slots": {
+        "M_CyberMarket_Trim": 48,
+        "M_Sign_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 27,
+        "CorrugatedRustMetal": 9,
+        "RubberSeal": 2,
+        "PaintedMetalPanel": 8,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShutterRowHalf_4x3",
+      "kit": "AlleyKit",
+      "points": 154,
+      "primitives": 39,
+      "slots": {
+        "M_CyberMarket_Trim": 34,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_Screen_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 21,
+        "CorrugatedRustMetal": 3,
+        "RubberSeal": 3,
+        "LEDBar": 1,
+        "PaintedMetalPanel": 4,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShutterRowHalf_4x4",
+      "kit": "AlleyKit",
+      "points": 206,
+      "primitives": 52,
+      "slots": {
+        "M_CyberMarket_Trim": 46,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_Screen_Atlas": 1,
+        "M_Sign_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 27,
+        "CorrugatedRustMetal": 5,
+        "RubberSeal": 3,
+        "LEDBar": 1,
+        "PaintedMetalPanel": 8,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_ShutterRowHalf_6x3",
+      "kit": "AlleyKit",
+      "points": 154,
+      "primitives": 39,
+      "slots": {
+        "M_CyberMarket_Trim": 34,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_Screen_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 21,
+        "CorrugatedRustMetal": 3,
+        "RubberSeal": 3,
+        "LEDBar": 1,
+        "PaintedMetalPanel": 4,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_SteelDoor_2x3",
+      "kit": "AlleyKit",
+      "points": 560,
+      "primitives": 185,
+      "slots": {
+        "M_CyberMarket_Trim": 183,
+        "M_Street_Atlas": 2
+      },
+      "trim_strips": {
+        "Concrete": 19,
+        "PaintedMetalPanel": 66,
+        "RubberSeal": 6,
+        "BareBevel": 92
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_SteelDoor_2x4",
+      "kit": "AlleyKit",
+      "points": 560,
+      "primitives": 185,
+      "slots": {
+        "M_CyberMarket_Trim": 183,
+        "M_Street_Atlas": 2
+      },
+      "trim_strips": {
+        "Concrete": 19,
+        "PaintedMetalPanel": 66,
+        "RubberSeal": 6,
+        "BareBevel": 92
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_SteelDoor_4x3",
+      "kit": "AlleyKit",
+      "points": 568,
+      "primitives": 187,
+      "slots": {
+        "M_CyberMarket_Trim": 185,
+        "M_Street_Atlas": 2
+      },
+      "trim_strips": {
+        "Concrete": 21,
+        "PaintedMetalPanel": 66,
+        "RubberSeal": 6,
+        "BareBevel": 92
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_SteelDoor_4x4",
+      "kit": "AlleyKit",
+      "points": 656,
+      "primitives": 225,
+      "slots": {
+        "M_CyberMarket_Trim": 223,
+        "M_Street_Atlas": 2
+      },
+      "trim_strips": {
+        "Concrete": 27,
+        "RubberSeal": 6,
+        "BareBevel": 92,
+        "PaintedMetalPanel": 98
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_SteelDoorTiled_2x3",
+      "kit": "AlleyKit",
+      "points": 592,
+      "primitives": 193,
+      "slots": {
+        "M_WallTile_Tiling": 2,
+        "M_CyberMarket_Trim": 189,
+        "M_Street_Atlas": 2
+      },
+      "trim_strips": {
+        "RivetEdge": 2,
+        "BareBevel": 96,
+        "Concrete": 19,
+        "PaintedMetalPanel": 66,
+        "RubberSeal": 6
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_Window_2x3",
+      "kit": "AlleyKit",
+      "points": 236,
+      "primitives": 67,
+      "slots": {
+        "M_CyberMarket_Trim": 67
+      },
+      "trim_strips": {
+        "Concrete": 18,
+        "BareBevel": 26,
+        "PaintedMetalPanel": 22,
+        "ScreenGlow": 1
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_Window_4x3",
+      "kit": "AlleyKit",
+      "points": 260,
+      "primitives": 75,
+      "slots": {
+        "M_CyberMarket_Trim": 75
+      },
+      "trim_strips": {
+        "Concrete": 18,
+        "BareBevel": 28,
+        "PaintedMetalPanel": 28,
+        "ScreenGlow": 1
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_Window_4x4",
+      "kit": "AlleyKit",
+      "points": 260,
+      "primitives": 75,
+      "slots": {
+        "M_CyberMarket_Trim": 75
+      },
+      "trim_strips": {
+        "Concrete": 18,
+        "BareBevel": 28,
+        "PaintedMetalPanel": 28,
+        "ScreenGlow": 1
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_WindowAC_2x3",
+      "kit": "AlleyKit",
+      "points": 280,
+      "primitives": 82,
+      "slots": {
+        "M_CyberMarket_Trim": 81,
+        "M_Glass_Tiling": 1
+      },
+      "trim_strips": {
+        "Concrete": 18,
+        "BareBevel": 26,
+        "PaintedMetalPanel": 26,
+        "ScreenGlow": 1,
+        "RubberSeal": 7,
+        "GrateVent": 3
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_WindowBarred_2x3",
+      "kit": "AlleyKit",
+      "points": 346,
+      "primitives": 154,
+      "slots": {
+        "M_CyberMarket_Trim": 154
+      },
+      "trim_strips": {
+        "Concrete": 18,
+        "BareBevel": 68,
+        "PaintedMetalPanel": 22,
+        "ScreenGlow": 1,
+        "Pipe": 35,
+        "RivetEdge": 10
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_WindowBarredCard_2x3",
+      "kit": "AlleyKit",
+      "points": 280,
+      "primitives": 78,
+      "slots": {
+        "M_CyberMarket_Trim": 77,
+        "M_Cutout_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 18,
+        "BareBevel": 26,
+        "PaintedMetalPanel": 22,
+        "ScreenGlow": 1,
+        "RivetEdge": 10
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_WindowBarredCard_4x3",
+      "kit": "AlleyKit",
+      "points": 304,
+      "primitives": 86,
+      "slots": {
+        "M_CyberMarket_Trim": 85,
+        "M_Cutout_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 18,
+        "BareBevel": 28,
+        "PaintedMetalPanel": 28,
+        "ScreenGlow": 1,
+        "RivetEdge": 10
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_WindowBarredCard_4x4",
+      "kit": "AlleyKit",
+      "points": 304,
+      "primitives": 86,
+      "slots": {
+        "M_CyberMarket_Trim": 85,
+        "M_Cutout_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 18,
+        "BareBevel": 28,
+        "PaintedMetalPanel": 28,
+        "ScreenGlow": 1,
+        "RivetEdge": 10
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_WindowBoarded_2x3",
+      "kit": "AlleyKit",
+      "points": 332,
+      "primitives": 91,
+      "slots": {
+        "M_CyberMarket_Trim": 91
+      },
+      "trim_strips": {
+        "Concrete": 18,
+        "BareBevel": 26,
+        "PaintedMetalPanel": 22,
+        "RubberSeal": 1,
+        "WoodPlank": 24
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_WindowCurtain_2x3",
+      "kit": "AlleyKit",
+      "points": 240,
+      "primitives": 68,
+      "slots": {
+        "M_CyberMarket_Trim": 66,
+        "M_Shop_Atlas": 1,
+        "M_Glass_Tiling": 1
+      },
+      "trim_strips": {
+        "Concrete": 18,
+        "BareBevel": 26,
+        "PaintedMetalPanel": 22
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_WindowDeep_2x3",
+      "kit": "AlleyKit",
+      "points": 264,
+      "primitives": 74,
+      "slots": {
+        "M_CyberMarket_Trim": 67,
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 3,
+        "M_Shop_Atlas": 2,
+        "M_Glass_Tiling": 1
+      },
+      "trim_strips": {
+        "Concrete": 18,
+        "BareBevel": 26,
+        "PaintedMetalPanel": 22,
+        "WarmBulb": 1
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Insert_WindowSmall_2x3",
+      "kit": "AlleyKit",
+      "points": 172,
+      "primitives": 45,
+      "slots": {
+        "M_CyberMarket_Trim": 45
+      },
+      "trim_strips": {
+        "Concrete": 12,
+        "PaintedMetalPanel": 8,
+        "BareBevel": 24,
+        "ScreenGlow": 1
+      },
+      "vertex_attributes": [
+        "uv",
+        "N",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Roof_Antenna",
+      "kit": "AlleyKit",
+      "points": 68,
+      "primitives": 49,
+      "slots": {
+        "M_CyberMarket_Trim": 49
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 1,
+        "RubberSeal": 16,
+        "Pipe": 18,
+        "BareBevel": 14
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Roof_Parapet_2m",
+      "kit": "AlleyKit",
+      "points": 24,
+      "primitives": 14,
+      "slots": {
+        "M_Wall_Tiling": 2,
+        "M_CyberMarket_Trim": 12
+      },
+      "trim_strips": {
+        "Concrete": 12
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Roof_SatelliteDish",
+      "kit": "AlleyKit",
+      "points": 90,
+      "primitives": 85,
+      "slots": {
+        "M_CyberMarket_Trim": 85
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 25,
+        "RubberSeal": 18,
+        "Pipe": 10,
+        "BareBevel": 32
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Roof_Slab_2x2",
+      "kit": "AlleyKit",
+      "points": 8,
+      "primitives": 6,
+      "slots": {
+        "M_Paving_Tiling": 1,
+        "M_Wall_Tiling": 1,
+        "M_CyberMarket_Trim": 4
+      },
+      "trim_strips": {
+        "Concrete": 4
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Roof_WaterTank",
+      "kit": "AlleyKit",
+      "points": 229,
+      "primitives": 218,
+      "slots": {
+        "M_CyberMarket_Trim": 218
+      },
+      "trim_strips": {
+        "RivetEdge": 42,
+        "PaintedMetalPanel": 110,
+        "Pipe": 34,
+        "BareBevel": 32
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_SignBracket",
+      "kit": "AlleyKit",
+      "points": 36,
+      "primitives": 39,
+      "slots": {
+        "M_CyberMarket_Trim": 39
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 1,
+        "RivetEdge": 4,
+        "Pipe": 14,
+        "BareBevel": 20
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_CornerPillar_3m",
+      "kit": "AlleyKit",
+      "points": 16,
+      "primitives": 10,
+      "slots": {
+        "M_Wall_Tiling": 4,
+        "M_CyberMarket_Trim": 6
+      },
+      "trim_strips": {
+        "Concrete": 5,
+        "BareBevel": 1
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_Door_2x3",
+      "kit": "AlleyKit",
+      "points": 168,
+      "primitives": 100,
+      "slots": {
+        "M_Wall_Tiling": 6,
+        "M_CyberMarket_Trim": 94
+      },
+      "trim_strips": {
+        "Concrete": 60,
+        "BareBevel": 26,
+        "PaintedMetalPanel": 5,
+        "GrateVent": 1,
+        "RivetEdge": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_OutsideCorner_2x3",
+      "kit": "AlleyKit",
+      "points": 88,
+      "primitives": 46,
+      "slots": {
+        "M_Wall_Tiling": 4,
+        "M_CyberMarket_Trim": 42
+      },
+      "trim_strips": {
+        "Concrete": 32,
+        "BareBevel": 8,
+        "PaintedMetalPanel": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_Plain_1x3",
+      "kit": "AlleyKit",
+      "points": 64,
+      "primitives": 36,
+      "slots": {
+        "M_Wall_Tiling": 2,
+        "M_CyberMarket_Trim": 34
+      },
+      "trim_strips": {
+        "Concrete": 28,
+        "BareBevel": 5,
+        "PaintedMetalPanel": 1
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_Plain_2x3",
+      "kit": "AlleyKit",
+      "points": 64,
+      "primitives": 36,
+      "slots": {
+        "M_Wall_Tiling": 2,
+        "M_CyberMarket_Trim": 34
+      },
+      "trim_strips": {
+        "Concrete": 28,
+        "BareBevel": 5,
+        "PaintedMetalPanel": 1
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_Plain_2x4",
+      "kit": "AlleyKit",
+      "points": 80,
+      "primitives": 44,
+      "slots": {
+        "M_Wall_Tiling": 2,
+        "M_CyberMarket_Trim": 42
+      },
+      "trim_strips": {
+        "Concrete": 36,
+        "BareBevel": 5,
+        "PaintedMetalPanel": 1
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_ShopElectronics_2x3",
+      "kit": "AlleyKit",
+      "points": 300,
+      "primitives": 152,
+      "slots": {
+        "M_Wall_Tiling": 9,
+        "M_CyberMarket_Trim": 131,
+        "M_Paving_Tiling": 1,
+        "M_Shop_Atlas": 6,
+        "M_Glass_Tiling": 5
+      },
+      "trim_strips": {
+        "Concrete": 52,
+        "BareBevel": 23,
+        "PaintedMetalPanel": 37,
+        "LEDBar": 1,
+        "WoodPlank": 10,
+        "RivetEdge": 5,
+        "RubberSeal": 1,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_ShopNoodleBar_2x3",
+      "kit": "AlleyKit",
+      "points": 282,
+      "primitives": 203,
+      "slots": {
+        "M_Wall_Tiling": 9,
+        "M_CyberMarket_Trim": 191,
+        "M_Paving_Tiling": 1,
+        "M_Shop_Atlas": 2
+      },
+      "trim_strips": {
+        "Concrete": 52,
+        "BareBevel": 65,
+        "PaintedMetalPanel": 5,
+        "LEDBar": 1,
+        "WoodPlank": 12,
+        "RivetEdge": 30,
+        "RubberSeal": 24,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_ShopOpen_4x3",
+      "kit": "AlleyKit",
+      "points": 266,
+      "primitives": 168,
+      "slots": {
+        "M_Wall_Tiling": 15,
+        "M_CyberMarket_Trim": 151,
+        "M_Paving_Tiling": 1,
+        "M_Screen_Atlas": 1
+      },
+      "trim_strips": {
+        "Concrete": 64,
+        "BareBevel": 52,
+        "PaintedMetalPanel": 19,
+        "LEDBar": 1,
+        "WoodPlank": 12,
+        "ScreenGlow": 1,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_ShopPharmacy_2x3",
+      "kit": "AlleyKit",
+      "points": 320,
+      "primitives": 160,
+      "slots": {
+        "M_Wall_Tiling": 9,
+        "M_CyberMarket_Trim": 138,
+        "M_Paving_Tiling": 1,
+        "M_Shop_Atlas": 7,
+        "M_Glass_Tiling": 5
+      },
+      "trim_strips": {
+        "Concrete": 52,
+        "BareBevel": 23,
+        "PaintedMetalPanel": 41,
+        "LEDBar": 1,
+        "WoodPlank": 12,
+        "RivetEdge": 6,
+        "RubberSeal": 1,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_Shutter_2x3",
+      "kit": "AlleyKit",
+      "points": 148,
+      "primitives": 79,
+      "slots": {
+        "M_Wall_Tiling": 6,
+        "M_CyberMarket_Trim": 73
+      },
+      "trim_strips": {
+        "Concrete": 52,
+        "BareBevel": 6,
+        "PaintedMetalPanel": 5,
+        "CorrugatedRustMetal": 6,
+        "RubberSeal": 2,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_ShutterRow_4x3",
+      "kit": "AlleyKit",
+      "points": 148,
+      "primitives": 79,
+      "slots": {
+        "M_Wall_Tiling": 6,
+        "M_CyberMarket_Trim": 73
+      },
+      "trim_strips": {
+        "Concrete": 52,
+        "BareBevel": 6,
+        "PaintedMetalPanel": 5,
+        "CorrugatedRustMetal": 6,
+        "RubberSeal": 2,
+        "GrateVent": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_SteelDoor_2x3",
+      "kit": "AlleyKit",
+      "points": 352,
+      "primitives": 235,
+      "slots": {
+        "M_Wall_Tiling": 6,
+        "M_CyberMarket_Trim": 227,
+        "M_Street_Atlas": 2
+      },
+      "trim_strips": {
+        "Concrete": 50,
+        "BareBevel": 104,
+        "PaintedMetalPanel": 67,
+        "RubberSeal": 6
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_Window_2x3",
+      "kit": "AlleyKit",
+      "points": 180,
+      "primitives": 109,
+      "slots": {
+        "M_Wall_Tiling": 8,
+        "M_CyberMarket_Trim": 101
+      },
+      "trim_strips": {
+        "Concrete": 46,
+        "BareBevel": 31,
+        "PaintedMetalPanel": 23,
+        "ScreenGlow": 1
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_WindowAC_2x3",
+      "kit": "AlleyKit",
+      "points": 208,
+      "primitives": 124,
+      "slots": {
+        "M_Wall_Tiling": 8,
+        "M_CyberMarket_Trim": 115,
+        "M_Glass_Tiling": 1
+      },
+      "trim_strips": {
+        "Concrete": 46,
+        "BareBevel": 31,
+        "PaintedMetalPanel": 27,
+        "ScreenGlow": 1,
+        "RubberSeal": 7,
+        "GrateVent": 3
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_AlleyKit_Wall_WindowBarred_2x3",
+      "kit": "AlleyKit",
+      "points": 266,
+      "primitives": 196,
+      "slots": {
+        "M_Wall_Tiling": 8,
+        "M_CyberMarket_Trim": 188
+      },
+      "trim_strips": {
+        "Concrete": 46,
+        "BareBevel": 73,
+        "PaintedMetalPanel": 23,
+        "ScreenGlow": 1,
+        "Pipe": 35,
+        "RivetEdge": 10
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ConnectorKit_Conduit_Strap",
+      "kit": "ConnectorKit",
+      "points": 56,
+      "primitives": 47,
+      "slots": {
+        "M_CyberMarket_Trim": 47
+      },
+      "trim_strips": {
+        "BareBevel": 47
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ConnectorKit_Downpipe_Strap",
+      "kit": "ConnectorKit",
+      "points": 36,
+      "primitives": 21,
+      "slots": {
+        "M_CyberMarket_Trim": 21
+      },
+      "trim_strips": {
+        "BareBevel": 21
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ConnectorKit_Pipe_Saddle_Clamp_R03",
+      "kit": "ConnectorKit",
+      "points": 56,
+      "primitives": 45,
+      "slots": {
+        "M_CyberMarket_Trim": 45
+      },
+      "trim_strips": {
+        "BareBevel": 45
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ConnectorKit_Pipe_Saddle_Clamp_R06",
+      "kit": "ConnectorKit",
+      "points": 56,
+      "primitives": 45,
+      "slots": {
+        "M_CyberMarket_Trim": 45
+      },
+      "trim_strips": {
+        "BareBevel": 45
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ConnectorKit_Pipe_Saddle_Clamp_R10",
+      "kit": "ConnectorKit",
+      "points": 56,
+      "primitives": 45,
+      "slots": {
+        "M_CyberMarket_Trim": 45
+      },
+      "trim_strips": {
+        "BareBevel": 45
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ContainerKit_Container20_Closed",
+      "kit": "ContainerKit",
+      "points": 928,
+      "primitives": 809,
+      "slots": {
+        "M_CyberMarket_Trim": 808,
+        "M_Decal_Atlas": 1
+      },
+      "trim_strips": {
+        "RivetEdge": 60,
+        "RubberSeal": 33,
+        "BareBevel": 508,
+        "PaintedMetalPanel": 157,
+        "WoodPlank": 8,
+        "CorrugatedRustMetal": 18,
+        "Pipe": 24
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ContainerKit_Container20_DoorsOpen",
+      "kit": "ContainerKit",
+      "points": 944,
+      "primitives": 809,
+      "slots": {
+        "M_CyberMarket_Trim": 808,
+        "M_Decal_Atlas": 1
+      },
+      "trim_strips": {
+        "RivetEdge": 60,
+        "RubberSeal": 33,
+        "BareBevel": 508,
+        "PaintedMetalPanel": 157,
+        "WoodPlank": 8,
+        "CorrugatedRustMetal": 18,
+        "Pipe": 24
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ContainerKit_Container20_ShopCorner",
+      "kit": "ContainerKit",
+      "points": 906,
+      "primitives": 654,
+      "slots": {
+        "M_CyberMarket_Trim": 653,
+        "M_Decal_Atlas": 1
+      },
+      "trim_strips": {
+        "RivetEdge": 75,
+        "RubberSeal": 5,
+        "BareBevel": 274,
+        "PaintedMetalPanel": 156,
+        "WoodPlank": 68,
+        "CorrugatedRustMetal": 30,
+        "LEDBar": 1,
+        "Pipe": 24,
+        "TarpCanvas": 20
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ContainerKit_Container20_ShopFront",
+      "kit": "ContainerKit",
+      "points": 816,
+      "primitives": 589,
+      "slots": {
+        "M_CyberMarket_Trim": 588,
+        "M_Decal_Atlas": 1
+      },
+      "trim_strips": {
+        "RivetEdge": 65,
+        "RubberSeal": 5,
+        "BareBevel": 258,
+        "PaintedMetalPanel": 145,
+        "WoodPlank": 64,
+        "CorrugatedRustMetal": 18,
+        "LEDBar": 1,
+        "Pipe": 12,
+        "TarpCanvas": 20
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ContainerKit_Container20_ShopSide",
+      "kit": "ContainerKit",
+      "points": 1102,
+      "primitives": 913,
+      "slots": {
+        "M_CyberMarket_Trim": 912,
+        "M_Decal_Atlas": 1
+      },
+      "trim_strips": {
+        "RivetEdge": 70,
+        "RubberSeal": 33,
+        "BareBevel": 526,
+        "PaintedMetalPanel": 168,
+        "WoodPlank": 48,
+        "CorrugatedRustMetal": 30,
+        "Pipe": 36,
+        "LEDBar": 1
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ContainerKit_Container40_Closed",
+      "kit": "ContainerKit",
+      "points": 928,
+      "primitives": 809,
+      "slots": {
+        "M_CyberMarket_Trim": 808,
+        "M_Decal_Atlas": 1
+      },
+      "trim_strips": {
+        "RivetEdge": 60,
+        "RubberSeal": 33,
+        "BareBevel": 508,
+        "PaintedMetalPanel": 157,
+        "WoodPlank": 8,
+        "CorrugatedRustMetal": 18,
+        "Pipe": 24
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Cash_Box",
+      "kit": "FoodKit",
+      "points": 32,
+      "primitives": 30,
+      "slots": {
+        "M_CyberMarket_Trim": 30
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 5,
+        "RubberSeal": 1,
+        "BareBevel": 24
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Drinks_Cooler",
+      "kit": "FoodKit",
+      "points": 52,
+      "primitives": 45,
+      "slots": {
+        "M_CyberMarket_Trim": 45
+      },
+      "trim_strips": {
+        "TarpCanvas": 8,
+        "RubberSeal": 12,
+        "PaintedMetalPanel": 1,
+        "RivetEdge": 4,
+        "BareBevel": 20
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Folding_Table",
+      "kit": "FoodKit",
+      "points": 76,
+      "primitives": 84,
+      "slots": {
+        "M_CyberMarket_Trim": 84
+      },
+      "trim_strips": {
+        "WoodPlank": 4,
+        "BareBevel": 24,
+        "Pipe": 24,
+        "RubberSeal": 32
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Food_Bun_Steamer",
+      "kit": "FoodKit",
+      "points": 209,
+      "primitives": 188,
+      "slots": {
+        "M_Food_Atlas": 188
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Food_Dumplings",
+      "kit": "FoodKit",
+      "points": 179,
+      "primitives": 172,
+      "slots": {
+        "M_CyberMarket_Trim": 28,
+        "M_Food_Atlas": 144
+      },
+      "trim_strips": {
+        "BareBevel": 28
+      },
+      "vertex_attributes": [
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P",
+        "N"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Food_Noodles",
+      "kit": "FoodKit",
+      "points": 78,
+      "primitives": 71,
+      "slots": {
+        "M_Food_Atlas": 71
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Food_Pan",
+      "kit": "FoodKit",
+      "points": 75,
+      "primitives": 70,
+      "slots": {
+        "M_Food_Atlas": 70
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Food_Rice",
+      "kit": "FoodKit",
+      "points": 25,
+      "primitives": 24,
+      "slots": {
+        "M_Food_Atlas": 24
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P",
+        "N"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Food_Skewers",
+      "kit": "FoodKit",
+      "points": 312,
+      "primitives": 324,
+      "slots": {
+        "M_CyberMarket_Trim": 252,
+        "M_Food_Atlas": 72
+      },
+      "trim_strips": {
+        "WoodPlank": 12,
+        "BareBevel": 240
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Food_SmallBowl",
+      "kit": "FoodKit",
+      "points": 21,
+      "primitives": 20,
+      "slots": {
+        "M_Food_Atlas": 20
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P",
+        "N"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Food_Wok",
+      "kit": "FoodKit",
+      "points": 101,
+      "primitives": 73,
+      "slots": {
+        "M_Food_Atlas": 73
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Noodle_Bowl",
+      "kit": "FoodKit",
+      "points": 74,
+      "primitives": 70,
+      "slots": {
+        "M_CyberMarket_Trim": 70
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 36,
+        "BareBevel": 24,
+        "RubberSeal": 10
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Plastic_Stool",
+      "kit": "FoodKit",
+      "points": 70,
+      "primitives": 58,
+      "slots": {
+        "M_CyberMarket_Trim": 58
+      },
+      "trim_strips": {
+        "TarpCanvas": 58
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_POS_Terminal",
+      "kit": "FoodKit",
+      "points": 32,
+      "primitives": 17,
+      "slots": {
+        "M_CyberMarket_Trim": 16,
+        "M_Screen_Atlas": 1
+      },
+      "trim_strips": {
+        "RubberSeal": 10,
+        "Pipe": 6
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_PotsPans_Rail",
+      "kit": "FoodKit",
+      "points": 244,
+      "primitives": 194,
+      "slots": {
+        "M_CyberMarket_Trim": 194
+      },
+      "trim_strips": {
+        "Pipe": 40,
+        "BareBevel": 84,
+        "RubberSeal": 50,
+        "RivetEdge": 20
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Shelf_Dressing",
+      "kit": "FoodKit",
+      "points": 302,
+      "primitives": 306,
+      "slots": {
+        "M_CyberMarket_Trim": 242,
+        "M_Glass_Tiling": 64
+      },
+      "trim_strips": {
+        "BareBevel": 48,
+        "RubberSeal": 138,
+        "WarmBulb": 32,
+        "TarpCanvas": 24
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Small_Fridge",
+      "kit": "FoodKit",
+      "points": 40,
+      "primitives": 20,
+      "slots": {
+        "M_CyberMarket_Trim": 17,
+        "M_Screen_Atlas": 2,
+        "M_Glass_Tiling": 1
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 10,
+        "RivetEdge": 5,
+        "RubberSeal": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_FoodKit_Wok_Stove",
+      "kit": "FoodKit",
+      "points": 163,
+      "primitives": 148,
+      "slots": {
+        "M_CyberMarket_Trim": 148
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 26,
+        "GrateVent": 4,
+        "RivetEdge": 14,
+        "BareBevel": 46,
+        "RubberSeal": 52,
+        "WoodPlank": 6
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_GroundKit_Grate_Steam",
+      "kit": "GroundKit",
+      "points": 26,
+      "primitives": 9,
+      "slots": {
+        "M_CyberMarket_Trim": 6,
+        "M_FX_Atlas": 3
+      },
+      "trim_strips": {
+        "GrateVent": 2,
+        "RivetEdge": 4
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_GroundKit_Litter_Scatter",
+      "kit": "GroundKit",
+      "points": 48,
+      "primitives": 12,
+      "slots": {
+        "M_Decal_Atlas": 12
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_GroundKit_Puddle_1",
+      "kit": "GroundKit",
+      "points": 14,
+      "primitives": 12,
+      "slots": {
+        "M_Decal_Atlas": 12
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_GroundKit_Puddle_2",
+      "kit": "GroundKit",
+      "points": 14,
+      "primitives": 12,
+      "slots": {
+        "M_Decal_Atlas": 12
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Carcass_Hanging",
+      "kit": "MeatKit",
+      "points": 103,
+      "primitives": 99,
+      "slots": {
+        "M_Meat_Atlas": 85,
+        "M_CyberMarket_Trim": 14
+      },
+      "trim_strips": {
+        "Pipe": 12,
+        "BareBevel": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Chopping_Block",
+      "kit": "MeatKit",
+      "points": 96,
+      "primitives": 93,
+      "slots": {
+        "M_CyberMarket_Trim": 93
+      },
+      "trim_strips": {
+        "RubberSeal": 20,
+        "BareBevel": 4,
+        "RivetEdge": 1,
+        "WoodPlank": 68
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Creature_Head",
+      "kit": "MeatKit",
+      "points": 119,
+      "primitives": 101,
+      "slots": {
+        "M_Meat_Atlas": 87,
+        "M_CyberMarket_Trim": 14
+      },
+      "trim_strips": {
+        "Pipe": 12,
+        "BareBevel": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Cut_Ribs",
+      "kit": "MeatKit",
+      "points": 58,
+      "primitives": 61,
+      "slots": {
+        "M_Meat_Atlas": 61
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Cut_Shank",
+      "kit": "MeatKit",
+      "points": 44,
+      "primitives": 50,
+      "slots": {
+        "M_Meat_Atlas": 50
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Cut_Slab",
+      "kit": "MeatKit",
+      "points": 8,
+      "primitives": 6,
+      "slots": {
+        "M_Meat_Atlas": 6
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Fish_Large",
+      "kit": "MeatKit",
+      "points": 36,
+      "primitives": 34,
+      "slots": {
+        "M_Meat_Atlas": 34
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Fish_Small",
+      "kit": "MeatKit",
+      "points": 36,
+      "primitives": 34,
+      "slots": {
+        "M_Meat_Atlas": 34
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Hanging_Scale",
+      "kit": "MeatKit",
+      "points": 96,
+      "primitives": 85,
+      "slots": {
+        "M_CyberMarket_Trim": 85
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 22,
+        "ScreenGlow": 10,
+        "Pipe": 28,
+        "BareBevel": 25
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Ice_Trough",
+      "kit": "MeatKit",
+      "points": 168,
+      "primitives": 150,
+      "slots": {
+        "M_CyberMarket_Trim": 13,
+        "M_Glass_Tiling": 1,
+        "M_Meat_Atlas": 136
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 8,
+        "RivetEdge": 1,
+        "BareBevel": 4
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Meat_Tray",
+      "kit": "MeatKit",
+      "points": 62,
+      "primitives": 33,
+      "slots": {
+        "M_CyberMarket_Trim": 13,
+        "M_Meat_Atlas": 20
+      },
+      "trim_strips": {
+        "BareBevel": 9,
+        "GrateVent": 4
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_MeatKit_Tentacle_Bundle",
+      "kit": "MeatKit",
+      "points": 286,
+      "primitives": 254,
+      "slots": {
+        "M_Meat_Atlas": 240,
+        "M_CyberMarket_Trim": 14
+      },
+      "trim_strips": {
+        "Pipe": 12,
+        "BareBevel": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_RoofKit_Billboard_Scaffold_6m",
+      "kit": "RoofKit",
+      "points": 838,
+      "primitives": 787,
+      "slots": {
+        "M_CyberMarket_Trim": 786,
+        "M_Sign_Atlas": 1
+      },
+      "trim_strips": {
+        "Pipe": 294,
+        "BareBevel": 340,
+        "RubberSeal": 32,
+        "WoodPlank": 8,
+        "PaintedMetalPanel": 83,
+        "GrateVent": 26,
+        "LEDBar": 3
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_RoofKit_Shack_Corrugated_3x2",
+      "kit": "RoofKit",
+      "points": 358,
+      "primitives": 280,
+      "slots": {
+        "M_CyberMarket_Trim": 279,
+        "M_Sign_Atlas": 1
+      },
+      "trim_strips": {
+        "CorrugatedRustMetal": 47,
+        "WoodPlank": 183,
+        "BareBevel": 14,
+        "ScreenGlow": 1,
+        "PaintedMetalPanel": 4,
+        "RivetEdge": 4,
+        "RubberSeal": 26
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_RoofKit_StairAccess_2x3",
+      "kit": "RoofKit",
+      "points": 278,
+      "primitives": 208,
+      "slots": {
+        "M_Wall_Tiling": 7,
+        "M_CyberMarket_Trim": 198,
+        "M_Street_Atlas": 1,
+        "M_Sign_Atlas": 1,
+        "M_Paving_Tiling": 1
+      },
+      "trim_strips": {
+        "Concrete": 30,
+        "PaintedMetalPanel": 54,
+        "BareBevel": 86,
+        "Pipe": 16,
+        "RubberSeal": 12
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ShopKit_Counter_Glass_1m2",
+      "kit": "ShopKit",
+      "points": 48,
+      "primitives": 27,
+      "slots": {
+        "M_CyberMarket_Trim": 21,
+        "M_Shop_Atlas": 1,
+        "M_Glass_Tiling": 5
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 4,
+        "BareBevel": 17
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ShopKit_Menu_Board_1m2",
+      "kit": "ShopKit",
+      "points": 24,
+      "primitives": 14,
+      "slots": {
+        "M_Shop_Atlas": 1,
+        "M_CyberMarket_Trim": 13
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 1,
+        "RivetEdge": 4,
+        "Pipe": 8
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ShopKit_Shelf_Drinks_1m",
+      "kit": "ShopKit",
+      "points": 136,
+      "primitives": 62,
+      "slots": {
+        "M_CyberMarket_Trim": 57,
+        "M_Shop_Atlas": 5
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 26,
+        "RivetEdge": 6,
+        "RubberSeal": 1,
+        "WoodPlank": 24
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ShopKit_Shelf_Electronics_1m",
+      "kit": "ShopKit",
+      "points": 120,
+      "primitives": 56,
+      "slots": {
+        "M_CyberMarket_Trim": 52,
+        "M_Shop_Atlas": 4
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 26,
+        "RivetEdge": 5,
+        "RubberSeal": 1,
+        "WoodPlank": 20
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ShopKit_Shelf_Pharmacy_1m",
+      "kit": "ShopKit",
+      "points": 152,
+      "primitives": 64,
+      "slots": {
+        "M_CyberMarket_Trim": 59,
+        "M_Shop_Atlas": 5
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 28,
+        "RivetEdge": 6,
+        "RubberSeal": 1,
+        "WoodPlank": 24
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ShopKit_Shelf_Snacks_1m",
+      "kit": "ShopKit",
+      "points": 120,
+      "primitives": 56,
+      "slots": {
+        "M_CyberMarket_Trim": 52,
+        "M_Shop_Atlas": 4
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 26,
+        "RivetEdge": 5,
+        "RubberSeal": 1,
+        "WoodPlank": 20
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ShopKit_Stock_Bottles",
+      "kit": "ShopKit",
+      "points": 216,
+      "primitives": 240,
+      "slots": {
+        "M_Shop_Atlas": 72,
+        "M_Glass_Tiling": 72,
+        "M_CyberMarket_Trim": 96
+      },
+      "trim_strips": {
+        "RubberSeal": 96
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ShopKit_Stock_Boxes",
+      "kit": "ShopKit",
+      "points": 72,
+      "primitives": 45,
+      "slots": {
+        "M_Shop_Atlas": 18,
+        "M_Cardboard_Tiling": 27
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_ShopKit_Stock_NoodlePacks",
+      "kit": "ShopKit",
+      "points": 168,
+      "primitives": 101,
+      "slots": {
+        "M_Shop_Atlas": 89,
+        "M_CyberMarket_Trim": 12
+      },
+      "trim_strips": {
+        "RubberSeal": 12
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_AFrame_Sign",
+      "kit": "SignKit",
+      "points": 40,
+      "primitives": 28,
+      "slots": {
+        "M_Screen_Atlas": 2,
+        "M_CyberMarket_Trim": 26
+      },
+      "trim_strips": {
+        "RivetEdge": 4,
+        "Pipe": 10,
+        "BareBevel": 8,
+        "PaintedMetalPanel": 4
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_Banner_Vertical_2m",
+      "kit": "SignKit",
+      "points": 72,
+      "primitives": 56,
+      "slots": {
+        "M_Sign_Atlas": 28,
+        "M_CyberMarket_Trim": 28
+      },
+      "trim_strips": {
+        "Pipe": 12,
+        "BareBevel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_Billboard_Small",
+      "kit": "SignKit",
+      "points": 100,
+      "primitives": 92,
+      "slots": {
+        "M_Screen_Atlas": 1,
+        "M_CyberMarket_Trim": 91
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 28,
+        "GrateVent": 7,
+        "Pipe": 24,
+        "BareBevel": 32
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_Box_Sign_1m",
+      "kit": "SignKit",
+      "points": 66,
+      "primitives": 55,
+      "slots": {
+        "M_Sign_Atlas": 3,
+        "M_CyberMarket_Trim": 52
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 8,
+        "Pipe": 24,
+        "BareBevel": 16,
+        "RivetEdge": 4
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_Box_Sign_2m",
+      "kit": "SignKit",
+      "points": 74,
+      "primitives": 59,
+      "slots": {
+        "M_Sign_Atlas": 3,
+        "M_CyberMarket_Trim": 56
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 12,
+        "Pipe": 24,
+        "BareBevel": 16,
+        "RivetEdge": 4
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_Lamp_Pendant",
+      "kit": "SignKit",
+      "points": 125,
+      "primitives": 106,
+      "slots": {
+        "M_CyberMarket_Trim": 106
+      },
+      "trim_strips": {
+        "RubberSeal": 4,
+        "PaintedMetalPanel": 46,
+        "BareBevel": 24,
+        "WarmBulb": 32
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_Lantern_Cluster",
+      "kit": "SignKit",
+      "points": 156,
+      "primitives": 164,
+      "slots": {
+        "M_CyberMarket_Trim": 164
+      },
+      "trim_strips": {
+        "Pipe": 18,
+        "BareBevel": 8,
+        "RubberSeal": 108,
+        "WarmBulb": 30
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_Lantern_Round",
+      "kit": "SignKit",
+      "points": 94,
+      "primitives": 100,
+      "slots": {
+        "M_CyberMarket_Trim": 100
+      },
+      "trim_strips": {
+        "Pipe": 4,
+        "RubberSeal": 24,
+        "WarmBulb": 72
+      },
+      "vertex_attributes": [
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P",
+        "N"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_Lantern_Square",
+      "kit": "SignKit",
+      "points": 104,
+      "primitives": 92,
+      "slots": {
+        "M_CyberMarket_Trim": 92
+      },
+      "trim_strips": {
+        "Pipe": 4,
+        "WarmBulb": 4,
+        "WoodPlank": 44,
+        "BareBevel": 40
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_Neon_Blade_1m5",
+      "kit": "SignKit",
+      "points": 100,
+      "primitives": 90,
+      "slots": {
+        "M_Glyph_Atlas": 6,
+        "M_CyberMarket_Trim": 84
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 6,
+        "RivetEdge": 2,
+        "NeonTube": 48,
+        "Pipe": 12,
+        "BareBevel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_Neon_Blade_3m",
+      "kit": "SignKit",
+      "points": 112,
+      "primitives": 102,
+      "slots": {
+        "M_Glyph_Atlas": 12,
+        "M_CyberMarket_Trim": 90
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 12,
+        "RivetEdge": 2,
+        "NeonTube": 48,
+        "Pipe": 12,
+        "BareBevel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SignKit_Street_Lamp",
+      "kit": "SignKit",
+      "points": 68,
+      "primitives": 55,
+      "slots": {
+        "M_CyberMarket_Trim": 55
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 2,
+        "RubberSeal": 4,
+        "Pipe": 32,
+        "BareBevel": 12,
+        "RivetEdge": 4,
+        "LEDBar": 1
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SlumKit_Water_Drums_Cluster",
+      "kit": "SlumKit",
+      "points": 319,
+      "primitives": 335,
+      "slots": {
+        "M_CyberMarket_Trim": 335
+      },
+      "trim_strips": {
+        "TarpCanvas": 260,
+        "RubberSeal": 75
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SoftKit_Cardboard_Box_Closed",
+      "kit": "SoftKit",
+      "points": 12,
+      "primitives": 7,
+      "slots": {
+        "M_Cardboard_Tiling": 6,
+        "M_CyberMarket_Trim": 1
+      },
+      "trim_strips": {
+        "RubberSeal": 1
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SoftKit_Cardboard_Box_Open",
+      "kit": "SoftKit",
+      "points": 48,
+      "primitives": 18,
+      "slots": {
+        "M_Cardboard_Tiling": 18
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SoftKit_Cardboard_Flat_Stack",
+      "kit": "SoftKit",
+      "points": 24,
+      "primitives": 18,
+      "slots": {
+        "M_Cardboard_Tiling": 18
+      },
+      "trim_strips": {},
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SoftKit_Strip_Curtain_1m",
+      "kit": "SoftKit",
+      "points": 36,
+      "primitives": 19,
+      "slots": {
+        "M_CyberMarket_Trim": 5,
+        "M_Glass_Tiling": 14
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 5
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SoftKit_Tarp_Draped",
+      "kit": "SoftKit",
+      "points": 360,
+      "primitives": 261,
+      "slots": {
+        "M_CyberMarket_Trim": 261
+      },
+      "trim_strips": {
+        "TarpCanvas": 261
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_SoftKit_Tarp_Hanging",
+      "kit": "SoftKit",
+      "points": 166,
+      "primitives": 134,
+      "slots": {
+        "M_CyberMarket_Trim": 134
+      },
+      "trim_strips": {
+        "TarpCanvas": 120,
+        "RubberSeal": 14
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StackKit_Barrel_60",
+      "kit": "StackKit",
+      "points": 72,
+      "primitives": 80,
+      "slots": {
+        "M_CyberMarket_Trim": 80
+      },
+      "trim_strips": {
+        "RivetEdge": 36,
+        "PaintedMetalPanel": 34,
+        "RubberSeal": 10
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StackKit_Crate_Half_50",
+      "kit": "StackKit",
+      "points": 66,
+      "primitives": 54,
+      "slots": {
+        "M_CyberMarket_Trim": 54
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 4,
+        "RubberSeal": 21,
+        "RivetEdge": 4,
+        "GrateVent": 4,
+        "BareBevel": 21
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StackKit_Crate_Long_100",
+      "kit": "StackKit",
+      "points": 66,
+      "primitives": 54,
+      "slots": {
+        "M_CyberMarket_Trim": 54
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 4,
+        "RubberSeal": 21,
+        "RivetEdge": 4,
+        "GrateVent": 4,
+        "BareBevel": 21
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StackKit_Crate_Small_25",
+      "kit": "StackKit",
+      "points": 62,
+      "primitives": 52,
+      "slots": {
+        "M_CyberMarket_Trim": 52
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 4,
+        "RubberSeal": 21,
+        "RivetEdge": 4,
+        "GrateVent": 2,
+        "BareBevel": 21
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StackKit_Pallet_120",
+      "kit": "StackKit",
+      "points": 168,
+      "primitives": 138,
+      "slots": {
+        "M_CyberMarket_Trim": 138
+      },
+      "trim_strips": {
+        "WoodPlank": 138
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_Awning_2m",
+      "kit": "StallKit",
+      "points": 242,
+      "primitives": 186,
+      "slots": {
+        "M_CyberMarket_Trim": 186
+      },
+      "trim_strips": {
+        "TarpCanvas": 88,
+        "Pipe": 44,
+        "BareBevel": 40,
+        "NeonTube": 6,
+        "RubberSeal": 8
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_BackWall_1m",
+      "kit": "StallKit",
+      "points": 168,
+      "primitives": 90,
+      "slots": {
+        "M_CyberMarket_Trim": 90
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 12,
+        "RubberSeal": 1,
+        "CorrugatedRustMetal": 8,
+        "RivetEdge": 1,
+        "BareBevel": 12,
+        "WoodPlank": 4,
+        "Pipe": 48,
+        "GrateVent": 4
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_ButcherTable_2m",
+      "kit": "StallKit",
+      "points": 124,
+      "primitives": 126,
+      "slots": {
+        "M_CyberMarket_Trim": 126
+      },
+      "trim_strips": {
+        "WoodPlank": 12,
+        "BareBevel": 20,
+        "GrateVent": 10,
+        "RivetEdge": 4,
+        "Pipe": 32,
+        "RubberSeal": 48
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_Counter_1m",
+      "kit": "StallKit",
+      "points": 72,
+      "primitives": 51,
+      "slots": {
+        "M_CyberMarket_Trim": 51
+      },
+      "trim_strips": {
+        "RubberSeal": 6,
+        "PaintedMetalPanel": 8,
+        "GrateVent": 1,
+        "RivetEdge": 8,
+        "WoodPlank": 6,
+        "BareBevel": 20,
+        "LEDBar": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_Crate_50",
+      "kit": "StallKit",
+      "points": 70,
+      "primitives": 54,
+      "slots": {
+        "M_CyberMarket_Trim": 54
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 4,
+        "RubberSeal": 21,
+        "RivetEdge": 4,
+        "GrateVent": 4,
+        "BareBevel": 21
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_HookRail_2m",
+      "kit": "StallKit",
+      "points": 136,
+      "primitives": 132,
+      "slots": {
+        "M_CyberMarket_Trim": 132
+      },
+      "trim_strips": {
+        "Pipe": 92,
+        "BareBevel": 40
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_Lantern_Paper",
+      "kit": "StallKit",
+      "points": 48,
+      "primitives": 50,
+      "slots": {
+        "M_CyberMarket_Trim": 50
+      },
+      "trim_strips": {
+        "RubberSeal": 36,
+        "WarmBulb": 10,
+        "Pipe": 4
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_LightBar_1m",
+      "kit": "StallKit",
+      "points": 40,
+      "primitives": 36,
+      "slots": {
+        "M_CyberMarket_Trim": 36
+      },
+      "trim_strips": {
+        "GrateVent": 2,
+        "PaintedMetalPanel": 1,
+        "RivetEdge": 2,
+        "LEDBar": 3,
+        "Pipe": 12,
+        "BareBevel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_Post_2m2",
+      "kit": "StallKit",
+      "points": 24,
+      "primitives": 25,
+      "slots": {
+        "M_CyberMarket_Trim": 25
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 1,
+        "RubberSeal": 4,
+        "Pipe": 8,
+        "BareBevel": 12
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_Sign_Hanging",
+      "kit": "StallKit",
+      "points": 92,
+      "primitives": 82,
+      "slots": {
+        "M_CyberMarket_Trim": 82
+      },
+      "trim_strips": {
+        "ScreenGlow": 2,
+        "RivetEdge": 4,
+        "NeonTube": 48,
+        "Pipe": 12,
+        "BareBevel": 16
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_Stool",
+      "kit": "StallKit",
+      "points": 84,
+      "primitives": 76,
+      "slots": {
+        "M_CyberMarket_Trim": 76
+      },
+      "trim_strips": {
+        "BareBevel": 4,
+        "Pipe": 36,
+        "RubberSeal": 32,
+        "WoodPlank": 4
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StallKit_Umbrella_2m",
+      "kit": "StallKit",
+      "points": 352,
+      "primitives": 244,
+      "slots": {
+        "M_CyberMarket_Trim": 244
+      },
+      "trim_strips": {
+        "TarpCanvas": 192,
+        "Pipe": 40,
+        "BareBevel": 12
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Barricade_AFrame",
+      "kit": "StreetKit",
+      "points": 112,
+      "primitives": 98,
+      "slots": {
+        "M_Street_Atlas": 2,
+        "M_CyberMarket_Trim": 96
+      },
+      "trim_strips": {
+        "RivetEdge": 4,
+        "WarmBulb": 16,
+        "RubberSeal": 12,
+        "TarpCanvas": 64
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Breaker_Panel",
+      "kit": "StreetKit",
+      "points": 36,
+      "primitives": 18,
+      "slots": {
+        "M_CyberMarket_Trim": 18
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 8,
+        "GrateVent": 4,
+        "Pipe": 6
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Dumpster",
+      "kit": "StreetKit",
+      "points": 160,
+      "primitives": 143,
+      "slots": {
+        "M_CyberMarket_Trim": 143
+      },
+      "trim_strips": {
+        "RubberSeal": 41,
+        "RivetEdge": 4,
+        "BareBevel": 84,
+        "PaintedMetalPanel": 14
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Extractor_Hood",
+      "kit": "StreetKit",
+      "points": 82,
+      "primitives": 51,
+      "slots": {
+        "M_CyberMarket_Trim": 51
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 18,
+        "RivetEdge": 12,
+        "Pipe": 16,
+        "GrateVent": 5
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Junction_Box",
+      "kit": "StreetKit",
+      "points": 36,
+      "primitives": 20,
+      "slots": {
+        "M_CyberMarket_Trim": 20
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 8,
+        "Pipe": 6,
+        "RubberSeal": 6
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Meter_Box",
+      "kit": "StreetKit",
+      "points": 28,
+      "primitives": 23,
+      "slots": {
+        "M_CyberMarket_Trim": 23
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 5,
+        "RivetEdge": 10,
+        "ScreenGlow": 8
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Roof_Mushroom_Vent",
+      "kit": "StreetKit",
+      "points": 90,
+      "primitives": 84,
+      "slots": {
+        "M_CyberMarket_Trim": 84
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 56,
+        "GrateVent": 4,
+        "RubberSeal": 12,
+        "RivetEdge": 12
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Roof_Turbine_Vent",
+      "kit": "StreetKit",
+      "points": 109,
+      "primitives": 109,
+      "slots": {
+        "M_CyberMarket_Trim": 109
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 5,
+        "BareBevel": 26,
+        "GrateVent": 64,
+        "RubberSeal": 14
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Traffic_Cone",
+      "kit": "StreetKit",
+      "points": 51,
+      "primitives": 46,
+      "slots": {
+        "M_CyberMarket_Trim": 46
+      },
+      "trim_strips": {
+        "RubberSeal": 4,
+        "TarpCanvas": 32,
+        "LEDBar": 10
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Trash_Bags",
+      "kit": "StreetKit",
+      "points": 126,
+      "primitives": 144,
+      "slots": {
+        "M_CyberMarket_Trim": 144
+      },
+      "trim_strips": {
+        "RubberSeal": 144
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Trash_Bin",
+      "kit": "StreetKit",
+      "points": 61,
+      "primitives": 58,
+      "slots": {
+        "M_CyberMarket_Trim": 58
+      },
+      "trim_strips": {
+        "RubberSeal": 8,
+        "RivetEdge": 10,
+        "PaintedMetalPanel": 40
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Vending_Machine",
+      "kit": "StreetKit",
+      "points": 36,
+      "primitives": 22,
+      "slots": {
+        "M_CyberMarket_Trim": 21,
+        "M_Screen_Atlas": 1
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 14,
+        "RubberSeal": 5,
+        "LEDBar": 2
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Wall_Vent_Round",
+      "kit": "StreetKit",
+      "points": 86,
+      "primitives": 63,
+      "slots": {
+        "M_CyberMarket_Trim": 63
+      },
+      "trim_strips": {
+        "RivetEdge": 12,
+        "GrateVent": 11,
+        "PaintedMetalPanel": 20,
+        "RubberSeal": 20
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StreetKit_Wall_Vent_Square",
+      "kit": "StreetKit",
+      "points": 12,
+      "primitives": 7,
+      "slots": {
+        "M_CyberMarket_Trim": 7
+      },
+      "trim_strips": {
+        "RivetEdge": 4,
+        "GrateVent": 3
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StructKit_Scaffold_Bay_2x1x2",
+      "kit": "StructKit",
+      "points": 188,
+      "primitives": 206,
+      "slots": {
+        "M_CyberMarket_Trim": 206
+      },
+      "trim_strips": {
+        "Pipe": 78,
+        "BareBevel": 104,
+        "WoodPlank": 24
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StructKit_Scaffold_Coupler",
+      "kit": "StructKit",
+      "points": 16,
+      "primitives": 12,
+      "slots": {
+        "M_CyberMarket_Trim": 12
+      },
+      "trim_strips": {
+        "BareBevel": 12
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StructKit_Scaffold_Plank_2m",
+      "kit": "StructKit",
+      "points": 8,
+      "primitives": 6,
+      "slots": {
+        "M_CyberMarket_Trim": 6
+      },
+      "trim_strips": {
+        "WoodPlank": 6
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_StructKit_Spline_Ladder_3m",
+      "kit": "StructKit",
+      "points": 164,
+      "primitives": 112,
+      "slots": {
+        "M_CyberMarket_Trim": 112
+      },
+      "trim_strips": {
+        "Pipe": 112
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_WorkshopKit_Battery_Stack",
+      "kit": "WorkshopKit",
+      "points": 128,
+      "primitives": 95,
+      "slots": {
+        "M_Workshop_Atlas": 14,
+        "M_CyberMarket_Trim": 81
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 14,
+        "RubberSeal": 7,
+        "BareBevel": 42,
+        "NeonTube": 18
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_WorkshopKit_Jerrycan",
+      "kit": "WorkshopKit",
+      "points": 84,
+      "primitives": 76,
+      "slots": {
+        "M_Workshop_Atlas": 2,
+        "M_CyberMarket_Trim": 74
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 45,
+        "RubberSeal": 9,
+        "BareBevel": 20
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_WorkshopKit_Jerrycan_Cluster",
+      "kit": "WorkshopKit",
+      "points": 252,
+      "primitives": 228,
+      "slots": {
+        "M_Workshop_Atlas": 6,
+        "M_CyberMarket_Trim": 222
+      },
+      "trim_strips": {
+        "PaintedMetalPanel": 135,
+        "RubberSeal": 27,
+        "BareBevel": 60
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    },
+    {
+      "piece": "SM_WorkshopKit_Tyre_Stack",
+      "kit": "WorkshopKit",
+      "points": 288,
+      "primitives": 288,
+      "slots": {
+        "M_CyberMarket_Trim": 240,
+        "M_Workshop_Atlas": 48
+      },
+      "trim_strips": {
+        "RubberSeal": 240
+      },
+      "vertex_attributes": [
+        "N",
+        "uv",
+        "Cd",
+        "uv2"
+      ],
+      "point_attributes": [
+        "P"
+      ]
+    }
+  ],
+  "errors": [],
+  "slot_assets": {
+    "M_CyberMarket_Trim": [
+      "SM_AlleyKit_AC_Unit",
+      "SM_AlleyKit_Balcony_2m",
+      "SM_AlleyKit_Balcony_Cage_CornerL_1m",
+      "SM_AlleyKit_Balcony_Cage_CornerR_1m",
+      "SM_AlleyKit_Balcony_Cage_Straight_2m",
+      "SM_AlleyKit_Balcony_CageCard_CornerL_1m",
+      "SM_AlleyKit_Balcony_CageCard_CornerR_1m",
+      "SM_AlleyKit_Balcony_CageCard_Straight_2m",
+      "SM_AlleyKit_Balcony_Concrete_CornerL_1m",
+      "SM_AlleyKit_Balcony_Concrete_CornerR_1m",
+      "SM_AlleyKit_Balcony_Concrete_Straight_2m",
+      "SM_AlleyKit_Balcony_Steel_CornerL_1m",
+      "SM_AlleyKit_Balcony_Steel_CornerR_1m",
+      "SM_AlleyKit_Balcony_Steel_Straight_2m",
+      "SM_AlleyKit_Balcony_SteelCard_CornerL_1m",
+      "SM_AlleyKit_Balcony_SteelCard_CornerR_1m",
+      "SM_AlleyKit_Balcony_SteelCard_Straight_2m",
+      "SM_AlleyKit_FireEscape_Card_CornerL_1m",
+      "SM_AlleyKit_FireEscape_Card_CornerR_1m",
+      "SM_AlleyKit_FireEscape_Card_Straight_2m",
+      "SM_AlleyKit_FireEscape_CornerL_1m",
+      "SM_AlleyKit_FireEscape_CornerR_1m",
+      "SM_AlleyKit_FireEscape_Ladder_3m",
+      "SM_AlleyKit_FireEscape_Platform",
+      "SM_AlleyKit_FireEscape_Stairs_3m",
+      "SM_AlleyKit_FireEscape_Straight_2m",
+      "SM_AlleyKit_Insert_Door_2x3",
+      "SM_AlleyKit_Insert_GlassFront_2x3",
+      "SM_AlleyKit_Insert_GlassFront_2x4",
+      "SM_AlleyKit_Insert_ShopElectronics_2x3",
+      "SM_AlleyKit_Insert_ShopNoodleBar_2x3",
+      "SM_AlleyKit_Insert_ShopOpen_2x3",
+      "SM_AlleyKit_Insert_ShopOpen_2x4",
+      "SM_AlleyKit_Insert_ShopOpen_4x3",
+      "SM_AlleyKit_Insert_ShopOpen_4x4",
+      "SM_AlleyKit_Insert_ShopPharmacy_2x3",
+      "SM_AlleyKit_Insert_Shutter_2x3",
+      "SM_AlleyKit_Insert_Shutter_2x4",
+      "SM_AlleyKit_Insert_ShutterRow_4x3",
+      "SM_AlleyKit_Insert_ShutterRow_4x4",
+      "SM_AlleyKit_Insert_ShutterRow_6x3",
+      "SM_AlleyKit_Insert_ShutterRow_6x4",
+      "SM_AlleyKit_Insert_ShutterRowHalf_4x3",
+      "SM_AlleyKit_Insert_ShutterRowHalf_4x4",
+      "SM_AlleyKit_Insert_ShutterRowHalf_6x3",
+      "SM_AlleyKit_Insert_SteelDoor_2x3",
+      "SM_AlleyKit_Insert_SteelDoor_2x4",
+      "SM_AlleyKit_Insert_SteelDoor_4x3",
+      "SM_AlleyKit_Insert_SteelDoor_4x4",
+      "SM_AlleyKit_Insert_SteelDoorTiled_2x3",
+      "SM_AlleyKit_Insert_Window_2x3",
+      "SM_AlleyKit_Insert_Window_4x3",
+      "SM_AlleyKit_Insert_Window_4x4",
+      "SM_AlleyKit_Insert_WindowAC_2x3",
+      "SM_AlleyKit_Insert_WindowBarred_2x3",
+      "SM_AlleyKit_Insert_WindowBarredCard_2x3",
+      "SM_AlleyKit_Insert_WindowBarredCard_4x3",
+      "SM_AlleyKit_Insert_WindowBarredCard_4x4",
+      "SM_AlleyKit_Insert_WindowBoarded_2x3",
+      "SM_AlleyKit_Insert_WindowCurtain_2x3",
+      "SM_AlleyKit_Insert_WindowDeep_2x3",
+      "SM_AlleyKit_Insert_WindowSmall_2x3",
+      "SM_AlleyKit_Roof_Antenna",
+      "SM_AlleyKit_Roof_Parapet_2m",
+      "SM_AlleyKit_Roof_SatelliteDish",
+      "SM_AlleyKit_Roof_Slab_2x2",
+      "SM_AlleyKit_Roof_WaterTank",
+      "SM_AlleyKit_SignBracket",
+      "SM_AlleyKit_Wall_CornerPillar_3m",
+      "SM_AlleyKit_Wall_Door_2x3",
+      "SM_AlleyKit_Wall_OutsideCorner_2x3",
+      "SM_AlleyKit_Wall_Plain_1x3",
+      "SM_AlleyKit_Wall_Plain_2x3",
+      "SM_AlleyKit_Wall_Plain_2x4",
+      "SM_AlleyKit_Wall_ShopElectronics_2x3",
+      "SM_AlleyKit_Wall_ShopNoodleBar_2x3",
+      "SM_AlleyKit_Wall_ShopOpen_4x3",
+      "SM_AlleyKit_Wall_ShopPharmacy_2x3",
+      "SM_AlleyKit_Wall_Shutter_2x3",
+      "SM_AlleyKit_Wall_ShutterRow_4x3",
+      "SM_AlleyKit_Wall_SteelDoor_2x3",
+      "SM_AlleyKit_Wall_Window_2x3",
+      "SM_AlleyKit_Wall_WindowAC_2x3",
+      "SM_AlleyKit_Wall_WindowBarred_2x3",
+      "SM_ConnectorKit_Conduit_Strap",
+      "SM_ConnectorKit_Downpipe_Strap",
+      "SM_ConnectorKit_Pipe_Saddle_Clamp_R03",
+      "SM_ConnectorKit_Pipe_Saddle_Clamp_R06",
+      "SM_ConnectorKit_Pipe_Saddle_Clamp_R10",
+      "SM_ContainerKit_Container20_Closed",
+      "SM_ContainerKit_Container20_DoorsOpen",
+      "SM_ContainerKit_Container20_ShopCorner",
+      "SM_ContainerKit_Container20_ShopFront",
+      "SM_ContainerKit_Container20_ShopSide",
+      "SM_ContainerKit_Container40_Closed",
+      "SM_FoodKit_Cash_Box",
+      "SM_FoodKit_Drinks_Cooler",
+      "SM_FoodKit_Folding_Table",
+      "SM_FoodKit_Food_Dumplings",
+      "SM_FoodKit_Food_Skewers",
+      "SM_FoodKit_Noodle_Bowl",
+      "SM_FoodKit_Plastic_Stool",
+      "SM_FoodKit_POS_Terminal",
+      "SM_FoodKit_PotsPans_Rail",
+      "SM_FoodKit_Shelf_Dressing",
+      "SM_FoodKit_Small_Fridge",
+      "SM_FoodKit_Wok_Stove",
+      "SM_GroundKit_Grate_Steam",
+      "SM_MeatKit_Carcass_Hanging",
+      "SM_MeatKit_Chopping_Block",
+      "SM_MeatKit_Creature_Head",
+      "SM_MeatKit_Hanging_Scale",
+      "SM_MeatKit_Ice_Trough",
+      "SM_MeatKit_Meat_Tray",
+      "SM_MeatKit_Tentacle_Bundle",
+      "SM_RoofKit_Billboard_Scaffold_6m",
+      "SM_RoofKit_Shack_Corrugated_3x2",
+      "SM_RoofKit_StairAccess_2x3",
+      "SM_ShopKit_Counter_Glass_1m2",
+      "SM_ShopKit_Menu_Board_1m2",
+      "SM_ShopKit_Shelf_Drinks_1m",
+      "SM_ShopKit_Shelf_Electronics_1m",
+      "SM_ShopKit_Shelf_Pharmacy_1m",
+      "SM_ShopKit_Shelf_Snacks_1m",
+      "SM_ShopKit_Stock_Bottles",
+      "SM_ShopKit_Stock_NoodlePacks",
+      "SM_SignKit_AFrame_Sign",
+      "SM_SignKit_Banner_Vertical_2m",
+      "SM_SignKit_Billboard_Small",
+      "SM_SignKit_Box_Sign_1m",
+      "SM_SignKit_Box_Sign_2m",
+      "SM_SignKit_Lamp_Pendant",
+      "SM_SignKit_Lantern_Cluster",
+      "SM_SignKit_Lantern_Round",
+      "SM_SignKit_Lantern_Square",
+      "SM_SignKit_Neon_Blade_1m5",
+      "SM_SignKit_Neon_Blade_3m",
+      "SM_SignKit_Street_Lamp",
+      "SM_SlumKit_Water_Drums_Cluster",
+      "SM_SoftKit_Cardboard_Box_Closed",
+      "SM_SoftKit_Strip_Curtain_1m",
+      "SM_SoftKit_Tarp_Draped",
+      "SM_SoftKit_Tarp_Hanging",
+      "SM_StackKit_Barrel_60",
+      "SM_StackKit_Crate_Half_50",
+      "SM_StackKit_Crate_Long_100",
+      "SM_StackKit_Crate_Small_25",
+      "SM_StackKit_Pallet_120",
+      "SM_StallKit_Awning_2m",
+      "SM_StallKit_BackWall_1m",
+      "SM_StallKit_ButcherTable_2m",
+      "SM_StallKit_Counter_1m",
+      "SM_StallKit_Crate_50",
+      "SM_StallKit_HookRail_2m",
+      "SM_StallKit_Lantern_Paper",
+      "SM_StallKit_LightBar_1m",
+      "SM_StallKit_Post_2m2",
+      "SM_StallKit_Sign_Hanging",
+      "SM_StallKit_Stool",
+      "SM_StallKit_Umbrella_2m",
+      "SM_StreetKit_Barricade_AFrame",
+      "SM_StreetKit_Breaker_Panel",
+      "SM_StreetKit_Dumpster",
+      "SM_StreetKit_Extractor_Hood",
+      "SM_StreetKit_Junction_Box",
+      "SM_StreetKit_Meter_Box",
+      "SM_StreetKit_Roof_Mushroom_Vent",
+      "SM_StreetKit_Roof_Turbine_Vent",
+      "SM_StreetKit_Traffic_Cone",
+      "SM_StreetKit_Trash_Bags",
+      "SM_StreetKit_Trash_Bin",
+      "SM_StreetKit_Vending_Machine",
+      "SM_StreetKit_Wall_Vent_Round",
+      "SM_StreetKit_Wall_Vent_Square",
+      "SM_StructKit_Scaffold_Bay_2x1x2",
+      "SM_StructKit_Scaffold_Coupler",
+      "SM_StructKit_Scaffold_Plank_2m",
+      "SM_StructKit_Spline_Ladder_3m",
+      "SM_WorkshopKit_Battery_Stack",
+      "SM_WorkshopKit_Jerrycan",
+      "SM_WorkshopKit_Jerrycan_Cluster",
+      "SM_WorkshopKit_Tyre_Stack"
+    ],
+    "M_Wall_Tiling": [
+      "SM_AlleyKit_Balcony_2m",
+      "SM_AlleyKit_Balcony_Cage_CornerL_1m",
+      "SM_AlleyKit_Balcony_Cage_CornerR_1m",
+      "SM_AlleyKit_Balcony_Cage_Straight_2m",
+      "SM_AlleyKit_Balcony_CageCard_CornerL_1m",
+      "SM_AlleyKit_Balcony_CageCard_CornerR_1m",
+      "SM_AlleyKit_Balcony_CageCard_Straight_2m",
+      "SM_AlleyKit_Balcony_Concrete_CornerL_1m",
+      "SM_AlleyKit_Balcony_Concrete_CornerR_1m",
+      "SM_AlleyKit_Balcony_Concrete_Straight_2m",
+      "SM_AlleyKit_Balcony_Steel_CornerL_1m",
+      "SM_AlleyKit_Balcony_Steel_CornerR_1m",
+      "SM_AlleyKit_Balcony_Steel_Straight_2m",
+      "SM_AlleyKit_Balcony_SteelCard_CornerL_1m",
+      "SM_AlleyKit_Balcony_SteelCard_CornerR_1m",
+      "SM_AlleyKit_Balcony_SteelCard_Straight_2m",
+      "SM_AlleyKit_Insert_GlassFront_2x3",
+      "SM_AlleyKit_Insert_GlassFront_2x4",
+      "SM_AlleyKit_Insert_ShopElectronics_2x3",
+      "SM_AlleyKit_Insert_ShopNoodleBar_2x3",
+      "SM_AlleyKit_Insert_ShopOpen_2x3",
+      "SM_AlleyKit_Insert_ShopOpen_2x4",
+      "SM_AlleyKit_Insert_ShopOpen_4x3",
+      "SM_AlleyKit_Insert_ShopOpen_4x4",
+      "SM_AlleyKit_Insert_ShopPharmacy_2x3",
+      "SM_AlleyKit_Insert_ShutterRowHalf_4x3",
+      "SM_AlleyKit_Insert_ShutterRowHalf_4x4",
+      "SM_AlleyKit_Insert_ShutterRowHalf_6x3",
+      "SM_AlleyKit_Insert_WindowDeep_2x3",
+      "SM_AlleyKit_Roof_Parapet_2m",
+      "SM_AlleyKit_Roof_Slab_2x2",
+      "SM_AlleyKit_Wall_CornerPillar_3m",
+      "SM_AlleyKit_Wall_Door_2x3",
+      "SM_AlleyKit_Wall_OutsideCorner_2x3",
+      "SM_AlleyKit_Wall_Plain_1x3",
+      "SM_AlleyKit_Wall_Plain_2x3",
+      "SM_AlleyKit_Wall_Plain_2x4",
+      "SM_AlleyKit_Wall_ShopElectronics_2x3",
+      "SM_AlleyKit_Wall_ShopNoodleBar_2x3",
+      "SM_AlleyKit_Wall_ShopOpen_4x3",
+      "SM_AlleyKit_Wall_ShopPharmacy_2x3",
+      "SM_AlleyKit_Wall_Shutter_2x3",
+      "SM_AlleyKit_Wall_ShutterRow_4x3",
+      "SM_AlleyKit_Wall_SteelDoor_2x3",
+      "SM_AlleyKit_Wall_Window_2x3",
+      "SM_AlleyKit_Wall_WindowAC_2x3",
+      "SM_AlleyKit_Wall_WindowBarred_2x3",
+      "SM_RoofKit_StairAccess_2x3"
+    ],
+    "M_Paving_Tiling": [
+      "SM_AlleyKit_Balcony_Cage_CornerL_1m",
+      "SM_AlleyKit_Balcony_Cage_CornerR_1m",
+      "SM_AlleyKit_Balcony_Cage_Straight_2m",
+      "SM_AlleyKit_Balcony_CageCard_CornerL_1m",
+      "SM_AlleyKit_Balcony_CageCard_CornerR_1m",
+      "SM_AlleyKit_Balcony_CageCard_Straight_2m",
+      "SM_AlleyKit_Balcony_Concrete_CornerL_1m",
+      "SM_AlleyKit_Balcony_Concrete_CornerR_1m",
+      "SM_AlleyKit_Balcony_Concrete_Straight_2m",
+      "SM_AlleyKit_Insert_GlassFront_2x3",
+      "SM_AlleyKit_Insert_GlassFront_2x4",
+      "SM_AlleyKit_Insert_ShopElectronics_2x3",
+      "SM_AlleyKit_Insert_ShopNoodleBar_2x3",
+      "SM_AlleyKit_Insert_ShopOpen_2x3",
+      "SM_AlleyKit_Insert_ShopOpen_2x4",
+      "SM_AlleyKit_Insert_ShopOpen_4x3",
+      "SM_AlleyKit_Insert_ShopOpen_4x4",
+      "SM_AlleyKit_Insert_ShopPharmacy_2x3",
+      "SM_AlleyKit_Insert_ShutterRowHalf_4x3",
+      "SM_AlleyKit_Insert_ShutterRowHalf_4x4",
+      "SM_AlleyKit_Insert_ShutterRowHalf_6x3",
+      "SM_AlleyKit_Insert_WindowDeep_2x3",
+      "SM_AlleyKit_Roof_Slab_2x2",
+      "SM_AlleyKit_Wall_ShopElectronics_2x3",
+      "SM_AlleyKit_Wall_ShopNoodleBar_2x3",
+      "SM_AlleyKit_Wall_ShopOpen_4x3",
+      "SM_AlleyKit_Wall_ShopPharmacy_2x3",
+      "SM_RoofKit_StairAccess_2x3"
+    ],
+    "M_Cutout_Atlas": [
+      "SM_AlleyKit_Balcony_CageCard_CornerL_1m",
+      "SM_AlleyKit_Balcony_CageCard_CornerR_1m",
+      "SM_AlleyKit_Balcony_CageCard_Straight_2m",
+      "SM_AlleyKit_Balcony_SteelCard_CornerL_1m",
+      "SM_AlleyKit_Balcony_SteelCard_CornerR_1m",
+      "SM_AlleyKit_Balcony_SteelCard_Straight_2m",
+      "SM_AlleyKit_FireEscape_Card_CornerL_1m",
+      "SM_AlleyKit_FireEscape_Card_CornerR_1m",
+      "SM_AlleyKit_FireEscape_Card_Straight_2m",
+      "SM_AlleyKit_Insert_WindowBarredCard_2x3",
+      "SM_AlleyKit_Insert_WindowBarredCard_4x3",
+      "SM_AlleyKit_Insert_WindowBarredCard_4x4"
+    ],
+    "M_Glass_Tiling": [
+      "SM_AlleyKit_Insert_GlassFront_2x3",
+      "SM_AlleyKit_Insert_GlassFront_2x4",
+      "SM_AlleyKit_Insert_ShopElectronics_2x3",
+      "SM_AlleyKit_Insert_ShopPharmacy_2x3",
+      "SM_AlleyKit_Insert_WindowAC_2x3",
+      "SM_AlleyKit_Insert_WindowCurtain_2x3",
+      "SM_AlleyKit_Insert_WindowDeep_2x3",
+      "SM_AlleyKit_Wall_ShopElectronics_2x3",
+      "SM_AlleyKit_Wall_ShopPharmacy_2x3",
+      "SM_AlleyKit_Wall_WindowAC_2x3",
+      "SM_FoodKit_Shelf_Dressing",
+      "SM_FoodKit_Small_Fridge",
+      "SM_MeatKit_Ice_Trough",
+      "SM_ShopKit_Counter_Glass_1m2",
+      "SM_ShopKit_Stock_Bottles",
+      "SM_SoftKit_Strip_Curtain_1m"
+    ],
+    "M_Shop_Atlas": [
+      "SM_AlleyKit_Insert_GlassFront_2x3",
+      "SM_AlleyKit_Insert_GlassFront_2x4",
+      "SM_AlleyKit_Insert_ShopElectronics_2x3",
+      "SM_AlleyKit_Insert_ShopNoodleBar_2x3",
+      "SM_AlleyKit_Insert_ShopPharmacy_2x3",
+      "SM_AlleyKit_Insert_WindowCurtain_2x3",
+      "SM_AlleyKit_Insert_WindowDeep_2x3",
+      "SM_AlleyKit_Wall_ShopElectronics_2x3",
+      "SM_AlleyKit_Wall_ShopNoodleBar_2x3",
+      "SM_AlleyKit_Wall_ShopPharmacy_2x3",
+      "SM_ShopKit_Counter_Glass_1m2",
+      "SM_ShopKit_Menu_Board_1m2",
+      "SM_ShopKit_Shelf_Drinks_1m",
+      "SM_ShopKit_Shelf_Electronics_1m",
+      "SM_ShopKit_Shelf_Pharmacy_1m",
+      "SM_ShopKit_Shelf_Snacks_1m",
+      "SM_ShopKit_Stock_Bottles",
+      "SM_ShopKit_Stock_Boxes",
+      "SM_ShopKit_Stock_NoodlePacks"
+    ],
+    "M_Sign_Atlas": [
+      "SM_AlleyKit_Insert_GlassFront_2x3",
+      "SM_AlleyKit_Insert_GlassFront_2x4",
+      "SM_AlleyKit_Insert_ShutterRow_4x4",
+      "SM_AlleyKit_Insert_ShutterRow_6x4",
+      "SM_AlleyKit_Insert_ShutterRowHalf_4x4",
+      "SM_RoofKit_Billboard_Scaffold_6m",
+      "SM_RoofKit_Shack_Corrugated_3x2",
+      "SM_RoofKit_StairAccess_2x3",
+      "SM_SignKit_Banner_Vertical_2m",
+      "SM_SignKit_Box_Sign_1m",
+      "SM_SignKit_Box_Sign_2m"
+    ],
+    "M_Screen_Atlas": [
+      "SM_AlleyKit_Insert_ShopOpen_2x3",
+      "SM_AlleyKit_Insert_ShopOpen_2x4",
+      "SM_AlleyKit_Insert_ShopOpen_4x3",
+      "SM_AlleyKit_Insert_ShopOpen_4x4",
+      "SM_AlleyKit_Insert_ShutterRowHalf_4x3",
+      "SM_AlleyKit_Insert_ShutterRowHalf_4x4",
+      "SM_AlleyKit_Insert_ShutterRowHalf_6x3",
+      "SM_AlleyKit_Wall_ShopOpen_4x3",
+      "SM_FoodKit_POS_Terminal",
+      "SM_FoodKit_Small_Fridge",
+      "SM_SignKit_AFrame_Sign",
+      "SM_SignKit_Billboard_Small",
+      "SM_StreetKit_Vending_Machine"
+    ],
+    "M_Street_Atlas": [
+      "SM_AlleyKit_Insert_SteelDoor_2x3",
+      "SM_AlleyKit_Insert_SteelDoor_2x4",
+      "SM_AlleyKit_Insert_SteelDoor_4x3",
+      "SM_AlleyKit_Insert_SteelDoor_4x4",
+      "SM_AlleyKit_Insert_SteelDoorTiled_2x3",
+      "SM_AlleyKit_Wall_SteelDoor_2x3",
+      "SM_RoofKit_StairAccess_2x3",
+      "SM_StreetKit_Barricade_AFrame"
+    ],
+    "M_WallTile_Tiling": [
+      "SM_AlleyKit_Insert_SteelDoorTiled_2x3"
+    ],
+    "M_Decal_Atlas": [
+      "SM_ContainerKit_Container20_Closed",
+      "SM_ContainerKit_Container20_DoorsOpen",
+      "SM_ContainerKit_Container20_ShopCorner",
+      "SM_ContainerKit_Container20_ShopFront",
+      "SM_ContainerKit_Container20_ShopSide",
+      "SM_ContainerKit_Container40_Closed",
+      "SM_GroundKit_Litter_Scatter",
+      "SM_GroundKit_Puddle_1",
+      "SM_GroundKit_Puddle_2"
+    ],
+    "M_Food_Atlas": [
+      "SM_FoodKit_Food_Bun_Steamer",
+      "SM_FoodKit_Food_Dumplings",
+      "SM_FoodKit_Food_Noodles",
+      "SM_FoodKit_Food_Pan",
+      "SM_FoodKit_Food_Rice",
+      "SM_FoodKit_Food_Skewers",
+      "SM_FoodKit_Food_SmallBowl",
+      "SM_FoodKit_Food_Wok"
+    ],
+    "M_FX_Atlas": [
+      "SM_GroundKit_Grate_Steam"
+    ],
+    "M_Meat_Atlas": [
+      "SM_MeatKit_Carcass_Hanging",
+      "SM_MeatKit_Creature_Head",
+      "SM_MeatKit_Cut_Ribs",
+      "SM_MeatKit_Cut_Shank",
+      "SM_MeatKit_Cut_Slab",
+      "SM_MeatKit_Fish_Large",
+      "SM_MeatKit_Fish_Small",
+      "SM_MeatKit_Ice_Trough",
+      "SM_MeatKit_Meat_Tray",
+      "SM_MeatKit_Tentacle_Bundle"
+    ],
+    "M_Cardboard_Tiling": [
+      "SM_ShopKit_Stock_Boxes",
+      "SM_SoftKit_Cardboard_Box_Closed",
+      "SM_SoftKit_Cardboard_Box_Open",
+      "SM_SoftKit_Cardboard_Flat_Stack"
+    ],
+    "M_Glyph_Atlas": [
+      "SM_SignKit_Neon_Blade_1m5",
+      "SM_SignKit_Neon_Blade_3m"
+    ],
+    "M_Workshop_Atlas": [
+      "SM_WorkshopKit_Battery_Stack",
+      "SM_WorkshopKit_Jerrycan",
+      "SM_WorkshopKit_Jerrycan_Cluster",
+      "SM_WorkshopKit_Tyre_Stack"
+    ]
+  },
+  "strip_faces": {
+    "PaintedMetalPanel": 3268,
+    "RubberSeal": 1840,
+    "GrateVent": 513,
+    "Pipe": 2238,
+    "BareBevel": 6991,
+    "Concrete": 1701,
+    "RivetEdge": 869,
+    "LEDBar": 40,
+    "WoodPlank": 1003,
+    "ScreenGlow": 36,
+    "CorrugatedRustMetal": 255,
+    "WarmBulb": 197,
+    "TarpCanvas": 1147,
+    "NeonTube": 168
+  },
+  "missing_uv": [],
+  "missing_uv2": [],
+  "unmatched_trim_faces": 0
+}

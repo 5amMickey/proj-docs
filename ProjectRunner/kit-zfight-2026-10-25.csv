@@ -1,0 +1,50 @@
+kit,piece,pairs,overlap_cm2,gap_mm,slots
+ClinicKit,SM_ClinicKit_Battery_Power_Rig,1,40,1.0,M_CyberMarket_Trim
+ClinicKit,SM_ClinicKit_Decal_Blood_Floor,4,28,0.5,M_Clinic_Atlas
+ClinicKit,SM_ClinicKit_Floor_Cable_Mess,21,71,0.4,M_CyberMarket_Trim
+ClinicKit,SM_ClinicKit_Parts_Fridge,1,400,2.0,M_Clinic_Atlas M_CyberMarket_Trim
+CorpKit,SM_CorpKit_Logo_Wall_4m,1,760,3.0,M_Corp_Atlas M_CyberMarket_Trim
+CorpKit,SM_CorpKit_Turnstile_Gate_Pair,3,405,3.0,M_CyberMarket_Trim
+CyberStreetKit,SM_CyberStreetKit_ATM_Freestanding,2,2570,2.0,M_CyberMarket_Trim M_Holo_Atlas
+CyberStreetKit,SM_CyberStreetKit_ATM_Wall,1,1417,3.0,M_CyberMarket_Trim M_Holo_Atlas
+CyberStreetKit,SM_CyberStreetKit_Ad_Drone,1,240,1.0,M_CyberMarket_Trim M_Holo_Atlas
+CyberStreetKit,SM_CyberStreetKit_Capsule_Stack_3x2,6,11,1.7,M_CyberMarket_Trim
+CyberStreetKit,SM_CyberStreetKit_Data_Terminal,1,90,3.0,M_CyberMarket_Trim
+CyberStreetKit,SM_CyberStreetKit_Noodle_Robot,1,2100,3.0,M_CyberMarket_Trim M_Holo_Atlas
+CyberStreetKit,SM_CyberStreetKit_Payphone_Booth,1,640,1.0,M_CyberMarket_Trim
+CyberStreetKit,SM_CyberStreetKit_Security_Turret,1,156,2.0,M_CyberMarket_Trim
+CyberStreetKit,SM_CyberStreetKit_Street_Kiosk,5,9310,1.0,M_CyberMarket_Trim M_Holo_Atlas
+CyberVehicleKit,SM_CyberVehicleKit_Drone_Delivery,1,100,1.0,M_CyberMarket_Trim M_CyberVehicle_Atlas
+SlumKit,SM_SlumKit_Container_Home,11,25,1.6,M_CyberMarket_Trim
+SlumKit,SM_SlumKit_Container_Home_Upper,11,25,1.6,M_CyberMarket_Trim
+SlumKit,SM_SlumKit_Makeshift_Ladder_3m,16,375,2.5,M_CyberMarket_Trim
+TechKit,SM_TechKit_Server_Rack_Closed,1,360,2.0,M_CyberMarket_Trim M_Tech_Atlas
+TechKit,SM_TechKit_Server_Rack_Damaged,1,360,2.0,M_CyberMarket_Trim M_Tech_Atlas
+WorkshopKit,SM_WorkshopKit_Workbench_2m,1,630,2.0,M_Workshop_Atlas
+AlleyKit,SM_AlleyKit_FireEscape_Platform,4,10,2.0,M_CyberMarket_Trim
+AlleyKit,SM_AlleyKit_FireEscape_Stairs_3m,12,23,1.7,M_CyberMarket_Trim
+AlleyKit,SM_AlleyKit_Wall_SteelDoorTiled_2x3,4,7177,1.0,M_CyberMarket_Trim M_Street_Atlas
+AlleyKit,SM_AlleyKit_Wall_SteelDoor_2x3,4,7177,1.0,M_CyberMarket_Trim M_Street_Atlas
+AlleyKit,SM_AlleyKit_Wall_SteelDoor_2x4,4,7177,1.0,M_CyberMarket_Trim M_Street_Atlas
+AlleyKit,SM_AlleyKit_Wall_SteelDoor_4x3,4,12855,1.0,M_CyberMarket_Trim M_Street_Atlas
+AlleyKit,SM_AlleyKit_Wall_SteelDoor_4x4,4,12855,1.0,M_CyberMarket_Trim M_Street_Atlas
+AlleyKit,SM_AlleyKit_Wall_Tiled_2x3,1,2000,2.0,M_Street_Atlas M_Wall_Tiling
+DamageKit,SM_DamageKit_Glass_Shards,1,11,2.5,M_Damage_Atlas
+DamageKit,SM_DamageKit_Rebar_Bundle,3,33,0.1,M_CyberMarket_Trim
+DamageKit,SM_DamageKit_Wall_Broken_Edge_2x3,10,6581,3.0,M_Damage_Atlas M_Wall_Tiling
+GroundKit,SM_GroundKit_Decal_WetSheen_2m,1,4000,0.5,M_FX_Atlas
+GroundKit,SM_GroundKit_Litter_Leaves,4,60,0.5,M_Litter_Atlas
+GroundKit,SM_GroundKit_Litter_Scatter,4,707,0.5,M_Decal_Atlas
+InteriorKit,SM_InteriorKit_TV_CRT,1,1344,1.0,M_CyberMarket_Trim M_Interior_Atlas
+InteriorKit,SM_InteriorKit_TV_Stand,1,5076,2.0,M_CyberMarket_Trim M_Interior_Atlas
+RoofKit,SM_RoofKit_StairAccess_2x3,4,4875,1.0,M_CyberMarket_Trim M_Sign_Atlas M_Street_Atlas M_Wall_Tiling
+SoftKit,SM_SoftKit_Cardboard_Box_Closed,1,240,1.0,M_Cardboard_Tiling M_CyberMarket_Trim
+StallKit,SM_StallKit_Awning_2m,2,45,1.4,M_CyberMarket_Trim
+StationKit,SM_StationKit_Entrance_Box,1,9900,2.0,M_Station_Atlas M_Wall_Tiling
+StationKit,SM_StationKit_Security_Metal_Detector,11,3320,2.0,M_CyberMarket_Trim
+StationKit,SM_StationKit_Skybridge_EndPortal,1,8000,2.0,M_Station_Atlas M_Wall_Tiling
+StationKit,SM_StationKit_Stairs_Tiled_3m,12,28,1.7,M_CyberMarket_Trim
+StreetKit,SM_StreetKit_Cable_Junction_Cluster,12,109,0.0,M_CyberMarket_Trim
+StreetKit,SM_StreetKit_Cable_WallDrop_3m,2,284,2.0,M_CyberMarket_Trim
+StructKit,SM_StructKit_Catwalk_Stairs_3m,12,19,1.7,M_CyberMarket_Trim
+StructKit,SM_StructKit_Joint_Base_Plate,24,24,1.7,M_CyberMarket_Trim

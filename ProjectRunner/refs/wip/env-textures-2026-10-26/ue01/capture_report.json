@@ -1,0 +1,23 @@
+{
+  "i": 3,
+  "phase": "check",
+  "next": 1792970893.0653925,
+  "frame": 4879,
+  "paths": [
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue01/Neutral_Overview.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue01/Neutral_Overview.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue01/Neutral_Overview.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue01/Neutral_Overview.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue01/Neutral_Overview.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue01/Neutral_A_Close.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue01/Neutral_B_Close.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue01/Night_Overview.png"
+  ],
+  "errors": [
+    "Capture file did not appear: C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue01/Night_Overview.png"
+  ],
+  "map": "Night",
+  "cam": "/Game/ProjectRunner/TextureReview/Env01/L_EnvTextureReview_01_Night.L_EnvTextureReview_01_Night:PersistentLevel.CameraActor_0",
+  "deadline": 1792970947.0653925,
+  "complete": false
+}

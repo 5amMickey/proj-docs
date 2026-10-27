@@ -1,0 +1,76 @@
+{
+  "i": 12,
+  "phase": "load",
+  "next": 1792983673.973534,
+  "views": [
+    [
+      "Look",
+      "Overview"
+    ],
+    [
+      "Look",
+      "Normal_0"
+    ],
+    [
+      "Look",
+      "Normal_1"
+    ],
+    [
+      "Look",
+      "Normal_2"
+    ],
+    [
+      "Look",
+      "Paint_Close"
+    ],
+    [
+      "Gallery",
+      "Set_RunnerTrim"
+    ],
+    [
+      "Gallery",
+      "Set_RunnerWall"
+    ],
+    [
+      "Gallery",
+      "Set_Road"
+    ],
+    [
+      "Gallery",
+      "Set_Sign"
+    ],
+    [
+      "Gallery",
+      "Overview"
+    ],
+    [
+      "Kits",
+      "Kit_FoodKit"
+    ],
+    [
+      "Kits",
+      "Kit_WorkshopKit"
+    ]
+  ],
+  "paths": [
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Look_Overview.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Look_Normal_0.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Look_Normal_1.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Look_Normal_2.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Look_Paint_Close.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Gallery_Set_RunnerTrim.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Gallery_Set_RunnerWall.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Gallery_Set_Road.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Gallery_Set_Sign.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Gallery_Overview.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Kits_Kit_FoodKit.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Kits_Kit_WorkshopKit.png"
+  ],
+  "errors": [],
+  "busy": true,
+  "map": "Kits",
+  "frame": 81733,
+  "pending": "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue_full_02/Kits_Kit_WorkshopKit.png",
+  "deadline": 1792983790.973534,
+  "complete": true
+}

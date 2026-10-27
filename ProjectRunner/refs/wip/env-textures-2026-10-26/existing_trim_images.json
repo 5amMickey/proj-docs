@@ -1,0 +1,68 @@
+[
+  {
+    "path": "C:/Prod/ProjectDev/SourceContent/Textures/TrimSheets/T_CyberMarket_Trim_template.png",
+    "width": 2048,
+    "height": 2048,
+    "bytes": 2853672
+  },
+  {
+    "path": "C:/Users/GameDevPC0403/Documents/GitHub/HoudiniSource/archive/pixel_trim/ProjectSandbox/tex/decal_pixel/T_DecalPixel_BC.png",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 8451
+  },
+  {
+    "path": "C:/Users/GameDevPC0403/Documents/GitHub/HoudiniSource/archive/pixel_trim/ProjectSandbox/tex/prop_trim_b/64px/T_PropTrimB_BC.png",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 24537
+  },
+  {
+    "path": "C:/Users/GameDevPC0403/Documents/GitHub/HoudiniSource/archive/pixel_trim/ProjectSandbox/tex/prop_trim/64px/T_PropTrim_BC.png",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 43667
+  },
+  {
+    "path": "C:/Users/GameDevPC0403/Documents/GitHub/HoudiniSource/archive/env_v2/ProjectRunner/tex/FacadeTrim/T_FacadeTrim_BC.png",
+    "width": 4096,
+    "height": 4096,
+    "bytes": 2012501
+  },
+  {
+    "path": "C:/Users/GameDevPC0403/Documents/GitHub/HoudiniSource/archive/env_v2/ProjectRunner/tex/FacadeTrim/T_FacadeWall_Brick_BC.png",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 755978
+  },
+  {
+    "path": "C:/Users/GameDevPC0403/Documents/GitHub/HoudiniSource/archive/env_v2/ProjectRunner/tex/FacadeTrim/T_FacadeWall_Metal_BC.png",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 579493
+  },
+  {
+    "path": "C:/Users/GameDevPC0403/Documents/GitHub/HoudiniSource/archive/env_v2/ProjectRunner/tex/FacadeTrim/T_FacadeWall_Plaster_BC.png",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 906718
+  },
+  {
+    "path": "C:/Users/GameDevPC0403/Documents/GitHub/HoudiniSource/archive/env_v1/ProjectCyberRunner/tex/trim/T_Bldg_Trim_BC.png",
+    "width": 2048,
+    "height": 2048,
+    "bytes": 21643
+  },
+  {
+    "path": "C:/Users/GameDevPC0403/Documents/GitHub/HoudiniSource/ProjectSandbox/tex/trim/T_Facade_Trim_BC.png",
+    "width": 2048,
+    "height": 2048,
+    "bytes": 821706
+  },
+  {
+    "path": "C:/Users/GameDevPC0403/Documents/GitHub/HoudiniSource/ProjectSandbox/tex/trim/T_Facade_Wall_BC.png",
+    "width": 1024,
+    "height": 1024,
+    "bytes": 167230
+  }
+]

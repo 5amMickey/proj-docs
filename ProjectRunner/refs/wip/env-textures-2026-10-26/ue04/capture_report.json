@@ -1,0 +1,18 @@
+{
+  "i": 4,
+  "phase": "load",
+  "next": 1792971683.7702262,
+  "frame": 3242,
+  "paths": [
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue04/Neutral_Overview.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue04/Neutral_A_Close.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue04/Neutral_B_Close.png",
+    "C:/Users/GameDevPC0403/Documents/GitHub/proj-docs/ProjectRunner/refs/wip/env-textures-2026-10-26/ue04/Night_Overview.png"
+  ],
+  "errors": [],
+  "map": "Night",
+  "busy": true,
+  "cam": "/Game/ProjectRunner/TextureReview/Env01/L_EnvTextureReview_01_Night.L_EnvTextureReview_01_Night:PersistentLevel.CameraActor_0",
+  "deadline": 1792971857.7702262,
+  "complete": true
+}
