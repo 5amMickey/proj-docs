@@ -1,6 +1,6 @@
 # ProjectRunner
 
-Domain: games   Status: building   Updated: 2026-10-23
+Domain: games   Status: building   Updated: 2026-10-28
 
 ## What and who
 
@@ -52,7 +52,7 @@ Current milestone: G1 Playable scene (blockout). Interior generator milestones (
 - **Pipeline**: Houdini makes the environments. The first environment systems (`mike::bldg_*`, `mike::room_*`, `mike::destruct_concrete`) are archived in `HoudiniSource/archive/env_v1/`. Exports go from `Houdini/geo/export` to `/Game/Houdini/`, following the `ue5-export` skill. Textures come from Substance Designer and Painter, with Pixel8r 2 for the pixel-art treatment, following the `texture-pipeline` skill.
 - **Budgets**: PC at 60 fps. Characters stay under 20k triangles with 2 material slots, props under 5k, and textures at 2K max. Revisit these once the visual style is settled.
 - **Naming**: follows the `ue5-export` defaults. C++ classes in the Phantom plugins use the `PN` prefix so they don't collide with ProjectAlpha's PhantomCore (`Ph`).
-- **Skeleton**: the UEFN Mannequin drives the animation. Custom low-poly characters rigged on the UE5 skeleton from `asset_charBuilder`/`asset_charRig` replace it later as runtime-retargeted visual overrides, the same way GASP handles Echo and the UE4 Mannequin.
+- **Skeleton**: every human character uses the UE5 Manny skeleton (`SK_Mannequin`), and animations are retargeted offline onto it, so nothing retargets at runtime. Auto-Rig Pro (Blender 5.2) rigs the demo cast. The Houdini rigger (`asset_charRig`/`asset_charBuilder`) swaps in per body once `CompareToManny` passes. Until the swap is approved, GASP and the UEFN Mannequin stay in G1 and the trailer. Plan: `character-animation-plan.md`. (Changed 2026-10-28.)
 - **Shared assets**: HDAs and materials come from `C:\Prod\_Library`. PhantomInteraction (no dependencies) is shared with ProjectSilence. PhantomStory depends on StoryFlow. StoryFlow is copied into each project so each one can pin its own version.
 - **Proof**: a UBT build log, and a PIE run of the G1 level with recordings. Houdini assets use `verify-asset`, then a UE import.
 
@@ -98,3 +98,9 @@ Settled. Don't reopen unless I ask.
 - 2026-10-22: Repeated kit pieces (cardboard boxes, shelves and other families) become HDAs.
 - 2026-10-22: Cables are placed in UE through a Houdini Engine cable tool (Labs Cable Generator look). Every cable gets a gentle wind sway from its material; no physics cables for now.
 - 2026-10-23: Cinematics are blocked out with Shot Blocker, a Python editor tool in the PhantomScript plugin (Python so engine updates don't break a C++ build). A `SEQ:` flag in the script marks cinematic dialogue, and the importer splits it into one level sequence per run of lines between choices, because Sequencer can't branch. Line IDs survive rewrites, and voice files, shots and animations are anchored to them.
+- 2026-10-28: Characters move off GASP onto the UE5 Manny skeleton. Plan: `character-animation-plan.md`. Board: RUN-129 to RUN-137. This replaces the UEFN parts of the 2026-10-01 and 2026-10-02 decisions and the Skeleton line. The details:
+  - Auto-Rig Pro rigs the demo cast. The Houdini rigger continues in parallel.
+  - The player is a traditional character: the Character Movement Component with in-place walk loops, root-motion montages for interactions, and an `UpperBody` slot for layering.
+  - Animations come from a curated library at `/Game/ProjectRunner/Animation/Library`, retargeted offline from Mixamo (wish list in `research/mixamo/`), owned packs and CC0 sources.
+  - All of this is built and tested in `L_AnimTest`. G1, the trailer and the project's default maps don't change until Mike approves the swap.
+  - The pitch lead changes from the UEFN Mannequin to UE5 Manny.

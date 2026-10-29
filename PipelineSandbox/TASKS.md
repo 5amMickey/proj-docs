@@ -1,16 +1,23 @@
-# PipelineSandbox tasks
+﻿# PipelineSandbox tasks
 
 ## Environment texture library, 2026-10-27
 
-- [x] Inventory visible module candidates across all reference sheets and scenes, with source locations and repeated reference families; refine identities during individual source matching.
-- [x] Validate one provisional planar 2048 x 2048 PBR set before batch processing.
-- [ ] Generate and visually check every inventoried module in numbered batches.
-- [ ] Verify map alignment, dimensions, grayscale maps, color space, and DirectX normals.
-- [ ] Export the complete library, manifest, contact sheets, and ZIP.
+- [x] Inventory visible module candidates across all 26 references; refine identities during source matching.
+- [x] Validate aligned 2048 x 2048 PBR exports and DirectX Y-minus normals.
+- [x] Apply Mike's revised scope: prioritize major modules; defer small components to a later pass.
+- [ ] Generate and visually review the remaining major modules.
+- [ ] Verify all current-pass map dimensions, alignment, channels and normal convention.
+- [ ] Deliver the current-pass ZIP, contact sheets, manifest and deferred queue.
+- [ ] Later pass: complete deferred small and secondary components.
 
-Mike confirmed DirectX Y-minus normals. Use `_Normal_DirectX.png` filenames. No asset UV layouts were supplied. Layouts must be labeled provisional in the manifest, with no presentation labels inside the textures. Preserve both saved reference versions. Four maps per asset are required: base color, normal, roughness, and AO. Separate emissive and metallic maps are outside the requested set; record that limitation for neon and bare-metal assets.
+Current checkpoint: 419 reviewed assets, 1,676 verified PNG maps, 38 CRC-checked batch archives containing 413 reviewed assets. Reviewed by family: 163 City, 69 ContainerMarket, 169 Market, 18 Room. Market's current major-module pass is complete; its remaining small components are deferred. Existing exports, source references, upscales, detail variants and superseded revisions are preserved. Mike's final visual approval is pending.
 
-The current inventory covers all 26 references with 1,054 candidates in 88 batches. Two duplicate identifications are recorded in `Docs/environment_kit/aliases.json`; source matching continues. Batches 001 through 006 contain 72 reviewed assets and 288 verified 2K textures, with one further reviewed asset in Batch 007. Current archives are `Environment_Kit_Batch_001_v2.zip` and `Environment_Kit_Batch_002.zip` through `Environment_Kit_Batch_006.zip`. Their ZIP CRC checks passed. Batch 001 v2 narrows native AO radius to 0.01; the earlier archive and replaced maps remain preserved. Batch 006 is 100,619,570 bytes with SHA-256 `64b04462767782619968c764245f47ef5e4373ad7310683401ee9b1ec2e08a54`. Cloth uses shallower relief and AO; torn silhouettes and transparency require mesh geometry or opacity. The full library remains in progress. `Environment_Kit/review.html` supports selection, filtering and full-resolution viewing; those controls passed browser checks. Per-asset JSON records inference limits, residual small edge cues, provisional layouts and native generation sizes.
+Current pass has 279 major modules remaining; 423 small or secondary modules are deferred. The full catalog has 1,121 candidates in 94 stable numbered batches. Four primary stall canopy surfaces from the earlier separation audit were added and are reviewed. Do not spend this pass on extra pole hardware, small boxes, loose cables, clutter or secondary background variants. Prioritize architecture, large furniture and machinery, and main signs. The alternative source-extraction workflow was not selected; native image reconstruction remains available for the major modules.
+
+Every set has 2048 x 2048 BaseColor RGB sRGB, Normal_DirectX RGB linear, Roughness grayscale linear and AO grayscale linear. No mesh UVs were supplied: layouts are provisional visible-surface arrangements, not exact unwraps. Native generated inputs are resampled to 2K; fine wear, markings, relief and material response are inferred. Emission, metalness, opacity and transmission require later material setup.
+
+Resume from `Docs/environment_kit/resume_checkpoint.json` and `priority_scope.json`. `Environment_Kit/deferred_assets.json` records the later pass. `Environment_Kit/manifest.json` distinguishes pending major assets from deferred entries. Review gallery: `Environment_Kit/review.html`. Current archive list and packaged asset counts: `Environment_Kit/archive_index.json`. Partial batches completed for this scope use `Environment_Kit_Major_Batch_NNN.zip` and list their deferred members explicitly. Earlier detailed progress notes and archive hashes are preserved in `Docs/environment_kit/tasks_before_major_scope_20261027.txt`.
+
 ## AI detail pass, 2026-10-27
 
 - [x] Validate a new AI detail pass on an existing upscale.

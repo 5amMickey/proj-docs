@@ -1,0 +1,84 @@
+category,mixamo_name,use,notes
+locomotion,Walk,player,Baseline normal walk
+locomotion,Start Walking,player,Start transition
+locomotion,Stop Walking,player,Stop transition
+locomotion,Stop And Start Walking,player,Turn-around or hesitation
+locomotion,Sad Walk,player,Mood variant for story beats
+locomotion,Happy Walk,player,Mood variant
+locomotion,Injured Walk,player,Hurt state
+locomotion,Strut Walking,npc,Confident passer-by
+locomotion,Drunk Walk,npc,Red-light district
+locomotion,Walking With Shopping Bag,npc,Market crowd
+locomotion,Holding Walk,npc,Carrying an object
+locomotion,Texting And Walking,npc,Phone walker
+locomotion,Walking While Texting,npc,Second phone walker
+locomotion,Box Walk Arc,npc,Courier or stall worker
+idle,Standard Idle,player,Default stand
+idle,Breathing Idle,player,Subtle loop for cinematic holds
+idle,Bored,npc,Waiting in line
+idle,Sad Idle,cast,Mood idle
+idle,Happy Idle,cast,Mood idle
+idle,Looking Around,npc,Crowd filler
+idle,Nervously Look Around,npc,Anxious bystander
+idle,Look Over Shoulder,npc,Paranoia beat
+idle,Unarmed Idle Looking Ver. 1,npc,Idle variant
+idle,Scratch Idle,npc,Fidget
+idle,Wiping Sweat,npc,Kitchen or hot alley
+idle,Picking At Shirt,npc,Fidget
+idle,Drunk Idle,npc,Red-light district
+idle,Standing W/Briefcase Idle,npc,Commuter at station
+leaning,Leaning On A Wall,npc,Listening to music; wall prop
+leaning,Leaning,npc,"Square against wall, one leg up"
+leaning,One Shoulder Lean,npc,Wall lean variants
+leaning,Being Cocky,cast,Lean-back attitude
+talking,Talking,cast,"Asking a question, standing"
+talking,Standing Arguing,npc,Two-person argument
+talking,Talking At Watercooler,npc,Chat pair; reuse for market stalls
+talking,Sitting Talking,npc,Seated conversation
+talking,Agreeing,cast,Conversation reaction
+talking,Shaking Head No,cast,Reaction
+talking,Head Nod Yes,cast,Reaction
+talking,Shrugging,cast,Reaction
+talking,Thinking,cast,Reaction
+talking,Thankful,cast,Reaction
+talking,Dismissing Gesture,cast,Reaction
+talking,Pointing Gesture,cast,Directions
+talking,Laughing,npc,Standing laugh
+talking,Yelling While Standing,npc,Street shouting
+talking,Shaking Hands 1,cinematic,Two-person; pair with Shaking Hands 2
+talking,Shaking Hands 2,cinematic,Two-person
+talking,Crying,cast,Emotional beat
+phone,Talking On Phone,npc,Standing call
+phone,Talking On A Cell Phone,npc,Standing call variant
+phone,Talking Phone Pacing,npc,Pacing call
+phone,Pacing And Talking On A Phone,npc,Answers phone while walking
+phone,Texting,npc,Standing texting
+phone,Texting While Standing,npc,Texting variant
+phone,Standing Using Touchscreen Tablet,npc,Kiosk or terminal use
+phone,Listening To Music,npc,Headphones
+smoking,Smoking,npc,Idle smoking
+eating_drinking,Drinking,npc,Standing drink
+eating_drinking,Sitting Drinking,npc,"Seated, canned drink"
+eating_drinking,Bartending,npc,Pouring and serving; stall or bar worker
+sitting,Sit To Type,npc,Desk or terminal worker
+sitting,Typing,npc,Seated at computer
+sitting,Type To Sit,npc,Exit from typing
+sitting,Seated Idle,npc,Hands on table; food-alley counters
+sitting,Writing,npc,Seated writing
+sitting,Stand To Sit,npc,Transition in
+sitting,Sit To Stand,npc,Transition out
+sitting,Sitting Idle,npc,On the floor
+sitting,Sitting Laughing,npc,Seated reaction
+sitting,Sitting Dazed,npc,"Against wall, doorway sitter"
+sitting,Sleeping Idle,npc,Bench or doorway sleeper
+interaction,Opening Door Inwards,player,"Door interaction, walking"
+interaction,Open Door Outwards,player,"Door interaction, walking"
+interaction,Button Pushing,player,Keypad or elevator; right hand
+interaction,Pulling Lever,player,Switch or hack panel
+interaction,Searching Pockets,player,"Pat-down, key search"
+interaction,Searching Files High,player,Locker or cabinet search
+interaction,Looking Through Files Low,player,Low drawer search
+interaction,Opening,player,Cabinet open and close
+interaction,Pick Up Item,player,Pickup
+interaction,Lifting Object,npc,Stall worker lifting crates
+interaction,Using A Fax Machine,player,Stand-in for terminal use

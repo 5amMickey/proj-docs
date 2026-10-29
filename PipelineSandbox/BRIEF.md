@@ -34,3 +34,4 @@ A test project for now, with no set pipeline. Mike tries things out here.
 - 2026-10-26: Keep houdini-live in the isolated Houdini prefs.
 - 2026-10-26: PipelineSandbox takes MCP port 8005 from the archived Sandbox. ModelContextProtocol and AllToolsets are on.
 - 2026-10-26: The old `C:\Prod\Sandbox` is archived at `C:\Prod\_archive\Sandbox`, untouched.
+- 2026-10-27: For the environment texture library, finish major modules first and defer small or secondary components to a later pass. Preserve all completed sets; keep 2K output and DirectX Y-minus normals.
