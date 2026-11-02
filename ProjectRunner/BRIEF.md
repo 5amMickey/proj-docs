@@ -1,6 +1,6 @@
 # ProjectRunner
 
-Domain: games   Status: building   Updated: 2026-10-28
+Domain: games   Status: building   Updated: 2026-11-02
 
 ## What and who
 
@@ -48,11 +48,11 @@ Current milestone: G1 Playable scene (blockout). Interior generator milestones (
 
 ## Domain
 
-- **Engine**: UE 5.8. The project was built from the Game Animation Sample (GASP) 5.8 and uses motion matching on the UEFN Mannequin. Version control is Git with LFS; `Houdini/` is excluded because it lives in HoudiniSource.
+- **Engine**: UE 5.8. The project was built from the Game Animation Sample (GASP) 5.8; GASP is being removed (2026-11-02, RUN-158 to RUN-163). Version control is Git with LFS; `Houdini/` is excluded because it lives in HoudiniSource.
 - **Pipeline**: Houdini makes the environments. The first environment systems (`mike::bldg_*`, `mike::room_*`, `mike::destruct_concrete`) are archived in `HoudiniSource/archive/env_v1/`. Exports go from `Houdini/geo/export` to `/Game/Houdini/`, following the `ue5-export` skill. Textures come from Substance Designer and Painter, with Pixel8r 2 for the pixel-art treatment, following the `texture-pipeline` skill.
 - **Budgets**: PC at 60 fps. Characters stay under 20k triangles with 2 material slots, props under 5k, and textures at 2K max. Revisit these once the visual style is settled.
 - **Naming**: follows the `ue5-export` defaults. C++ classes in the Phantom plugins use the `PN` prefix so they don't collide with ProjectAlpha's PhantomCore (`Ph`).
-- **Skeleton**: every human character uses the UE5 Manny skeleton (`SK_Mannequin`), and animations are retargeted offline onto it, so nothing retargets at runtime. Auto-Rig Pro (Blender 5.2) rigs the demo cast. The Houdini rigger (`asset_charRig`/`asset_charBuilder`) swaps in per body once `CompareToManny` passes. Until the swap is approved, GASP and the UEFN Mannequin stay in G1 and the trailer. Plan: `character-animation-plan.md`. (Changed 2026-10-28.)
+- **Skeleton**: every human character uses `SK_PR_Human` (Manny's bones and rest pose plus the `cc_` bones), and nothing retargets at runtime. (Changed 2026-11-02; the rest of this line is history.) Auto-Rig Pro (Blender 5.2) rigs the demo cast. The Houdini rigger (`asset_charRig`/`asset_charBuilder`) swaps in per body once `CompareToManny` passes. Until the swap is approved, GASP and the UEFN Mannequin stay in G1 and the trailer. Plan: `character-animation-plan.md`. (Changed 2026-10-28.)
 - **Shared assets**: HDAs and materials come from `C:\Prod\_Library`. PhantomInteraction (no dependencies) is shared with ProjectSilence. PhantomStory depends on StoryFlow. StoryFlow is copied into each project so each one can pin its own version.
 - **Proof**: a UBT build log, and a PIE run of the G1 level with recordings. Houdini assets use `verify-asset`, then a UE import.
 
@@ -77,7 +77,7 @@ Settled. Don't reopen unless I ask.
 - 2026-10-02: The demo uses the UEFN Mannequin for the player and the walkers. Vhoori and the male and female bodies are imported, but they come back only once their rigs match Manny's joint orientations, because live retargeting breaks their arms and fingers.
 - 2026-10-02: Environment textures are pixelated before import, not by UE at runtime. Pixel-art textures import with nearest filtering and no mipmaps.
 - 2026-10-07: The environment kit is built as high-to-low bakes. Each Houdini tool builds Blockout, Low and High from one set of parameters, and the High is baked onto the Low in Houdini with the stock Bake Geometry Textures COP. The old trim sheets, atlases and E8 props aren't reused. Brief: `HoudiniSource/docs/briefs/runner_props.md`.
-- 2026-10-07: Texel density is a menu (64, 128, 256, 512 px/m), judged side by side in `L_TexelTest`. Signs and screens use a blurred fill with no text or fonts.
+- 2026-10-07: Texel density is a menu (64, 128, 256, 512 px/m), judged side by side in `L_TexelTest`. The original no-text rule for signs and screens is superseded for signage tests by the 2026-11-02 decision below.
 - 2026-10-07: HDA types are named `<domain>_<subject>_<descriptor>[_<NN>]` and deliverables `SM_<Subject>_<Descriptor>_<NN>`.
 - 2026-10-08: The look is HD-2D: higher-resolution, full-colour textures pixelated at the end. Textures are made in Substance Designer and Painter from the Houdini bakes, following the `texture-pipeline` skill that every game project shares. Pixel8r 2 pixelates them with no palette and no dithering; the Endesga 64 palette is dropped because snapping limited the colours.
 - 2026-10-08: Unique props run start to end from one TOP network in the builder scene: Houdini builds and bakes, a Designer graph (`substance/prop_texture.sbs`) textures each part by `mat_id`, Houdini shrinks to the texel density, and Unreal imports through the editor bridge when it answers, headless when it doesn't, then opens a preview level. Painter is optional: an export in `tex/<Asset>/painter/` replaces the Designer textures. Painter stays at 7.3.
@@ -86,7 +86,9 @@ Settled. Don't reopen unless I ask.
 - 2026-10-15: Pitch push for the CMF Prototyping final intake (closes 2026-11-10): deck, application, landing page, vertical slice video and teaser. Plan: `pitch-plan.md`. The title on every application is "Project Runner". The team is the 2024 list minus Taia DeBona, still being confirmed. The UEFN Mannequin plays the lead for now; Vhoori is in the cast, not the lead. The environment mixes Houdini pieces with owned packs. Both textures-only and whole-screen pixel treatments get tested, with smooth depth of field after the pixel step. No AI-generated images in any pitch or application material.
 - 2026-10-16: Look test result: treatment A, textures only (nearest filtering, pixelated textures), with depth of field from the camera. No whole-screen pixel grid. `L_LookTest` is the startup map while the look is tested; switch `EditorStartupMap` and `GameDefaultMap` back to `L_PR_Persistent` for G1 playthroughs.
 - 2026-10-16: Purchased packs stay local and out of git, starting with Big Slum Alley (`Content/SlumAlley`, 2.8 GB). Anyone building `L_LookTest` or the food alley copies the pack in from `C:\Prod\AssetPacks`. Same for Future Slums (`Content/TheFloatingSlums`, the Wasteland set) and the CastleTown ground textures (`Content/CastleTown`).
-- 2026-10-16: Signs. Pack signs that carry text stay as they are for now. Signs we make use an emissive texture with no text.
+- 2026-10-16: Signs. Pack signs that carry text stay as they are for now. The original no-text rule for signs we make is superseded for signage tests by the 2026-11-02 decision below.
+- 2026-11-02: Signage tests may use readable Japanese, English, or both. Correct malformed lettering in the reference sheets. Reconstruct the designs in `Graphics/signage/images` as clean, flat SVG shapes for UV texture atlases, neon signs, and projection screens. Deliver complete signs and separate reusable components, with portable outlined lettering and glow-free PNG exports. Wear and glow come from UE materials. Review three samples before reconstructing the full collection. This allows text signage tests; it does not change the restriction on AI-generated images in pitch or application material.
+- 2026-11-02 (later): Mike changed the signage approach after reviewing the SVG samples. Separate the designs from the three sheets shown in chat into individual raster images: `Japanese Market Signage Sticker Sheet.png`, `Neon Animal Emblem Sticker Board.png`, and `Cyberpunk Neon Signage Asset Sheet.png`. Recreate the neon-sheet signs as flat artwork without glow or wear. The other 26 sheets and the larger SVG reconstruction batch are outside this pass. Keep the previous samples as references.
 - 2026-10-16: Trailer mechs move along paths, started by triggers as the lead walks (`APRPathMover`). Fliers carry a sweeping searchlight and rovers a headlight. No walk or fly cycles yet.
 - 2026-10-21: UI follows Dispatch. Dialogue plays as film subtitles and moves on by itself after each line's reading time (or its audio); choices appear only when a line has them. A line with choices plays as a subtitle first; then the subtitle slides up, the choices appear below it, and their timer starts half a second later. Choices are drawn where their button is: one choice on the bottom button, two on left and right, three on left, top and right. Keyboard picks by order (1, 2, 3).
 - 2026-10-21: StoryFlow leaves the project. Scenes are written in Scrivener and imported straight from the `.scriv` folder into a new PhantomStory that runs dialogue itself. The StoryFlow-based plugin is kept, renamed PhantomStoryFlow, and not enabled. (Replaces the 2026-10-01 StoryFlow decisions; tracked in TASKS.md "Scrivener story pipeline".)
@@ -104,3 +106,15 @@ Settled. Don't reopen unless I ask.
   - Animations come from a curated library at `/Game/ProjectRunner/Animation/Library`, retargeted offline from Mixamo (wish list in `research/mixamo/`), owned packs and CC0 sources.
   - All of this is built and tested in `L_AnimTest`. G1, the trailer and the project's default maps don't change until Mike approves the swap.
   - The pitch lead changes from the UEFN Mannequin to UE5 Manny.
+- 2026-11-02: GASP is replaced by UE5 Manny for the player and cast (board RUN-148 to RUN-157). Changes from Mike:
+  - The player walks by default and runs while a button is held. This replaces "walks only" in the 2026-10-01 decision; jumping and traversal stay off.
+  - Idle, walk and jog clips come from the UE 5.8 Third Person template (`MM_Idle`, `MF_Unarmed_Walk_*`, `MF_Unarmed_Jog_*`, native to `SK_Mannequin`). The jog serves as the run. A true sprint comes later from Mixamo or a pack.
+  - In `L_AnimTest` the 11 cast meshes stand in a labelled row. Each loops ROM, idle, walk, then run in place. The three `_02` mechs play their ROMs.
+  - Cast meshes import before the corrective post-process rig (RUN-152) exists. Coat tails and collars stay at rest until it does.
+- 2026-11-02 (later): GASP is removed completely, and the template clips are dropped. Changes from Mike:
+  - Idle, walk and run are keyed in Blender on each character's ARP rig (`scripts/blender_arp/arp_loco.py`), one set per character, imported as `A_Locomotion_<Clip>_<Char>_01` on `SK_PR_Human`. This replaces the template-clip line above and the Mixamo-first library plan for locomotion.
+  - GASP's content folders go, Audio and MetaHumans included (they can come back later), and so do GASP-only plugins once checked. Nothing in ProjectRunner may reference them.
+  - The lead is `APRCharacter`: a cast mesh (Marcus for now) playing `BS_Locomotion_<Char>` by speed, with no AnimBP. This replaces the "until Mike approves the swap" lines of 2026-10-28: G1, the trailer and the walkers move with it.
+  - Background walkers use NPC meshes (NPC_Male, Guard, NPC_Female) and a Blender walk (replaces "GASP walk clips" in 2026-10-01). Marcus, Vhoori and Sin are never background characters. Each body walks on the clip keyed for its own rig, so male and female walkers run in separate lanes.
+  - Crouch stays: crouch idle and crouch walk are keyed per character, and the lead plays `BS_Crouch_<Char>` while crouched.
+  - Vex has no character yet; the female NPC stands in.
