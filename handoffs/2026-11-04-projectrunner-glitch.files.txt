@@ -1,0 +1,179 @@
+ProjectRunner glitch comparison file manifest
+Recorded 2026-11-04. Companion to 2026-11-04-projectrunner-glitch.md.
+
+Every path below is literal except $PROJ_DOCS, which means the local proj-docs checkout.
+Deliverables are currently untracked in PipelineSandbox. This is not a list to stage wholesale.
+Unrelated project work and generated caches, logs and temporary research files are excluded.
+
+ROUND 1 DELIVERABLES AND COPIED LCD DEPENDENCIES: 41 files
+These were added in the earlier pass and retained unchanged in round 2.
+C:/Prod/PipelineSandbox/Docs/glitch_review/README.md
+C:/Prod/PipelineSandbox/Docs/glitch_review/hall_start.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/sheet_display.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/sheet_transition.png
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/LCD/Materials/MI_LCD_07_GlitchNoise.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/LCD/Materials/M_LCD_Master.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/LCD/Textures/SM_Led_Glitch.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/LCD/Textures/Screen_123V_2.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/LCD/Textures/T_LCD_NagaGrid.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/LCD/Textures/T_Led_AD1.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/LCD/Textures/T_Led_AD3.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/LCD/Textures/T_Led_AD4.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/LCD/Textures/T_Led_mask.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/LCD/Textures/stiker.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/BP_GlitchScreenTrigger.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/BP_GlitchTransitionTrigger.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/L_GlitchLab.umap
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MF_ScreenBreak.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MF_ScreenGlitch.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_ScreenBroken_S1_Cracked.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_ScreenBroken_S2_InkBleed.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_ScreenBroken_S3_NoSignal.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_ScreenBroken_S4_CrackedSlip.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_ScreenGlitch_D1_Slip.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_ScreenGlitch_D2_Codec.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_ScreenGlitch_D3_Tape.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_ScreenGlitch_D4_Dropout.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_ScreenGlitch_D5_DyingPanel.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_ScreenGlitch_D6_Bitcrush.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_Trans_T1_BurstOut.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_Trans_T2_PowerOff.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_Trans_T3_Blocks.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_Trans_T4_Mosaic.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MI_Trans_T5_Scatter.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/MPC_Glitch.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/M_GlitchLab_Dark.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/M_LCD_Glitch.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/M_PP_Transition.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/M_ScreenBroken.uasset
+C:/Prod/PipelineSandbox/Unreal/Scripts/pr_build_glitch.py
+C:/Prod/PipelineSandbox/Unreal/Scripts/pr_build_glitch_lab.py
+
+ROUND 2 ADDITIONS: 107 files
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R1_PointScan_off.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R1_PointScan_off_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R1_PointScan_on.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R1_PointScan_on_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R2_LightLoss_off.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R2_LightLoss_off_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R2_LightLoss_on.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R2_LightLoss_on_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R3_FlashScale0.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R3_ReducedMotion_A.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R3_ReducedMotion_B.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R3_Trichroma_off.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R3_Trichroma_off_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R3_Trichroma_on.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R3_Trichroma_on_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R4_LogoEcho_off.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R4_LogoEcho_off_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R4_LogoEcho_on.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R4_LogoEcho_on_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R5_Drip_off.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R5_Drip_off_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R5_Drip_on.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R5_Drip_on_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R6_LongDrip_off.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R6_LongDrip_off_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R6_LongDrip_on.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/R6_LongDrip_on_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/README.md
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T6_Reconstruct_0.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T6_Reconstruct_0_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T6_Reconstruct_100.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T6_Reconstruct_100_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T6_Reconstruct_25.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T6_Reconstruct_25_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T6_Reconstruct_50.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T6_Reconstruct_50_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T6_Reconstruct_75.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T6_Reconstruct_75_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T7_ChannelExit_0.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T7_ChannelExit_0_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T7_ChannelExit_100.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T7_ChannelExit_100_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T7_ChannelExit_25.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T7_ChannelExit_25_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T7_ChannelExit_50.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T7_ChannelExit_50_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T7_ChannelExit_75.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T7_ChannelExit_75_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T8_MeltDown_0.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T8_MeltDown_0_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T8_MeltDown_100.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T8_MeltDown_100_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T8_MeltDown_25.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T8_MeltDown_25_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T8_MeltDown_50.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T8_MeltDown_50_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T8_MeltDown_75.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/T8_MeltDown_75_crop.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/build_lab.json
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/build_materials.json
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/endpoint_pixel_results.json
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/extra_pixel_results.json
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/hall_start.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/inset_T6_Reconstruct_0.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/inset_T6_Reconstruct_100.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/inset_T6_Reconstruct_50.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/inset_T7_ChannelExit_0.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/inset_T7_ChannelExit_100.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/inset_T7_ChannelExit_50.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/inset_T8_MeltDown_0.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/inset_T8_MeltDown_100.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/inset_T8_MeltDown_50.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/inset_clean.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/instance_shader_stats.json
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/preservation_results.json
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/preserved_before.json
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/reduced_T6_Reconstruct.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/reduced_T7_ChannelExit.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/reduced_T8_MeltDown.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/review.html
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/screen_trigger_results.json
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/sheet_display_R2.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/sheet_transition_R2.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/transition_clean.png
+C:/Prod/PipelineSandbox/Docs/glitch_review/round02/transition_trigger_results.json
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/L_GlitchLab_R2.umap
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/MI_Screen_R0_Clean.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/MI_Screen_R1_PointScan.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/MI_Screen_R2_LightLoss.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/MI_Screen_R3_Trichroma.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/MI_Screen_R4_LogoEcho.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/MI_Screen_R5_Drip.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/MI_Screen_R6_LongDrip.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/MI_Trans_T6_Reconstruct.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/MI_Trans_T7_ChannelExit.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/MI_Trans_T8_MeltDown.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/M_PP_ReferenceGlitch_R2.uasset
+C:/Prod/PipelineSandbox/Unreal/Content/ProjectRunner/VFX/Glitch/Round02/M_ScreenReferenceGlitch_R2.uasset
+C:/Prod/PipelineSandbox/Unreal/Scripts/glitch_r2/bridge.py
+C:/Prod/PipelineSandbox/Unreal/Scripts/glitch_r2/build_lab.py
+C:/Prod/PipelineSandbox/Unreal/Scripts/glitch_r2/build_materials.py
+C:/Prod/PipelineSandbox/Unreal/Scripts/glitch_r2/finalize_editor.py
+C:/Prod/PipelineSandbox/Unreal/Scripts/glitch_r2/inspect_editor.py
+C:/Prod/PipelineSandbox/Unreal/Scripts/glitch_r2/prepare_review.py
+C:/Prod/PipelineSandbox/Unreal/Scripts/glitch_r2/requirements-review.txt
+C:/Prod/PipelineSandbox/Unreal/Scripts/glitch_r2/verify.py
+C:/Prod/PipelineSandbox/Unreal/Scripts/glitch_r2/verify_extra.py
+
+DOCUMENTATION CHANGES FROM THE GLITCH WORK
+Added: $PROJ_DOCS/ProjectRunner/research/glitch-screen-effects.md
+Added: $PROJ_DOCS/ProjectRunner/research/glitch-game-references-v2.md
+Edited glitch checklist; other local edits coexist: $PROJ_DOCS/PipelineSandbox/TASKS.md
+
+FILES ADDED BY THE HANDOFF REQUEST
+Added: $PROJ_DOCS/handoffs/2026-11-04-projectrunner-glitch.md
+Added: $PROJ_DOCS/handoffs/2026-11-04-projectrunner-glitch.files.txt
+
+OBSERVED SHARED CONFIGURATION CHANGES, OWNERSHIP NOT ESTABLISHED
+These are modified against HEAD. They were not edited by the handoff request.
+C:/Prod/PipelineSandbox/Unreal/Config/DefaultEditor.ini
+C:/Prod/PipelineSandbox/Unreal/Config/DefaultEngine.ini
+C:/Prod/PipelineSandbox/Unreal/PipelineSandbox.uproject
+
+EXISTING SUPPORTING FILES, NOT ATTRIBUTED AS GLITCH EDITS
+C:/Prod/PipelineSandbox/Unreal/Scripts/ps_editor.py
+$PROJ_DOCS/PipelineSandbox/BRIEF.md
+$PROJ_DOCS/ProjectRunner/BRIEF.md

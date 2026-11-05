@@ -35,3 +35,6 @@ A test project for now, with no set pipeline. Mike tries things out here.
 - 2026-10-26: PipelineSandbox takes MCP port 8005 from the archived Sandbox. ModelContextProtocol and AllToolsets are on.
 - 2026-10-26: The old `C:\Prod\Sandbox` is archived at `C:\Prod\_archive\Sandbox`, untouched.
 - 2026-10-27: For the environment texture library, finish major modules first and defer small or secondary components to a later pass. Preserve all completed sets; keep 2K output and DirectX Y-minus normals.
+- 2026-11-02: Deliver the environment texture library as smaller individual numbered batch ZIPs. Mike does not want one consolidated ZIP.
+- 2026-11-04: Mike chose this project for the ProjectRunner glitch test set, because the Runner editor was in use. Copies of Runner's LCD assets and the new looks live under `Content/ProjectRunner`. Approved looks move to Runner, which is an exception to "nothing feeds back". Notes: `Docs/glitch_review/README.md`.
+- 2026-11-02: Remaining assets require only 2048 x 2048 RGB sRGB BaseColor PNGs for later trim sheets or specific models. Omit new Normal, Roughness and AO maps. Preserve completed PBR sets. Keep major modules first and small components deferred. Keep base colors free of baked lighting and shadows wherever possible.

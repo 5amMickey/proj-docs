@@ -1,0 +1,428 @@
+{
+  "date": "2026-11-05",
+  "passed": true,
+  "cause": "Main editor still used the November 2 native module. Published animation assets alone did not change the old player code.",
+  "main_build_log": "C:\\Prod\\ProjectRunner\\Unreal\\Saved\\MarcusPlayableBuild\\main_editor_build_20261105.log",
+  "before": {
+    "project": "../../../../../../Users/GameDevPC0403/Documents/Unreal Projects/ProjectRunner/",
+    "editor_world": "/Game/ProjectRunner/Animation/MarcusPlayable_01/L_MarcusPlayable.L_MarcusPlayable",
+    "native_anim_class_available": false,
+    "dirty_content": [],
+    "dirty_maps": [],
+    "playable_mesh": "not present in loaded native class",
+    "locomotion_anim_class": "not present in loaded native class",
+    "walk_speed": "111.0",
+    "run_speed": "239.0",
+    "worlds": []
+  },
+  "live_player": {
+    "world": "/Game/ProjectRunner/Animation/MarcusPlayable_01/UEDPIE_0_L_MarcusPlayable.L_MarcusPlayable",
+    "character": "/Game/ProjectRunner/Animation/MarcusPlayable_01/UEDPIE_0_L_MarcusPlayable.L_MarcusPlayable:PersistentLevel.PRCharacter_0",
+    "mesh": "/Game/ProjectRunner/Animation/MarcusPlayable_01/SKM_Marcus.SKM_Marcus",
+    "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+    "anim_instance_class": "/Game/ProjectRunner/Animation/MarcusPlayable_01/ABP_Marcus.ABP_Marcus_C",
+    "walk_speed": 146.10000610351562,
+    "run_speed": 371.0,
+    "crouch_speed": 88.0,
+    "foot_samples": 458,
+    "blendspaces": {
+      "BS_Marcus_Standing": [
+        "/Game/ProjectRunner/Animation/MarcusPlayable_01/A_Marcus_Idle.A_Marcus_Idle",
+        "/Game/ProjectRunner/Animation/MarcusPlayable_01/A_Marcus_Walk.A_Marcus_Walk",
+        "/Game/ProjectRunner/Animation/MarcusPlayable_01/A_Marcus_Run.A_Marcus_Run"
+      ],
+      "BS_Marcus_Crouching": [
+        "/Game/ProjectRunner/Animation/MarcusPlayable_01/A_Marcus_CrouchIdle.A_Marcus_CrouchIdle",
+        "/Game/ProjectRunner/Animation/MarcusPlayable_01/A_Marcus_Crouch.A_Marcus_Crouch"
+      ]
+    },
+    "checks": {
+      "mesh": true,
+      "animbp": true,
+      "walk_speed": true,
+      "run_speed": true,
+      "crouch_speed": true,
+      "contact_profile": true,
+      "reviewed_clips": true
+    },
+    "passed": true
+  },
+  "runtime_checks": [
+    {
+      "name": "idle_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "idle_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "idle_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walk_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walk_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walk_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walk_speed",
+      "passed": true,
+      "detail": "146.100006"
+    },
+    {
+      "name": "run_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "run_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "run_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "run_speed",
+      "passed": true,
+      "detail": "371.0"
+    },
+    {
+      "name": "stop_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stop_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stop_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reverse_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reverse_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reverse_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "faces_reverse",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_idle_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_idle_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_idle_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "held_crouch_idle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_walk_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_walk_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_walk_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_walk_speed",
+      "passed": true,
+      "detail": "88.0"
+    },
+    {
+      "name": "crouch_stop_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_stop_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_stop_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "held_crouch_idle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stand_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stand_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stand_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stood_up",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_zone_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_zone_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_zone_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_zone_entered",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_zone_exited",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "runtime_frames": 276,
+  "contact_checks": {
+    "runtime_scenario_passed": true,
+    "no_floor_penetration_over_2mm": true,
+    "grounded_motion_within_3mm": true,
+    "run_retains_flight": true,
+    "crouch_garment_curves_active": true
+  },
+  "contact_summary": {
+    "idle": {
+      "samples": 10,
+      "minimum_sole_cm": 0.16500557053646298,
+      "maximum_lowest_sole_cm": 0.16500897917431945,
+      "settled_lowest_sole_range_cm": [
+        0.16500557053646298,
+        0.16500854413271587
+      ],
+      "settled_speed_range_cm_s": [
+        0,
+        0
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "walk": {
+      "samples": 25,
+      "minimum_sole_cm": 0.16374734721732054,
+      "maximum_lowest_sole_cm": 0.16529577866718062,
+      "settled_lowest_sole_range_cm": [
+        0.16374734721732054,
+        0.16529577866718062
+      ],
+      "settled_speed_range_cm_s": [
+        146.10000610351477,
+        146.10000610351562
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "run": {
+      "samples": 20,
+      "minimum_sole_cm": 0.16315213190234523,
+      "maximum_lowest_sole_cm": 13.022311999755573,
+      "settled_lowest_sole_range_cm": [
+        0.16315213190234523,
+        13.022311999755573
+      ],
+      "settled_speed_range_cm_s": [
+        371,
+        371
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "stop": {
+      "samples": 12,
+      "minimum_sole_cm": 0.1650071584158779,
+      "maximum_lowest_sole_cm": 0.16636741076118386,
+      "settled_lowest_sole_range_cm": [
+        0.1650071584158779,
+        0.16500890993683193
+      ],
+      "settled_speed_range_cm_s": [
+        0,
+        0
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "reverse": {
+      "samples": 20,
+      "minimum_sole_cm": 0.16464975088745604,
+      "maximum_lowest_sole_cm": 0.16529616571870953,
+      "settled_lowest_sole_range_cm": [
+        0.16464975088745604,
+        0.16529616571870953
+      ],
+      "settled_speed_range_cm_s": [
+        146.10000610351562,
+        146.10000610351562
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "crouch_idle": {
+      "samples": 12,
+      "minimum_sole_cm": 0.1646308852736179,
+      "maximum_lowest_sole_cm": 0.16529481883635402,
+      "settled_lowest_sole_range_cm": [
+        0.1646308852736179,
+        0.1646308852736179
+      ],
+      "settled_speed_range_cm_s": [
+        0,
+        0
+      ],
+      "settled_crouch_curve_sum_range": [
+        1,
+        1
+      ]
+    },
+    "crouch_walk": {
+      "samples": 20,
+      "minimum_sole_cm": 0.1646240725729876,
+      "maximum_lowest_sole_cm": 0.1661969644402752,
+      "settled_lowest_sole_range_cm": [
+        0.1646240725729876,
+        0.1661969644402752
+      ],
+      "settled_speed_range_cm_s": [
+        88,
+        88
+      ],
+      "settled_crouch_curve_sum_range": [
+        0.9999964237213135,
+        1
+      ]
+    },
+    "crouch_stop": {
+      "samples": 12,
+      "minimum_sole_cm": 0.16462563581453005,
+      "maximum_lowest_sole_cm": 0.1646308852736179,
+      "settled_lowest_sole_range_cm": [
+        0.1646308852736179,
+        0.1646308852736179
+      ],
+      "settled_speed_range_cm_s": [
+        0,
+        0
+      ],
+      "settled_crouch_curve_sum_range": [
+        1,
+        1
+      ]
+    },
+    "stand": {
+      "samples": 12,
+      "minimum_sole_cm": 0.1646308852736179,
+      "maximum_lowest_sole_cm": 0.16600860032850792,
+      "settled_lowest_sole_range_cm": [
+        0.16600634622965638,
+        0.16600860032850792
+      ],
+      "settled_speed_range_cm_s": [
+        0,
+        0
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "crouch_zone": {
+      "samples": 133,
+      "minimum_sole_cm": 0.014624140176318877,
+      "maximum_lowest_sole_cm": 0.01668933049318777,
+      "settled_lowest_sole_range_cm": [
+        0.014624140176318877,
+        0.01668933049318777
+      ],
+      "settled_speed_range_cm_s": [
+        88,
+        146.10000610352927
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        1
+      ]
+    }
+  },
+  "editor_pid": 17568
+}

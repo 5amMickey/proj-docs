@@ -1,6 +1,6 @@
 # ProjectRunner
 
-Domain: games   Status: building   Updated: 2026-11-02
+Domain: games   Status: building   Updated: 2026-11-03
 
 ## What and who
 
@@ -89,6 +89,10 @@ Settled. Don't reopen unless I ask.
 - 2026-10-16: Signs. Pack signs that carry text stay as they are for now. The original no-text rule for signs we make is superseded for signage tests by the 2026-11-02 decision below.
 - 2026-11-02: Signage tests may use readable Japanese, English, or both. Correct malformed lettering in the reference sheets. Reconstruct the designs in `Graphics/signage/images` as clean, flat SVG shapes for UV texture atlases, neon signs, and projection screens. Deliver complete signs and separate reusable components, with portable outlined lettering and glow-free PNG exports. Wear and glow come from UE materials. Review three samples before reconstructing the full collection. This allows text signage tests; it does not change the restriction on AI-generated images in pitch or application material.
 - 2026-11-02 (later): Mike changed the signage approach after reviewing the SVG samples. Separate the designs from the three sheets shown in chat into individual raster images: `Japanese Market Signage Sticker Sheet.png`, `Neon Animal Emblem Sticker Board.png`, and `Cyberpunk Neon Signage Asset Sheet.png`. Recreate the neon-sheet signs as flat artwork without glow or wear. The other 26 sheets and the larger SVG reconstruction batch are outside this pass. Keep the previous samples as references.
+- 2026-11-02: Mike approved scripted cropping and pixel cleanup for this pass, including background removal and individual redraws where needed. Keep source crops beside the cleaned raster artwork.
+- 2026-11-03: Mike approved the individual raster results and extended the same crop, cleanup and redraw workflow to the other 26 signage sheets. Save this batch separately with transparent PNGs, alpha masks, original crops and a comparison gallery. Keep artwork flat, with no glow or wear.
+- 2026-11-03, library reconstruction: Rebuild both raster batches as PNGs and masks, with 4K masters and 2K game exports. Merge identical signs into one library entry while retaining every source reference. Keep visual variants separate. The earlier flat artwork, lettering repair and no glow or wear requirements still apply.
+- 2026-11-03, source cleanup: Mike approved the boot and fish revisions rebuilt from the original source crops, then extended that approach to the whole signage library. Preserve original silhouettes, small markings and cutouts. Keep corrected lettering and approved replacement art. Deliver flat 4K and 2K PNGs with matching masks, retain previous versions and source links, and open gallery artwork in new tabs.
 - 2026-10-16: Trailer mechs move along paths, started by triggers as the lead walks (`APRPathMover`). Fliers carry a sweeping searchlight and rovers a headlight. No walk or fly cycles yet.
 - 2026-10-21: UI follows Dispatch. Dialogue plays as film subtitles and moves on by itself after each line's reading time (or its audio); choices appear only when a line has them. A line with choices plays as a subtitle first; then the subtitle slides up, the choices appear below it, and their timer starts half a second later. Choices are drawn where their button is: one choice on the bottom button, two on left and right, three on left, top and right. Keyboard picks by order (1, 2, 3).
 - 2026-10-21: StoryFlow leaves the project. Scenes are written in Scrivener and imported straight from the `.scriv` folder into a new PhantomStory that runs dialogue itself. The StoryFlow-based plugin is kept, renamed PhantomStoryFlow, and not enabled. (Replaces the 2026-10-01 StoryFlow decisions; tracked in TASKS.md "Scrivener story pipeline".)
@@ -118,3 +122,13 @@ Settled. Don't reopen unless I ask.
   - Background walkers use NPC meshes (NPC_Male, Guard, NPC_Female) and a Blender walk (replaces "GASP walk clips" in 2026-10-01). Marcus, Vhoori and Sin are never background characters. Each body walks on the clip keyed for its own rig, so male and female walkers run in separate lanes.
   - Crouch stays: crouch idle and crouch walk are keyed per character, and the lead plays `BS_Crouch_<Char>` while crouched.
   - Vex has no character yet; the female NPC stands in.
+
+- 2026-11-03, vector test: Mike authorized tracing and simplifying the approved 4K boot SGN_0741 and fish SGN_0054 PNGs. Deliver one combined standard SVG per sign, preserving colors, small details and transparency. Separate elements and mask SVGs are not required for this test. This replaces the earlier no-tracing restriction for these two samples only.
+
+- 2026-11-03, vector refinement: Mike requested fewer nodes and smoother curves for the boot and fish. Reconstruct simple elements such as hearts and frames geometrically, while preserving the approved silhouettes and small details. Keep combined SVG artwork and preserve the first vector test.
+
+- 2026-11-03, full vector library: Mike approved the smoother boot and fish SVGs in vector_test_02 and requested the same treatment for the other library images. Deliver one combined standard SVG per unique sign, retaining colors, source references, corrected lettering, distinctive silhouettes and small details. Reconstruct matching simple geometry and use fewer smooth curve nodes. Preserve the raster library and both vector tests.
+
+- 2026-11-04: Mike approved moving the revised Marcus animations into gameplay through an AnimBP. The first integration uses the reviewed short-coat mesh, walk, jog, cautious crouch, standing idle and held crouch-walk idle. Marcus uses a separate verified skeleton during this prototype. This replaces the no-AnimBP rule for the player only. The shared cast rig direction remains in place pending per-body validation. Keep the current UE session undisturbed; build and test in an isolated project, then rebuild and restart the main editor when that session ends.
+
+- 2026-11-05: Mike approved rebuilding and reopening the main editor, then requested faster crouch movement, mirrored locomotion to keep the same side presented to the camera in both directions, and the approved intermediate-height D pose as the stopped crouch idle. The initial speed adjustment is 20%, with playback increased to match. Revision02 keeps the earlier review and playable assets available.

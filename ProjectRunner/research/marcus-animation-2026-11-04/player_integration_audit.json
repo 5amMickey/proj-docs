@@ -1,0 +1,132 @@
+{
+  "player": {
+    "class": "/Script/RunnerSandbox_01.PRCharacter",
+    "mesh": "/Game/ProjectRunner/Characters/Marcus/SKM_Cast_Marcus_coat_ARP_08.SKM_Cast_Marcus_coat_ARP_08",
+    "skeleton": "/Game/ProjectRunner/Characters/Shared/SK_PR_Human.SK_PR_Human",
+    "animation_mode": "<AnimationMode.ANIMATION_SINGLE_NODE: 1>",
+    "anim_class": "None",
+    "mesh_offset": "<Struct 'Vector' (0x0000022B9F0FDD80) {x: 0.000000, y: 0.000000, z: -95.000000}>",
+    "walk_speed": 111.0,
+    "run_speed": 239.0,
+    "crouch_speed": 60.0,
+    "crouched_half_height": 65.0
+  },
+  "review": {
+    "Idle": {
+      "mesh": "/Game/ProjectRunner/Animation/MarcusTest_06/Mesh/SKM_Marcus_Short_06.SKM_Marcus_Short_06",
+      "mesh_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "clip": "/Game/ProjectRunner/Animation/MarcusTest_06/Review/A_Marcus_Idle_Test06.A_Marcus_Idle_Test06",
+      "clip_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "duration": 8.333333015441895,
+      "rate_scale": 1.0,
+      "review_play_rate": 1,
+      "enable_root_motion": false,
+      "force_root_lock": true
+    },
+    "Walk": {
+      "mesh": "/Game/ProjectRunner/Animation/MarcusTest_08/Mesh/SKM_Marcus_Short_08.SKM_Marcus_Short_08",
+      "mesh_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "clip": "/Game/ProjectRunner/Animation/MarcusTest_08/Review/A_Marcus_Walk_Test08.A_Marcus_Walk_Test08",
+      "clip_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "duration": 0.949999988079071,
+      "rate_scale": 0.8500000238418579,
+      "review_play_rate": 0.8500000238418579,
+      "enable_root_motion": false,
+      "force_root_lock": true
+    },
+    "Run": {
+      "mesh": "/Game/ProjectRunner/Animation/MarcusTest_06/Mesh/SKM_Marcus_Short_06.SKM_Marcus_Short_06",
+      "mesh_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "clip": "/Game/ProjectRunner/Animation/MarcusTest_06/Review/A_Marcus_Run_Test06.A_Marcus_Run_Test06",
+      "clip_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "duration": 0.699999988079071,
+      "rate_scale": 0.8500000238418579,
+      "review_play_rate": 0.8500000238418579,
+      "enable_root_motion": false,
+      "force_root_lock": true
+    },
+    "Crouch": {
+      "mesh": "/Game/ProjectRunner/Animation/MarcusTest_06/Mesh/SKM_Marcus_Short_06.SKM_Marcus_Short_06",
+      "mesh_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "clip": "/Game/ProjectRunner/Animation/MarcusTest_06/Review/A_Marcus_Crouch_Test06.A_Marcus_Crouch_Test06",
+      "clip_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "duration": 1.0333333015441895,
+      "rate_scale": 0.6499999761581421,
+      "review_play_rate": 0.6499999761581421,
+      "enable_root_motion": false,
+      "force_root_lock": true
+    },
+    "CrouchIdle": {
+      "mesh": "/Game/ProjectRunner/Animation/MarcusTest_06/Mesh/SKM_Marcus_Short_06.SKM_Marcus_Short_06",
+      "mesh_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "clip": "/Game/ProjectRunner/Animation/MarcusTest_09/Review/A_Marcus_CrouchIdle_Test09.A_Marcus_CrouchIdle_Test09",
+      "clip_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "duration": 1.0333333015441895,
+      "rate_scale": 1.0,
+      "review_play_rate": 1,
+      "enable_root_motion": false,
+      "force_root_lock": true
+    },
+    "ReferenceHandsDown": {
+      "mesh": "/Game/ProjectRunner/Animation/MarcusTest_06/Mesh/SKM_Marcus_Short_06.SKM_Marcus_Short_06",
+      "mesh_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "clip": "/Game/ProjectRunner/Animation/MarcusTest_12/Review/A_Marcus_ReferenceHandsDown_Test12.A_Marcus_ReferenceHandsDown_Test12",
+      "clip_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "duration": 0.01666666753590107,
+      "rate_scale": 1.0,
+      "review_play_rate": 1,
+      "enable_root_motion": false,
+      "force_root_lock": true
+    },
+    "ReferenceKneel": {
+      "mesh": "/Game/ProjectRunner/Animation/MarcusTest_06/Mesh/SKM_Marcus_Short_06.SKM_Marcus_Short_06",
+      "mesh_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "clip": "/Game/ProjectRunner/Animation/MarcusTest_09/Review/A_Marcus_ReferenceKneel_Test09.A_Marcus_ReferenceKneel_Test09",
+      "clip_skeleton": "/Game/ProjectRunner/Animation/MarcusTest_01/Mesh/SKM_Marcus_Short_01_Skeleton.SKM_Marcus_Short_01_Skeleton",
+      "duration": 0.01666666753590107,
+      "rate_scale": 1.0,
+      "review_play_rate": 1,
+      "enable_root_motion": false,
+      "force_root_lock": true
+    }
+  },
+  "existing_blendspaces": {
+    "BS_Locomotion_Marcus": {
+      "path": "/Game/ProjectRunner/Animation/Library/Locomotion/BS_Locomotion_Marcus.BS_Locomotion_Marcus",
+      "skeleton": "/Game/ProjectRunner/Characters/Shared/SK_PR_Human.SK_PR_Human",
+      "samples": [
+        {
+          "clip": "<Object '/Game/ProjectRunner/Animation/Library/Locomotion/A_Locomotion_Idle_Marcus_01.A_Locomotion_Idle_Marcus_01' (0x0000022A1EC5D200) Class 'AnimSequence'>",
+          "position": "<Struct 'Vector' (0x0000022C448179C8) {x: 0.000000, y: 0.000000, z: 0.000000}>",
+          "rate": 1.0
+        },
+        {
+          "clip": "<Object '/Game/ProjectRunner/Animation/Library/Locomotion/A_Locomotion_Walk_Marcus_01.A_Locomotion_Walk_Marcus_01' (0x0000022A1EC54D00) Class 'AnimSequence'>",
+          "position": "<Struct 'Vector' (0x0000022C44814D08) {x: 111.000000, y: 0.000000, z: 0.000000}>",
+          "rate": 1.0
+        },
+        {
+          "clip": "<Object '/Game/ProjectRunner/Animation/Library/Locomotion/A_Locomotion_Run_Marcus_01.A_Locomotion_Run_Marcus_01' (0x0000022A1EC5BD00) Class 'AnimSequence'>",
+          "position": "<Struct 'Vector' (0x0000022C44817CC8) {x: 239.000000, y: 0.000000, z: 0.000000}>",
+          "rate": 1.0
+        }
+      ]
+    },
+    "BS_Crouch_Marcus": {
+      "path": "/Game/ProjectRunner/Animation/Library/Locomotion/BS_Crouch_Marcus.BS_Crouch_Marcus",
+      "skeleton": "/Game/ProjectRunner/Characters/Shared/SK_PR_Human.SK_PR_Human",
+      "samples": [
+        {
+          "clip": "<Object '/Game/ProjectRunner/Animation/Library/Locomotion/A_Locomotion_CrouchIdle_Marcus_01.A_Locomotion_CrouchIdle_Marcus_01' (0x0000022A1B42D200) Class 'AnimSequence'>",
+          "position": "<Struct 'Vector' (0x0000022C44812008) {x: 0.000000, y: 0.000000, z: 0.000000}>",
+          "rate": 1.0
+        },
+        {
+          "clip": "<Object '/Game/ProjectRunner/Animation/Library/Locomotion/A_Locomotion_CrouchWalk_Marcus_01.A_Locomotion_CrouchWalk_Marcus_01' (0x0000022A1B42E000) Class 'AnimSequence'>",
+          "position": "<Struct 'Vector' (0x0000022C44810688) {x: 60.400000, y: 0.000000, z: 0.000000}>",
+          "rate": 1.0
+        }
+      ]
+    }
+  }
+}

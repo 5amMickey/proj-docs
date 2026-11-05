@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dialogue demo</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.scene { flex: 1 1 auto; min-height: 0; position: relative; display: flex; align-items: flex-end; justify-content: center; gap: 70px; padding-bottom: 30px; }
+.figure { width: 56px; height: 170px; background: #1b212c; border: 1px solid #3a4557; display: flex; align-items: flex-end; justify-content: center; font-size: 11px; color: var(--muted); padding-bottom: 6px; text-align: center; }
+.figure.marcus { background: #0d3a40; }
+.figure.vhoori { background: #3a1730; }
+.figure.hacked { outline: 2px solid var(--good); }
+#quick { position: absolute; left: 20px; top: 16px; width: 240px; height: 240px; }
+#quick[hidden] { display: none; }
+#quickLine { position: absolute; left: 20px; top: 262px; width: 240px; text-align: center; color: var(--amber); font-size: 13px; }
+.talk { padding: 10px 20px 18px; display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 1.1vw, 22px); min-height: clamp(280px, 25vw, 460px); }
+.talk .speaker { color: var(--cyan); font-size: clamp(18px, 1.5vw, 28px); }
+.talk .text { max-width: min(1200px, 92%); text-align: center; font-size: clamp(24px, 2.2vw, 42px); line-height: 1.35; min-height: 2.8em; }
+</style>
+</head>
+<body>
+<div class="app">
+  <main class="stage">
+    <div class="scene">
+      <div class="figure" id="guard1">Guard</div>
+      <div class="figure marcus">Marcus</div>
+      <div class="figure vhoori">Vhoori</div>
+      <div class="figure" id="guard2">Guard</div>
+      <div id="quick" hidden></div>
+      <div id="quickLine"></div>
+    </div>
+    <div class="talk">
+      <div class="speaker" id="speaker"></div>
+      <div class="text" id="text"></div>
+      <div class="timebar" id="timebar" hidden><div></div></div>
+      <div class="choices" id="choices"></div>
+    </div>
+    <div id="overlay"><div class="card"><p>Connect your controller and press a button on it, then start.</p><button id="start">Start</button></div></div>
+  </main>
+  <aside>
+    <h1>Dialogue demo</h1>
+    <p class="goal">Goal: can you keep answering on X, Y and B while a quick hack runs from the A option? The lines are placeholders, not story.</p>
+    <div class="status" id="padStatus"></div>
+    <h2>Setup</h2>
+    <label class="field">Specialty
+      <select id="spec" data-setting="spec">
+        <option>Netrunning</option><option>Tech</option><option>Enforcer</option>
+      </select>
+    </label>
+    <div id="sliders"></div>
+    <button class="reset" id="restart">Restart scene</button>
+    <button class="reset" id="defaults">Reset settings</button>
+    <h2>This scene</h2>
+    <table><tbody id="log"><tr><td>Nothing chosen yet</td><td></td></tr></tbody></table>
+    <h2>Controls</h2>
+    <p class="help">Controller: X, Y and B to answer, A for the spec option, d-pad for the quick hack. Keyboard: 1, 2, 3 and 4, with WASD for the quick hack.</p>
+    <p class="help" style="margin-top:10px"><a href="index.html">All demos</a></p>
+  </aside>
+</div>
+<script src="../ring-hack-prototype/hack-core.js"></script>
+<script src="demo-core.js"></script>
+<script src="shared.js"></script>
+<script>
+"use strict";
+const { $ } = Demo;
+const settings = { spec: "Netrunning", choiceSeconds: 8, hackSeconds: 8, hackArrows: 4 };
+const SPEC = {
+  Netrunning: { label: "Hack the guards' guns", kind: "hack" },
+  Tech: { label: "Loosen the chair's restraint", flag: "techOption" },
+  Enforcer: { label: "Test the chair's strap", flag: "enforcerOption" },
+};
+
+function nodes() {
+  const t = settings.choiceSeconds;
+  return {
+    open: { speaker: "Vhoori", text: "(Placeholder) You came a long way to sit in that chair.", seconds: 2.5, next: "first" },
+    first: { speaker: "Vhoori", text: "(Placeholder) Who sent you?", seconds: t, defaultChoice: 1, spec: SPEC,
+      choices: [{ label: "Lie", next: "second", flag: "lied" }, { label: "Say nothing", next: "second", flag: "silent" }, { label: "Tell the truth", next: "second", flag: "truth" }] },
+    second: { speaker: "Vhoori", text: "(Placeholder) And what do you think happens now?", seconds: t, defaultChoice: 1, spec: SPEC,
+      choices: [{ label: "Stall", next: "third", flag: "stalled" }, { label: "Threaten", next: "third", flag: "threatened" }, { label: "Bargain", next: "third", flag: "bargained" }] },
+    third: { speaker: "Vhoori", text: "(Placeholder) Last chance.", seconds: t, defaultChoice: 0, spec: SPEC,
+      choices: [{ label: "Beg", next: "end", flag: "begged" }, { label: "Spit", next: "end", flag: "spat" }, { label: "Smile", next: "end", flag: "smiled" }] },
+    end: { speaker: "", text: "The chair fight would start here.", seconds: 2.5, next: null },
+  };
+}
+
+const widget = Demo.createRingWidget($("quick"));
+let d = null;
+let running = false;
+let drawnKey = null;
+const log = [];
+
+function newScene() {
+  d = DemoCore.createDialogue({ nodes: nodes(), start: "open", spec: settings.spec });
+  $("quick").hidden = true;
+  $("quickLine").textContent = "";
+  widget.stop();
+  log.length = 0;
+  drawnKey = null;
+  $("log").innerHTML = "<tr><td>Nothing chosen yet</td><td></td></tr>";
+  ["guard1", "guard2"].forEach((id) => $(id).classList.remove("hacked"));
+}
+
+function addLog(a, b) {
+  log.push(`<tr><td>${a}</td><td>${b || ""}</td></tr>`);
+  $("log").innerHTML = log.join("");
+}
+
+function startQuickHack() {
+  $("quick").hidden = false;
+  $("quickLine").textContent = "Quick hack: use the d-pad. The talk carries on.";
+  widget.start({ rings: 1, search: false, autoFit: true, arrows: settings.hackArrows - 1, timerSeconds: settings.hackSeconds, lockoutAfter: 1, lockdown: false, gapDegrees: 56 });
+}
+
+function endQuickHack(success) {
+  d.hackFinished(success);
+  widget.stop();
+  $("quick").hidden = true;
+  $("quickLine").textContent = success ? "The guards' guns are locked." : "The hack failed. The talk carries on.";
+  addLog("Quick hack", success ? "worked" : "failed");
+  if (success) ["guard1", "guard2"].forEach((id) => $(id).classList.add("hacked"));
+  Demo.beep(success ? 1320 : 110, 0.2);
+}
+
+Demo.bindPanel(settings, [
+  ["choiceSeconds", "Choice timer", 3, 20, 1, " s"],
+  ["hackSeconds", "Quick hack timer", 3, 20, 1, " s"],
+  ["hackArrows", "Quick hack arrows", 2, 7, 1, ""],
+], [], () => { if (running) newScene(); }, "demoDialogue");
+
+Demo.startOverlay(() => { running = true; newScene(); });
+$("restart").addEventListener("click", () => { newScene(); $("restart").blur(); });
+
+Demo.loop((dt, input) => {
+  if (!running) return;
+  const press = Object.assign({}, input.press);
+  // During a quick hack, A and the face buttons stay with the talk and the arrows stay with the hack.
+  for (const e of d.update(dt, press)) {
+    if (e.type === "specStarted") {
+      const spec = SPEC[settings.spec];
+      addLog(`Spec option: ${e.label}`);
+      if (spec.kind === "hack") startQuickHack();
+      else {
+        d.state.hackLive = false;
+        d.state.flags[spec.flag] = true;
+        $("quickLine").textContent = `${e.label}: a line would read this flag.`;
+      }
+    }
+    if (e.type === "chose") addLog(e.label, e.timedOut ? "timed out" : "");
+    if (e.type === "end") addLog("Scene over");
+  }
+
+  if (d.state.hackLive && widget.hack) {
+    const hackInput = { press: { up: press.up, down: press.down, left: press.left, right: press.right }, rotate: 0, targetAngle: null };
+    for (const e of widget.update(dt, hackInput)) {
+      if (e.type === "ringSolved") endQuickHack(true);
+      if (e.type === "lockout") endQuickHack(false);
+    }
+  }
+
+  const n = d.node();
+  const opts = d.options();
+  const key = d.state.ended ? "ended" : `${d.state.node}:${opts.map((o) => o.label).join()}:${Demo.label("a")}`;
+  if (key !== drawnKey) {
+    drawnKey = key;
+    $("speaker").textContent = n ? n.speaker : "";
+    $("text").textContent = n ? n.text : "Scene over. Restart from the panel.";
+    $("choices").innerHTML = Demo.choicesHtml(opts);
+  }
+  const timebar = $("timebar");
+  const timed = n && n.choices && n.seconds;
+  timebar.hidden = !timed;
+  if (timed) {
+    timebar.classList.toggle("paused", d.timerPaused());
+    timebar.firstChild.style.width = `${Math.max(0, d.state.timeLeft / settings.choiceSeconds) * 100}%`;
+  }
+});
+</script>
+</body>
+</html>

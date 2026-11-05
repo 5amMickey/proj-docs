@@ -1,0 +1,722 @@
+{
+  "passed": true,
+  "engine": "UE 5.8.4",
+  "runtime_checks": [
+    {
+      "name": "idle_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "idle_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "idle_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walk_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walk_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walk_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "walk_speed",
+      "passed": true,
+      "detail": "146.100006"
+    },
+    {
+      "name": "run_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "run_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "run_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "run_speed",
+      "passed": true,
+      "detail": "371.0"
+    },
+    {
+      "name": "stop_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stop_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stop_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reverse_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reverse_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "reverse_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "faces_reverse",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_idle_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_idle_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_idle_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "held_crouch_idle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_walk_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_walk_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_walk_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_walk_speed",
+      "passed": true,
+      "detail": "88.0"
+    },
+    {
+      "name": "crouch_stop_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_stop_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_stop_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "held_crouch_idle",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stand_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stand_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stand_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "stood_up",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_zone_animbp",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_zone_state",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_zone_velocity",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_zone_entered",
+      "passed": true,
+      "detail": ""
+    },
+    {
+      "name": "crouch_zone_exited",
+      "passed": true,
+      "detail": ""
+    }
+  ],
+  "runtime_frames": 268,
+  "contact_checks": {
+    "runtime_scenario_passed": true,
+    "no_floor_penetration_over_2mm": true,
+    "grounded_motion_within_3mm": true,
+    "run_retains_flight": true,
+    "crouch_garment_curves_active": true
+  },
+  "contacts": {
+    "idle": {
+      "samples": 12,
+      "minimum_sole_cm": 0.16500707009341836,
+      "maximum_lowest_sole_cm": 0.16500897601336872,
+      "settled_lowest_sole_range_cm": [
+        0.16500707009341836,
+        0.16500897601336872
+      ],
+      "settled_speed_range_cm_s": [
+        0,
+        0
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "walk": {
+      "samples": 25,
+      "minimum_sole_cm": 0.1611332934229992,
+      "maximum_lowest_sole_cm": 0.16529744167710447,
+      "settled_lowest_sole_range_cm": [
+        0.1611332934229992,
+        0.16529744167710447
+      ],
+      "settled_speed_range_cm_s": [
+        146.10000610351562,
+        146.10000610351562
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "run": {
+      "samples": 20,
+      "minimum_sole_cm": 0.16230885015029095,
+      "maximum_lowest_sole_cm": 11.004817809197634,
+      "settled_lowest_sole_range_cm": [
+        0.16230885015029095,
+        11.004817809197634
+      ],
+      "settled_speed_range_cm_s": [
+        371,
+        371
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "stop": {
+      "samples": 12,
+      "minimum_sole_cm": 0.16500697215341723,
+      "maximum_lowest_sole_cm": 0.16508611577669755,
+      "settled_lowest_sole_range_cm": [
+        0.16500727755252922,
+        0.16500947720699255
+      ],
+      "settled_speed_range_cm_s": [
+        0,
+        0
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "reverse": {
+      "samples": 20,
+      "minimum_sole_cm": 0.16344003589754053,
+      "maximum_lowest_sole_cm": 0.16529531021093694,
+      "settled_lowest_sole_range_cm": [
+        0.16344003589754053,
+        0.16529531021093694
+      ],
+      "settled_speed_range_cm_s": [
+        146.10000610351562,
+        146.10000610351562
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "crouch_idle": {
+      "samples": 12,
+      "minimum_sole_cm": 0.16450504824430318,
+      "maximum_lowest_sole_cm": 0.16476403007901938,
+      "settled_lowest_sole_range_cm": [
+        0.1646308852736179,
+        0.1646308852736179
+      ],
+      "settled_speed_range_cm_s": [
+        0,
+        0
+      ],
+      "settled_crouch_curve_sum_range": [
+        1,
+        1
+      ]
+    },
+    "crouch_walk": {
+      "samples": 20,
+      "minimum_sole_cm": 0.1646241037901069,
+      "maximum_lowest_sole_cm": 0.16668819345535818,
+      "settled_lowest_sole_range_cm": [
+        0.164624308308204,
+        0.16668819345535818
+      ],
+      "settled_speed_range_cm_s": [
+        88,
+        88
+      ],
+      "settled_crouch_curve_sum_range": [
+        0.9999964237213135,
+        1
+      ]
+    },
+    "crouch_stop": {
+      "samples": 10,
+      "minimum_sole_cm": 0.16462937387406618,
+      "maximum_lowest_sole_cm": 0.1646308852736179,
+      "settled_lowest_sole_range_cm": [
+        0.1646308852736179,
+        0.1646308852736179
+      ],
+      "settled_speed_range_cm_s": [
+        0,
+        0
+      ],
+      "settled_crouch_curve_sum_range": [
+        1,
+        1
+      ]
+    },
+    "stand": {
+      "samples": 11,
+      "minimum_sole_cm": 0.1646308852736179,
+      "maximum_lowest_sole_cm": 0.16600821773893168,
+      "settled_lowest_sole_range_cm": [
+        0.16600628274959817,
+        0.16600821773893168
+      ],
+      "settled_speed_range_cm_s": [
+        0,
+        0
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        0
+      ]
+    },
+    "crouch_zone": {
+      "samples": 126,
+      "minimum_sole_cm": 0.013746880489476254,
+      "maximum_lowest_sole_cm": 0.016689226681885314,
+      "settled_lowest_sole_range_cm": [
+        0.014620491735092715,
+        0.016689226681885314
+      ],
+      "settled_speed_range_cm_s": [
+        87.99999999999999,
+        146.10000610352927
+      ],
+      "settled_crouch_curve_sum_range": [
+        0,
+        1
+      ]
+    }
+  },
+  "g1_checks": [
+    {
+      "check": "pie_ready",
+      "pass": true,
+      "detail": "PRCharacter"
+    },
+    {
+      "check": "player_is_cast_mesh",
+      "pass": true,
+      "detail": "SKM_Marcus"
+    },
+    {
+      "check": "player_mesh_shown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "player_upright",
+      "pass": true,
+      "detail": "head 154 cm above feet"
+    },
+    {
+      "check": "start_camera",
+      "pass": true,
+      "detail": "CAM_Follow"
+    },
+    {
+      "check": "walk_through_passage",
+      "pass": true,
+      "detail": "at V(X=2380.63, Z=95.15) after 18.8s"
+    },
+    {
+      "check": "crouched_in_passage",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "crouch_anim_in_passage",
+      "pass": true,
+      "detail": "ABP_Marcus_Crouching"
+    },
+    {
+      "check": "head_under_passage_ceiling",
+      "pass": true,
+      "detail": "posed mesh top 139.81 cm, head joint 126.41 cm, ceiling 140 cm"
+    },
+    {
+      "check": "stood_up_after_passage",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "camera_zones",
+      "pass": true,
+      "detail": "CAM_Follow > CAM_Passage > CAM_Follow"
+    },
+    {
+      "check": "facing_right",
+      "pass": true,
+      "detail": "yaw 0, expected 0"
+    },
+    {
+      "check": "player_animates",
+      "pass": true,
+      "detail": "left hand 29.1 cm from the bind pose"
+    },
+    {
+      "check": "walk_to_terminal",
+      "pass": true,
+      "detail": "at V(X=2392.77, Y=-111.60, Z=95.15) after 0.9s"
+    },
+    {
+      "check": "hack_started",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "hack_shot_not_zone",
+      "pass": true,
+      "detail": "CameraActor0"
+    },
+    {
+      "check": "hack_door_shut_during_breach",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "hack_door_shot",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "hack_unlocked_player",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "hack_back_to_zone_camera",
+      "pass": true,
+      "detail": "CAM_Follow"
+    },
+    {
+      "check": "hack_opened_door",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "hack_flag_set",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "walk_to_vex",
+      "pass": true,
+      "detail": "at V(X=3272.27, Y=-115.53, Z=95.15) after 6.1s"
+    },
+    {
+      "check": "dialogue_started",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "player_locked",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "player_at_talk_mark",
+      "pass": true,
+      "detail": "0 cm from the mark"
+    },
+    {
+      "check": "player_at_talk_mark_facing",
+      "pass": true,
+      "detail": "yaw 0, expected -0"
+    },
+    {
+      "check": "shot1_two_shot",
+      "pass": true,
+      "detail": "CAM_Vex"
+    },
+    {
+      "check": "dialogue_ui_shown",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "shot2_over_vex_onto_player",
+      "pass": true,
+      "detail": "CAM_Vex_OTS_Player"
+    },
+    {
+      "check": "player_line_speaker",
+      "pass": true,
+      "detail": "Door's open. Like you asked."
+    },
+    {
+      "check": "choice_line_before_choices",
+      "pass": true,
+      "detail": "timer started 5.2s after the choice line"
+    },
+    {
+      "check": "choice_timer_after_choices",
+      "pass": true,
+      "detail": "0.50s after the choices"
+    },
+    {
+      "check": "choice_timer_running",
+      "pass": true,
+      "detail": "6.0s"
+    },
+    {
+      "check": "choices_on_screen",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "shot3_reverse_onto_vex",
+      "pass": true,
+      "detail": "CAM_Vex_OTS_Vex"
+    },
+    {
+      "check": "cutscene_played",
+      "pass": true,
+      "detail": "finished after 4.0s"
+    },
+    {
+      "check": "cutscene_matches_choice",
+      "pass": true,
+      "detail": "truth"
+    },
+    {
+      "check": "dialogue_ui_back_after_cutscene",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "dialogue_ended",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "player_unlocked",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "camera_back_to_zone",
+      "pass": true,
+      "detail": "CAM_RoomC"
+    },
+    {
+      "check": "player_stays_at_talk_mark",
+      "pass": true,
+      "detail": "0 cm from the mark"
+    },
+    {
+      "check": "player_stays_at_talk_mark_facing",
+      "pass": true,
+      "detail": "yaw 0, expected -0"
+    },
+    {
+      "check": "trust",
+      "pass": true,
+      "detail": "1"
+    },
+    {
+      "check": "told_truth_flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "save",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "undo_before_load",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "load",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "load_player_position",
+      "pass": true,
+      "detail": "0 cm off"
+    },
+    {
+      "check": "load_door_open",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "load_hack_flag",
+      "pass": true,
+      "detail": ""
+    },
+    {
+      "check": "load_trust",
+      "pass": true,
+      "detail": ""
+    }
+  ],
+  "cook": {
+    "passed": true,
+    "log": "C:\\Prod\\ProjectRunner\\Unreal\\Saved\\MarcusPlayableBuild\\cook_final.log",
+    "errors": 0,
+    "warnings": 0
+  },
+  "assets": [
+    {
+      "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_01\\ABP_Marcus.uasset",
+      "sha256": "fbe363eb8e69da82a607618fbf03e02434133e45508bc53cae472bd8f75c4f20",
+      "bytes": 254961
+    },
+    {
+      "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_01\\A_Marcus_Crouch.uasset",
+      "sha256": "feaa2f91267e4db68cd851cb95af362f70cf52c95ec1e77f4f75c2a8996217b4",
+      "bytes": 795109
+    },
+    {
+      "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_01\\A_Marcus_CrouchIdle.uasset",
+      "sha256": "ab3bf6a1ef435cd694729defd3884857493816922b215b9fe7a358ee8eda9159",
+      "bytes": 119298
+    },
+    {
+      "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_01\\A_Marcus_Idle.uasset",
+      "sha256": "daa080fa59ea35e453b2b8a251b7bbb7b75e07019c9311f050288ffd7b797d15",
+      "bytes": 2047181
+    },
+    {
+      "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_01\\A_Marcus_Run.uasset",
+      "sha256": "7f7f82ff0187fddf04d9cfa7596ebed65532853f319c09f6c3de7ba03d5a9636",
+      "bytes": 433504
+    },
+    {
+      "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_01\\A_Marcus_Walk.uasset",
+      "sha256": "93097fca438f403e7d25d57639b778f38d168c258536b6f78b4a875fc2aa7667",
+      "bytes": 517031
+    },
+    {
+      "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_01\\BS_Marcus_Crouching.uasset",
+      "sha256": "8b93f35dd040b26c27d940e0aa7436c7327d19723b06c2c47d6f0c1738832412",
+      "bytes": 3896
+    },
+    {
+      "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_01\\BS_Marcus_Standing.uasset",
+      "sha256": "c9955cddbe0354b785b09e5ab30db37d8becf82be3a7d0b4cbe5f66e539607f8",
+      "bytes": 4421
+    },
+    {
+      "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_01\\SKM_Marcus.uasset",
+      "sha256": "cb46fd00c03bb10221ae3ec23984ea5a46e8e12f3b58996854514f2b8234fc62",
+      "bytes": 3839519
+    },
+    {
+      "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_01\\SK_Marcus.uasset",
+      "sha256": "acfe978d6f5a1ddde65a3e22f0973aa07ce53c5e411885885b415aa7c4b7c338",
+      "bytes": 43003
+    },
+    {
+      "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_01\\L_MarcusPlayable.umap",
+      "sha256": "9408c6c92a11a1f15ac37f503a64929d353fc6853a89ddd485a498a50d7fc944",
+      "bytes": 32754
+    }
+  ],
+  "standalone_smoke": {
+    "passed": true,
+    "runtime_instance": "PRCharacter_0.CharacterMesh0.ABP_Marcus_C_0",
+    "log": "C:\\Prod\\ProjectRunner\\Unreal\\Saved\\MarcusPlayableBuild\\standalone_smoke.log"
+  },
+  "limits": [
+    "Headless gameplay checks; no manual visual approval claimed.",
+    "Cook is for the Marcus test map and dependencies, not the whole game.",
+    "Native code is built in the isolated project. The currently open editor still has its old loaded DLL.",
+    "Flat-ground sole-height correction preserves run flight. Terrain IK and horizontal foot locking are not implemented."
+  ]
+}

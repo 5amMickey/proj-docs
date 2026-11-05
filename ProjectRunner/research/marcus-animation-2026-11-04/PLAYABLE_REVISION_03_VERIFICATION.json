@@ -1,0 +1,301 @@
+{
+  "passed": true,
+  "date": "2026-11-05T05:05:56.061885+09:00",
+  "tests": {
+    "isolated": {
+      "passed": true,
+      "runtime_assertions": 54,
+      "sampled_poses": 1078,
+      "contact_checks": {
+        "runtime": true,
+        "stationary_plant_active": true,
+        "both_feet_planted": true,
+        "supporting_soles_level": true,
+        "idle_fingertips_grounded": true,
+        "no_floor_penetration": true,
+        "legs_not_stretched": true
+      },
+      "stationary_feet_range_cm": [
+        0.010866527976879418,
+        0.16848186337523896
+      ],
+      "supporting_sole_spread_cm": 0.29964822065420715,
+      "phase_summary": {
+        "idle": {
+          "samples": 40,
+          "stationary_foot_range": [
+            0.16487213326004047,
+            0.16500137325021075
+          ],
+          "jacket_crossings": 0
+        },
+        "walk": {
+          "samples": 54,
+          "stationary_foot_range": [
+            0.16499213818881658,
+            0.16499985019644603
+          ],
+          "jacket_crossings": 0
+        },
+        "run": {
+          "samples": 49,
+          "stationary_foot_range": null,
+          "jacket_crossings": 0
+        },
+        "stop": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.16458161909047897,
+            0.16610047784287282
+          ],
+          "jacket_crossings": 0
+        },
+        "reverse": {
+          "samples": 120,
+          "stationary_foot_range": [
+            0.16499169411005601,
+            0.16499983483951203
+          ],
+          "jacket_crossings": 0
+        },
+        "crouch_idle": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.16227280452944148,
+            0.16770816988397919
+          ],
+          "jacket_crossings": 11
+        },
+        "crouch_walk": {
+          "samples": 120,
+          "stationary_foot_range": [
+            0.16500205219554542,
+            0.16509831708066305
+          ],
+          "jacket_crossings": 0
+        },
+        "crouch_stop": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.1649985110284078,
+            0.16770861502854323
+          ],
+          "jacket_crossings": 12
+        },
+        "stand": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.16031413920960003,
+            0.16848186337523896
+          ],
+          "jacket_crossings": 4
+        },
+        "crouch_zone": {
+          "samples": 143,
+          "stationary_foot_range": [
+            0.014884363806707096,
+            0.014999261343483518
+          ],
+          "jacket_crossings": 0
+        },
+        "crouch_reverse": {
+          "samples": 120,
+          "stationary_foot_range": null,
+          "jacket_crossings": 0
+        },
+        "crouch_reverse_idle": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.01599779608562535,
+            0.018707521981009424
+          ],
+          "jacket_crossings": 13
+        },
+        "stand_final": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.010866527976879418,
+            0.019514798825214657
+          ],
+          "jacket_crossings": 5
+        }
+      }
+    },
+    "main": {
+      "passed": true,
+      "runtime_assertions": 54,
+      "sampled_poses": 1073,
+      "contact_checks": {
+        "runtime": true,
+        "stationary_plant_active": true,
+        "both_feet_planted": true,
+        "supporting_soles_level": true,
+        "idle_fingertips_grounded": true,
+        "no_floor_penetration": true,
+        "legs_not_stretched": true
+      },
+      "stationary_feet_range_cm": [
+        0.010791593409456571,
+        0.1684821475637314
+      ],
+      "supporting_sole_spread_cm": 0.29985513317773504,
+      "phase_summary": {
+        "idle": {
+          "samples": 35,
+          "stationary_foot_range": [
+            0.1648686374498506,
+            0.16500124422650436
+          ],
+          "jacket_crossings": 0
+        },
+        "walk": {
+          "samples": 54,
+          "stationary_foot_range": [
+            0.1649933347469542,
+            0.16500047820042962
+          ],
+          "jacket_crossings": 0
+        },
+        "run": {
+          "samples": 49,
+          "stationary_foot_range": null,
+          "jacket_crossings": 0
+        },
+        "stop": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.16437248095001042,
+            0.166188279434987
+          ],
+          "jacket_crossings": 0
+        },
+        "reverse": {
+          "samples": 120,
+          "stationary_foot_range": [
+            0.1649841660415953,
+            0.16499880664711614
+          ],
+          "jacket_crossings": 0
+        },
+        "crouch_idle": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.16227302125511112,
+            0.16770877329176143
+          ],
+          "jacket_crossings": 13
+        },
+        "crouch_walk": {
+          "samples": 120,
+          "stationary_foot_range": [
+            0.16500205219554542,
+            0.16509831708066305
+          ],
+          "jacket_crossings": 0
+        },
+        "crouch_stop": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.16499843688816185,
+            0.16770723749210165
+          ],
+          "jacket_crossings": 10
+        },
+        "stand": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.1603123130668298,
+            0.1684821475637314
+          ],
+          "jacket_crossings": 0
+        },
+        "crouch_zone": {
+          "samples": 143,
+          "stationary_foot_range": [
+            0.014885004024985039,
+            0.014999914997152064
+          ],
+          "jacket_crossings": 0
+        },
+        "crouch_reverse": {
+          "samples": 120,
+          "stationary_foot_range": null,
+          "jacket_crossings": 0
+        },
+        "crouch_reverse_idle": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.015996520204183184,
+            0.018707020553136746
+          ],
+          "jacket_crossings": 12
+        },
+        "stand_final": {
+          "samples": 72,
+          "stationary_foot_range": [
+            0.010791593409456571,
+            0.01949609346952011
+          ],
+          "jacket_crossings": 4
+        }
+      }
+    }
+  },
+  "g1_truth": {
+    "passed": true,
+    "assertions": 53
+  },
+  "cook": {
+    "passed": true,
+    "errors": 0,
+    "warnings": 0,
+    "log": "C:\\Prod\\ProjectRunner\\Unreal\\Saved\\MarcusPlayableBuild\\revision03_cook.log"
+  },
+  "live_player": {
+    "world": "/Game/ProjectRunner/Animation/MarcusPlayable_01/UEDPIE_0_L_MarcusPlayable.L_MarcusPlayable",
+    "anim_class": "/Game/ProjectRunner/Animation/MarcusPlayable_03/ABP_Marcus.ABP_Marcus_C",
+    "mesh": "/Game/ProjectRunner/Animation/MarcusPlayable_02/SKM_Marcus.SKM_Marcus",
+    "plant_stationary_feet": true,
+    "idle_delay": 0.05000000074505806,
+    "speed": 105.5999984741211,
+    "spaces": {
+      "Standing": {
+        "interpolation_speed": 5.0,
+        "clips": [
+          "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Idle.A_Marcus_Idle",
+          "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Walk.A_Marcus_Walk",
+          "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Run.A_Marcus_Run"
+        ]
+      },
+      "Crouching": {
+        "interpolation_speed": 5.0,
+        "clips": [
+          "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_CrouchIdle.A_Marcus_CrouchIdle",
+          "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Crouch.A_Marcus_Crouch"
+        ]
+      }
+    },
+    "passed": true
+  },
+  "published_assets": {
+    "passed": true,
+    "files": [
+      {
+        "path": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_03\\ABP_Marcus.uasset",
+        "sha256": "b452262a6ab047d10bb348f087d929c13bb46086795ca462a8057a53b1953275"
+      },
+      {
+        "path": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_03\\BS_Marcus_Crouching.uasset",
+        "sha256": "a3f80d51581a302d6b44dc6ceecf26398a5c83acd777521952e4c1dc70f759b8"
+      },
+      {
+        "path": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_03\\BS_Marcus_Standing.uasset",
+        "sha256": "d49b26ce9d508a878c3f71117691875c61ef69d9618c676a89282cf1db9b6965"
+      }
+    ]
+  },
+  "limits": [
+    "Flat-ground vertical contact; no terrain IK or horizontal foot lock.",
+    "Existing mid-transition jacket/pants crossings remain and are recorded separately."
+  ]
+}

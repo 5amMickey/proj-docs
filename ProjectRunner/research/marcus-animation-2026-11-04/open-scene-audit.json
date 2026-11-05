@@ -1,0 +1,380 @@
+{
+  "status": "ok",
+  "result": {
+    "version": "5.2.2 LTS",
+    "filepath": "C:\\Users\\GameDevPC0403\\Documents\\GitHub\\HoudiniSource\\ProjectRunner\\geo\\source\\charCastMain-03_toRig.blend",
+    "armatures": 0,
+    "actions": 0,
+    "marcus": [
+      {
+        "name": "cast_marcus_body_01_arms",
+        "verts": 160,
+        "polygons": 216,
+        "triangles": 297,
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          1.2611340284347534,
+          0.20250803232192993,
+          0.45873796939849854
+        ],
+        "bbox_min": [
+          -0.6305670142173767,
+          -0.1083059161901474,
+          1.0503276586532593
+        ],
+        "bbox_max": [
+          0.6305670142173767,
+          0.09420210868120193,
+          1.5090656280517578
+        ],
+        "groups": 0,
+        "modifiers": [
+          {
+            "name": "Hops_Mirror",
+            "type": "MIRROR"
+          }
+        ],
+        "parent": null,
+        "visible": true,
+        "materials": []
+      },
+      {
+        "name": "cast_marcus_body_01_chest",
+        "verts": 197,
+        "polygons": 263,
+        "triangles": 336,
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          0.4733380079269409,
+          0.24886800348758698,
+          0.49016594886779785
+        ],
+        "bbox_min": [
+          -0.23666900396347046,
+          -0.121104896068573,
+          1.094253659248352
+        ],
+        "bbox_max": [
+          0.23666900396347046,
+          0.12776310741901398,
+          1.58441960811615
+        ],
+        "groups": 0,
+        "modifiers": [
+          {
+            "name": "Hops_Mirror",
+            "type": "MIRROR"
+          }
+        ],
+        "parent": null,
+        "visible": true,
+        "materials": []
+      },
+      {
+        "name": "cast_marcus_body_01_hands",
+        "verts": 531,
+        "polygons": 571,
+        "triangles": 1049,
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          1.485219955444336,
+          0.17783401906490326,
+          0.1625850796699524
+        ],
+        "bbox_min": [
+          -0.742609977722168,
+          -0.2227509319782257,
+          0.9324235320091248
+        ],
+        "bbox_max": [
+          0.742609977722168,
+          -0.04491691663861275,
+          1.0950086116790771
+        ],
+        "groups": 0,
+        "modifiers": [
+          {
+            "name": "Hops_Mirror",
+            "type": "MIRROR"
+          }
+        ],
+        "parent": null,
+        "visible": true,
+        "materials": []
+      },
+      {
+        "name": "cast_marcus_coat_01_body",
+        "verts": 360,
+        "polygons": 450,
+        "triangles": 686,
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          1.2918239831924438,
+          0.34397000074386597,
+          0.9777218103408813
+        ],
+        "bbox_min": [
+          -0.6459119915962219,
+          -0.18365293741226196,
+          0.6196315288543701
+        ],
+        "bbox_max": [
+          0.6459119915962219,
+          0.1603170484304428,
+          1.5973533391952515
+        ],
+        "groups": 0,
+        "modifiers": [
+          {
+            "name": "Hops_Mirror",
+            "type": "MIRROR"
+          }
+        ],
+        "parent": null,
+        "visible": false,
+        "materials": []
+      },
+      {
+        "name": "cast_marcus_coat_01_collar",
+        "verts": 63,
+        "polygons": 67,
+        "triangles": 106,
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          0.26338401436805725,
+          0.2570257782936096,
+          0.19885039329528809
+        ],
+        "bbox_min": [
+          -0.13169200718402863,
+          -0.12792466580867767,
+          1.497806191444397
+        ],
+        "bbox_max": [
+          0.13169200718402863,
+          0.12910112738609314,
+          1.696656584739685
+        ],
+        "groups": 0,
+        "modifiers": [
+          {
+            "name": "Hops_Mirror",
+            "type": "MIRROR"
+          }
+        ],
+        "parent": null,
+        "visible": true,
+        "materials": []
+      },
+      {
+        "name": "cast_marcus_coat_02_body",
+        "verts": 340,
+        "polygons": 421,
+        "triangles": 643,
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          1.2918239831924438,
+          0.29995185136795044,
+          0.6670655608177185
+        ],
+        "bbox_min": [
+          -0.6459119915962219,
+          -0.14987871050834656,
+          0.9311475157737732
+        ],
+        "bbox_max": [
+          0.6459119915962219,
+          0.1500731259584427,
+          1.5982130765914917
+        ],
+        "groups": 0,
+        "modifiers": [
+          {
+            "name": "Hops_Mirror",
+            "type": "MIRROR"
+          }
+        ],
+        "parent": null,
+        "visible": true,
+        "materials": []
+      },
+      {
+        "name": "cast_marcus_head_01",
+        "verts": 258,
+        "polygons": 293,
+        "triangles": 461,
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          0.15873396396636963,
+          0.19843199849128723,
+          0.2860480546951294
+        ],
+        "bbox_min": [
+          -0.07936698198318481,
+          -0.11986987292766571,
+          1.5134745836257935
+        ],
+        "bbox_max": [
+          0.07936698198318481,
+          0.07856213301420212,
+          1.7995226383209229
+        ],
+        "groups": 0,
+        "modifiers": [
+          {
+            "name": "Hops_Mirror",
+            "type": "MIRROR"
+          }
+        ],
+        "parent": null,
+        "visible": true,
+        "materials": []
+      },
+      {
+        "name": "cast_marcus_pants_01",
+        "verts": 273,
+        "polygons": 465,
+        "triangles": 529,
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          0.4474339485168457,
+          0.24375003576278687,
+          0.9989230632781982
+        ],
+        "bbox_min": [
+          -0.22371697425842285,
+          -0.14838996529579163,
+          0.18453755974769592
+        ],
+        "bbox_max": [
+          0.22371697425842285,
+          0.09536007791757584,
+          1.1834605932235718
+        ],
+        "groups": 0,
+        "modifiers": [
+          {
+            "name": "Hops_Mirror",
+            "type": "MIRROR"
+          }
+        ],
+        "parent": null,
+        "visible": true,
+        "materials": []
+      },
+      {
+        "name": "cast_marcus_shoes_01",
+        "verts": 229,
+        "polygons": 332,
+        "triangles": 454,
+        "scale": [
+          1,
+          1,
+          1
+        ],
+        "rotation": [
+          0,
+          0,
+          0
+        ],
+        "dimensions": [
+          0.4349559545516968,
+          0.2997550070285797,
+          0.217958003282547
+        ],
+        "bbox_min": [
+          -0.2174779772758484,
+          -0.22515100240707397,
+          0.00015955825801938772
+        ],
+        "bbox_max": [
+          0.2174779772758484,
+          0.07460400462150574,
+          0.21811756491661072
+        ],
+        "groups": 0,
+        "modifiers": [
+          {
+            "name": "Hops_Mirror",
+            "type": "MIRROR"
+          }
+        ],
+        "parent": null,
+        "visible": true,
+        "materials": []
+      }
+    ]
+  }
+}

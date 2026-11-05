@@ -1,0 +1,503 @@
+{
+  "date": "2026-11-05T04:23:22.294639+09:00",
+  "passed": true,
+  "tests": {
+    "isolated": {
+      "runtime_checks": 54,
+      "sampled_poses": 300,
+      "passed": true,
+      "contacts": {
+        "passed": true,
+        "checks": {
+          "runtime_passed": true,
+          "no_penetration": true,
+          "sole_follows_contact_curve": true,
+          "no_hover_grounded": true,
+          "screen_left_mirrored": true,
+          "screen_right_unmirrored": true,
+          "camera_switch": true,
+          "idle_clearance": true,
+          "idle_fingers_grounded": true
+        },
+        "summary": {
+          "idle": {
+            "sole_range_cm": [
+              0.16500674407352295,
+              0.16500871678020693
+            ],
+            "settled_speed": 0,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "walk": {
+            "sole_range_cm": [
+              0.1637496298378025,
+              0.16529594190565966
+            ],
+            "settled_speed": 146.10000610351562,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "run": {
+            "sole_range_cm": [
+              0.16446329333695234,
+              9.427034131237892
+            ],
+            "settled_speed": 371,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "stop": {
+            "sole_range_cm": [
+              0.16495049281367002,
+              0.1650090091816365
+            ],
+            "settled_speed": 0,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "reverse": {
+            "sole_range_cm": [
+              0.16374729840599844,
+              0.16529623543772587
+            ],
+            "settled_speed": 146.10000610351562,
+            "mirrored": false,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "crouch_idle": {
+            "sole_range_cm": [
+              0.1646308852736179,
+              0.16500205219554542
+            ],
+            "settled_speed": 0,
+            "mirrored": false,
+            "idle_curve": 1,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": [
+              0.18010664227631423,
+              0.18010664227631423,
+              0.18010664227631423
+            ]
+          },
+          "crouch_walk": {
+            "sole_range_cm": [
+              0.16462433854672467,
+              0.16608877908920508
+            ],
+            "settled_speed": 105.5999984741211,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "crouch_stop": {
+            "sole_range_cm": [
+              0.1646322336915098,
+              0.16500073899888523
+            ],
+            "settled_speed": 0,
+            "mirrored": true,
+            "idle_curve": 1,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": [
+              0.18011158596254973,
+              0.18011158596254973
+            ]
+          },
+          "stand": {
+            "sole_range_cm": [
+              0.16500073899888523,
+              0.16600852001586958
+            ],
+            "settled_speed": 0,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "crouch_zone": {
+            "sole_range_cm": [
+              0.014475743441707361,
+              0.01668915689296481
+            ],
+            "settled_speed": 146.10000610352245,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "crouch_reverse": {
+            "sole_range_cm": [
+              0.015623117270671154,
+              0.01768903097409935
+            ],
+            "settled_speed": 105.59999847413303,
+            "mirrored": false,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "crouch_reverse_idle": {
+            "sole_range_cm": [
+              0.015630240589780017,
+              0.016001407511707536
+            ],
+            "settled_speed": 0,
+            "mirrored": false,
+            "idle_curve": 1,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": [
+              0.031105997592476342,
+              0.031105997592476342
+            ]
+          },
+          "stand_final": {
+            "sole_range_cm": [
+              0.016001407511707536,
+              0.017008307617731748
+            ],
+            "settled_speed": 0,
+            "mirrored": false,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          }
+        }
+      }
+    },
+    "main": {
+      "runtime_checks": 54,
+      "sampled_poses": 302,
+      "passed": true,
+      "contacts": {
+        "passed": true,
+        "checks": {
+          "runtime_passed": true,
+          "no_penetration": true,
+          "sole_follows_contact_curve": true,
+          "no_hover_grounded": true,
+          "screen_left_mirrored": true,
+          "screen_right_unmirrored": true,
+          "camera_switch": true,
+          "idle_clearance": true,
+          "idle_fingers_grounded": true
+        },
+        "summary": {
+          "idle": {
+            "sole_range_cm": [
+              0.16500574599284695,
+              0.1650087650810049
+            ],
+            "settled_speed": 0,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "walk": {
+            "sole_range_cm": [
+              0.16240956297647635,
+              0.1652956952244921
+            ],
+            "settled_speed": 146.10000610351562,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "run": {
+            "sole_range_cm": [
+              0.1624609686004561,
+              12.06225869625946
+            ],
+            "settled_speed": 371,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "stop": {
+            "sole_range_cm": [
+              0.16500683843968098,
+              0.1668755446607501
+            ],
+            "settled_speed": 0,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "reverse": {
+            "sole_range_cm": [
+              0.1614855706521343,
+              0.1652958989342865
+            ],
+            "settled_speed": 146.10000610351562,
+            "mirrored": false,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "crouch_idle": {
+            "sole_range_cm": [
+              0.1646308852736179,
+              0.1652034312010321
+            ],
+            "settled_speed": 0,
+            "mirrored": false,
+            "idle_curve": 1,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": [
+              0.18010664227631423,
+              0.18010664227631423
+            ]
+          },
+          "crouch_walk": {
+            "sole_range_cm": [
+              0.16462426595900936,
+              0.166687969803279
+            ],
+            "settled_speed": 105.59999847411768,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "crouch_stop": {
+            "sole_range_cm": [
+              0.16462783785913152,
+              0.16500073899888523
+            ],
+            "settled_speed": 0,
+            "mirrored": true,
+            "idle_curve": 1,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": [
+              0.18011158596254973,
+              0.18011158596254973
+            ]
+          },
+          "stand": {
+            "sole_range_cm": [
+              0.16596249305464283,
+              0.16600820241284203
+            ],
+            "settled_speed": 0,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "crouch_zone": {
+            "sole_range_cm": [
+              0.01451340816733956,
+              0.016920404357380434
+            ],
+            "settled_speed": 146.10000610352245,
+            "mirrored": true,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "crouch_reverse": {
+            "sole_range_cm": [
+              0.015621472989874263,
+              0.017273663693268576
+            ],
+            "settled_speed": 105.59999847413303,
+            "mirrored": false,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          },
+          "crouch_reverse_idle": {
+            "sole_range_cm": [
+              0.015630240589780017,
+              0.016001407511707536
+            ],
+            "settled_speed": 0,
+            "mirrored": false,
+            "idle_curve": 1,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": [
+              0.031105997592476342,
+              0.031105997592476342,
+              0.031105997592476342
+            ]
+          },
+          "stand_final": {
+            "sole_range_cm": [
+              0.01697102688384078,
+              0.017007941471088167
+            ],
+            "settled_speed": 0,
+            "mirrored": false,
+            "idle_curve": 0,
+            "jacket_crossings": 0,
+            "lowest_hand_cm": []
+          }
+        }
+      }
+    }
+  },
+  "g1_truth": {
+    "passed": true,
+    "checks": 53
+  },
+  "cook": {
+    "passed": true,
+    "errors": 0,
+    "warnings": 0,
+    "log": "C:\\Prod\\ProjectRunner\\Unreal\\Saved\\MarcusPlayableBuild\\revision02_cook_final.log"
+  },
+  "main_build": "C:\\Prod\\ProjectRunner\\Unreal\\Saved\\MarcusPlayableBuild\\revision02_main_build.log",
+  "live_player": {
+    "world": "/Game/ProjectRunner/Animation/MarcusPlayable_01/UEDPIE_0_L_MarcusPlayable.L_MarcusPlayable",
+    "character": "/Game/ProjectRunner/Animation/MarcusPlayable_01/UEDPIE_0_L_MarcusPlayable.L_MarcusPlayable:PersistentLevel.PRCharacter_0",
+    "mesh": "/Game/ProjectRunner/Animation/MarcusPlayable_02/SKM_Marcus.SKM_Marcus",
+    "animation_mode": "<AnimationMode.ANIMATION_BLUEPRINT: 0>",
+    "anim_instance_class": "/Game/ProjectRunner/Animation/MarcusPlayable_02/ABP_Marcus.ABP_Marcus_C",
+    "walk_speed": 146.10000610351562,
+    "run_speed": 371.0,
+    "crouch_speed": 105.5999984741211,
+    "foot_samples": 458,
+    "blendspaces": {
+      "BS_Marcus_Standing": [
+        "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Idle.A_Marcus_Idle",
+        "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Walk.A_Marcus_Walk",
+        "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Run.A_Marcus_Run"
+      ],
+      "BS_Marcus_Crouching": [
+        "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_CrouchIdle.A_Marcus_CrouchIdle",
+        "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Crouch.A_Marcus_Crouch"
+      ]
+    },
+    "crouch_clip_rate": 0.7799999713897705,
+    "crouch_axis_max": 105.5999984741211,
+    "checks": {
+      "mesh": true,
+      "animbp": true,
+      "walk_speed": true,
+      "run_speed": true,
+      "crouch_speed": true,
+      "crouch_clip_rate": true,
+      "crouch_axis_max": true,
+      "kneeling_idle_available": true,
+      "mirror_table_available": true,
+      "mirrored_garment_targets": true,
+      "contact_profile": true,
+      "reviewed_clips": true
+    },
+    "passed": true
+  },
+  "saved_assets": {
+    "blendspaces": {
+      "Standing": [
+        {
+          "animation": "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Idle.A_Marcus_Idle",
+          "speed": 0.0,
+          "rate_scale": 1.0
+        },
+        {
+          "animation": "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Walk.A_Marcus_Walk",
+          "speed": 146.1,
+          "rate_scale": 0.8500000238418579
+        },
+        {
+          "animation": "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Run.A_Marcus_Run",
+          "speed": 371.0,
+          "rate_scale": 0.8500000238418579
+        }
+      ],
+      "Crouching": [
+        {
+          "animation": "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_CrouchIdle.A_Marcus_CrouchIdle",
+          "speed": 0.0,
+          "rate_scale": 1.0
+        },
+        {
+          "animation": "/Game/ProjectRunner/Animation/MarcusPlayable_02/A_Marcus_Crouch.A_Marcus_Crouch",
+          "speed": 105.5999984741211,
+          "rate_scale": 0.7799999713897705
+        }
+      ]
+    },
+    "passed": true
+  },
+  "published_assets": {
+    "passed": true,
+    "files": [
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\A_Marcus_Crouch.uasset",
+        "sha256": "89e2b8eb08a507bb6c27dfa2b50b728b22201d7275147c13dfcaf0fad04b9bba",
+        "bytes": 697957
+      },
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\A_Marcus_CrouchIdle.uasset",
+        "sha256": "38d1da61743a23107e3104bbc2c81636ba35d9cc2fdd19c823c0bdd5745ba24d",
+        "bytes": 117673
+      },
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\A_Marcus_Idle.uasset",
+        "sha256": "7fda220e94f70bcb9a20948cc47e2b167720c0c9d3000d47a7f817e0112d5c5a",
+        "bytes": 2047202
+      },
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\A_Marcus_Run.uasset",
+        "sha256": "c407cf022a1a1defc4a294b21e753b79dc4e9a9309f1270797685c961ee9e3f7",
+        "bytes": 426019
+      },
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\A_Marcus_StealthIdle.uasset",
+        "sha256": "75e114a83cecbe8419544dd70af54cc0ac107831e862a95671ef828e91bab57e",
+        "bytes": 114163
+      },
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\A_Marcus_Walk.uasset",
+        "sha256": "2abd2f046d5d5d6ae50a465402509997181bd7c6cf6cb4d2f7060b054b7c3135",
+        "bytes": 517052
+      },
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\ABP_Marcus.uasset",
+        "sha256": "cd13bd60febab0930a694b235d1c1d2bbeb50efbdf52719ea24a2e8a0162c444",
+        "bytes": 303207
+      },
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\BS_Marcus_Crouching.uasset",
+        "sha256": "023251d2ca5c81fcbb1d07f6352161b42f46704399be82237762dd281510a5f3",
+        "bytes": 3896
+      },
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\BS_Marcus_Standing.uasset",
+        "sha256": "a2975f9c9fdce95b24c792f91b3cc6c4239f2fe2a15d5a729c5d6f693cda2f99",
+        "bytes": 4421
+      },
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\MT_Marcus.uasset",
+        "sha256": "6482f92366fb25a787b3af3a7ac7571658a02ead6c3b123d4384bff95e02fad5",
+        "bytes": 48075
+      },
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\SK_Marcus.uasset",
+        "sha256": "0774a71a23bb84a956eb006504ac130bead7849b6c29aeebdcb0615fc5eaec0c",
+        "bytes": 43003
+      },
+      {
+        "file": "C:\\Prod\\ProjectRunner\\Unreal\\Content\\ProjectRunner\\Animation\\MarcusPlayable_02\\SKM_Marcus.uasset",
+        "sha256": "28104bee96f51cb3d29629aa31e4bd080d8f56f9a9f0741afd1b3d0e0d0e4ff1",
+        "bytes": 4070767
+      }
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+Ring hack test
+
+You need a computer, Chrome or Edge, and ideally a game controller.
+
+1. Unzip this folder, then open index.html in Chrome or Edge.
+2. Connect your controller and press a button on it. A keyboard and mouse also work.
+3. Type your name in the side panel if you want it on your results. This is optional.
+4. Click Start and play at least five locks. Leave the settings alone unless you've been asked to change them.
+5. When a lock ends, rate how hard it was. The prompt shows which button to press.
+6. Click Download results in the side panel, and send that file back.
+
+The page records each lock you play: how it ended, how long it took, how many mistakes you made, your rating and your settings. It also records your controller's name and the name you typed. It stays in your browser until you download it, and nothing is sent anywhere.
+
+Controls
+
+Controller: right stick to search, R1 to fit, d-pad or left stick for arrows, A for a new lock.
+Keyboard and mouse: mouse or left and right arrows to search, E to fit, WASD or arrow keys for arrows, Enter for a new lock.
