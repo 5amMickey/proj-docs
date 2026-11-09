@@ -121,6 +121,7 @@ const Demo = (() => {
   // ---------- Prompts
   const LABELS = { a: { pad: "A", keys: "E" }, x: { pad: "X", keys: "1" }, y: { pad: "Y", keys: "2" }, b: { pad: "B", keys: "3" } };
   const label = (button) => LABELS[button][device];
+  const usingPad = () => device === "pad";
 
   // The positional diamond: the lit dot is the button's position on the controller.
   function diamond(button) {
@@ -135,7 +136,7 @@ const Demo = (() => {
   }
 
   function choicesHtml(options) {
-    return options.map((o) => `<div class="choice ${o.button}${o.isSpec ? " spec" : ""}${o.disabled ? " off" : ""}">${diamond(o.button)}<span>${o.label}</span></div>`).join("");
+    return options.map((o) => `<div class="choice ${o.button}${o.isSpec ? " spec" : ""}${o.disabled ? " off" : ""}"><span class="pill">${o.icon ? `<img class="pill-icon" src="${o.icon}-icon.png" alt="">` : ""}${o.label}</span><span class="btn">${label(o.button)}</span></div>`).join("");
   }
 
   // One large key to press, drawn in an SVG. The ring is the time left, and a hold fills the key green.
@@ -178,7 +179,7 @@ const Demo = (() => {
   function createMenu(root) {
     root.classList.add("dialog");
     root.hidden = true;
-    root.innerHTML = `<div class="speaker"></div><div class="text"></div><div class="timebar" hidden><div></div></div><div class="choices"></div>`;
+    root.innerHTML = `<div class="speaker"></div><div class="text"></div><div class="choices"></div><div class="timebar" hidden><div></div></div>`;
     let current = null;
     let drawnDevice = null;
     const api = {
@@ -222,6 +223,46 @@ const Demo = (() => {
           }
         }
         return true;
+      },
+    };
+    return api;
+  }
+
+  // ---------- A how-to card: the game waits while it's up, and A moves on
+  function createCard(root) {
+    root.classList.add("howto");
+    root.hidden = true;
+    root.innerHTML = `<div class="howto-card"><h2 class="howto-title"></h2><div class="howto-body"></div><div class="howto-go"><span class="btn"></span><span class="howto-go-text"></span></div></div>`;
+    let current = null;
+    let wait = 0;
+    const api = {
+      get open() { return !!current; },
+      // A card with no lines of its own is still a card: it shows its title and waits.
+      show(card) {
+        current = card;
+        wait = 0;
+        root.querySelector(".howto-title").textContent = card.title || "";
+        root.querySelector(".howto-body").innerHTML = (card.lines || []).map((l) => `<p>${l}</p>`).join("");
+        root.querySelector(".howto-go-text").textContent = card.go || "Continue";
+        root.querySelector(".btn").textContent = label("a");
+        root.hidden = false;
+      },
+      // The short wait stops the press that opened the card from also closing it.
+      update(dt, press) {
+        if (!current) return;
+        wait += dt;
+        root.querySelector(".btn").textContent = label("a");
+        if (press.a && wait > 0.25) {
+          const done = current.onClose;
+          current = null;
+          root.hidden = true;
+          beep(740, 0.06);
+          if (done) done();
+        }
+      },
+      close() {
+        current = null;
+        root.hidden = true;
       },
     };
     return api;
@@ -307,6 +348,9 @@ const Demo = (() => {
       start(options) {
         cfg = options;
         hack = HackCore.createHack(options);
+        // With no search there is no arrow outside the ring, so the ring can fill the space.
+        const reach = options.search === false ? 430 : 640;
+        root.querySelector("svg").setAttribute("viewBox", `${-reach} ${-reach} ${reach * 2} ${reach * 2}`);
         q("solved").innerHTML = "";
         if (options.autoFit) hack.update(0, { fit: true });
         q("body").style.display = "";
@@ -325,6 +369,7 @@ const Demo = (() => {
           if (e.type === "fit") beep(880, 0.1);
           if (e.type === "missedFit") beep(150, 0.1);
           if (e.type === "arrowHit") beep(1040, 0.05);
+          if (e.type === "arrowWrong") beep(150, 0.15, "sawtooth");
           if (e.type === "ringFailed") beep(110, 0.3, "sawtooth");
           if (e.type === "ringSolved") {
             beep(1320, 0.18);
@@ -376,7 +421,8 @@ const Demo = (() => {
             for (let i = s.sequence.length - 1; i >= s.seqIndex; i--) {
               const n = i - s.seqIndex;
               if (n > 2) continue;
-              out.push(chevron(s.sequence[i], 140 - n * 140, n === 0 ? 52 : 46, [1, 0.6, 0.35][n]));
+              // The current arrow is on top, and the next ones wait below it.
+              out.push(chevron(s.sequence[i], -140 + n * 140, n === 0 ? 52 : 46, [1, 0.6, 0.35][n]));
             }
           }
           q("seq").innerHTML = out.join("");
@@ -391,6 +437,34 @@ const Demo = (() => {
         const fill = $("rumbleFill");
         if (fill) fill.style.width = "0";
       },
+    };
+    return api;
+  }
+
+  // ---------- The AI Companion's loading screen, with its price
+  const LOAD_STEPS = ["Mapping the implant", "Tracing the line to his heart", "Cutting the link", "Cleaning up"];
+  function createLoading(root) {
+    let steps = LOAD_STEPS;
+    root.classList.add("loading");
+    root.hidden = true;
+    root.innerHTML = `<div class="load-title">AI COMPANION: REMOVING THE MALWARE</div>
+      <div class="load-track"><div class="load-fill"></div></div>
+      <div class="load-status"></div>
+      <div class="load-cost"></div>`;
+    const api = {
+      show(cost, left, job) {
+        steps = (job && job.steps) || LOAD_STEPS;
+        root.querySelector(".load-title").textContent = (job && job.title) || "AI COMPANION: REMOVING THE MALWARE";
+        root.querySelector(".load-cost").textContent = (job && job.costText) || `Cost: ${cost} ${cost === 1 ? "material" : "materials"}. ${left} left.`;
+        api.draw(0);
+        root.hidden = false;
+      },
+      draw(progress) {
+        const shown = Math.max(0, Math.min(1, progress));
+        root.querySelector(".load-fill").style.width = `${shown * 100}%`;
+        root.querySelector(".load-status").textContent = `${steps[Math.min(steps.length - 1, Math.floor(shown * steps.length))]}: ${Math.floor(shown * 100)}%`;
+      },
+      hide() { root.hidden = true; },
     };
     return api;
   }
@@ -454,5 +528,5 @@ const Demo = (() => {
     sync();
   }
 
-  return { $, poll, beep, tone, label, diamond, choicesHtml, createKeyPrompt, notice, createMenu, createBar, createRoom, createRingWidget, startOverlay, loop, bindPanel, chevron };
+  return { $, poll, beep, tone, label, usingPad, diamond, choicesHtml, createKeyPrompt, notice, createMenu, createCard, createBar, createRoom, createRingWidget, createLoading, startOverlay, loop, bindPanel, chevron };
 })();

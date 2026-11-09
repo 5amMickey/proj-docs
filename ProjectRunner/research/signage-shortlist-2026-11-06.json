@@ -1,0 +1,410 @@
+[
+ {
+  "id": "SGN_0102",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/cyberpunk/SGN_0102_club.png",
+  "face_rect_px": [
+   32,
+   32,
+   663,
+   1984
+  ],
+  "aspect": 0.3342,
+  "kind": "neon",
+  "mesh": "SM_SGN_Banner_Vertical_2m_01",
+  "density_px_m": 256,
+  "lettering": "ja",
+  "notes": "Face 0.5 x 1.94 m on SM_SGN_Banner_Vertical_2m_01 (aspect 0.26); art aspect 0.33; tile 128x496 px at 256 px/m; contain-fit, transparent pad, no stretch. Club (クラブ). Twin of module City_Sign_Club_Vertical_01, same mesh and density for the module-vs-library hall."
+ },
+ {
+  "id": "City_Sign_Club_Vertical_01",
+  "source": "module",
+  "path": "C:/Prod/PipelineSandbox/Environment_Kit/City_Sign_Club_Vertical_01/City_Sign_Club_Vertical_01_BaseColor.png",
+  "face_rect_px": [
+   778,
+   131,
+   492,
+   1782
+  ],
+  "aspect": 0.2761,
+  "kind": "panel",
+  "mesh": "SM_SGN_Banner_Vertical_2m_01",
+  "density_px_m": 256,
+  "lettering": "ja",
+  "notes": "Face 0.5 x 1.94 m on SM_SGN_Banner_Vertical_2m_01 (aspect 0.26); art aspect 0.28; tile 128x496 px at 256 px/m; fill face, stretch 1.07x. Twin of SGN_0102. Face rect from asset.json roughness_regions. Lettering クラブ reads correctly."
+ },
+ {
+  "id": "SGN_0101",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/cyberpunk/SGN_0101_beautiful_women.png",
+  "face_rect_px": [
+   32,
+   32,
+   593,
+   1984
+  ],
+  "aspect": 0.2989,
+  "kind": "neon",
+  "mesh": "SM_SGN_Neon_Blade_1m5_01",
+  "density_px_m": 512,
+  "lettering": "ja",
+  "notes": "Face 0.5 x 1.5 m on SM_SGN_Neon_Blade_1m5_01 (aspect 0.33); art aspect 0.30; tile 256x768 px at 512 px/m; contain-fit, transparent pad, no stretch. Beautiful women (美女 between hearts). Twin of Room_Sign_Heart_Woman_01. 512 is the hero density for the tall blade."
+ },
+ {
+  "id": "Room_Sign_Heart_Woman_01",
+  "source": "module",
+  "path": "C:/Prod/PipelineSandbox/Environment_Kit/Room_Sign_Heart_Woman_01/Room_Sign_Heart_Woman_01_BaseColor.png",
+  "face_rect_px": [
+   687,
+   34,
+   674,
+   1979
+  ],
+  "aspect": 0.3406,
+  "kind": "panel",
+  "mesh": "SM_SGN_Neon_Blade_1m5_01",
+  "density_px_m": 512,
+  "lettering": "ja",
+  "notes": "Face 0.5 x 1.5 m on SM_SGN_Neon_Blade_1m5_01 (aspect 0.33); art aspect 0.34; tile 256x768 px at 512 px/m; fill face, stretch 1.02x. Twin of SGN_0101. No asset.json face rect, so face_rect_px is the padding bounding box and includes the bezel. Not in the library database, so it gets no tag."
+ },
+ {
+  "id": "SGN_1024",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/nightlife/SGN_1024_bar.png",
+  "face_rect_px": [
+   32,
+   32,
+   1600,
+   1984
+  ],
+  "aspect": 0.8065,
+  "kind": "neon",
+  "mesh": "SM_SGN_AFrame_Sign_01",
+  "density_px_m": 256,
+  "lettering": "ja,en",
+  "notes": "Face 0.6 x 0.9 m on SM_SGN_AFrame_Sign_01 (aspect 0.67); art aspect 0.81; tile 152x232 px at 256 px/m; contain-fit, transparent pad, no stretch. Bar (バー BAR, cocktail glass, square frame). Twin of module ContainerMarket_Sign_Bar_01."
+ },
+ {
+  "id": "ContainerMarket_Sign_Bar_01",
+  "source": "module",
+  "path": "C:/Prod/PipelineSandbox/Environment_Kit/ContainerMarket_Sign_Bar_01/ContainerMarket_Sign_Bar_01_BaseColor.png",
+  "face_rect_px": [
+   342,
+   62,
+   1362,
+   1898
+  ],
+  "aspect": 0.7176,
+  "kind": "panel",
+  "mesh": "SM_SGN_AFrame_Sign_01",
+  "density_px_m": 256,
+  "lettering": "en",
+  "notes": "Face 0.6 x 0.9 m on SM_SGN_AFrame_Sign_01 (aspect 0.67); art aspect 0.72; tile 152x232 px at 256 px/m; fill face, stretch 1.08x. Twin of SGN_1024. Cocktail glass plus BAR, lettering reads correctly. Padding bounding box, includes bezel. The asset.json review note has a stray line about another sign; the art is unaffected."
+ },
+ {
+  "id": "SGN_0136",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/cyberpunk/SGN_0136_open.png",
+  "face_rect_px": [
+   32,
+   32,
+   510,
+   1984
+  ],
+  "aspect": 0.2571,
+  "kind": "neon",
+  "mesh": "SM_SGN_Neon_Blade_1m5_01",
+  "density_px_m": 256,
+  "lettering": "en",
+  "notes": "Face 0.5 x 1.5 m on SM_SGN_Neon_Blade_1m5_01 (aspect 0.33); art aspect 0.26; tile 128x384 px at 256 px/m; contain-fit, transparent pad, no stretch. Open (vertical OPEN letters). Twin by subject of module City_Sign_Open_01."
+ },
+ {
+  "id": "City_Sign_Open_01",
+  "source": "module",
+  "path": "C:/Prod/PipelineSandbox/Environment_Kit/City_Sign_Open_01/City_Sign_Open_01_BaseColor.png",
+  "face_rect_px": [
+   786,
+   186,
+   477,
+   1630
+  ],
+  "aspect": 0.2926,
+  "kind": "panel",
+  "mesh": "SM_SGN_Neon_Blade_1m5_01",
+  "density_px_m": 256,
+  "lettering": "ja",
+  "notes": "Face 0.5 x 1.5 m on SM_SGN_Neon_Blade_1m5_01 (aspect 0.33); art aspect 0.29; tile 128x384 px at 256 px/m; fill face, stretch 1.14x. Twin by subject of SGN_0136. 営業中 reads correctly; the top of 営 has a slightly non-standard form. Face rect from asset.json."
+ },
+ {
+  "id": "SGN_0099",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/cyberpunk/SGN_0099_red_light_district.png",
+  "face_rect_px": [
+   32,
+   32,
+   574,
+   1984
+  ],
+  "aspect": 0.2893,
+  "kind": "neon",
+  "mesh": "SM_SGN_Banner_Vertical_2m_01",
+  "density_px_m": 128,
+  "lettering": "ja,en",
+  "notes": "Face 0.5 x 1.94 m on SM_SGN_Banner_Vertical_2m_01 (aspect 0.26); art aspect 0.29; tile 64x248 px at 128 px/m; contain-fit, transparent pad, no stretch. Red light district (紅灯区 plus RED LIGHT DISTRICT). The title sign for the set."
+ },
+ {
+  "id": "SGN_1203",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/nightlife/SGN_1203_vertical_tube_a.png",
+  "face_rect_px": [
+   32,
+   32,
+   148,
+   1984
+  ],
+  "aspect": 0.0746,
+  "kind": "neon",
+  "mesh": "SM_SGN_Neon_Blade_3m_01",
+  "density_px_m": 256,
+  "lettering": "none",
+  "notes": "Face 0.5 x 3 m on SM_SGN_Neon_Blade_3m_01 (aspect 0.17); art aspect 0.07; tile 128x768 px at 256 px/m; contain-fit, transparent pad, no stretch. Vertical neon tube, no lettering. About 1:10 art on a 1:6 face, so it fills about 60% of the width."
+ },
+ {
+  "id": "SGN_0117",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/cyberpunk/SGN_0117_alley_marker.png",
+  "face_rect_px": [
+   32,
+   32,
+   476,
+   1984
+  ],
+  "aspect": 0.2399,
+  "kind": "neon",
+  "mesh": "SM_SGN_Banner_Vertical_3m_01",
+  "density_px_m": 128,
+  "lettering": "ja",
+  "notes": "Face 0.5 x 2.94 m on SM_SGN_Banner_Vertical_3m_01 (aspect 0.17); art aspect 0.24; tile 64x376 px at 128 px/m; contain-fit, transparent pad, no stretch. Alley marker (案内所 with down arrow)."
+ },
+ {
+  "id": "SGN_0125",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/cyberpunk/SGN_0125_dating.png",
+  "face_rect_px": [
+   32,
+   32,
+   1984,
+   1000
+  ],
+  "aspect": 1.984,
+  "kind": "neon",
+  "mesh": "SM_SGN_Box_Sign_1m_01",
+  "density_px_m": 256,
+  "lettering": "ja,en",
+  "notes": "Face 1 x 0.6 m on SM_SGN_Box_Sign_1m_01 (aspect 1.67); art aspect 1.98; tile 256x152 px at 256 px/m; contain-fit, transparent pad, no stretch. Dating (出会い DATING with hearts)."
+ },
+ {
+  "id": "SGN_1037",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/nightlife/SGN_1037_this_way.png",
+  "face_rect_px": [
+   32,
+   32,
+   1984,
+   430
+  ],
+  "aspect": 4.614,
+  "kind": "neon",
+  "mesh": "SM_SGN_Box_Sign_2m_01",
+  "density_px_m": 256,
+  "lettering": "ja",
+  "notes": "Face 2 x 0.6 m on SM_SGN_Box_Sign_2m_01 (aspect 3.33); art aspect 4.61; tile 512x152 px at 256 px/m; contain-fit, transparent pad, no stretch. This way (夜はこちら with chevrons). Very wide, 4:1 art on a 3.3:1 face."
+ },
+ {
+  "id": "SGN_0140",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/cyberpunk/SGN_0140_cocktails.png",
+  "face_rect_px": [
+   32,
+   32,
+   1984,
+   512
+  ],
+  "aspect": 3.875,
+  "kind": "neon",
+  "mesh": "SM_SGN_Box_Sign_2m_01",
+  "density_px_m": 128,
+  "lettering": "ja,en",
+  "notes": "Face 2 x 0.6 m on SM_SGN_Box_Sign_2m_01 (aspect 3.33); art aspect 3.88; tile 256x76 px at 128 px/m; contain-fit, transparent pad, no stretch. Cocktails (カクテル COCKTAILS). Small English subtitle is the legibility test at 128 px/m. Also the wide shape for the density ladder."
+ },
+ {
+  "id": "City_Sign_Paradise_01",
+  "source": "module",
+  "path": "C:/Prod/PipelineSandbox/Environment_Kit/City_Sign_Paradise_01/City_Sign_Paradise_01_BaseColor.png",
+  "face_rect_px": [
+   70,
+   727,
+   1896,
+   524
+  ],
+  "aspect": 3.6183,
+  "kind": "panel",
+  "mesh": "SM_SGN_Box_Sign_2m_01",
+  "density_px_m": 256,
+  "lettering": "en",
+  "notes": "Face 2 x 0.6 m on SM_SGN_Box_Sign_2m_01 (aspect 3.33); art aspect 3.62; tile 512x152 px at 256 px/m; fill face, stretch 1.09x. PARADISE in orange block capitals, lettering reads correctly. Face rect from asset.json."
+ },
+ {
+  "id": "SGN_0139",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/cyberpunk/SGN_0139_all_you_can_drink.png",
+  "face_rect_px": [
+   32,
+   32,
+   1984,
+   522
+  ],
+  "aspect": 3.8008,
+  "kind": "neon",
+  "mesh": "SM_SGN_Neon_Box_01",
+  "density_px_m": 128,
+  "lettering": "ja,en",
+  "notes": "Face 1.8 x 0.6 m on SM_SGN_Neon_Box_01 (aspect 3.00); art aspect 3.80; tile 232x76 px at 128 px/m; contain-fit, transparent pad, no stretch. All you can drink (飲み放題 plus English line, beer mug icon)."
+ },
+ {
+  "id": "Market_Sign_Human_Machine_01",
+  "source": "module",
+  "path": "C:/Prod/PipelineSandbox/Environment_Kit/Market_Sign_Human_Machine_01/Market_Sign_Human_Machine_01_BaseColor.png",
+  "face_rect_px": [
+   28,
+   656,
+   1992,
+   709
+  ],
+  "aspect": 2.8096,
+  "kind": "panel",
+  "mesh": "SM_SGN_Neon_Box_01",
+  "density_px_m": 256,
+  "lettering": "ja",
+  "notes": "Face 1.8 x 0.6 m on SM_SGN_Neon_Box_01 (aspect 3.00); art aspect 2.81; tile 460x152 px at 256 px/m; fill face, stretch 1.07x. 人間×機械, lettering reads correctly. Padding bounding box, includes a dark bezel."
+ },
+ {
+  "id": "SGN_0124",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/cyberpunk/SGN_0124_love_round.png",
+  "face_rect_px": [
+   32,
+   32,
+   1984,
+   1955
+  ],
+  "aspect": 1.0148,
+  "kind": "neon",
+  "mesh": "SM_SGN_Medallion_Sign_01",
+  "density_px_m": 512,
+  "lettering": "ja",
+  "notes": "Face 1 x 1 m on SM_SGN_Medallion_Sign_01 (aspect 1.00); art aspect 1.01; tile 512x512 px at 512 px/m; contain-fit, transparent pad, no stretch. Love round (愛 in a double ring). Also the round shape for the density ladder."
+ },
+ {
+  "id": "SGN_0431",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/animals/SGN_0431_koi_circle.png",
+  "face_rect_px": [
+   32,
+   32,
+   1936,
+   1984
+  ],
+  "aspect": 0.9758,
+  "kind": "neon",
+  "mesh": "SM_SGN_Medallion_Sign_01",
+  "density_px_m": 128,
+  "lettering": "ja",
+  "notes": "Face 1 x 1 m on SM_SGN_Medallion_Sign_01 (aspect 1.00); art aspect 0.98; tile 128x128 px at 128 px/m; contain-fit, transparent pad, no stretch. Koi circle (two koi, 鯉). Animal-emblem type; the animals sheet is assigned to Red-light district in the library."
+ },
+ {
+  "id": "Market_Sign_Noodle_Bowl_01",
+  "source": "module",
+  "path": "C:/Prod/PipelineSandbox/Environment_Kit/Market_Sign_Noodle_Bowl_01/Market_Sign_Noodle_Bowl_01_BaseColor.png",
+  "face_rect_px": [
+   228,
+   108,
+   1591,
+   1750
+  ],
+  "aspect": 0.9091,
+  "kind": "panel",
+  "mesh": "SM_SGN_Medallion_Sign_01",
+  "density_px_m": 256,
+  "lettering": "none",
+  "notes": "Face 1 x 1 m on SM_SGN_Medallion_Sign_01 (aspect 1.00); art aspect 0.91; tile 256x256 px at 256 px/m; fill face, stretch 1.10x. Noodle bowl pictogram, no lettering. The medallion disc clips the rect corners slightly. Padding bounding box."
+ },
+ {
+  "id": "SGN_0146",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/cyberpunk/SGN_0146_heart_lantern.png",
+  "face_rect_px": [
+   32,
+   32,
+   945,
+   1984
+  ],
+  "aspect": 0.4763,
+  "kind": "panel",
+  "mesh": "SM_SGN_AFrame_Sign_01",
+  "density_px_m": 512,
+  "lettering": "none",
+  "notes": "Face 0.6 x 0.9 m on SM_SGN_AFrame_Sign_01 (aspect 0.67); art aspect 0.48; tile 308x460 px at 512 px/m; contain-fit, transparent pad, no stretch. Heart lantern (paper lantern silhouette with a heart). Lit paper, so panel emission. The Lantern_* meshes have no face slot, so the art goes on a flat sign."
+ },
+ {
+  "id": "SGN_1043",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/nightlife/SGN_1043_girls_girls_girls.png",
+  "face_rect_px": [
+   32,
+   32,
+   1984,
+   938
+  ],
+  "aspect": 2.1151,
+  "kind": "neon",
+  "mesh": "SM_SGN_Billboard_Small_01",
+  "density_px_m": 256,
+  "lettering": "en",
+  "notes": "Face 1.44 x 0.74 m on SM_SGN_Billboard_Small_01 (aspect 1.95); art aspect 2.12; tile 368x188 px at 256 px/m; contain-fit, transparent pad, no stretch. Girls Girls Girls, script lettering on a plaque."
+ },
+ {
+  "id": "SGN_1046",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/nightlife/SGN_1046_welcome.png",
+  "face_rect_px": [
+   32,
+   32,
+   1984,
+   1257
+  ],
+  "aspect": 1.5784,
+  "kind": "neon",
+  "mesh": "SM_SGN_Billboard_Medium_01",
+  "density_px_m": 128,
+  "lettering": "ja,en",
+  "notes": "Face 3.04 x 1.64 m on SM_SGN_Billboard_Medium_01 (aspect 1.85); art aspect 1.58; tile 388x208 px at 128 px/m; contain-fit, transparent pad, no stretch. Welcome (歓迎 WELCOME), framed."
+ },
+ {
+  "id": "SGN_0128",
+  "source": "library",
+  "path": "C:/Prod/ProjectRunner/Graphics/signage/sign_library/game_2k/cyberpunk/SGN_0128_live_show.png",
+  "face_rect_px": [
+   32,
+   32,
+   1984,
+   1034
+  ],
+  "aspect": 1.9188,
+  "kind": "neon",
+  "mesh": "SM_SGN_Billboard_Large_01",
+  "density_px_m": 64,
+  "lettering": "ja,en",
+  "notes": "Face 6.24 x 3.44 m on SM_SGN_Billboard_Large_01 (aspect 1.81); art aspect 1.92; tile 400x220 px at 64 px/m; contain-fit, transparent pad, no stretch. Live show (ライブショー LIVE SHOW, microphone). Largest face, lowest density."
+ }
+]

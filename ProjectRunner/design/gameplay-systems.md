@@ -1,20 +1,20 @@
 # ProjectRunner gameplay systems proposal
 
-Drafted 2026-11-05 for Mike's review. Plan: `plans/2026-11-05-gameplay-systems.md` (task 2, RUN-183). Research: `research/gameplay-systems-2026-11-05/comparables.md`, cited below as "finding N". Critique: `research/gameplay-systems-2026-11-05/critique.md`, folded in on 2026-11-05 (rulings are in the plan). Updated 2026-11-05 with Mike's answers to the open questions (task 5, RUN-186). Status: proposal, nothing approved, nothing built.
+Drafted 2026-11-05 for Mike's review. Plan: `plans/2026-11-05-gameplay-systems.md` (task 2, RUN-183). Research: `research/gameplay-systems-2026-11-05/comparables.md`, cited below as "finding N". Critique: `research/gameplay-systems-2026-11-05/critique.md`, folded in on 2026-11-05 (rulings are in the plan). Updated 2026-11-05 with Mike's answers to the open questions (task 5, RUN-186). Updated 2026-11-07 with Mike's demo rulings and play-test notes: sections 7, 8 and 9, the Fighter case and the cost check are rewritten from them. Where an older section disagrees with the rulings table below, the table wins. Status: proposal, nothing approved, nothing built.
 
 ## Summary
 
-The game asks the player to do five things: walk through side-on scenes and talk, treat patients at the clinic by holding a button, break locks with a ring hack, hit prompts in cinematic fights, and choose. Everything else in Mike's request (gathering information, getting parts, growing Marcus, reputation and materials) is done through those same five actions, so the player never learns a new screen or control after the first clinic shift.
+The game asks the player to do five things: walk through side-on scenes and talk, treat patients by hitting timed keys while people talk to them, break locks with a ring hack, hit prompts in cinematic fights, and choose. Everything else in Mike's request (gathering information, getting materials, growing Marcus) is done through those same five actions.
 
-The core loop in one line: an episode gives Marcus a goal and a lead, his AI Companion asks how he wants to handle it, the player sends contacts out, and patients arrive. A patient case needs a fact or a part, getting it costs materials, a contact's time or a hack, the treatment holds a button through checkpoints, a discovery forces a choice, the choice sets one flag, and the next beat reads it.
+The core loop in one line: an episode gives Marcus a goal, a lead, and a few days with a fixed number of actions each. Patients arrive and he can't treat them all. A treatment runs timed keys and timed talk, a discovery forces a choice, the choice sets one flag, and the next beat reads it. XP fills a bar, and each level gives one upgrade.
 
-The main simplification is that every decision the player makes uses the dialogue choice layout already in the brief. Picking a route to a fact, sending a contact, spending a skill point and asking for a part are all dialogue choices. No inventory, skill or map screen is proposed.
+The main simplification is that every decision the player makes uses the dialogue choice layout already in the brief. No inventory, skill or map screen is proposed. The one new screen under test is the week planner in section 2.
 
 Decisions needed from Mike, in order of weight:
 
-1. Rule on the ring hack search step after playing the prototype in section 4, and keep, change or cut each system after playing its demo. Mike approved local demos of treatment, QTE timing, dialogue and the Fighter case on 2026-11-05, and they are at `design/gameplay-demos/index.html`. The QTE demo tests timing only. The demos use placeholder shapes and lines, and they do not cover Medis scenes, starting gifts, skill points, or balance across many cases.
-2. Approve the fourth dialogue option and the guard gun hack in section 8. The hack touches the chair fight.
-3. Keep three options at the Fighter's choice, or reduce them to two.
+1. Play the updated Treatment, Dialogue, Week and Ring hack levels demos at `design/gameplay-demos/index.html`, then keep, change or cut each system.
+2. Week: choose how story patients take their time, booked on a set day or any day with time held back. Both are in the demo, on a setting. Section 2 has the case for each.
+3. Ring hack levels: approve each level's mechanic, difficulty and proposed episode. Section 4 has the list.
 4. Approve the HUD additions listed near the end, each with its fallback.
 5. Approve or cut each system. Your answers are recorded as direction, and none is treated as approval.
 
@@ -38,6 +38,26 @@ The reply on web testing: yes for the stick and buttons, and rumble depends on t
 
 Mike's rulings on the follow-up questions (2026-11-05): build the ring hack prototype with an on-screen rumble indicator; reputation plus materials, with money gone; three endings and at most three characters who can die; three bonus points, each tied to an earlier choice in its episode.
 
+## Mike's demo rulings (2026-11-06 and 2026-11-07)
+
+These come after the answers above and overrule them where they differ. The dated notes in the plan have the detail and the lead calls.
+
+| System | Ruling | Where it's built |
+|---|---|---|
+| Treatment | The hold was boring. Each step is now timed keys ending on a hold, with a dialogue choice at its checkpoint, and the bar only shows progress. The heart monitor carries the tension. | `treatment.html` |
+| Treatment flow | No walking, bench, terminal, clamp or start triggers. A scene setup explains the situation and the keys, then the scene runs by itself, with timed lines bridging the choices (Mike, 2026-11-07). | `treatment.html` |
+| Treatment story | Stop the bleeding; deactivate the cyberware, which trips an alert and offers the hack or the AI; "What the hell happened?"; remove the bullet; close the wound; reconnect; diagnostics that all pass; "Something's not right"; a second run with the same results reveals the malware; remove, tell or ignore. | `treatment.html` |
+| QTE fight | One key on screen, with a hold as the finisher. Round 1 is one guard, round 2 has a guard on each side. "Good, nothing to tweak" (Mike, 2026-11-07). | `qte.html`, `fight.js` |
+| Dialogue | Pills around a diamond of buttons, a timer that closes from both ends, and the spec option arriving late with a glitch. The quick hack is arrows only, and the talk timer runs at 0.1 speed during it. The fight now plays inside this scene, followed by a final choice with Vhoori: Threaten, Negotiate or Walk away (Mike, 2026-11-07). | `dialogue.html` |
+| Fighter demo | Kept for indexing only. The Treatment demo has moved past it, so it still has the hold bar and reputation (Mike, 2026-11-07). | `fighter.html` |
+| Ring hack | Arrows read top to bottom, current on top, which reverses the original request. The custom version stays as it is, and a new level game brings in each mechanic with a how-to card as it's used (Mike, 2026-11-07). | `ring-hack-prototype/index.html`, `levels.html` |
+| Growth and economy | An XP bar replaces reputation and the episode skill points. Failures, including abandoning people, cut it, and levels never drop. Each level gives one shop or body upgrade and sets the daily materials. | `week.html` |
+| Time | Actions per day, not a clock, starting at 3 days with 3 actions each. Story-critical cases never expire. This means about 30 cases, not 15. Mike found it hard to understand and asked for an explanation and possibly a rework (2026-11-07). | `week.html` |
+| The Fighter's fate | If the malware stays in he dies, even if told, and a rumor can blame Marcus. If it's removed, Marcus can bet on him, staking a favor owed to the Scavenger Leader. A win buys both their freedom from the gang leader, and a loss leaves both still targeted. | Tally screen only |
+| Cast | The AI Companion and the paid Hacker Contact are separate characters. The AI Companion monitors the patient and steps in on a failed hack. | `treatment.html` |
+
+Two things testers needed, from Mike's session on 2026-11-07: testers pushed the stick up, down, left and right instead of spinning it, and Mike had to talk people through hacking and treatment by hand. Both demos now teach as they go, and these rulings assume a shipped game will too.
+
 ## Rules this proposal keeps
 
 - Walk by default, run while held, no jumping or traversal, automatic crouch zones (BRIEF 2026-11-02).
@@ -47,6 +67,8 @@ Mike's rulings on the follow-up questions (2026-11-05): build the ring hack prot
 - Cast is written as roles. The roles used here: the Scavenger Leader (Marcus's benefactor), the AI Companion, the Hacker Contact, the Intel Contact (the friend with a talent for information), the Bar Contact, the Fighter, the Gang, the Gang Enforcer. Mike names them later. Mike has named three groups and places so far: the Medis, the Scavengers and the Hidden Room.
 
 ## 1. Core loop and episode structure
+
+Status 2026-11-07: three cases per episode and 15 across the game are replaced by days and actions (section 2) and about 30 cases. XP replaces reputation and episode skill points (section 8). The rest of this section still describes the proposed loop.
 
 ### What the player does
 
@@ -112,6 +134,29 @@ A case is hand-written and runs through these fixed stations:
 
 Not every case has every station. A cheap case is intake, treatment, close.
 
+#### Days and actions (Mike, 2026-11-06; rework in test, 2026-11-07)
+
+An episode has days, and a day has actions, starting at 3 days with 3 actions each. Treating someone, breaking down gear, asking around and sending a contact each use one action. A story patient takes 2 in one day (lead call). Paying the Hacker Contact uses materials and no action. An ordinary patient waits a set number of days, and if the wait ends with them untreated, they leave and XP drops. Story patients never leave.
+
+Mike's play-test found the time hard to understand and hard to prioritize. The causes in the first version: the game quietly held back actions for story patients and greyed out buttons with no reason, later patients were a surprise, and the screen said "parts" in one place and "materials" in another. The demo now has:
+
+- A how-to card before day 1, which can be reopened from the panel.
+- A planner with the days across the top and each patient's wait as a bar, including patients who haven't arrived yet.
+- Action dots: cyan to spend, amber already set aside, with the story patient's name under them.
+- A plain reason whenever something is blocked, and the cost and XP on the choice itself.
+- One word, materials, everywhere.
+
+Two rules for story patients, on a setting in the demo:
+
+| | Booked on a set day (lead's recommendation, the demo's default) | Any day, with time held back (the first version) |
+|---|---|---|
+| The rule | The Fighter is booked on day 2 and the Lieutenant on day 3. The player can prepare before then. | Fit them in on any day. The game holds back the actions to make sure they fit. |
+| What the player works out | Only how to spend the cyan dots | When to do them, and why actions keep going amber |
+| Time pressure | The same 5 free actions | The same 5 free actions, with more say over when |
+| For the story | Beats can assume which day a story patient is treated | Beats have to wait on the player's order |
+
+The planner goes beyond the HUD limit, so it's on the approval list below. A shipped version could show the same information as a pause menu page or the AI Companion's morning line.
+
 ### Inputs
 
 Walk, interact, dialogue choices. The table, bench, terminal and door are interactables in the existing plugin. The terminal opens the Hacker Contact talk and the ring hack for cases that use them. No new input.
@@ -138,6 +183,8 @@ A minimal clinic. The hub stays, as decided, but it is one room with the table a
 1. Do the Intel Contact and Hacker Contact visit the clinic in person, or only call? Your answer on who knows the location decides this. Calls are cheaper, since they need no character in the room.
 
 ## 3. Medical aid (hold-to-fill bar with checkpoints)
+
+Status 2026-11-07: overruled by Mike's demo rulings. Treatment is now timed keys and timed talk with no walking, as in `treatment.html` and the Fighter case below. The text in this section is the original proposal and gets rewritten when Mike approves the system.
 
 ### What the player does
 
@@ -184,13 +231,39 @@ A lock of one to four rings appears, built from the assets in `Graphics/_library
 
 1. Search. A small arrow sits on the ring. The right stick rotates the arrow around the ring. The ring's gap is at a different angle for each ring, set per lock or randomized. Three cues say how close the arrow is to the gap: a glow on the ring that brightens near the gap, a tone that rises in pitch, and a rumble that strengthens. The rumble has its own toggle and the other two cues always play (finding 17, finding 18).
 2. Fit. When the arrow is inside the gap the player presses the fit button. A piece fills the gap and the ring lights up.
-3. Sequence. A timer starts. Two to four direction arrows appear in the ring's center, the next one dim above the current. The player presses them in order with the d-pad or left stick.
+3. Sequence. A timer starts. Two to four direction arrows appear in the ring's center, with the current one on top and the next ones dim below it (changed by Mike, 2026-11-07). The player presses them in order with the d-pad or left stick.
 4. Solve. The ring turns green, is pushed outward by the next ring and fades into the background. The next ring takes its place.
 5. Open. When the last ring is solved the lock opens, the rings play a wave, and "Access granted" animates in.
 
 The asset README notes every gap is at the same angle and that rings rotate by Render Transform Angle. So the search step only matters if each ring starts at its own rotation, which this proposal does (research design point). It also means the one gap piece, cut for the outer ring, needs a piece per radius or a scaled copy. That is an asset note, not a design change.
 
 Proposed starting values: two rings for a door, three for a device, four for a story hack. A ring timer of six real-time seconds. Three arrows per ring, four on the last. Reflex slow-down runs automatically: the scene behind the lock plays at 0.3 speed and blurs, as if Marcus's brain speeds up. The six seconds is what the player actually gets, already counting the slow-down, and it is the same for every specialty. Netrunning changes the look and the ring count, and not the timer or the game (finding 14, finding 15). Its cleaner interface removes the visual noise from the rings and draws the upcoming arrow brighter, so the sequence is easier to read.
+
+#### Level game (Mike, 2026-11-07)
+
+`ring-hack-prototype/levels.html` teaches the hack one mechanic at a time, the way the game would across its episodes. The custom version at `index.html` keeps every setting for tuning. A how-to card pauses the lock the first time a mechanic comes up. Level 1 starts with a practice: the player has to take the arrow a full circle before the fit works, because testers pushed the stick in four directions instead of spinning it. If a player presses the d-pad while searching, or searches for 6 seconds without finding the gap, a line under the ring says to spin the stick.
+
+The episode for each level and the exact numbers are lead proposals for Mike's approval. Mike set the direction after playing it on 2026-11-07: the gap narrows to 25 degrees by level 6, the timers shrink by quite a bit, and the red ring gains arrows. The current arrow is also drawn large in the exact middle of the ring, with the next ones small below it and more see-through.
+
+From level 6, running out of time to find the gap sets off the red ring and an "Intruder Alert" label, and the ring waits behind it. The timeout itself is no strike. If the red ring reaches the player, it pushes a solved ring back and counts as a strike.
+
+| Level | Name | New mechanic | Rings | Gap | Time to enter arrows | Time to find | Red ring arrows | Proposed episode |
+|---|---|---|---|---|---|---|---|---|
+| 1 | First lock | Search, fit, arrows. The gap is visible | 1 | 56° | None | None | - | 1 |
+| 2 | Hidden gap | The gap hides until close, and the cues find it | 1 | 50° | None | None | - | 1 |
+| 3 | More rings | Solved rings push out, and the last ring has an extra arrow | 2 | 44° | None | None | - | 1 |
+| 4 | The clock | A time limit on the arrows | 2 | 37° | 6 s | None | - | 2 |
+| 5 | Strikes | Three failed rings lock you out | 3 | 31° | 5 s | None | - | 2 |
+| 6 | Gap timer | A time limit on finding the gap, from ring 2. Running out sets off the red ring | 3 | 25° | 4.5 s | 6 s | 2 | 2 |
+| 7 | Antivirus sweep | An arc orbits the ring and catches the arrow, from ring 2 | 3 | 25° | 4.5 s | 5 s | 2 | 3 |
+| 8 | Hunting sweep | The sweep chases the arrow | 3 | 25° | 4 s | 4.5 s | 3 | 3 |
+| 9 | Corrupted arrow | One arrow per ring means the opposite direction | 3 | 25° | 4 s | 4.5 s | 3 | 3 |
+| 10 | Decoy gap | A second gap with stuttering cues fails the ring | 3 | 25° | 3.5 s | 4 s | 4 | 4 |
+| 11 | Moving gap | The gap jumps every 5 s, even with the arrow on it | 3 | 25° | 3.5 s | The jump is the limit | - | 4 |
+| 12 | The alarm | Failed rings and a story beat set off the red ring too | 3 | 25° | 3 s | 4 s | 4 | 4 |
+| 13 | Full lock | Everything except the moving gap | 5 | 25° | 2.5 s | 3.5 s | 5 | 5 |
+
+The Netrunner's ring break is a specialty rather than a level, so it's a switch on the panel and gets its own card the first time it can happen. The search step stays in the level game. Mike's final ruling on it comes with his approval of levels 1 and 2.
 
 What is shared and what Runner adds:
 
@@ -329,233 +402,257 @@ Two routes: ask (talk and send a contact merged into one route with no cost beyo
 1. Does the bar exist as a scene the player walks to, or is Talk a conversation at the clinic door? Your AI Companion answer did not settle this, so the bar stays in for now.
 2. How many approaches does the episode plan offer, and how far can the approach change a beat? This proposal assumes two or three approaches, all reaching the same beat with a different opening. If an approach needs its own level, it is a new cost.
 
-## 7. Materials and crafting (buy, craft, or hire)
+## 7. Materials and crafting
 
 ### What the player does
 
-Some cases need a part: a clamp, a nerve bridge, a blood pack, a replacement actuator. The player gets it one of two ways, because paying and hiring both become asking the Scavengers under favours only (section 9):
+Everything is one count: materials. There are no clamps or named parts to fetch, because Mike cut the bench and the clamp from treatment. Materials arrive three ways:
 
-| Route | How | Cost | Needs |
-|---|---|---|---|
-| Ask the Scavengers | A dialogue choice through the Intel Contact. The Scavengers send the part, a substitute, or the materials for it. The delivery arrives when the player next returns to the table, inside the same case. | A return job: usually gear they send to the clinic to break down at the bench, a hold like treatment. It can run after the case closes. | Reputation sets how good the offer is. |
-| Craft | Hold at the bench. The bench fills a bar like treatment. | Materials plus the hold. | The Tech specialty and the right clinic machine: a cyberware bench for parts, a tissue printer for organic material. |
+| Source | How | Demo value (placeholder) |
+|---|---|---|
+| Morning delivery | The Scavengers send it each morning, and level sets the size. | 1 per level, per morning |
+| Breaking down gear | Uses one action. | +2, and +3 for a Tech |
+| Starting gift | Each episode opens after a time jump, so counts reset. Last episode's results decide what someone sends as thanks (Mike, 2026-11-05). | Not in a demo |
 
-There are two machines, and each costs a lot of materials and reputation, so the player has to prioritize. A Tech starts with one machine of their choice, and the second should take most of what an episode brings in (proposed). Machines stay between episodes.
+Materials pay for treatments, the Hacker Contact and the AI Companion's jobs. A treatment shows its cost before it starts. A patient can always be treated without materials, for a rough result and less XP.
 
-Breaking down gear pays materials to anyone, and a Tech gets more out of the same gear. Parts and materials are counts, not an inventory. The count shows as a corner notice when it changes and in the pause menu log. There is no inventory screen.
+Prices are hidden during surgery, because Mike took them out of the dialogue, so the AI Companion can always be chosen. Materials can then go below zero as a debt, and the tally lists every charge. The AI's loading screen still states its price.
 
-Each episode opens after a time jump, so counts reset. What the player starts with depends on last episode's results: Marcus saved someone, and they sent something three months ago as thanks. Each story critical outcome has one starting gift written for it (cost check).
+Crafting and machines: under XP the two expensive machines became shop upgrades bought with a level, the Better bench and the Tissue printer. No demo has crafting as its own action. This is the lead's reading of the XP ruling, and it's question 1 below.
 
 ### Inputs
 
-Dialogue choices and the bench hold. The hold uses the same toggle and tap alternatives as treatment, with the same story outcome.
+Dialogue choices. Breaking down gear is one press on the day's choices. There is no bench to walk to.
 
 ### Story purpose
 
-Parts are how the city's economy touches the table. Craft says Marcus is a Tech. Asking the Scavengers says he depends on them, and every return job says so again. The starting gift shows the player that someone remembers, without a patient having to come back.
+Materials are how the city's economy touches the table. The delivery growing with level says the Scavengers think more of Marcus as he proves himself. The starting gift shows the player that someone remembers, without a patient having to come back.
 
 ### Feeds from and into
 
-- From: section 9 sets the offer through reputation and pays through materials. Section 8 opens crafting. The last episode's outcomes set the starting gift.
-- Into: section 3 needs the part before a critical step. Section 6 spends materials on the Hacker Contact.
+- From: level sets the delivery (section 8). Actions pay for breaking down gear (section 2). Last episode's outcomes set the starting gift.
+- Into: treatment quality and XP (sections 3 and 9), the Hacker Contact (section 6) and the AI Companion's jobs (the Fighter case).
 
 ### On failure
 
-A part the player cannot get does not stop the case. Before the step that needs it the player can go on without it, which sets the cheaper outcome flag (the Fighter fights with a weaker arm). No hunting through the world for materials.
+Running out never stops a case. The treatment goes ahead rough, the fact has a route that costs an action instead, and an AI job runs up a debt.
 
 ### Simpler alternative
 
-No crafting. Parts come from asking the Scavengers, and the Tech specialty shortens the return job or finds one part in the clinic. What it loses: the bench, the machines and the "if you have the tools" fantasy from Mike's request. What it keeps: the pressure of owing the Scavengers and the Tech advantage.
+Materials only for story patients. Ordinary patients cost actions alone, so the player weighs one number on most days. What it loses: the pull between breaking down gear and treating someone. What it keeps: the materials decision where it carries story weight.
 
 ### Open questions for Mike
 
-1. Should a Tech start with one machine free? This proposal needs it so that Tech can craft in the first case. Without it, Tech crafting starts when the player can afford a machine.
-2. Can the player ever refuse a return job, and what happens to reputation if they do? This proposal says the job is always done, so nothing has to be tracked.
+1. Is a shop upgrade enough, or should crafting stay as its own action? Your request had buying, crafting and hiring. The current demos keep only delivery and breaking down gear.
+2. Does a materials debt carry anything beyond the tally, such as a smaller next delivery?
+3. Mike's 2026-11-05 answer made gear from the Scavengers the return for their favours. Is the morning delivery enough to carry that, or should a return job stay?
 
-## 8. Marcus's growth (specialties and skill points)
+## 8. Marcus's growth (specialty, XP and upgrades)
 
 ### What the player does
 
-Marcus starts weak. His first choice is the specialty, Tech, Netrunning or Enforcer, made in the opening beat before the first case. It gives rank 1 of that track. After that, each of the five episodes awards one point at its start. Two or three bonus points are offered through dialogue before a dangerous step: before Marcus sneaks into a gang's area, he is offered an upgrade to X, Y or Z to help him get through it. Points go anywhere, and they are spent in that conversation, drawn as dialogue choices, so there is no skill screen.
+Marcus starts weak. His first choice is the specialty, Tech, Netrunning or Enforcer, made in the opening beat. After that an XP bar replaces the episode skill points and reputation (Mike, 2026-11-06). Completed cases, treatments and successes fill it, and failures cut it. A level never drops, and a loss only empties the current bar. Each level gives one upgrade for the shop or for Marcus's body, spent straight away in a dialogue choice, so there is still no skill screen.
 
-What each specialty does, kept to one thing the player does per rank:
+Upgrades in the Week demo, all placeholders:
 
-| Specialty | Rank 1 (the specialty pick) | Rank 2 | Rank 3 |
+| Group | Upgrade | Effect |
+|---|---|---|
+| Shop | Better bench | Breaking down gear gives 1 more material |
+| Shop | Tissue printer | Organic cases need 1 fewer material |
+| Body | Rebuilt lungs | 1 more action each day |
+| Body | Steady hands | A clean treatment allows 1 more missed key |
+
+The pace target is about two levels an episode, so about 10 upgrades across the game. A simple run that treated everyone earned 17 XP at 10 XP a level, and a stronger one earned 21. The nine specialty ranks and the three bonus points from 2026-11-05 no longer have a place under this ruling. That's the lead's reading, and question 2 below.
+
+What each specialty does in the demos:
+
+| Specialty | Getting a fact | Treatment | Removing the malware |
 |---|---|---|---|
-| Tech | Crafting, with one machine to start; see hardware faults on inspection; more materials from breaking down gear. | Cyberware steps fill faster. | The surgical rig does one organic step per case. |
-| Netrunning | Hack facts yourself; a cleaner hack interface. | Every lock has one ring fewer. | A completed hack adds one extra option at the case choice, where the case has one. |
-| Enforcer | Strength dialogue options; better fight beats. | Physical solutions: force a door instead of hacking it. | Lean on someone instead of paying, once per case. |
+| Netrunning | Hack it yourself, for one action and full detail | No change | Plays the harder hack, for more XP. Breaks one ring per lock, and has a cleaner interface |
+| Tech | Asks around, for less detail | One key fewer on cyberware steps, and 1 more material from gear | Does it directly with timed keys |
+| Enforcer | Leans on someone, for full detail | No change | Talked through by the Hacker Contact, or pulls the controller by hand with a weaker arm if the contact is away |
 
-Each rank is a single gate. The nine ranks are the "all skills" in Mike's decision. The specialty pick plus five episode points gives six ranks for every player. All nine need three bonus points. With only two offered, one rank always stays locked, which goes against "all skills can unlock", so this proposal uses three. Mike chose three, each offered only if an earlier choice in that episode earned it, such as who the player helped. So a player can miss one, and all nine ranks depend on choices.
+The spec option. Dialogue normally offers three choices on X, Y and B. At certain points a fourth option arrives on A, depending on Marcus's spec and where he is. It only shows when the player qualifies. It arrives a few seconds after the other choices with a glitch effect, and the hack option has Mike's chip icon beside it. Mike's example is the scene with Vhoori: a Netrunner can hack the guards' guns and keep answering during the hack.
 
-The spec option. Dialogue normally offers three choices on X, Y and B. At certain points a fourth option appears on A, depending on Marcus's spec and where he is. It only shows when the player qualifies, so locked options are never shown. Mike's example is the scene with Vhoori: as Marcus talks to Vhoori and looks at the guards, a Netrunner gets the option to hack their guns and keeps answering Vhoori during a quick hack.
-
-The quick hack is a one-ring version with no search step, so the arrows run on the d-pad under the left thumb and the right thumb stays on the dialogue buttons. Reflex slow-down does not run during it, because the talk carries on at normal speed. A dialogue choice does not time out while a quick hack is live, so the player is never asked to do two timed things at once (proposed).
-
-A case that has closed does not reopen. A gate the player could not pass is offered again the next time a case or beat has one of that kind, so most gates need no failure content (finding 22).
+The quick hack has no search step and no right stick, so the left thumb runs the arrows on the d-pad and the right thumb stays on the dialogue buttons. It has 8 arrows and its own 10 second timer, and a wrong arrow restarts the sequence. The talk timer doesn't stop. It runs at 0.1 speed, so a choice can still time out while the hack carries on.
 
 ### Inputs
 
-Dialogue choices only, plus the d-pad for a quick hack. Controller: A, keyboard: 4 for the spec option. Remappable.
+Dialogue choices, plus the d-pad for a quick hack. Controller: A, keyboard: E or 4 for the spec option. Remappable.
 
 ### Story purpose
 
-Growth is Marcus rebuilding himself. The specialty is the first thing the player says about who he is, and the three tracks are three ways to survive The Hive: fix it, break in, or hit back. A bonus point spent just before the danger it helps with makes the upgrade feel like preparation.
+Growth is Marcus rebuilding himself. The specialty is the first thing the player says about who he is, and the three tracks are three ways to survive The Hive: fix it, break in, or hit back. Upgrades split between the shop and his body, so each level asks whether to invest in the clinic or in himself.
 
 ### Feeds from and into
 
-- From: the opening beat gives the specialty. Episode starts award points, and dialogue before a dangerous step can add one.
-- Into: section 3 (cyberware speed, the rig), section 4 (ring count, interface), section 5 (better beats), section 6 (self-hack route), section 7 (crafting), dialogue (strength options and spec options).
+- From: the opening beat gives the specialty. Cases and hacks fill the bar (section 9).
+- Into: daily materials (section 7), actions per day (section 2), treatment results (section 3), the hack's look and ring break (section 4), the routes to a fact (section 6), and dialogue spec options.
 
 ### On failure
 
-No failure. A gate the player lacks does not appear. A failed quick hack sets a flag, the scene continues and the talk is unaffected.
+A level never drops. A spec option the player doesn't qualify for doesn't appear. A failed quick hack sets a flag, the scene continues and the talk is unaffected.
 
 ### Simpler alternative
 
-Fewer skills, same points. Each track has one rank instead of three, so there are three skills in total. The specialty gives one, and two episode points open the others. What it loses: depth inside a track, and the ring and fight bonuses at higher ranks. What it keeps: the three identities, episode-based points and the "all can unlock" promise, with far fewer states to test.
+Upgrades only, with no specialty effect on treatment. The specialty changes the routes to a fact and the removal, and nothing else. What it loses: Tech's edge at the table. What it keeps: the three identities, and fewer states to test.
 
 ### Open questions for Mike
 
 1. Should the quick hack on the guards' guns change the chair fight? See the chair fight boundary. Without new animation it can only change a line.
+2. The XP ruling replaces the skill points. Do the old specialty ranks and bonus points go completely, as written here, or should some come back as upgrades only that specialty can buy?
+3. What are the real upgrades? The four above are placeholders.
 
-## 9. Money and favours, and failure costs
+## 9. XP, materials and failure costs
 
 ### What the player does
 
-Money is removed. Mike chose this structure on 2026-11-05:
+Money and reputation are gone. There are two counts the player watches, the XP bar and materials, plus the days and actions in section 2. XP values so far, all placeholders:
 
-- Reputation. Marcus treats someone, reputation rises, and the patient pays the Scavengers through the Intel Contact. Reputation is never spent, and it sets what the Scavengers will offer: better reputation means better materials and gear.
-- Materials. These come from return jobs, breaking down gear and starting gifts. They pay for crafting, machines and the Hacker Contact.
-- Medis risk. The more people Marcus helps without payment, the more the Medis can find. Free care is a choice at the close of a case, and it adds one mark (proposed).
+| Event | XP |
+|---|---|
+| Ordinary patient, clean | +3 |
+| Ordinary patient, rough | +1 |
+| Story patient, clean | +6 |
+| Story patient, rough | +3 |
+| Story patient, with a full fact or a lesser one | +2 or +1 more |
+| The Fighter's case finished, in the Treatment demo | +6 |
+| Doing the removal hack yourself | +2 more |
+| A failed hack the AI Companion had to finish | -2 |
+| Patient left untreated | -3 |
 
-Dialogue conditions read all three. None is a morality score (finding 27). They show as corner notices when they change, and reputation and materials also show in the pause menu log. There is no object in the world that lists them and no crowd or patient behaviour tied to them.
+A treatment is clean if it has its materials and at most one missed key. There are no hidden odds.
 
-There is no debt call-in. When marks reach a threshold (proposed: two), Marcus has to act before the Medis find him, in one of two authored scenes: a QTE or ring hack to break into their servers and wipe the records, or a hunt through the city where he has to hide, walking and using the existing crouch zones. Either one clears the marks.
+Medis marks are not in any demo. The earlier proposal had free care add a mark, with an authored Medis scene at two marks. It still fits under XP, but nothing has tested it, and it's question 1 below.
 
-Failure costs, by type, with the rule that failure never ends play:
+Failure costs, with the rule that failure never ends play:
 
-| What went wrong | Cost | Type |
-|---|---|---|
-| Ring lockout | Reload from checkpoint, or pay materials for the fact plus a "noticed" flag | Cheap: materials (finding 24) |
-| Missed QTE | A flag, and a worse beat only where authored | Cheap by default |
-| Part not obtained | Cheaper outcome flag on the case | Cheap |
-| Too many marks from free care | One authored Medis scene, at most one per episode | Authored, counted in the cost check |
-| Failing a Medis scene | Marks stay, and the Medis come closer in the next episode's beats | Authored, feeds the ending |
-| Choice with a bad result | The case's worse outcome flag | Authored, inside the case's cap |
+| What went wrong | Cost |
+|---|---|
+| Missed treatment key | Heart rate jumps, a complication is counted, and a rough result if there are too many |
+| Failed ring during surgery | Heart rate climbs and stays up |
+| Locked out of a hack | The AI Companion finishes it, for XP |
+| Missed QTE | Marcus takes a hit, counted for the story cost, and the fight carries on |
+| Failed quick hack | A flag, and the talk carries on |
+| Too few materials | A rough result, or a debt for an AI job |
+| Patient left untreated | XP, and a report line |
+| Malware left in | The Fighter dies later, and a rumor can blame Marcus. The rumor's XP cost isn't set yet |
 
 ### Inputs
 
-None for the counters, which are read only. A Medis scene uses the QTE or ring hack inputs, or walking.
+None for the counters, which are read only.
 
 ### Story purpose
 
-Free care is the moral pressure in the economy. Helping someone who cannot pay is the decent thing, and it brings the Medis closer. Reputation carries the rise Mike described: friends and family first, then gangs looking for the Hidden Room, then the conflict with the Medis.
+XP carries the rise Mike described: friends and family first, then gangs looking for the Hidden Room, then the conflict with the Medis. Losing XP for abandoning someone makes the week's choices cost something, without a morality score (finding 27).
 
 ### Feeds from and into
 
-- From: every case close, every return job, every episode's starting gift.
-- Into: sections 6 and 7 (what the player can afford and be offered), dialogue conditions, the Medis scenes and the ending.
+- From: every case close, every hack, every patient who leaves.
+- Into: upgrades and delivery (sections 7 and 8), dialogue conditions and the ending.
 
 ### On failure
 
-Running out of materials is not failure. For a fact, the Talk route is always available. For a part, asking the Scavengers is always available, and going on without the part is too, which sets a cheaper flag. Crafting is not a guaranteed route, because it needs Tech, a machine and materials. A Medis scene is the only resource consequence with authored content.
+Nothing here can stop play. XP can't go below the start of the current level.
 
 ### Simpler alternative
 
-One favours number, earned on each case and spent on everything, in place of reputation and materials. What it loses: the difference between how well the Scavengers think of Marcus and what he can afford now. What it keeps: one counter, one notice, and the Medis scenes.
+No XP loss. Failures only earn less. What it loses: the bite of abandoning someone, which Mike asked for. What it keeps: one rising bar, which is simpler to explain.
 
 ### Open questions for Mike
 
-1. Should the player see Medis marks as a number, or only through corner notices such as "The Medis are asking around"? This proposal uses notices only.
+1. Do Medis marks and scenes stay, now that reputation and money are gone?
+2. What does the rumor cost, and when does it hit?
+3. Earlier answers kept a reload from checkpoint after a hack failure. The Treatment demo has the AI Companion finish it instead, with no reload. Should a reload stay as an option anywhere?
 
 ## The Fighter case, start to finish
 
-This is the required worked example and the first case in the game. Every step names the system it uses.
+This is the required worked example and the first case in the game, as it plays in `treatment.html`. Every step names the system it uses. Mike's version replaces the earlier part, route and terminal structure.
 
-1. Intake (section 2). The Scavenger Leader sends the Fighter, who walks in with a gunshot wound in his cybernetic arm and a match the next day. He wants it patched and he can pay a little. The case needs a part (a clamp) before the first critical step and, later, a fact.
-2. Part (section 7). The player asks the Scavengers for the clamp through the Intel Contact, which brings it to the table and adds a return job, or crafts it at the bench if Tech. The player can also start without it, see the branch below.
-3. Treatment (section 3). Hold. Checkpoint one, stop the bleeding, is a critical step, so it needs the clamp and the player cannot walk away. Checkpoint two, remove the bullet. Checkpoint three, close the wound. At checkpoint two the patient is stable and Marcus stops: the fix is easy but something in the arm is not right. This is suspicion only, and the player can let go and walk the clinic.
-4. Diagnosis (section 4 or 6). The fact to learn is "code in this arm can stop his heart". Every route delivers that fact before the choice, at different levels of detail:
-   - Tech: Marcus traces a tamper mark and a line from the arm's controller into the Fighter's chest. No hack is needed.
-   - Netrunning: the player hacks the arm, three rings. The hack shows the malware, the heart command and the Gang's mark.
-   - Hacker Contact: pay materials, and the contact reads it at the terminal. Same detail as the hack.
-   - Send the Intel Contact to the Gang's gym, or talk to the Bar Contact: the fact arrives as "the Gang has been in that arm, and it can stop his heart". It is the same flag with less detail.
-5. Choice (section 2). A timed dialogue choice, three options on X, Y and B: remove the malware, leave it and tell the Fighter, leave it and say nothing. Enforcer adds a line to the first option, not a fourth option.
-6. Removal, if chosen (section 3). Removal is a critical step on the same bar, since disconnecting the arm's controller could kill him, so it is a hold the player cannot leave, and it cannot fail. A Netrunning or Tech Marcus does it himself, and Tech's fill is faster. Otherwise the Hacker Contact talks him through it, which costs nothing further. If the contact is unreachable, Marcus pulls the arm's controller by hand. That also removes the malware and leaves the arm weaker. Every version sets the same "removed" flag.
-7. Close (section 9). Remove: the Fighter pays the Scavengers, reputation rises, the "removed" flag is set, and the notice says the Gang will know. Tell: the Fighter decides what to do with the knowledge and the flag is "warned". Say nothing: the flag is "left in", and the Fighter pays. The player can also waive payment for any of these, which adds a Medis mark.
-8. The Gang's response (the one later scene). In the next beat, the Gang Enforcer finds Marcus at the bar if the flag is "removed" and makes clear that Marcus and the Fighter are both targets. This moved from the clinic, because a gang walking into the Hidden Room in the first case would spend the arc Mike describes, where gangs only start looking for it later. It is one authored scene with a dialogue and, if the player is Enforcer, a strength option on A. It is staged with existing walk and talk clips. If the flag is "warned", the Fighter's fate comes as a line from the Intel Contact. If "left in", a line reports the match result. All three rejoin at the clinic the next shift, carried by one flag, one reaction and one notice (finding 3).
-
-Mike's request describes only the choice to remove the malware. The "tell" and "say nothing" options are this proposal's additions, and the shape loosely resembles a scene in the rejected story. See the Fighter question below.
+1. Setup (section 2). A card explains the scene and the keys. The player presses A and the rest runs by itself. The Fighter has a bullet in his cyber arm and a match in two days. A few timed lines start it, and the heart monitor is already high.
+2. Stop the bleeding (section 3). Timed keys ending on a hold. Then a timed choice as he asks how bad it is, a reply, and timed lines that lead into the next step.
+3. Deactivate the cyberware. Timed keys, then an alert: the arm's security hits his heart, and the monitor goes wild.
+4. Hack or hand it off (section 4). The AI Companion asks, and any specialty can pick. "Hack it" plays a two-ring lock, with a how-to card the first time. Failed rings raise the heart rate, and a lockout brings the AI in for XP. "Get your AI to do it" plays a loading screen with a price in materials.
+5. "What the hell happened?" Once he is stable he asks, with a timed choice and a reply.
+6. Remove the bullet, then close the wound. Keys, a timed choice ("Who shot me?", "What do I owe you?"), and bridge lines.
+7. Reconnect the cyberware. Keys, then a one-option line: "All done. Let me just run a diagnostics."
+8. Diagnostics. A log scrolls down one column, and a results panel fills in. All pass.
+9. "Something's not right." Two choices: run it again, or "I'm sure it's fine". Saying it's fine closes the case with the malware missed.
+10. The second run. Both panels show and the matching rows light up, because the results are identical. Real hardware never repeats like that, and his heart skips. Marcus finds malware wired to the heart.
+11. The choice (Mike's version). Remove it, tell the Fighter, or ignore it.
+    - Tell: the Fighter asks to have it taken out, and the player does it, gets the AI to do it, or refuses.
+    - Remove: the player does it, or gets the AI to do it.
+12. Removal.
+    - Netrunning plays a harder hack, three rings with more arrows and less time. Doing it earns more XP. A lockout brings the AI in for XP, and the malware still comes out.
+    - Tech does it directly with timed keys at the table. Slips add complications and can't fail it.
+    - Enforcer is talked through by the Hacker Contact, with the same keys. If the contact is away, he pulls the controller by hand and the arm ends up weaker.
+    - The AI Companion costs materials, on either route.
+13. Tally. A screen shows how the player did, their stats, every price paid and a button to try again.
+14. What it leads to:
+    - Malware left in (missed, ignored or refused): the Fighter dies, even if told. A rumor can blame Marcus. When he refused, the rumor says he found it and wouldn't touch it.
+    - Malware removed: the gang will notice, and Marcus can bet on the Fighter, staking a favor owed to the Scavenger Leader. A win buys both their freedom from the gang leader. A loss leaves both still targeted.
 
 How play continues when things go wrong:
 
-- Too little material. Tech crafting is unavailable, and the Hacker Contact cannot be paid. Asking the Scavengers still works and costs a return job, though at low reputation the clamp may be a poorer substitute, which changes one line. If the player declines, they start checkpoint one without the clamp. The case continues, the Fighter's arm is weaker, and the "patched without a clamp" flag changes one line in the match report. Nothing stops.
-- Hacker Contact unavailable. The contact is busy on an errand from the previous beat. The fact comes from Tech, the self-hack, the Bar Contact or sending the Intel Contact. The Talk route exists for every player and costs an errand in the fiction. The choice still plays with the lower-detail fact, and removal falls back to pulling the controller by hand.
-- Failed inputs. The player locks out the ring hack and can reload from the checkpoint before it. If they accept the cost instead, the hack trips the malware's defence, the heart command shows for a moment before the arm shuts Marcus out, and the "noticed" flag is set. He now knows what it can do, with less detail, so the choice still plays. No treatment input can fail, and this case has no QTE.
-- Sending the patient away. The player can do this at any stable point, and not during a critical step. The case closes as "untreated" with one shared report line.
+- Too little material. The AI can still be chosen, and materials go below zero as a debt. Every specialty can remove the malware without paying.
+- Hacker Contact unavailable. An Enforcer pulls the controller by hand, with a weaker arm.
+- Failed inputs. A missed key adds a complication and raises the heart rate. A lockout brings in the AI Companion for XP. Nothing stops the case.
+- Timed choices. If the timer runs out, a default answer plays and the scene carries on.
 
-Every route rejoins before the choice, and the choice's outcomes rejoin at the next shift. That is the shape every case follows.
-
-Fighter question for Mike: keep three options at the choice, or reduce it to remove or leave it, which matches your request and cuts one outcome?
+The facts and routes in section 6 no longer lead to this discovery, since the diagnostics do. In the Week demo, a fact on a story patient earns more XP when they're treated. The lead flags that as a place section 6 and the case have drifted apart, and Mike's next call on the intelligence system should settle it.
 
 ## Cost check per patient case
 
-Comparables give no cost figure for a case (open uncertainties), so these counts come from the authoring plan above. All are estimates.
+Comparables give no cost figure for a case (open uncertainties), so these counts come from the demo scripts and the authoring plan above. All are estimates.
 
-Per case, what gets authored:
+| Work | Cheap case | Typical story case | The Fighter | How it was counted |
+|---|---|---|---|---|
+| Dialogue nodes | About 6 | About 20 | About 65 | The Fighter, counting each answer and reply as a node: 5 opening and setup, 3 checkpoints at 7 each, 2 alert and hack, 7 for what happened, 2 before diagnostics, 3 for the doubt, 4 for the discovery, 4 for the Fighter's request, about 13 AI Companion calls, and 6 outcome and later lines |
+| Words | 240 to 360 | 640 to 960 | 700 to 1,100 | The demo's own placeholder text is about 500 words. Nodes are shorter now, because timed lines have to read quickly |
+| Flags | 1 | 1 outcome, up to 2 minor | 1 outcome (4 values), removal method, security result | Each minor flag is read in one place only |
+| Animation, new | 0 | 0 to 1 clip | 0 to 1 clip | Timed keys use the shared Marcus-working and patient-on-table loops. There is no longer any walking between stations to stage |
+| Staged scenes | 0 | 0 | 1 or 2 | The gang's response and the bet |
+| Test runs, first pass | About 3 | About 12 | About 12 | Listed below |
+| Test runs, regression | 1 | About 5 | About 5 | One per outcome, plus one assist run |
 
-| Work | Typical case | The Fighter | How it was counted |
-|---|---|---|---|
-| Dialogue nodes | About 16 | About 21 | Intake 1, checkpoint lines 3, discovery 1, route lines 4, choice 1, outcomes 3, callback 1, fallback 1. The Fighter adds 2 more callbacks and 3 removal lines, one per method |
-| Words | 640 to 960 | 840 to 1,260 | Nodes at 40 to 60 words |
-| Flags | 1 outcome, up to 2 minor | 1 outcome, 2 minor (noticed, patched without a clamp) | Each minor flag is read in one place only |
-| Animation, new | 0 to 1 clip | 0 to 1 clip | Treatment uses a shared set: patient-on-table loop, Marcus-working loop, one close-up insert, companion idle. An unusual injury adds one table pose |
-| Staged scenes | 0 | 1 | The Gang Enforcer visit, at the bar, on existing walk and talk clips |
-| Cinematics, new | 0 | 0 | One short Sequencer shot per episode is allowed for a callback, not per case. The Gang Enforcer visit could use that episode's shot |
-| Test runs, first pass | About 12 | About 12 | Listed below |
-| Test runs, regression | About 5 | About 5 | One per disposition, plus one assist run |
+Per episode, with 2 story patients and 4 ordinary ones on the demo's numbers: about 2,240 to 3,360 words of case dialogue, 2 outcome flags, and about 36 first-pass test runs.
 
-Those per-case figures are for a story critical case. A cheap case is about 6 nodes, 240 to 360 words, no minor flags, and about 3 test runs.
-
-Per episode, outside the case count (all new since Mike's answers):
+Across the game: about 30 cases and about 11,200 to 16,800 words. Moving from 15 cases to 30 adds 15 cheap cases, which is about 3,600 to 5,400 more words and 45 more first-pass test runs. Mike set the larger count on 2026-11-06. The other per-episode work is unchanged:
 
 | Work | Count | Notes |
 |---|---|---|
-| Episode plan talk | About 10 nodes | The AI Companion's offer, two or three approaches, and their reports |
-| Medis scene | At most 1 | A QTE or hack scene, or a hunt scene. This is the largest new per-episode cost, because a hunt needs a city location and staging |
-| Starting gift | 1 per story critical outcome | About 1 line and 1 count change each, read at the next episode's start |
-| Bonus point offer | Up to 1 | One dialogue exchange before a dangerous step |
-| Spec option | 1 or 2 | Each is one node per specialty it serves, plus one flag read in one place |
-| Former patient as contact | 1 or 2 | One call line per contact, with one fact, material or discount |
+| Episode plan talk | About 10 nodes | The AI Companion's offer and reports |
+| Medis scene | At most 1, if kept | Largest possible per-episode cost, and section 9 asks whether it stays |
+| Starting gift | 1 per story critical outcome | About 1 line and 1 count change |
+| Spec option | 1 or 2 | One node per specialty it serves, plus one flag |
+| Former patient as contact | 1 or 2 | One call line per contact |
+| Morning and end-of-day lines | About 6 | New with days and actions. They can be reused across episodes |
 
-Game-wide cost of "who lives and who dies": this is the one thing in Mike's answers that multiplies rather than adds. Mike's limits: three endings of the Medis conflict, chosen by one result from reputation, marks and story critical flags, and at most three named characters who can die. Each death needs one authored scene and every later line that mentions the character needs a second version, so later episodes carry more of this cost than early ones.
+Game-wide cost of "who lives and who dies": this is the one thing that multiplies rather than adds. Mike's limits: three endings of the Medis conflict and at most three named characters who can die. Each death needs one authored scene, and every later line that mentions the character needs a second version. The Fighter is now one of these, since his death is settled for every run that leaves the malware in, and that uses one of the three.
 
-Reachable states in the Fighter, not counting routes: 4 dispositions (removed, warned, left in, untreated), times clamp or no clamp, times noticed or not, gives 16 flag combinations. A waived fee adds one mark and no extra Fighter content. Those 16 are not 16 pieces of content. Each minor flag changes one line, so the content adds up rather than multiplies: 4 dispositions, 1 line for the clamp and 1 for noticed.
+Reachable states in the Fighter, not counting specialty: 4 outcomes (removed, refused, ignored, missed), times 3 security results (worked, failed, AI), and 5 removal methods on the removed outcome only (hack, Tech, talked through, by hand, AI). Later, the removed outcome adds a bet with three results (no bet, won, lost). These add up rather than multiply, because each changes a line or a tally row. The authored content is 4 outcomes, 2 rumor lines, 1 gang response and 1 bet scene.
 
-The first-pass test runs are chosen by risk rather than to cover all 16. Each checks that the flags are right at the rejoin point:
+First-pass test runs for the Fighter, chosen by risk. Each checks the flags and the XP at the end:
 
-1. Netrunning hack succeeds, then removes.
-2. Netrunning locks out, accepts the cost, then warns (noticed set).
-3. Netrunning locks out and reloads from the checkpoint, and noticed must stay clear.
-4. Pay the Hacker Contact, then says nothing.
-5. Tech route, crafted clamp, faster fill on removal, then removes.
-6. Enforcer with Talk route, Hacker Contact away, removes by hand.
-7. Send the Intel Contact and ask the Scavengers for the clamp at once, which must both work.
-8. Decline the clamp: starts without it, and the line changes.
-9. Patient sent away at a stable checkpoint, and refused during a critical step.
-10. Waive the fee twice in an episode: the Medis scene plays.
-11. Toggle hold profile, with save and reload at a checkpoint.
-12. No-search plus unlimited retries profile, which must not set noticed.
+1. Netrunning hacks both locks and removes it.
+2. Netrunning locks out of the forced hack, then removes it by hack: two XP losses at most, and the malware is out.
+3. Netrunning locks out of the removal hack: the AI finishes it and charges no materials.
+4. Hand the alert to the AI, then the removal too: materials go below zero and the tally lists both.
+5. Tech removes it directly, with slips that add complications and don't fail it.
+6. Enforcer is talked through by the Hacker Contact.
+7. Enforcer with the contact away: by hand, with a weaker arm.
+8. "I'm sure it's fine": missed, with the rumor line.
+9. Tell, then refuse: refused, with its own rumor line.
+10. Ignore it: ignored, with the rumor line.
+11. Every choice timed out: default answers, and the scene finishes.
+12. Assist profiles: waiting keys, auto-complete and tap as hold, each with a save and reload.
 
 Limits proposed. These are design limits to hold the estimates above, and Mike can change them:
 
-- Three distinct authored outcomes per case, plus the shared "untreated" line. Routes to a fact rejoin before the choice, always.
+- Three distinct authored outcomes per case plus one shared line. The Fighter has four, because Mike's version added refusal.
 - One later callback per case, as a line or a scene.
 - Five surfaced decisions per episode across cases and beats. This is a Runner design choice. Telltale surfacing five per episode (finding 1) is a reference, not evidence of a production limit.
-- Three cases per episode, or 15 across the game. An episode carries at most 3 outcome flags and about 2,900 words of case dialogue. Adding more cases after feedback raises this directly, at about 300 words a cheap case.
-
-Where routes rejoin: every route to a fact ends at the same choice. Every outcome ends at the next shift. The only content that escapes a case is one callback and, for the Fighter, the Gang Enforcer scene.
+- Six cases per episode, two of them story patients. An episode carries about 3,400 words of case dialogue at most.
 
 Recurring work per case that is not content: a clinic test map pass, a save and reload check with the case's flags, and the accessibility profiles. Adding one encounter or rule mid-production multiplies scheduling (finding 2), so new case types after the first episode are a Mike decision.
 
@@ -572,6 +669,8 @@ Outcomes from this proposal that would need extra animation for that fight, list
 
 Neither plan overrides the other. If Mike approves none of the four, the chair fight plays identically for every specialty and the Enforcer difference in that scene is dialogue only.
 
+Mike's 2026-11-07 note adds a final choice with Vhoori after the fight: Threaten, Negotiate or Walk away. The Dialogue demo plays it as a timed choice with one reply each. In the real scene it needs three lines and three flags, and it sits after the take, so it doesn't change the fight. Walking away on screen would be new staging, listed here for costing. The demo's default if the timer runs out is Walk away, which is a lead call.
+
 ## Accessibility summary
 
 Every input in this proposal, its controller and keyboard default, and its assist. All actions remap through Enhanced Input and prompts redraw from the mapping. The rule for every assist: it returns the same result as a successful input, charges that route's normal cost, and sets no failure flag. So an assisted player gets the same story as a player who succeeded, not the same story as one who failed.
@@ -579,11 +678,11 @@ Every input in this proposal, its controller and keyboard default, and its assis
 | Action | Controller | Keyboard | Assist | Story result with the assist |
 |---|---|---|---|---|
 | Walk, run | Left stick, hold a bumper to run | WASD, hold Shift | Run as toggle | Unchanged |
-| Interact, treatment hold, bench hold | Hold bottom face button | Hold E | Hold as toggle, or tap to advance | Unchanged, because these cannot fail |
+| Treatment keys | Face button on the diamond, held when it says HOLD | Shown key | Waits with no window, auto-complete, or tap counts as hold | A clean result, with no complication |
 | Dialogue choice | Position by choice count (section 1) | 1, 2, 3 | Timer extended up to ten times or off | Unchanged, and the player always picks |
 | Spec option | Bottom face button | 4 | Timer extended or off | Unchanged |
 | Quick hack during talk | D-pad | WASD or arrows | Timer extended or off, or auto-complete | Ordinary success. Dialogue does not time out during it |
-| Ring search | Right stick | Mouse or arrow keys | Snap steps, or no-search (arrow placed in gap) | Ordinary success |
+| Ring search | Spin the right stick | Mouse or arrow keys | Snap steps, or no-search (arrow placed in gap). A line under the ring coaches players who push the stick in four directions | Ordinary success |
 | Ring fit | Right bumper (R1) | E | None needed | Unchanged |
 | Ring sequence | D-pad or left stick | WASD or arrows | Timer extended or off, unlimited retries | Ordinary success, with lockout and "noticed" bypassed |
 | Hack skip | Pause menu | Pause menu | Completes as success, charges the route's normal cost | Ordinary success, with "noticed" bypassed |
@@ -602,11 +701,16 @@ The brief limits the gameplay HUD to interact prompts, hack progress, dialogue c
 
 | Addition | Why | Without it |
 |---|---|---|
-| Treatment bar with named checkpoints | Section 3 | Use the existing hack progress bar with no names, and say the step in a subtitle. Or the simpler alternative: three plain holds. |
+| Treatment bar with named steps | Section 3. It only shows progress now | Use the existing hack progress bar with no names, and say the step in a subtitle. |
+| Treatment key prompt | Section 3 | Same approval as the QTE prompt, since it's the same element |
+| Heart monitor | The Fighter case. It carries the tension in the treatment | Heart sound and the AI Companion's lines only |
+| How-to cards | Mike's note that testers needed talking through. They appear the first time a mechanic is used | Spoken by the AI Companion as subtitles, with the game waiting |
+| Week planner, action dots | Section 2 | A pause menu page, or the AI Companion's morning line |
+| XP bar | Section 8 | A corner notice on each change, and a pause menu page |
 | Ring hack widget (full-screen lock) | Section 4 | Count it as the hack progress element, since it replaces that bar during a hack. Or keep the one-press breach cinematic. |
 | QTE prompt in cinematics | Section 5 | Needs approval as an addition. It would reuse the approved positional diamond, shown inside a cinematic. Without it, cinematics play with no input. |
 | Direction arrows in the ring center | Section 4 | Draw them as positional diamonds instead, one per direction. |
-| Pause menu log page: facts known, parts and materials, reputation | Sections 6, 7, 9 | Corner notices only, with nothing to read back. |
+| Pause menu log page: facts known, materials, XP | Sections 6, 7, 9 | Corner notices only, with nothing to read back. |
 | Fourth dialogue option on the bottom button, shown only when the player qualifies | Section 8 | Replace one of the three options instead. |
 | Quick hack arrows during dialogue | Section 8 | Play the hack before or after the talk. |
 
@@ -624,19 +728,19 @@ Every mechanic in Mike's request, and what this proposal does with it.
 | Send companion NPCs to find out things | Retained: the Intel Contact, with a cooldown instead of odds, and rumours but no wrong facts | Section 6 |
 | Hacking companion hacks in for a cost | Retained | Section 6 |
 | Netrunner does it yourself | Retained | Sections 4, 6 |
-| Medical aid: fix body and cyberware | Retained, with Tech faster on cyberware steps and a possible surgical rig | Sections 3, 8 |
-| Craft items and acquire materials | Simplified: counts, no inventory | Section 7 |
+| Medical aid: fix body and cyberware | Retained as timed keys, with Tech a key shorter on cyberware steps | Section 3, Fighter case |
+| Craft items and acquire materials | Simplified: one count, no inventory, and crafting folded into shop upgrades, flagged for Mike | Section 7 |
 | The gunshot wound and arm malware scenario | Retained as the first case, as a targeted Gang hack on one arm | Fighter walkthrough |
-| Hold the button to fill a bar with checkpoints | Retained, with a simpler alternative | Section 3 |
-| Movement between treatment checkpoints | Retained at non-critical checkpoints: let go and walk the clinic | Section 3 |
-| Pay, craft or hire for materials | Simplified: paying and hiring become asking the Scavengers for a return job, and crafting stays | Sections 7, 9 |
-| Craft cyberware or organic material with the necessary machines | Retained: two expensive machines, so the player prioritizes | Section 7 |
+| Hold the button to fill a bar with checkpoints | Changed by Mike after playing it: timed keys ending on a hold, and the bar shows progress only | Fighter case |
+| Movement between treatment checkpoints | Cut by Mike, 2026-11-07: the scene runs by itself | Fighter case |
+| Pay, craft or hire for materials | Simplified: a morning delivery and breaking down gear, with AI and Hacker Contact jobs paid in materials | Sections 7, 9 |
+| Craft cyberware or organic material with the necessary machines | Changed: the machines are shop upgrades bought with a level, flagged for Mike | Sections 7, 8 |
 | Right stick moves an arrow around a circle | Retained | Section 4, step 1 |
 | Find the gap; rumble and sound grow closer | Retained, with a glow added and a rumble toggle | Section 4, step 1 |
 | Press R1 to fill the gap, circle goes active, timer starts | Retained, remappable | Section 4, step 2 |
-| Direction inputs in the center, upcoming ones faint above | Retained | Section 4, step 3 |
+| Direction inputs in the center, upcoming ones faint above | Changed by Mike, 2026-11-07: current on top, upcoming below | Section 4, step 3 |
 | Input the arrows correctly to solve, move to the next ring inside | Retained | Section 4, step 3 and 4 |
-| Repeat until all rings are solved, like tumblers | Retained, one to four rings | Section 4 |
+| Repeat until all rings are solved, like tumblers | Retained, one to five rings across the level game | Section 4 |
 | Only one circle visible at a time | Retained | Section 4 |
 | Solved ring goes green, is pushed out, fades to background | Retained | Section 4, step 4 |
 | Lock opens, rings animate a wave, "Access granted" | Retained | Section 4, step 5 |
@@ -651,26 +755,27 @@ For the separate CMF pass after Mike approves this proposal. The drafts in `cmf/
 Approved gameplay claims (to use once Mike approves the sections they come from; none is approved today):
 
 - A side-on narrative game in five episodes with a hidden clinic hub and hand-written patient cases between story beats, ending according to how well the player has done.
-- Treatment by a held input through named checkpoints.
+- Treatment by timed keys and timed talk through named steps, with a heart monitor carrying the tension.
 - A ring-lock hacking minigame with a stick search, proximity cues, and an input sequence per ring, shared with a second game.
 - Authored cinematic fights with slowed-time prompts and no fail state.
 - Four routes to any fact (talk, send a companion, pay a hacker, hack it yourself), all rejoining before the choice.
-- Three specialties that change what the player can attempt and how easy it is, with episode-based points.
-- Failure that costs materials, a reaction or Medis attention, and never ends the game.
+- Three specialties that change what the player can attempt and how easy it is, with an XP bar and one upgrade per level.
+- Days with a fixed number of actions, so the player chooses who gets their time.
+- Failure that costs XP, materials or a reaction, and never ends the game.
 - Accessibility alternatives for every hold, stick and timed input. An assisted input counts as a success and bypasses the failure consequence.
 
 Full-game systems versus prototype promises:
 
 | System | Full game | Proposed for the funded prototype |
 |---|---|---|
-| Core loop and hub | Five episodes, 15 cases | One episode opening with the AI Companion's plan, and one clinic shift |
+| Core loop and hub | Five episodes, about 30 cases | One episode opening with the AI Companion's plan, and one set of clinic days |
 | Treatment | All cases | Two cases, the Fighter and one cheap case |
-| Ring hack | Doors, devices, story hacks | The Fighter arm hack and one door |
+| Ring hack | Doors, devices and story hacks, across the 13 levels | The Fighter's two locks and one door, on the first levels |
 | QTEs | Every fight | The chair fight only |
 | Intelligence | Four routes | Four routes on the Fighter fact |
-| Materials | Ask the Scavengers, craft, two machines | Ask the Scavengers, and craft on one bench, because Tech is a playable pick |
-| Growth | Three tracks, nine ranks, up to eight points, spec options | The specialty pick at rank 1, all three playable, and one spec option |
-| Reputation and materials | Both, plus Medis marks and scenes | Both, with the Medis scene cut |
+| Materials | Delivery, breaking down gear, starting gifts | Delivery and breaking down gear |
+| Growth | Three specialties, about 10 upgrades, spec options | The specialty pick, all three playable, a few upgrades and one spec option |
+| XP and materials | Both, plus Medis marks and scenes if kept | Both, with the Medis scene cut |
 
 Reassessed scope, replacing the old 25 to 30 minutes, six scenes, six characters and three playtest rounds. This is a proposal for Mike, not a renaming:
 
@@ -678,7 +783,7 @@ Reassessed scope, replacing the old 25 to 30 minutes, six scenes, six characters
 - Locations: one opening beat location, the clinic, the bar for the Talk route, and the chair fight location. Four, not six.
 - Speaking roles outside the fight: Marcus, the Fighter, the second patient, the AI Companion, the Hacker Contact, the Scavenger Leader, the Intel Contact (who also works the bar, merging the Bar Contact for the prototype) and the Gang Enforcer. That is eight, and the AI Companion is voice only.
 - Chair fight cast, from its own plan: two guards and Vhoori on screen, plus one voice-only support role. Marcus is already counted. The total is 11 or 12 characters, not comparable to the old six, and the CMF pass should present it as a real increase or cut roles.
-- Fighter consequence shown: the "removed" outcome plays as the Gang Enforcer visit at the bar. "Warned" and "left in" play as lines.
+- Fighter consequence shown: the "removed" outcome plays as the Gang Enforcer visit at the bar. The other outcomes play as lines. The bet isn't in the prototype.
 - Playtests: two rounds, one internal at systems-in-grey-box and one external at content complete, with a choice log. A third round only if the schedule holds it.
 - Systems delivered: the prototype column above, plus the accessibility assists in the summary table.
 

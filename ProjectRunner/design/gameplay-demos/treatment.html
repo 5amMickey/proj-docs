@@ -9,6 +9,7 @@
 #bar { position: relative; z-index: 7; }
 .bar-names { font-size: clamp(12px, .95vw, 18px); }
 #notices { left: 16px; right: auto; justify-items: start; }
+#hackHelp { text-align: center; font-size: clamp(19px, 1.6vw, 30px); min-height: 1.4em; padding-top: 4px; }
 
 #monitor { position: absolute; right: 16px; top: clamp(80px, 6vw, 110px); width: clamp(240px, 22vw, 400px); z-index: 9; background: rgba(4, 18, 26, .9); border: 1px solid var(--line); padding: 10px 12px; --beat: var(--cyan); }
 #monitor.warm { --beat: var(--amber); }
@@ -36,18 +37,40 @@
 #rumbleTrack { height: 8px; background: var(--panel); border: 1px solid var(--line); margin-top: 4px; }
 #rumbleFill { height: 100%; width: 0; background: var(--cyan); }
 
-#diag { position: absolute; inset: 0; z-index: 6; background: rgba(4, 8, 13, .97); overflow: hidden; font-family: Consolas, "Courier New", monospace; }
+#diag:not([hidden]) ~ #menu { background: rgba(7, 9, 14, .97); }
+#diag { position: absolute; inset: 0; z-index: 6; background: #04080d; overflow: hidden; font-family: Consolas, "Courier New", monospace; display: grid; grid-template-columns: minmax(180px, 30%) minmax(0, 1fr); }
 #diag[hidden] { display: none; }
-#code { position: absolute; inset: 0; }
-.fly { position: absolute; white-space: nowrap; color: var(--good); font-size: clamp(14px, 1.15vw, 22px); opacity: .75; animation: fly .9s linear forwards; }
-@keyframes fly { from { transform: translateY(40px); opacity: .9; } to { transform: translateY(-110px); opacity: 0; } }
-#report { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; }
-#report[hidden] { display: none; }
-#report .title { color: var(--good); font-size: clamp(34px, 4vw, 76px); font-weight: 700; }
-#report table { width: auto; font-size: clamp(16px, 1.45vw, 28px); }
-#report td, #report th { padding: 4px 18px; border-bottom: 1px solid var(--line); text-align: left; color: var(--fg); font-weight: 400; }
-#report td.pass { color: var(--good); text-align: left; }
-#report .same { color: var(--amber); font-size: clamp(18px, 1.6vw, 30px); min-height: 1.4em; }
+#diagLog { margin: clamp(70px, 6vw, 100px) 0 16px; padding: 0 12px 0 16px; overflow: hidden; border-right: 1px solid var(--line); color: var(--good); font-size: clamp(12px, .95vw, 18px); line-height: 1.4; white-space: pre; }
+#diagLog .head { color: var(--fg); }
+#diagLog .pass { color: var(--cyan); }
+#diagMain { min-width: 0; padding: 0 16px 16px; display: flex; flex-direction: column; gap: 12px; }
+#diagStatus { color: var(--good); font-size: clamp(22px, 2.4vw, 46px); font-weight: 700; min-height: 1.3em; }
+#diagPanels { display: flex; gap: 8px; min-width: 0; }
+.dpanel { flex: 1 1 0; min-width: 0; max-width: 620px; border: 1px solid var(--good); border-top-width: 3px; background: rgba(57, 226, 125, .05); padding: 8px 10px; font-size: clamp(12px, 1vw, 20px); }
+.dpanel .ptitle { color: var(--muted); margin-bottom: 6px; }
+.drow { display: flex; justify-content: space-between; gap: 8px; padding: 3px 4px; min-height: 1.75em; white-space: nowrap; }
+.drow .ms { margin-left: auto; color: var(--fg); }
+.drow .ok { color: var(--good); }
+.drow.match { background: var(--amber); color: #04121a; }
+.drow.match .ms, .drow.match .ok { color: #04121a; }
+#diagSame { color: var(--amber); font-size: clamp(16px, 1.4vw, 28px); min-height: 1.4em; }
+
+#tally { position: absolute; inset: 0; z-index: 8; background: #04080d; overflow-y: auto; padding: clamp(16px, 2.4vw, 48px) clamp(16px, 3vw, 64px); display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 1.1vw, 22px); }
+#tally[hidden] { display: none; }
+#tallyTitle { font-size: clamp(30px, 3.2vw, 62px); font-weight: 700; color: var(--cyan); text-align: center; }
+#tallyStory { max-width: 1100px; text-align: center; font-size: clamp(16px, 1.35vw, 26px); color: var(--muted); margin: 0; }
+#tallyStory b { display: block; color: var(--amber); font-weight: 400; margin-top: .4em; }
+#tallyCols { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(300px, 100%), 1fr)); gap: clamp(16px, 2.4vw, 48px); width: min(1200px, 100%); }
+#tallyCols h3 { margin: 0 0 8px; font-size: clamp(16px, 1.35vw, 26px); color: var(--muted); font-weight: 700; }
+#tallyCols table { font-size: clamp(16px, 1.3vw, 25px); }
+#tallyCols td { padding: .35em 0; }
+#tallyCols tr.cost td:last-child { color: var(--amber); }
+#tallyCols tr.bad td:last-child { color: var(--bad); }
+#again { display: inline-flex; align-items: center; gap: 12px; flex: none; margin-top: 4px; padding: 10px 34px 10px 12px; background: var(--cyan); color: #04121a; border: 0; border-radius: 2em; cursor: pointer; font: 700 clamp(18px, 1.6vw, 30px) Verdana, Arial, sans-serif; }
+#again span { width: 1.7em; height: 1.7em; display: flex; align-items: center; justify-content: center; border: 2px solid #04121a; border-radius: 50%; font-size: .8em; }
+
+/* The loading screen leaves room for the heart monitor. */
+#loading { padding-right: clamp(272px, calc(22vw + 32px), 432px); }
 </style>
 </head>
 <body>
@@ -70,19 +93,36 @@
     <div id="hackview" class="hackview" hidden>
       <div id="ring"></div>
       <div class="hackline" id="hackline"></div>
+      <div id="hackHelp"></div>
       <div id="rumbleBox">Rumble stand-in<div id="rumbleTrack"><div id="rumbleFill"></div></div></div>
     </div>
     <div id="diag" hidden>
-      <div id="code"></div>
-      <div id="report" hidden></div>
+      <div id="diagLog"></div>
+      <div id="diagMain">
+        <div id="diagStatus"></div>
+        <div id="diagPanels"></div>
+        <div id="diagSame"></div>
+      </div>
+    </div>
+    <div id="loading" hidden></div>
+    <div id="tally" hidden>
+      <div id="tallyTitle"></div>
+      <p id="tallyStory"></p>
+      <div id="tallyCols">
+        <div><h3>How you did</h3><table><tbody id="tallyDid"></tbody></table></div>
+        <div><h3>Your stats</h3><table><tbody id="tallyStats"></tbody></table></div>
+      </div>
+      <button id="again"><span id="againKey"></span>Try again</button>
     </div>
     <div id="alertBanner" hidden><div id="alertText"></div></div>
+    <div id="sub" class="dialog subtitle" hidden><div class="speaker" id="subSpeaker"></div><div class="text" id="subText"></div></div>
     <div id="menu"></div>
+    <div id="card"></div>
     <div id="overlay"><div class="card"><p>Connect your controller and press a button on it, then start.</p><button id="start">Start</button></div></div>
   </main>
   <aside>
     <h1>Treatment demo</h1>
-    <p class="goal">Goal: does the surgery build tension and lead you to find the malware yourself? Watch the heart. The lines are placeholders, not story.</p>
+    <p class="goal">Goal: does the surgery build tension and lead you to find the malware yourself? It runs by itself after the setup, with timed lines between the choices. Watch the heart. The lines are placeholders, not story.</p>
     <div class="status" id="padStatus"></div>
     <h2>Timing</h2>
     <div id="sliders"></div>
@@ -103,12 +143,13 @@
     <label class="check"><input type="checkbox" id="monitorSound"> Heart monitor sound</label>
     <label class="check"><input type="checkbox" id="tapIsHold"> Tap counts as hold</label>
     <label class="check"><input type="checkbox" id="tech"> Tech: one key fewer on cyberware</label>
+    <label class="check"><input type="checkbox" id="hackerAvailable"> Hacker Contact available</label>
     <button class="reset" id="restart">New patient</button>
     <button class="reset" id="defaults">Reset settings</button>
     <h2>This run</h2>
     <table><tbody id="log"><tr><td>No steps yet</td><td></td></tr></tbody></table>
     <h2>Controls</h2>
-    <p class="help">Controller: left stick to walk, A at a station, then the key on screen, held when it says HOLD. X, Y and B answer. In the hack: right stick, R1, d-pad. Keyboard: A and D to walk, E for A, and 1, 2, 3 for X, Y, B. In the hack: left and right arrows, E, WASD.</p>
+    <p class="help">Controller: press the key on screen, and hold it when it says HOLD. X, Y and B answer. In the hack: spin the right stick, R1, then the d-pad. Keyboard: E for A, and 1, 2, 3 for X, Y, B. In the hack: left and right arrows, E, then WASD.</p>
     <p class="help" style="margin-top:10px"><a href="index.html">All demos</a></p>
   </aside>
 </div>
@@ -118,23 +159,62 @@
 <script>
 "use strict";
 const { $ } = Demo;
+const AI = "AI Companion";
+const SETUP = {
+  title: "The scene",
+  lines: [
+    "(Placeholder) Marcus runs a hidden clinic in the Hive. A fighter comes in with a bullet in his cyber arm and a match in two days. His heart rate is already high.",
+    "A key appears over the table. Press it before the ring around it runs out. When it says HOLD, keep it down until the circle fills.",
+    "A slip raises the heart rate and adds a complication, but it can't end the surgery.",
+    "People will talk to you while you work. Answer with the buttons shown. If the timer runs out, one is picked for you.",
+  ],
+  go: "Begin",
+};
+const OPEN_LINES = [
+  { speaker: "Fighter", text: "Somebody shot me in the arm. Can you fix it?" },
+  { speaker: "Marcus", text: "Get on the table. I'll stop the bleeding first." },
+  { speaker: AI, text: "I've got his vitals. You work on him." },
+];
 const STEPS = [
-  { name: "Stop the bleeding", kind: "medical", needs: "clamp", bpm: 92, speaker: "Fighter", ask: "(Placeholder) How bad is it? I fight in two days.",
-    answers: ["You'll fight.", "Too soon to say.", "Hold still."], after: "The bleeding has stopped." },
+  { name: "Stop the bleeding", kind: "medical", bpm: 92, speaker: "Fighter", ask: "(Placeholder) How bad is it? I fight in two days.",
+    answers: ["You'll fight.", "Too soon to say.", "Hold still."],
+    replies: { "You'll fight.": "Good. I need this match.", "Too soon to say.": "That's not what I came here to hear.", "Hold still.": "Yeah. Okay." },
+    after: [{ speaker: AI, text: "The bleeding has stopped. The bullet is resting against the arm's wiring." }, { speaker: "Marcus", text: "Then the arm goes offline before I touch it." }] },
   { name: "Deactivate the cyberware", kind: "cyber", alert: true },
   { name: "Remove the bullet", kind: "medical", bpm: 86, speaker: "Fighter", ask: "(Placeholder) You going to ask who shot me?",
-    answers: ["Who shot you?", "Not my business.", "Only if it affects the arm."], after: "The bullet is out, and the patient is stable. You can step away." },
+    answers: ["Who shot you?", "Not my business.", "Only if it affects the arm."],
+    replies: { "Who shot you?": "Nobody you want to know.", "Not my business.": "Smart.", "Only if it affects the arm.": "It doesn't." },
+    before: [{ speaker: AI, text: "He's stable. You can go in for the bullet." }],
+    after: [{ speaker: "Marcus", text: "The bullet's out. Now I'll close you up." }] },
   { name: "Close the wound", kind: "medical", bpm: 78, speaker: "Fighter", ask: "(Placeholder) So what do I owe you?",
-    answers: ["Full price.", "Pay me after the match.", "Nothing. Stay alive."], after: "The wound is closed." },
-  { name: "Reconnect the cyberware", kind: "cyber", bpm: 72, after: "The arm is back online. Running diagnostics." },
+    answers: ["Full price.", "Pay me after the match.", "Nothing. Stay alive."],
+    replies: { "Full price.": "Fair enough.", "Pay me after the match.": "You'd better bet on me, then.", "Nothing. Stay alive.": "Nobody does that here. What's the catch?" },
+    after: [{ speaker: AI, text: "The wound is closed." }, { speaker: "Marcus", text: "Last thing. I'm bringing the arm back online." }] },
+  { name: "Reconnect the cyberware", kind: "cyber", bpm: 72, after: [{ speaker: AI, text: "The arm is back online." }] },
 ];
+const WHAT_HAPPENED = {
+  "(Placeholder) Your arm's security tripped.": "My arm did that to me?",
+  "(Placeholder) Nothing. You're fine.": "That didn't feel like nothing.",
+  "(Placeholder) Hold still.": "Fine. Just finish it.",
+};
+const HACK_LESSON = {
+  title: "The hack",
+  lines: [
+    "Move the arrow around the ring. Controller: spin the right stick in a slow circle. Don't just push up, down, left and right, because the gap can sit between them. Keyboard: left and right arrows.",
+    "The glow, the tone and the rumble bar all grow as you get close to the gap. When you're on it, press R1 or E.",
+    "Then enter the arrows, top one first, with the d-pad or WASD. The dial is your time. A failed ring raises his heart rate, and three fails lock you out.",
+  ],
+  go: "Start the hack",
+};
 const OUTCOMES = {
   missed: "(Placeholder) The Fighter leaves happy. The malware is still in the arm, and Marcus never knows.",
   remove: "(Placeholder) The malware is out. The Fighter can survive the ring, and whoever planted it will notice.",
-  tell: "(Placeholder) Marcus tells the Fighter. What happens next is the Fighter's call.",
+  refused: "(Placeholder) Marcus tells the Fighter, who asks him to take it out. Marcus refuses, and the Fighter leaves with it still in the arm.",
   ignore: "(Placeholder) Marcus says nothing and the malware stays in. The match goes ahead.",
 };
 const RUMOR = "Later: the Fighter dies, and a rumor spreads that Marcus killed him, not the gang's malware.";
+const RUMOR_REFUSED = "Later: the Fighter dies, and a rumor spreads that Marcus found the malware and refused to touch it.";
+const BET = "Later: Marcus can bet on the Fighter. A win buys both of them freedom from the gang leader.";
 // What the AI Companion says while monitoring the patient. All placeholders.
 const CALLS = {
   start: "I've got his vitals. You work on him.",
@@ -145,21 +225,23 @@ const CALLS = {
   forcedDone: "It's down. His vitals are coming back.",
   diagnostics: "Vitals are stable.",
   found: "Did you see that? His heart skipped.",
+  asked: "I can do it, if you want.",
+  strike: "It's hitting his heart harder. Hurry!",
   removalSelf: "I'll keep him alive. Go.",
   removalHelp: "I'm in. Give me a second.",
   removed: "It's out. His heart's steady.",
 };
-const CODE_BITS = ["chk", "ping", "read", "probe", "sync", "verify", "trace", "alloc", "flush", "seek"];
-const CODE_PARTS = ["actuator.l2", "nerve_bridge", "cell[0]", "grip.sensor", "fw.block", "body.link", "servo.3", "bus.a", "imu.rx"];
-const TABLE_X = 540;
+const AI_LABEL = "Get your AI to do it";
+const TITLES = { missed: "Malware missed", remove: "Malware removed", refused: "Request refused", ignore: "Malware ignored" };
+const FORCED_HACK = { worked: "You got in", failed: "Locked out: the AI finished it", ai: "You handed it to the AI" };
+const CHARGE_NAMES = { forced: "AI: shut down the security", removal: "AI: removed the malware" };
+const FORCED_JOB = { title: "AI COMPANION: SHUTTING DOWN THE SECURITY", steps: ["Reading the security", "Blocking the signal to his heart", "Shutting it down"] };
+const REMOVAL_JOB = { title: "AI COMPANION: REMOVING THE MALWARE" };
+const TABLE_X = 500;
 const TRACE_POINTS = 150;
 
-const settings = { spec: "Netrunning", promptsPerStep: 3, windowSeconds: 3, holdSeconds: 0.8, leadSeconds: 0.7, choiceSeconds: 12, hackRings: 2, removalRings: 3, diagnosticSeconds: 4, assist: "none", checkpoints: true, monitorSound: true, tapIsHold: false, tech: false };
-const room = Demo.createRoom($("room"), [
-  { id: "bench", x: 220, h: 70, label: "Bench" },
-  { id: "table", x: TABLE_X, h: 65, label: "Table" },
-  { id: "terminal", x: 840, h: 110, label: "Terminal" },
-]);
+const settings = { spec: "Netrunning", promptsPerStep: 3, windowSeconds: 3, holdSeconds: 0.8, leadSeconds: 0.7, choiceSeconds: 12, lineScale: 1, hackRings: 2, removalRings: 3, diagnosticSeconds: 6, materials: 3, aiCost: 2, aiLoadSeconds: 5, assist: "none", checkpoints: true, monitorSound: true, tapIsHold: false, tech: false, hackerAvailable: true };
+const room = Demo.createRoom($("room"), [{ id: "table", x: TABLE_X, h: 65, label: "Table" }]);
 const patient = $("room").querySelector("#patient rect");
 const marcusEl = $("room").querySelector("#marcus");
 const promptLayer = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -167,7 +249,9 @@ $("room").appendChild(promptLayer);
 const keyPrompt = Demo.createKeyPrompt(promptLayer);
 const bar = Demo.createBar($("bar"));
 const menu = Demo.createMenu($("menu"));
+const card = Demo.createCard($("card"));
 const ring = Demo.createRingWidget($("ring"));
+const loading = Demo.createLoading($("loading"));
 let su = null;
 let running = false;
 let clock = 0;
@@ -175,24 +259,40 @@ let flash = 0;
 let flashColor = "#fff";
 let heartKick = 0;
 let alarmClock = 0;
-let codeClock = 0;
+let logLines = [];
+let logShown = 0;
 let trace = [];
+let tallyClock = 0;
+let setupShown = false;
+let hackTaught = false;
+let holdTaught = false;
+let drawnSub = null;
+let hackCoach = 0; // seconds the d-pad hint stays up
 
 function newPatient() {
   su = DemoCore.createSurgery({
     spec: settings.spec, steps: STEPS, promptsPerStep: settings.promptsPerStep, windowSeconds: settings.windowSeconds, holdSeconds: settings.holdSeconds,
     leadSeconds: settings.leadSeconds, assist: settings.assist, tapIsHold: settings.tapIsHold, tech: settings.tech,
     checkpoints: settings.checkpoints, diagnosticSeconds: settings.diagnosticSeconds,
+    materials: settings.materials, aiCost: settings.aiCost, aiLoadSeconds: settings.aiLoadSeconds, hackerAvailable: settings.hackerAvailable,
+    briefing: true, openLines: OPEN_LINES, lineScale: settings.lineScale,
   });
   menu.close();
+  card.close();
   ring.stop();
   trace = new Array(TRACE_POINTS).fill(0);
   $("hackview").hidden = true;
   $("diag").hidden = true;
+  loading.hide();
+  $("tally").hidden = true;
+  $("monitor").hidden = false;
   $("alertBanner").hidden = true;
-  $("line").textContent = "A patient is on the table, and the heart rate is high. The first step needs a clamp from the bench.";
+  $("line").textContent = "";
   $("assistLine").textContent = CALLS.start;
   drawLog();
+  // The setup is read once. After that a new patient goes straight into the scene.
+  if (setupShown) su.beginScene();
+  else card.show(Object.assign({ onClose: () => { setupShown = true; su.beginScene(); } }, SETUP));
 }
 
 function showBanner(text, helping) {
@@ -212,28 +312,96 @@ function setPrompt(text) {
 function drawLog(extra) {
   const rows = su.proc.state.stepLog.map((x) => `<tr><td>${x.name}${x.choice ? `: "${x.choice}"` : ""}</td><td>${x.hits} of ${x.total}</td></tr>`);
   if (su.state.hackResult) rows.push(`<tr><td>Forced hack</td><td>${su.state.hackResult}</td></tr>`);
+  if (su.state.whatHappened) rows.push(`<tr><td>What happened: "${su.state.whatHappened}"</td><td></td></tr>`);
   if (su.state.run) rows.push(`<tr><td>Diagnostics runs</td><td>${su.state.run}</td></tr>`);
-  if (su.state.removedBy) rows.push(`<tr><td>Malware removed by</td><td>${su.state.removedBy === "self" ? "Marcus" : "companion"}</td></tr>`);
-  if (extra) rows.push(`<tr><td>Outcome</td><td>${extra}</td></tr>`, `<tr><td>Reputation</td><td>${signed(su.repGained())}</td></tr>`);
+  if (su.state.removedBy) rows.push(`<tr><td>Malware removed by</td><td>${su.state.removedBy === "companion" ? "companion" : "Marcus"}</td></tr>`);
+  if (extra) rows.push(`<tr><td>Outcome</td><td>${extra}</td></tr>`, `<tr><td>XP</td><td>${signed(su.xpGained())}</td></tr>`, `<tr><td>Materials</td><td>${su.state.materials}</td></tr>`);
   if (extra && su.rumorLater()) rows.push("<tr><td>Later</td><td>rumor</td></tr>");
   $("log").innerHTML = rows.length ? rows.join("") : "<tr><td>No steps yet</td><td></td></tr>";
 }
 
+function methodWords(method) {
+  if (method === "himself") return " himself";
+  return method.includes("by hand") ? " by hand" : `, ${method}`;
+}
+
 function finishCase() {
   $("diag").hidden = true;
+  loading.hide();
   $("alertBanner").hidden = true;
-  const { misses } = su.proc.state;
-  const self = su.state.removedBy === "self" ? " Marcus did the hack himself, and people will hear about it." : "";
-  $("line").textContent = `${OUTCOMES[su.state.outcome]}${self} ${misses} ${misses === 1 ? "complication" : "complications"}. Reputation ${signed(su.repGained())}.${su.rumorLater() ? ` ${RUMOR}` : ""}`;
+  showTally();
   drawLog(su.state.outcome);
+}
+
+function row(name, value, kind) {
+  return `<tr${kind ? ` class="${kind}"` : ""}><td>${name}</td><td>${value}</td></tr>`;
+}
+
+function timeText(seconds) {
+  const whole = Math.round(seconds);
+  return `${Math.floor(whole / 60)}:${String(whole % 60).padStart(2, "0")}`;
+}
+
+function materialsText(n) {
+  return n < 0 ? `${n} (you owe ${-n})` : String(n);
+}
+
+// The end of the run: what happened, how the player did, and where it left them. This is the only place prices are listed.
+function showTally() {
+  const r = su.tally();
+  let story = OUTCOMES[r.outcome];
+  if (r.removedBy === "self") story += " Marcus did the hack himself, and people will hear about it.";
+  if (r.removedBy === "manual") story += ` Marcus did it${methodWords(r.removalMethod)}.${r.weakerArm ? " The arm will be weaker." : ""}`;
+  const later = r.rumor ? (r.outcome === "refused" ? RUMOR_REFUSED : RUMOR) : BET;
+  $("tallyTitle").textContent = TITLES[r.outcome];
+  $("tallyStory").innerHTML = `${story}${later ? `<b>${later}</b>` : ""}`;
+  $("tallyDid").innerHTML = [
+    row("Keys hit", `${r.keysHit} of ${r.keysTotal}`),
+    row("Complications", r.complications, r.complications ? "bad" : ""),
+    row("Security alert", FORCED_HACK[r.forcedHack] || "-"),
+    row("Hack failures", r.hackFailures, r.hackFailures ? "bad" : ""),
+    row("Highest heart rate", `${r.peakBpm} bpm`, r.peakBpm >= 170 ? "bad" : ""),
+    row("Diagnostics runs", r.diagnosticsRuns),
+    row("Time", timeText(r.seconds)),
+  ].join("");
+  $("tallyStats").innerHTML = [
+    row("XP", signed(r.xpGained), r.xpGained < 0 ? "bad" : ""),
+    row("Starting materials", r.materialsStart),
+    ...r.charges.map((c) => row(CHARGE_NAMES[c.job], `-${c.cost}`, "cost")),
+    row("Materials left", materialsText(r.materialsEnd), r.materialsEnd < 0 ? "bad" : ""),
+  ].join("");
+  $("againKey").textContent = Demo.label("a");
+  $("monitor").hidden = true;
+  $("tally").hidden = false;
+  $("tally").scrollTop = 0;
+  tallyClock = 0;
 }
 
 function startHack() {
   $("alertBanner").hidden = true;
   $("assistLine").textContent = CALLS.forcedSelf;
   $("hackview").hidden = false;
+  $("line").textContent = "";
   $("hackline").textContent = "The arm's security is fighting back. Get in and shut it down.";
-  ring.start({ rings: settings.hackRings, timerSeconds: 6, arrows: 3, lockoutAfter: 3, lockdown: false, gapDegrees: 56 });
+  const begin = () => ring.start({ rings: settings.hackRings, timerSeconds: 6, arrows: 3, lockoutAfter: 3, lockdown: false, gapDegrees: 56 });
+  // The first hack is taught as it starts, and the game waits for the player to read it.
+  if (hackTaught) begin();
+  else card.show(Object.assign({ onClose: () => { hackTaught = true; begin(); } }, HACK_LESSON));
+}
+
+// A short reminder under the ring, in the words of the device being used.
+function drawHackHelp(dt, input) {
+  const s = ring.hack ? ring.hack.state : null;
+  hackCoach = Math.max(0, hackCoach - dt);
+  const pad = Demo.usingPad();
+  if (s && s.phase === "search" && pad && (input.press.up || input.press.down || input.press.left || input.press.right)) hackCoach = 2.5;
+  let text = "";
+  if (s && s.phase === "search") {
+    if (hackCoach > 0) text = "The d-pad is for the arrows later. Spin the right stick in a circle.";
+    else if (ring.hack.inGap()) text = pad ? "You're on the gap. Press R1." : "You're on the gap. Press E.";
+    else text = pad ? "Spin the right stick in a slow circle to find the gap." : "Use the left and right arrows to find the gap.";
+  } else if (s && s.phase === "sequence") text = pad ? "Enter the arrows, top one first, on the d-pad." : "Enter the arrows, top one first, with WASD.";
+  if ($("hackHelp").textContent !== text) $("hackHelp").textContent = text;
 }
 
 function endHack(worked) {
@@ -243,7 +411,7 @@ function endHack(worked) {
   if (worked) {
     $("line").textContent = "The alert is down, and the heart rate is settling.";
     $("assistLine").textContent = CALLS.forcedDone;
-  } else $("line").textContent = "Locked out. The AI Companion jumps in, and that costs Marcus reputation.";
+  } else $("line").textContent = "Locked out. The AI Companion jumps in, and that costs Marcus XP.";
   handle(events);
   Demo.beep(worked ? 1320 : 110, 0.2);
   drawLog();
@@ -254,6 +422,7 @@ function startRemovalHack() {
   $("diag").hidden = true;
   $("assistLine").textContent = CALLS.removalSelf;
   $("hackview").hidden = false;
+  $("line").textContent = "";
   $("hackline").textContent = "The malware is wired to his heart. Cut it out.";
   ring.start({ rings: settings.removalRings, timerSeconds: 5, arrows: 4, lockoutAfter: 3, lockdown: false, gapDegrees: 56 });
 }
@@ -261,7 +430,7 @@ function startRemovalHack() {
 function endRemovalHack(worked) {
   ring.stop();
   $("hackview").hidden = true;
-  if (!worked) $("line").textContent = "Locked out. The AI Companion jumps in, and that costs Marcus reputation.";
+  if (!worked) $("line").textContent = "Locked out. The AI Companion jumps in, and that costs Marcus XP.";
   handle(su.removalHackFinished(worked));
   Demo.beep(worked ? 1320 : 110, 0.2);
 }
@@ -271,41 +440,72 @@ function showRemovalChoice() {
     speaker: "AI Companion",
     text: "(Placeholder) It's dug in deep. Do you want to take this one, or should I?",
     options: [
-      { label: "Start the hack yourself", run: () => handle(su.removalChoice(true)) },
-      { label: "Let the AI Companion do it", run: () => handle(su.removalChoice(false)) },
+      { label: su.selfLabel(), run: () => handle(su.removalChoice(true)) },
+      { label: AI_LABEL, run: () => handle(su.removalChoice(false)) },
     ],
   });
 }
 
+function panelHtml(title) {
+  const rows = su.state.results.map((r) => `<div class="drow"><span>${r.name}</span><span class="ms"></span><span class="ok"></span></div>`).join("");
+  return `<div class="dpanel"><div class="ptitle">${title}</div>${rows}</div>`;
+}
+
+function fillRows(panel, count) {
+  panel.querySelectorAll(".drow").forEach((row, i) => {
+    if (i >= count || row.querySelector(".ok").textContent) return;
+    row.querySelector(".ms").textContent = `${su.state.results[i].ms} ms`;
+    row.querySelector(".ok").textContent = "PASS";
+  });
+}
+
+// The log prints down a column. Once the column is full, the oldest lines scroll off the top.
 function showRunning(run) {
+  logLines = DemoCore.diagnosticLog(su.state.results);
+  logShown = 0;
   $("diag").hidden = false;
-  $("code").innerHTML = "";
-  $("report").hidden = true;
+  $("diagLog").innerHTML = "";
+  $("diagStatus").textContent = run === 1 ? "RUNNING DIAGNOSTICS" : "RUNNING DIAGNOSTICS AGAIN";
+  $("diagSame").textContent = "";
+  $("diagPanels").innerHTML = (run === 2 ? panelHtml("RUN 1") : "") + panelHtml(`RUN ${run}`);
+  if (run === 2) fillRows($("diagPanels").firstElementChild, su.state.results.length);
+  // The results sit under the heart monitor, so it stays readable.
+  const monitor = $("monitor");
+  $("diagMain").style.paddingTop = `${monitor.offsetTop + monitor.offsetHeight + 12}px`;
   $("line").textContent = run === 1 ? "Running diagnostics." : "Running diagnostics again.";
   drawLog();
 }
 
-function flyCode() {
-  const el = document.createElement("div");
-  el.className = "fly";
-  const hex = Math.floor(Math.random() * 0xffffff).toString(16).padStart(6, "0");
-  const verb = CODE_BITS[Math.floor(Math.random() * CODE_BITS.length)];
-  const part = CODE_PARTS[Math.floor(Math.random() * CODE_PARTS.length)];
-  el.textContent = `0x${hex} ${verb} ${part} ${(Math.random() * 9).toFixed(3)} ok`;
-  el.style.left = `${Math.random() * 78}%`;
-  el.style.top = `${10 + Math.random() * 80}%`;
-  $("code").appendChild(el);
-  setTimeout(() => el.remove(), 900);
+function drawDiagnostics(progress) {
+  const box = $("diagLog");
+  const target = Math.min(logLines.length, Math.floor(progress * logLines.length));
+  while (logShown < target) {
+    const el = document.createElement("div");
+    const text = logLines[logShown];
+    el.textContent = text;
+    if (text.startsWith("CHECK")) el.className = "head";
+    if (text.endsWith("PASS")) el.className = "pass";
+    box.appendChild(el);
+    logShown += 1;
+  }
+  box.scrollTop = box.scrollHeight;
+  fillRows($("diagPanels").lastElementChild, Math.floor(logShown / DemoCore.LOG_LINES_PER_CHECK));
 }
 
 function showReport(run) {
-  $("code").innerHTML = "";
-  const head = run === 2 ? "<tr><th>Check</th><th>Run 1</th><th>Run 2</th><th></th></tr>" : "";
-  const rows = su.state.results.map((r) => `<tr><td>${r.name}</td><td>${r.ms} ms</td>${run === 2 ? `<td>${r.ms} ms</td>` : ""}<td class="pass">PASS</td></tr>`).join("");
-  $("report").innerHTML = `<div class="title">ALL PASSED</div><table>${head}${rows}</table><div class="same">${run === 2 ? "The same results, to the last digit." : ""}</div>`;
-  $("report").hidden = false;
+  drawDiagnostics(1);
+  $("diagStatus").textContent = "ALL PASSED";
   $("line").textContent = "All passed.";
   Demo.beep(1320, 0.18);
+}
+
+// On the second run, each row lights up across both panels as it is found to match.
+function drawCompare(progress) {
+  const panels = [...$("diagPanels").children];
+  const count = su.state.results.length;
+  const lit = Math.min(count, Math.floor(progress * (count + 1.5)));
+  panels.forEach((panel) => panel.querySelectorAll(".drow").forEach((row, i) => row.classList.toggle("match", i < lit)));
+  if (lit >= count) $("diagSame").textContent = "The same results, to the last digit.";
 }
 
 function showDoubt() {
@@ -333,6 +533,65 @@ function showFound() {
   });
 }
 
+function showFighterAsks() {
+  $("diag").hidden = true;
+  menu.show({
+    speaker: "Fighter",
+    text: "(Placeholder) There's what in my arm? Can you get it out?",
+    options: [
+      { label: su.selfLabel(), run: () => handle(su.fighterAnswer("self")) },
+      { label: AI_LABEL, run: () => handle(su.fighterAnswer("ai")) },
+      { label: "Refuse", run: () => { su.fighterAnswer("refuse"); finishCase(); } },
+    ],
+  });
+  $("assistLine").textContent = CALLS.asked;
+}
+
+function showLoading(job, cost, left) {
+  $("diag").hidden = true;
+  $("alertBanner").hidden = true;
+  const text = `Cost: ${cost} ${cost === 1 ? "material" : "materials"}.`;
+  loading.show(cost, left, Object.assign({ costText: text }, job === "forced" ? FORCED_JOB : REMOVAL_JOB));
+  $("assistLine").textContent = CALLS.removalHelp;
+  drawLog();
+}
+
+function showHackChoice() {
+  $("alertBanner").hidden = true;
+  menu.show({
+    speaker: "AI Companion",
+    text: "(Placeholder) Security woke up, and it's hitting his heart! Do you want it, or should I?",
+    options: [
+      { label: "Hack it", run: () => handle(su.hackChoice(true)) },
+      { label: AI_LABEL, run: () => handle(su.hackChoice(false)) },
+    ],
+  });
+}
+
+function showDiagnosticsPrompt() {
+  menu.show({
+    speaker: "Fighter",
+    text: "(Placeholder) So we're good?",
+    options: [{ label: "All done. Let me just run a diagnostics", run: () => handle(su.runDiagnostics()) }],
+  });
+}
+
+function showWhatHappened() {
+  $("line").textContent = "The patient is stable.";
+  menu.show({
+    speaker: "Fighter",
+    text: "What the hell happened?",
+    seconds: settings.choiceSeconds,
+    defaultIndex: 1,
+    options: ["(Placeholder) Your arm's security tripped.", "(Placeholder) Nothing. You're fine.", "(Placeholder) Hold still."].map((label) => ({ label })),
+    onPick(option) {
+      su.answerWhatHappened(option.label, { speaker: "Fighter", text: WHAT_HAPPENED[option.label] });
+      $("line").textContent = "";
+      drawLog();
+    },
+  });
+}
+
 function openCheckpoint(step) {
   menu.show({
     speaker: step.speaker,
@@ -350,8 +609,18 @@ function handle(events) {
     if (e.type === "hit") { Demo.beep(1040, 0.1); flash = 0.2; flashColor = "#fff"; }
     if (e.type === "miss") { Demo.beep(120, 0.3, "sawtooth"); flash = 0.35; flashColor = "#ff454c"; $("line").textContent = "A slip. The heart rate jumps, and that adds a complication."; $("assistLine").textContent = CALLS.miss; }
     if (e.type === "checkpoint") openCheckpoint(e.step);
-    if (e.type === "stepClosed") { if (e.step.after) $("line").textContent = e.step.after; drawLog(); }
+    if (e.type === "stepClosed") { $("line").textContent = ""; drawLog(); }
+    if (e.type === "stepStart") $("line").textContent = e.step.name;
     if (e.type === "alert") { showBanner("ALERT: ARM SECURITY TRIPPED"); $("line").textContent = "Cutting the arm off tripped something. The heart rate is spiking."; $("assistLine").textContent = CALLS.alert; }
+    if (e.type === "hackChoice") showHackChoice();
+    if (e.type === "whatHappened") showWhatHappened();
+    if (e.type === "diagnosticsPrompt") showDiagnosticsPrompt();
+    if (e.type === "aiForcedDone") {
+      loading.hide();
+      $("line").textContent = "The AI Companion got the alert down, and the heart rate is settling.";
+      $("assistLine").textContent = CALLS.forcedDone;
+      drawLog();
+    }
     if (e.type === "hackStart") startHack();
     if (e.type === "companionStart") {
       $("diag").hidden = true;
@@ -368,6 +637,13 @@ function handle(events) {
     if (e.type === "passed") showReport(e.run);
     if (e.type === "doubt") showDoubt();
     if (e.type === "found") { showFound(); $("assistLine").textContent = CALLS.found; }
+    if (e.type === "fighterAsks") showFighterAsks();
+    if (e.type === "aiLoadingStart") showLoading(e.job, e.cost, e.left);
+    if (e.type === "manualRemovalStart") {
+      $("diag").hidden = true;
+      $("line").textContent = `Marcus removes the malware${methodWords(e.method)}. Follow the keys.`;
+      $("assistLine").textContent = CALLS.removalSelf;
+    }
     if (e.type === "removalChoice") showRemovalChoice();
     if (e.type === "removalHackStart") startRemovalHack();
     if (e.type === "removed") { if (e.by === "self") $("assistLine").textContent = CALLS.removed; finishCase(); }
@@ -404,73 +680,71 @@ Demo.bindPanel(settings, [
   ["holdSeconds", "Hold length", 0.2, 2, 0.1, " s"],
   ["leadSeconds", "Time between keys", 0.2, 2, 0.1, " s"],
   ["choiceSeconds", "Checkpoint choice timer", 3, 20, 1, " s"],
+  ["lineScale", "Time on timed lines", 0.5, 2, 0.1, "x"],
   ["hackRings", "Forced hack rings", 1, 4, 1, ""],
   ["removalRings", "Removal hack rings", 1, 6, 1, ""],
-  ["diagnosticSeconds", "Diagnostics length", 2, 10, 0.5, " s"],
-], ["checkpoints", "monitorSound", "tapIsHold", "tech"], () => { if (running) newPatient(); }, "demoSurgery");
+  ["diagnosticSeconds", "Diagnostics length", 2, 14, 0.5, " s"],
+  ["materials", "Starting materials", 0, 6, 1, ""],
+  ["aiCost", "AI job cost", 0, 6, 1, " materials"],
+  ["aiLoadSeconds", "AI loading screen", 2, 12, 0.5, " s"],
+], ["checkpoints", "monitorSound", "tapIsHold", "tech", "hackerAvailable"], () => { if (running) newPatient(); }, "demoSurgery");
 
 Demo.startOverlay(() => { running = true; newPatient(); });
 $("restart").addEventListener("click", () => { newPatient(); $("restart").blur(); });
+$("again").addEventListener("click", () => { newPatient(); $("again").blur(); });
 
 Demo.loop((dt, input) => {
   if (!running) return;
   clock += dt;
   flash = Math.max(0, flash - dt);
+  // The short wait stops the press that ended the case from also restarting it.
+  if (!$("tally").hidden) {
+    tallyClock += dt;
+    if (input.press.a && tallyClock > 0.4) { newPatient(); return; }
+  }
   bar.draw({ state: su.barState() });
 
   // The heart keeps beating under every overlay.
   const phase = su.state.phase;
-  const inTreat = phase === "treat";
-  const atStation = room.update(dt, su.canLeave() && !menu.open ? input.moveX : 0, !su.canLeave() || menu.open);
+  room.update(dt, 0, true);
 
   if (su.heart.state.erratic && !hacking() && settings.monitorSound) {
     alarmClock -= dt;
     if (alarmClock <= 0) { Demo.beep(1400, 0.12); alarmClock = 0.32; }
   }
 
-  if (phase === "diagnostics") {
-    codeClock -= dt;
-    while (codeClock <= 0) { flyCode(); codeClock += 0.05; }
-  }
+  if (phase === "diagnostics") drawDiagnostics(su.diagnosticsProgress());
+  if (phase === "passed") drawCompare(su.comparedProgress());
+  if (phase === "aiLoading") loading.draw(su.aiProgress());
 
   let frameInput = input;
-  if (menu.open) {
+  if (card.open) {
+    card.update(dt, input.press);
+    frameInput = { press: {}, held: {} };
+  } else if (menu.open) {
     menu.update(dt, input.press);
     frameInput = { press: {}, held: {} };
   } else if (hacking()) {
     const finish = phase === "hack" ? endHack : endRemovalHack;
     for (const e of ring.update(dt, input)) {
+      if (e.type === "ringFailed" && su.hackStrike()) {
+        heartKick = 1;
+        $("assistLine").textContent = CALLS.strike;
+      }
       if (e.type === "open") finish(true);
       if (e.type === "lockout") finish(false);
     }
+    drawHackHelp(dt, input);
     frameInput = { press: {}, held: {} };
-  } else if (inTreat && su.proc.state.phase === "ready") {
-    const atTable = atStation === "table";
-    const proc = su.proc;
-    if (input.press.a && atStation === "bench" && !proc.state.parts.clamp) {
-      proc.give("clamp");
-      Demo.beep(880, 0.08);
-      Demo.notice("Clamp in hand.");
-      $("line").textContent = "You have the clamp. Treat the patient at the table.";
-    } else if (input.press.a && atStation === "terminal") {
-      $("line").textContent = "The chart says what you already know.";
-    } else if (input.press.b && atTable && proc.blocked()) {
-      proc.goWithout();
-      su.heart.bump(10);
-      Demo.notice("Going on without the clamp.");
-      $("line").textContent = "No clamp, so this will cost the patient later.";
-    } else if (input.press.a && atTable && proc.begin()) {
-      $("line").textContent = proc.current().name;
-      frameInput = { press: {}, held: {} }; // The press that starts a step can't also answer its first key.
-    }
   }
 
   handle(su.update(dt, frameInput));
   drawMonitor(dt);
+  drawSubtitle();
 
   const key = su.prompt();
-  if (key && su.state.phase === "treat") {
-    const q = su.proc.state.qte;
+  if (key && (su.state.phase === "treat" || su.state.phase === "manualRemoval")) {
+    const q = su.activeQte();
     const holdFill = key.type === "hold" ? Math.min(1, q.state.holdTime / q.cfg.holdSeconds) : 0;
     const timeLeft = q.cfg.assist === "wait" ? 1 : q.state.windowLeft / q.cfg.windowSeconds;
     keyPrompt.show({ x: TABLE_X, y: 86, button: key.button, type: key.type, timeLeft, holdFill });
@@ -482,17 +756,25 @@ Demo.loop((dt, input) => {
   }
   patient.setAttribute("fill", flash > 0 ? flashColor : "#ffb020");
 
-  const proc = su.proc;
-  const a = Demo.diamond("a");
-  const atTable = atStation === "table";
-  if (su.state.phase === "closed") setPrompt("Case finished. Use New patient to go again.");
-  else if (su.state.phase !== "treat" || proc.state.phase !== "ready") setPrompt("");
-  else if (atTable && proc.blocked()) setPrompt(`Needs a clamp. Walk to the bench, or ${Demo.diamond("b")} go on without it.`);
-  else if (atTable) setPrompt(`${a} Treat: ${proc.current().name}`);
-  else if (atStation === "bench" && !proc.state.parts.clamp) setPrompt(`${a} Take a clamp`);
-  else if (atStation === "terminal") setPrompt(`${a} Check the chart`);
-  else setPrompt("Walk to the table.");
+  // The first key and the first hold each get a reminder, then the keys speak for themselves.
+  if (key && key.type === "hold" && !holdTaught) {
+    setPrompt("Keep it held until the circle fills.");
+    if (su.activeQte().state.holdTime >= su.activeQte().cfg.holdSeconds * 0.5) holdTaught = true;
+  } else if (key && su.proc.state.index === 0 && su.state.phase === "treat" && su.proc.state.progress === 0) {
+    setPrompt("Press the key before the ring runs out.");
+  } else setPrompt("");
 });
+
+function drawSubtitle() {
+  const line = su.subtitle();
+  if (line === drawnSub) return;
+  drawnSub = line;
+  $("sub").hidden = !line;
+  if (line) {
+    $("subSpeaker").textContent = line.speaker || "";
+    $("subText").textContent = line.text;
+  }
+}
 </script>
 </body>
 </html>

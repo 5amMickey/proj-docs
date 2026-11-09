@@ -112,3 +112,26 @@ The fixes were tested by the lead after review. Browser layout, real button inte
 Mike reported that hiding an image after Show more collapsed the list. Every successful save called `filter()`, which reset the display limit to 160. `library.js` now preserves that limit for saves and metadata reloads, resets it on search/filter changes, and restores scroll coordinates after rebuilding the grid. No server restart or catalog rebuild is needed; refresh the browser to load the changed script.
 
 `node tools/test_library_pagination.js` passes expansion to 480 entries, hide/restore, tag saves, Save & next, metadata reload and filter-change checks against the actual page handlers using a DOM stand-in. Reintroducing the previous save call in memory reproduces the 480-to-160 collapse and fails this test. The existing `node tools/test_library.js` checks also pass. These checks do not write real annotations; physical browser scroll behavior still needs Mike's confirmation.
+
+## Editing without a server, pins, favorites and bulk actions (2026-11-06)
+
+Mike asked for four things: drag-select for bulk hide and sorting, loading on scroll, nothing saved off-device and a library that moves to another drive without an executable, and pinning plus a separate favorites set. Answers given before the build: nothing was saved off-device (the server listened on 127.0.0.1 only), but the page baked in the absolute root and the venv tied `Start library.cmd` to this PC. Decisions: the browser writes `curation.json` itself; a selection can hide, restore, pin, favorite, add tags and add or clear locations; pins order newest first; marquee plus Ctrl-click and Shift-click.
+
+What changed
+
+- `curation.json` is now the record (format 2). `curation.db` is superseded and not read; it matched the JSON byte for byte at switch-over (71 entries) and stays in place until Mike says to recycle it. `curation.js`, `curation-history.jsonl` and `curation-backups/` keep their roles. Python writers take a lock file; the browser re-reads the file right before each write. Simultaneous browser and CLI writes can still race; noted in the README.
+- `tools/library_store.js`: the page saves with the File System Access API after one **Connect library folder** click per browser session (Edge and Chrome). Verified in Edge 156 headless that `showDirectoryPicker` exists and `file://` is a secure context. IndexedDB on `file://` never answers in headless Edge, so remembering the folder handle is bounded by a 1.5 s timeout and the page renders before trying. Whether headed Edge keeps the handle between sessions is for Mike to see; if not, the picker opens each session.
+- `tools/library.js`: results load as the sentinel scrolls into view (IntersectionObserver, 600 px ahead), with **Show more** kept for keyboards; cards append instead of rebuilding. Marquee, Ctrl-click, Shift-click range, Ctrl+A for all results, Esc. Selection bar with hide, restore, pin, unpin, favorite, unfavorite, add tags, add location, clear locations. Pin and favorite buttons in the detail pane save at once and keep unsaved drafts. The root path for copied file paths is read from the page's own location.
+- `tools/curation.py`: `save_many`, `apply_edits`, `order`, `favorites` and `pinned` filters, `pinned_at` set on pin and cleared on unpin, `restore-curation` accepts `curation.js` and daily backups. `serve_library.py`: `/api/bulk`. `graphics_db.py`: `edit` takes many IDs and `--pin/--unpin/--favorite/--unfavorite`; `search --favorites/--pinned`; pinned listed first. `start_library.ps1` falls back to the installed Python after a move.
+
+Proof: `test_curation.py` 14 tests pass (store, bulk all-or-nothing, pins and order, format-1 upgrade, recovery from `curation.js`, corrupt file left alone, CLI multi-edit, `/api/bulk`, Python and JavaScript parity of filter results and of applied edits). `node tools/test_library.js`, `node tools/test_library_store.js` (in-memory folder: first write, merge with an external edit, daily backup, history append, conflict writes nothing, orphans) and `node tools/test_library_pagination.js` (pin from the pane keeps a draft, favorites filter, Ctrl-click and Shift-click, bulk hide keeps 480 expanded and the scroll position, Ctrl+A, bulk tags, Esc) pass. Edge headless renders `index.html` from `file://` with 160 cards, the summary and the Connect button, and the served page with the live store. The live `curation.json` was upgraded to format 2 with a backup in `curation-backups/2026-11-06.json`.
+
+- [x] JSON store, lock, bulk save, pins, favorites, ordering
+- [x] Browser folder store with backup, history and conflict handling
+- [x] Scroll loading, marquee and modifier selection, selection bar
+- [x] CLI and server parity
+- [x] README, memory
+- [ ] Mike: Connect library folder in Edge, pin and favorite a few images, lasso a set and hide it, scroll to the end of a long result
+- [ ] Mike: decide whether `curation.db` goes to the Recycle Bin
+
+The task board MCP was not connected in this session, so this checklist lives here.

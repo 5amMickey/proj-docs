@@ -11,36 +11,52 @@
 .figure.marcus { background: #0d3a40; }
 .figure.vhoori { background: #3a1730; }
 .figure.hacked { outline: 2px solid var(--good); }
-#quick { position: absolute; left: 20px; top: 16px; width: 240px; height: 240px; }
+/* The quick hack takes over the scene above the talk. */
+#quick { position: absolute; inset: 0; width: auto; height: auto; padding: clamp(40px, 3.2vw, 64px) 0 6px; background: var(--bg); }
 #quick[hidden] { display: none; }
-#quickLine { position: absolute; left: 20px; top: 262px; width: 240px; text-align: center; color: var(--amber); font-size: 13px; }
-.talk { padding: 10px 20px 18px; display: flex; flex-direction: column; align-items: center; gap: clamp(10px, 1.1vw, 22px); min-height: clamp(280px, 25vw, 460px); }
-.talk .speaker { color: var(--cyan); font-size: clamp(18px, 1.5vw, 28px); }
-.talk .text { max-width: min(1200px, 92%); text-align: center; font-size: clamp(24px, 2.2vw, 42px); line-height: 1.35; min-height: 2.8em; }
+#fightBox { position: absolute; inset: 0; background: var(--bg); display: flex; flex-direction: column; }
+#fightBox[hidden] { display: none; }
+#fightScene { width: 100%; flex: 1 1 auto; min-height: 0; transition: background .15s; }
+#fightScene.slow { background: #0b1826; }
+#fightRound { position: absolute; left: 20px; top: 14px; color: var(--muted); font-size: clamp(17px, 1.25vw, 24px); }
+#fightLine { min-height: 2.6em; padding: 6px 20px; text-align: center; font-size: clamp(19px, 1.5vw, 28px); }
+/* The fight takes the whole stage, so the talk steps aside. */
+.stage.fighting .talk { display: none; }
+#quickLine { position: absolute; left: 0; right: 0; top: 8px; text-align: center; color: var(--amber); font-size: clamp(18px, 1.5vw, 30px); }
+.talk { padding: 8px 20px 16px; display: flex; flex-direction: column; align-items: center; gap: clamp(8px, .9vw, 18px); }
+.talk .speaker { color: var(--cyan); font-size: clamp(20px, 1.7vw, 34px); }
+.talk .text { max-width: min(1300px, 92%); text-align: center; font-size: clamp(25px, 2.3vw, 46px); line-height: 1.3; min-height: 1.3em; }
+/* The A row keeps its space, so the other choices don't jump when it goes away. */
+.talk .choices { grid-template-rows: auto auto minmax(clamp(76px, 6.6vw, 132px), auto); }
 </style>
 </head>
 <body>
 <div class="app">
-  <main class="stage">
+  <main class="stage" id="stage">
     <div class="scene">
       <div class="figure" id="guard1">Guard</div>
       <div class="figure marcus">Marcus</div>
       <div class="figure vhoori">Vhoori</div>
       <div class="figure" id="guard2">Guard</div>
       <div id="quick" hidden></div>
+      <div id="fightBox" hidden>
+        <div id="fightRound"></div>
+        <svg id="fightScene" viewBox="0 0 1000 420" preserveAspectRatio="xMidYMid meet" role="img" aria-label="Fight placeholder"></svg>
+        <div id="fightLine"></div>
+      </div>
       <div id="quickLine"></div>
     </div>
     <div class="talk">
       <div class="speaker" id="speaker"></div>
       <div class="text" id="text"></div>
-      <div class="timebar" id="timebar" hidden><div></div></div>
       <div class="choices" id="choices"></div>
+      <div class="timebar" id="timebar" hidden><div></div></div>
     </div>
     <div id="overlay"><div class="card"><p>Connect your controller and press a button on it, then start.</p><button id="start">Start</button></div></div>
   </main>
   <aside>
     <h1>Dialogue demo</h1>
-    <p class="goal">Goal: can you keep answering on X, Y and B while a quick hack runs from the A option? The lines are placeholders, not story.</p>
+    <p class="goal">Goal: do you notice the specialty option when it arrives on the second question, can you keep answering on X, Y and B during its quick hack, and does the talk hold together through the chair fight and the last choice? The lines are placeholders, not story.</p>
     <div class="status" id="padStatus"></div>
     <h2>Setup</h2>
     <label class="field">Specialty
@@ -54,19 +70,20 @@
     <h2>This scene</h2>
     <table><tbody id="log"><tr><td>Nothing chosen yet</td><td></td></tr></tbody></table>
     <h2>Controls</h2>
-    <p class="help">Controller: X, Y and B to answer, A for the spec option, d-pad for the quick hack. Keyboard: 1, 2, 3 and 4, with WASD for the quick hack.</p>
+    <p class="help">Controller: X, Y and B to answer, A for the specialty option, d-pad for the quick hack. In the fight, press the key on screen and hold it when it says HOLD. Keyboard: 1, 2, 3 and E (4 also answers A), with WASD for the quick hack.</p>
     <p class="help" style="margin-top:10px"><a href="index.html">All demos</a></p>
   </aside>
 </div>
 <script src="../ring-hack-prototype/hack-core.js"></script>
 <script src="demo-core.js"></script>
 <script src="shared.js"></script>
+<script src="fight.js"></script>
 <script>
 "use strict";
 const { $ } = Demo;
-const settings = { spec: "Netrunning", choiceSeconds: 8, hackSeconds: 8, hackArrows: 4 };
+const settings = { spec: "Netrunning", choiceSeconds: 8, hackSeconds: 10, hackArrows: 8, hackSlowdown: 0.1, specDelay: 3, windowSeconds: 3, sceneSpeed: 0.3, holdSeconds: 0.8, leadSeconds: 0.9, assist: "none", tapIsHold: false };
 const SPEC = {
-  Netrunning: { label: "Hack the guards' guns", kind: "hack" },
+  Netrunning: { label: "Hack the guards' guns", kind: "hack", icon: "chip" },
   Tech: { label: "Loosen the chair's restraint", flag: "techOption" },
   Enforcer: { label: "Test the chair's strap", flag: "enforcerOption" },
 };
@@ -75,31 +92,47 @@ function nodes() {
   const t = settings.choiceSeconds;
   return {
     open: { speaker: "Vhoori", text: "(Placeholder) You came a long way to sit in that chair.", seconds: 2.5, next: "first" },
-    first: { speaker: "Vhoori", text: "(Placeholder) Who sent you?", seconds: t, defaultChoice: 1, spec: SPEC,
+    first: { speaker: "Vhoori", text: "(Placeholder) Who sent you?", seconds: t, defaultChoice: 1,
       choices: [{ label: "Lie", next: "second", flag: "lied" }, { label: "Say nothing", next: "second", flag: "silent" }, { label: "Tell the truth", next: "second", flag: "truth" }] },
-    second: { speaker: "Vhoori", text: "(Placeholder) And what do you think happens now?", seconds: t, defaultChoice: 1, spec: SPEC,
+    second: { speaker: "Vhoori", text: "(Placeholder) And what do you think happens now?", seconds: t, defaultChoice: 1, spec: SPEC, specDelay: settings.specDelay,
       choices: [{ label: "Stall", next: "third", flag: "stalled" }, { label: "Threaten", next: "third", flag: "threatened" }, { label: "Bargain", next: "third", flag: "bargained" }] },
-    third: { speaker: "Vhoori", text: "(Placeholder) Last chance.", seconds: t, defaultChoice: 0, spec: SPEC,
-      choices: [{ label: "Beg", next: "end", flag: "begged" }, { label: "Spit", next: "end", flag: "spat" }, { label: "Smile", next: "end", flag: "smiled" }] },
-    end: { speaker: "", text: "The chair fight would start here.", seconds: 2.5, next: null },
+    third: { speaker: "Vhoori", text: "(Placeholder) Last chance.", seconds: t, defaultChoice: 0,
+      choices: [{ label: "Beg", next: "toFight", flag: "begged" }, { label: "Spit", next: "toFight", flag: "spat" }, { label: "Smile", next: "toFight", flag: "smiled" }] },
+    toFight: { speaker: "Vhoori", text: "(Placeholder) Get him out of that chair.", seconds: 2.5, next: "fight" },
+    fight: { speaker: "", text: "" }, // Holds until the fight is over.
+    final: { speaker: "Vhoori", text: "(Placeholder) Your two guards are down, and I'm still sitting here. So what is it going to be?", seconds: t, defaultChoice: 2,
+      choices: [{ label: "Threaten", next: "threaten", flag: "threatenedVhoori" }, { label: "Negotiate", next: "negotiate", flag: "negotiated" }, { label: "Walk away", next: "walk", flag: "walkedAway" }] },
+    threaten: { speaker: "Vhoori", text: "(Placeholder) You'll want to mean that. I remember who threatens me.", seconds: 3.5, next: "end" },
+    negotiate: { speaker: "Vhoori", text: "(Placeholder) Now you're worth talking to. Sit down. Not in that chair.", seconds: 3.5, next: "end" },
+    walk: { speaker: "Vhoori", text: "(Placeholder) Go on, then. The door was never the hard part.", seconds: 3.5, next: "end" },
+    end: { speaker: "", text: "End of the scene. Later scenes would read this choice.", seconds: 2.5, next: null },
   };
 }
 
 const widget = Demo.createRingWidget($("quick"));
+const fight = Fight.create({ svg: $("fightScene"), roundEl: $("fightRound"), lineEl: $("fightLine"), settings });
+let fighting = false;
+let fightPause = 0; // the result of the fight stays up briefly before the talk comes back
 let d = null;
 let running = false;
 let drawnKey = null;
+let specShown = false;
 const log = [];
 
 function newScene() {
-  d = DemoCore.createDialogue({ nodes: nodes(), start: "open", spec: settings.spec });
+  d = DemoCore.createDialogue({ nodes: nodes(), start: "open", spec: settings.spec, hackSlowdown: settings.hackSlowdown });
   $("quick").hidden = true;
   $("quickLine").textContent = "";
   widget.stop();
   log.length = 0;
   drawnKey = null;
+  specShown = false;
+  fighting = false;
+  fightPause = 0;
+  $("fightBox").hidden = true;
+  $("stage").classList.remove("fighting");
   $("log").innerHTML = "<tr><td>Nothing chosen yet</td><td></td></tr>";
-  ["guard1", "guard2"].forEach((id) => $(id).classList.remove("hacked"));
+  ["guard1", "guard2"].forEach((id) => { $(id).classList.remove("hacked"); $(id).style.opacity = ""; });
 }
 
 function addLog(a, b) {
@@ -107,10 +140,34 @@ function addLog(a, b) {
   $("log").innerHTML = log.join("");
 }
 
+function startFight() {
+  fighting = true;
+  // A quick hack still running when the fight starts has nothing left to do.
+  if (d.state.hackLive) endQuickHack(false);
+  $("quickLine").textContent = "";
+  $("stage").classList.add("fighting");
+  $("fightBox").hidden = false;
+  fight.start();
+}
+
+function endFight() {
+  fighting = false;
+  $("stage").classList.remove("fighting");
+  $("fightBox").hidden = true;
+  addLog("Fight", `${fight.hits()} of ${fight.total()} keys, ${fight.hurt} hurt`);
+  ["guard1", "guard2"].forEach((id) => { $(id).style.opacity = 0.25; });
+  d.goTo("final");
+}
+
 function startQuickHack() {
   $("quick").hidden = false;
-  $("quickLine").textContent = "Quick hack: use the d-pad. The talk carries on.";
-  widget.start({ rings: 1, search: false, autoFit: true, arrows: settings.hackArrows - 1, timerSeconds: settings.hackSeconds, lockoutAfter: 1, lockdown: false, gapDegrees: 56 });
+  drawHackCount();
+  widget.start({ rings: 1, search: false, autoFit: true, arrows: settings.hackArrows - 1, timerSeconds: settings.hackSeconds, lockoutAfter: 1, wrongRestarts: true, lockdown: false, gapDegrees: 56 });
+}
+
+function drawHackCount() {
+  const s = widget.hack ? widget.hack.state : null;
+  if (s) $("quickLine").textContent = `Quick hack: ${s.seqIndex} of ${s.sequence.length}. Use the d-pad. A wrong arrow restarts it.`;
 }
 
 function endQuickHack(success) {
@@ -126,14 +183,32 @@ function endQuickHack(success) {
 Demo.bindPanel(settings, [
   ["choiceSeconds", "Choice timer", 3, 20, 1, " s"],
   ["hackSeconds", "Quick hack timer", 3, 20, 1, " s"],
-  ["hackArrows", "Quick hack arrows", 2, 7, 1, ""],
-], [], () => { if (running) newScene(); }, "demoDialogue");
+  ["hackArrows", "Quick hack arrows", 2, 16, 1, ""],
+  ["hackSlowdown", "Talk timer speed during a hack", 0.05, 1, 0.05, "x"],
+  ["specDelay", "Specialty option delay", 0, 7, 0.5, " s"],
+], [], () => { if (running) newScene(); }, "demoDialogue2");
 
 Demo.startOverlay(() => { running = true; newScene(); });
 $("restart").addEventListener("click", () => { newScene(); $("restart").blur(); });
 
 Demo.loop((dt, input) => {
   if (!running) return;
+  if (d.state.node === "fight" && d.holding() && !fighting) startFight();
+  if (fighting) {
+    if (fight.done()) {
+      fightPause -= dt;
+      if (fightPause <= 0) endFight();
+    } else {
+      for (const e of fight.update(dt, input)) {
+        if (e.type === "done") {
+          fightPause = 2.5;
+          $("fightLine").textContent = `Fight over: ${fight.hits()} of ${fight.total()} keys hit. Marcus took ${fight.hurt} ${fight.hurt === 1 ? "hit" : "hits"}.`;
+        }
+      }
+      return;
+    }
+    if (fighting) return;
+  }
   const press = Object.assign({}, input.press);
   // During a quick hack, A and the face buttons stay with the talk and the arrows stay with the hack.
   for (const e of d.update(dt, press)) {
@@ -157,6 +232,7 @@ Demo.loop((dt, input) => {
       if (e.type === "ringSolved") endQuickHack(true);
       if (e.type === "lockout") endQuickHack(false);
     }
+    if (d.state.hackLive) drawHackCount();
   }
 
   const n = d.node();
@@ -167,12 +243,19 @@ Demo.loop((dt, input) => {
     $("speaker").textContent = n ? n.speaker : "";
     $("text").textContent = n ? n.text : "Scene over. Restart from the panel.";
     $("choices").innerHTML = Demo.choicesHtml(opts);
+    // Only the option's arrival glitches, not a redraw for a new controller.
+    const hasSpec = opts.some((o) => o.isSpec);
+    if (hasSpec && !specShown) {
+      $("choices").querySelector(".choice.a").classList.add("glitch-in");
+      [0, 90, 210, 400].forEach((ms, i) => setTimeout(() => Demo.beep(1800 - i * 360, 0.05, "sawtooth"), ms));
+    }
+    specShown = hasSpec;
   }
   const timebar = $("timebar");
   const timed = n && n.choices && n.seconds;
   timebar.hidden = !timed;
   if (timed) {
-    timebar.classList.toggle("paused", d.timerPaused());
+    timebar.classList.toggle("paused", d.timerSlowed());
     timebar.firstChild.style.width = `${Math.max(0, d.state.timeLeft / settings.choiceSeconds) * 100}%`;
   }
 });

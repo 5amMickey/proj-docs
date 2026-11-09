@@ -283,7 +283,7 @@ test("a six-ring lock opens", () => {
 
 // ---------- Difficulty layers
 test("the sweep catches a still arrow, and the alarm goes off", () => {
-  const h = createHack({ lockdown: true, sweep: true, sweepSpeed: 90 });
+  const h = createHack({ lockdown: true, sweep: true, sweepFirstRing: 1, sweepAttachSeconds: 0, sweepSpeed: 90 });
   let events = [];
   for (let t = 0; t < 4 && !h.state.onRed; t += 0.05) events = h.update(0.05);
   assert.deepEqual(events.map((e) => e.type), ["ringFailed", "alarm"]);
@@ -291,7 +291,7 @@ test("the sweep catches a still arrow, and the alarm goes off", () => {
 });
 
 test("a fast dodge through the sweep gets away", () => {
-  const h = createHack({ lockdown: true, sweep: true, sweepSpeed: 90, sweepWidth: 30, arrowSpeed: 720 });
+  const h = createHack({ lockdown: true, sweep: true, sweepFirstRing: 1, sweepAttachSeconds: 0, sweepSpeed: 90, sweepWidth: 30, arrowSpeed: 720 });
   for (let t = 0; t < 12; t += 0.02) {
     // Keep the arrow on the far side of the sweep, jumping past it whenever it gets near.
     h.update(0.02, { targetAngle: h.state.sweepAngle + 180 });
@@ -300,18 +300,18 @@ test("a fast dodge through the sweep gets away", () => {
 });
 
 test("with lockdown off, the sweep strikes", () => {
-  const h = createHack({ lockdown: false, sweep: true });
+  const h = createHack({ lockdown: false, sweep: true, sweepFirstRing: 1, sweepAttachSeconds: 0 });
   for (let t = 0; t < 4 && h.state.failed === 0; t += 0.05) h.update(0.05);
   assert.equal(h.state.failed, 1);
   assert.equal(h.state.onRed, false);
 });
 
 test("the sweep does not run on the red ring or during the arrows", () => {
-  const h = createHack({ lockdown: true, sweep: true, closeSeconds: 0 });
+  const h = createHack({ lockdown: true, sweep: true, sweepFirstRing: 1, sweepAttachSeconds: 0, closeSeconds: 0 });
   h.triggerAlarm();
   h.update(30);
   assert.equal(h.state.alarms, 1);
-  const n = createHack({ sweep: true, timerSeconds: 0 });
+  const n = createHack({ sweep: true, sweepFirstRing: 1, sweepAttachSeconds: 0, timerSeconds: 0 });
   n.state.sweepAngle = n.state.gap + 90;
   n.state.arrow = n.state.gap;
   n.update(0, { fit: true });
@@ -384,10 +384,397 @@ test("the red ring has no corrupted arrow", () => {
 });
 
 test("layers stay off in the pre-aligned version", () => {
-  const h = createHack({ search: false, sweep: true, decoy: true, moveGap: true, moveGapSeconds: 1 });
+  const h = createHack({ search: false, sweep: true, sweepFirstRing: 1, sweepAttachSeconds: 0, decoy: true, moveGap: true, moveGapSeconds: 1 });
   assert.equal(h.state.decoyGap, null);
   const gap = h.state.gap;
   assert.equal(h.update(30).length, 0);
   assert.equal(h.state.gap, gap);
   assert.equal(h.state.failed, 0);
+});
+
+test("wrong arrow: with wrongRestarts it restarts the sequence, and only the timer can fail the ring", () => {
+  const H = require("./hack-core.js");
+  const h = H.createHack({ rings: 1, search: false, arrows: 3, timerSeconds: 5, lockoutAfter: 1, wrongRestarts: true });
+  h.update(0, { fit: true });
+  assert.equal(h.state.phase, "sequence");
+  const first = h.expected();
+  h.update(0.1, { dir: first });
+  assert.equal(h.state.seqIndex, 1);
+  const wrong = ["up", "down", "left", "right"].find((x) => x !== h.expected());
+  const events = h.update(0.1, { dir: wrong });
+  assert.equal(events[0].type, "arrowWrong");
+  assert.equal(h.state.seqIndex, 0);
+  assert.equal(h.state.phase, "sequence");
+  assert.equal(h.update(6, {}).some((e) => e.type === "lockout"), true, "running out of time still fails it");
+});
+
+function attachedSweep(options) {
+  const H = require("./hack-core.js");
+  const h = H.createHack(Object.assign({ sweep: true, sweepFirstRing: 1, sweepFollow: true, sweepAttachSeconds: 1, sweepSpeed: 90, lockdown: false, lockoutAfter: 0, timerSeconds: 0 }, options));
+  while (h.state.sweepAttach > 0) h.update(0.05, {});
+  return h;
+}
+
+test("following sweep: it attaches first, unable to move or catch, and says when it is on", () => {
+  const H = require("./hack-core.js");
+  const h = H.createHack({ sweep: true, sweepFirstRing: 1, sweepFollow: true, sweepAttachSeconds: 1, lockdown: false });
+  assert.equal(h.sweepAttachProgress(), 0);
+  const start = h.state.sweepAngle;
+  // Even with the arrow sitting right on it.
+  h.state.arrow = start;
+  let attached = 0;
+  let failed = 0;
+  for (let i = 0; i < 18; i++) {
+    for (const e of h.update(0.05, {})) {
+      if (e.type === "sweepAttached") attached += 1;
+      if (e.type === "ringFailed") failed += 1;
+    }
+  }
+  assert.equal(h.state.sweepAngle, start);
+  assert.equal(failed, 0);
+  assert.equal(attached, 0);
+  assert.ok(Math.abs(h.sweepAttachProgress() - 0.9) < 0.01);
+  const seen = [];
+  for (let i = 0; i < 3; i++) seen.push(...h.update(0.05, {}).map((e) => e.type));
+  assert.ok(seen.includes("sweepAttached"));
+  assert.equal(h.sweepAttachProgress(), 1);
+});
+
+test("following sweep: it takes the shortest way, in both directions and across zero", () => {
+  const h = attachedSweep();
+  h.state.sweepAngle = 100;
+  h.state.arrow = 160;
+  h.update(0.1, {});
+  assert.ok(Math.abs(h.state.sweepAngle - 109) < 1e-6, "clockwise when that is shorter");
+  h.state.sweepAngle = 100;
+  h.state.arrow = 40;
+  h.state.sweepContact = 0;
+  h.update(0.1, {});
+  assert.ok(Math.abs(h.state.sweepAngle - 91) < 1e-6, "counterclockwise when that is shorter");
+  h.state.sweepAngle = 350;
+  h.state.arrow = 40;
+  h.update(0.1, {});
+  assert.ok(Math.abs(h.state.sweepAngle - 359) < 1e-6, "forward through 360");
+  h.state.sweepAngle = 10;
+  h.state.arrow = 320;
+  h.update(0.1, {});
+  assert.ok(Math.abs(h.state.sweepAngle - 1) < 1e-6, "back through 0");
+});
+
+test("following sweep: it catches a still arrow and doesn't overshoot, a faster arrow stays ahead, and the next try attaches again", () => {
+  const h = attachedSweep();
+  h.state.sweepAngle = h.state.arrow + 60;
+  let caught = false;
+  for (let i = 0; i < 100 && !caught; i++) {
+    const events = h.update(0.05, {});
+    caught = events.some((e) => e.reason === "caught by the sweep");
+  }
+  assert.ok(caught);
+  assert.ok(h.state.sweepAttach > 0, "a caught player gets a fresh attach");
+  assert.equal(Math.round(h.state.sweepAngle), Math.round((h.state.arrow + 180) % 360));
+
+  const run = attachedSweep({ arrowSpeed: 300 });
+  run.state.sweepAngle = run.state.arrow;
+  run.state.gap = (run.state.arrow + 180) % 360;
+  let target = run.state.arrow;
+  for (let i = 0; i < 200; i++) {
+    target += 300 * 0.05;
+    const events = run.update(0.05, { targetAngle: target });
+    assert.ok(!events.some((e) => e.type === "ringFailed"), "at full speed the arrow gets away, and passes through it head on");
+  }
+
+  // Slower laps meet the sweep head on, and it stays on the arrow long enough to catch it.
+  const slow = attachedSweep({ arrowSpeed: 300 });
+  slow.state.sweepAngle = slow.state.arrow;
+  slow.state.gap = (slow.state.arrow + 180) % 360;
+  let slowTarget = slow.state.arrow;
+  let slowCaught = false;
+  for (let i = 0; i < 200 && !slowCaught; i++) {
+    slowTarget += 150 * 0.05;
+    slowCaught = slow.update(0.05, { targetAngle: slowTarget }).some((e) => e.type === "ringFailed");
+  }
+  assert.ok(slowCaught);
+});
+
+test("sweep: with follow off it attaches too, then orbits, and it waits during the red ring", () => {
+  const H = require("./hack-core.js");
+  const orbit = H.createHack({ sweep: true, sweepFirstRing: 1, sweepSpeed: 90, sweepAttachSeconds: 0.5 });
+  assert.equal(orbit.state.sweepAttach, 0.5, "follow is a separate toggle, and the attach isn't part of it");
+  const parked = orbit.state.sweepAngle;
+  orbit.update(0.25, {});
+  assert.equal(orbit.state.sweepAngle, parked);
+  const seenAttach = orbit.update(0.3, {}).map((e) => e.type);
+  assert.ok(seenAttach.includes("sweepAttached"));
+  const before = orbit.state.sweepAngle;
+  orbit.state.arrow = (before + 180) % 360;
+  orbit.update(0.1, {});
+  assert.ok(Math.abs(orbit.state.sweepAngle - ((before + 9) % 360)) < 1e-6);
+
+  const noSweep = H.createHack({ sweepFollow: true });
+  assert.equal(noSweep.state.sweepAttach, 0, "the toggle does nothing without the sweep");
+
+  const red = H.createHack({ sweep: true, sweepFirstRing: 1, sweepFollow: true, lockdown: true, closeSeconds: 0, sweepAttachSeconds: 1 });
+  red.triggerAlarm();
+  const attach = red.state.sweepAttach;
+  red.update(0.5, {});
+  assert.equal(red.state.sweepAttach, attach, "it waits while the red ring is up");
+});
+
+test("sweep: it stays away on the first ring, arrives on the second, and leaves again if the ring is pushed back", () => {
+  const H = require("./hack-core.js");
+  for (const sweepFollow of [false, true]) {
+    const h = H.createHack({ sweep: true, sweepFollow, sweepAttachSeconds: 1, lockdown: true, closeSeconds: 0.5, timerSeconds: 0, arrows: 1 });
+    assert.equal(h.sweepActive(), false);
+    assert.equal(h.state.sweepAttach, 0);
+    const start = h.state.sweepAngle;
+    // Sitting on it for a long time does nothing.
+    h.state.arrow = start;
+    h.state.gap = (start + 180) % 360;
+    for (let i = 0; i < 100; i++) {
+      assert.ok(!h.update(0.05, {}).some((e) => e.type === "ringFailed" || e.type === "sweepAttached"));
+    }
+    assert.equal(h.state.sweepAngle, start);
+
+    // Solve the first ring.
+    h.state.arrow = h.state.gap;
+    h.update(0.01, { fit: true });
+    h.update(0.01, { dir: h.expected() });
+    h.update(0.01, { dir: h.expected() });
+    for (let i = 0; i < 40 && h.state.ring === 0; i++) h.update(0.05, {});
+    assert.equal(h.state.ring, 1);
+    assert.equal(h.sweepActive(), true);
+    assert.ok(h.state.sweepAttach > 0, "either kind attaches when it arrives");
+
+    // The red ring pushes the solved ring back, and the sweep goes with it.
+    h.triggerAlarm();
+    for (let i = 0; i < 20 && h.state.onRed; i++) h.update(0.05, {});
+    assert.equal(h.state.ring, 0);
+    assert.equal(h.sweepActive(), false);
+    assert.equal(h.state.sweepAttach, 0);
+  }
+});
+
+test("sweep: the first ring it appears on can be set, and a one-ring lock has none by default", () => {
+  const H = require("./hack-core.js");
+  assert.equal(H.createHack({ sweep: true, sweepFirstRing: 1 }).sweepActive(), true);
+  const late = H.createHack({ sweep: true, sweepFirstRing: 3 });
+  late.state.ring = 1;
+  assert.equal(late.sweepActive(), false);
+  late.state.ring = 2;
+  assert.equal(late.sweepActive(), true);
+  assert.equal(H.createHack({ rings: 1, sweep: true }).sweepActive(), false);
+});
+
+// Fits the gap and enters the arrows, then waits for the lock to move on.
+function solveRing(h) {
+  const ring = h.state.ring;
+  h.state.arrow = h.state.gap;
+  h.update(0.01, { fit: true });
+  for (let i = 0; i < 20 && h.state.phase === "sequence"; i++) h.update(0.01, { dir: h.expected() });
+  const seen = [];
+  for (let i = 0; i < 40 && h.state.ring === ring && h.state.phase !== "open"; i++) seen.push(...h.update(0.05, {}).map((e) => e.type));
+  return seen;
+}
+function eventsUntil(h, type, seconds) {
+  const seen = [];
+  for (let t = 0; t < seconds; t += 0.05) {
+    for (const e of h.update(0.05, {})) {
+      seen.push(e);
+      if (e.type === type) return seen;
+    }
+  }
+  return seen;
+}
+const breakHack = (o) => require("./hack-core.js").createHack(Object.assign({ rings: 3, ringBreak: true, arrows: 1, timerSeconds: 0, lockdown: true, closeSeconds: 2 }, o));
+
+test("ring break: with no failure, the last ring breaks on its own and the lock opens", () => {
+  const h = breakHack();
+  solveRing(h);
+  assert.equal(h.state.breakUsed, false);
+  solveRing(h);
+  assert.equal(h.state.ring, 2);
+  const shattered = h.update(0.05, {});
+  assert.equal(shattered[0].type, "ringShattered");
+  assert.equal(shattered[0].reason, "last ring");
+  assert.equal(shattered[0].ring, 2);
+  assert.equal(h.state.phase, "shattering");
+  assert.ok(eventsUntil(h, "open", 2).some((e) => e.type === "open"));
+  assert.equal(h.state.failed, 0);
+  assert.equal(h.state.alarms, 0);
+});
+
+test("ring break: the first failed ring shatters instead of failing, and the last ring must then be played", () => {
+  for (const fail of ["wrong arrow", "caught by the sweep", "timed out", "search timed out"]) {
+    const h = breakHack({ sweep: true, sweepFollow: true, sweepFirstRing: 1, sweepAttachSeconds: 0, timerSeconds: 1, searchSeconds: 1 });
+    solveRing(h);
+    let events;
+    if (fail === "wrong arrow") {
+      h.state.arrow = h.state.gap;
+      h.state.sweepAngle = h.state.arrow + 180;
+      h.update(0.01, { fit: true });
+      events = h.update(0.01, { dir: ["up", "down", "left", "right"].find((x) => x !== h.expected()) });
+    } else if (fail === "timed out") {
+      h.state.arrow = h.state.gap;
+      h.state.sweepAngle = h.state.arrow + 180;
+      h.update(0.01, { fit: true });
+      events = eventsUntil(h, "ringShattered", 3);
+    } else if (fail === "caught by the sweep") {
+      h.state.sweepAngle = h.state.arrow;
+      events = eventsUntil(h, "ringShattered", 3);
+    } else {
+      h.state.sweepAngle = h.state.arrow + 180;
+      h.state.gap = (h.state.arrow + 90) % 360;
+      h.state.searchLeft = 0.05;
+      h.state.sweepContact = 0;
+      events = eventsUntil(h, "ringShattered", 3);
+    }
+    const failed = events.find((e) => e.type === "ringFailed");
+    assert.equal(failed.reason, fail);
+    assert.equal(failed.absorbed, true);
+    assert.equal(events.find((e) => e.type === "ringShattered").reason, fail);
+    assert.equal(h.state.onRed, false, "no alarm");
+    assert.equal(h.state.failed, 0, "no strike");
+    assert.equal(h.state.alarms, 0);
+    eventsUntil(h, "nextRing", 2);
+    assert.equal(h.state.ring, 2);
+    assert.equal(h.state.breakUsed, true);
+    h.update(0.05, {});
+    assert.equal(h.state.phase, "search", "the last ring has to be played");
+  }
+});
+
+test("ring break: only one per lock, so a second failure counts as normal", () => {
+  const h = breakHack({ rings: 4, lockdown: false, lockoutAfter: 3 });
+  h.state.arrow = h.state.gap;
+  h.update(0.01, { fit: true });
+  h.update(0.01, { dir: ["up", "down", "left", "right"].find((x) => x !== h.expected()) });
+  eventsUntil(h, "nextRing", 2);
+  assert.equal(h.state.ring, 1);
+  h.state.arrow = h.state.gap;
+  h.update(0.01, { fit: true });
+  const second = h.update(0.01, { dir: ["up", "down", "left", "right"].find((x) => x !== h.expected()) });
+  assert.equal(second[0].type, "ringFailed");
+  assert.equal(second[0].absorbed, undefined);
+  assert.equal(h.state.failed, 1);
+  assert.equal(h.state.ring, 1, "the ring resets rather than shatters");
+});
+
+test("ring break: a story alarm still goes off and the red ring isn't broken, and the last ring breaks after it clears", () => {
+  const h = breakHack({ alarmAtRing: 3, closeSeconds: 0 });
+  solveRing(h);
+  solveRing(h);
+  const events = h.update(0.05, {});
+  assert.equal(events[0].type, "alarm");
+  assert.equal(events[0].source, "story");
+  assert.ok(h.state.onRed);
+  assert.equal(h.state.breakUsed, false);
+  // A slip on the red ring doesn't use it either.
+  h.state.arrow = h.state.gap;
+  h.update(0.01, { fit: true });
+  assert.equal(h.update(0.01, { dir: ["up", "down", "left", "right"].find((x) => x !== h.expected()) })[0].type, "redWrong");
+  assert.equal(h.state.breakUsed, false);
+  h.state.arrow = h.state.gap;
+  h.update(0.01, { fit: true });
+  for (let i = 0; i < 10 && h.state.phase === "sequence"; i++) h.update(0.01, { dir: h.expected() });
+  eventsUntil(h, "alarmCleared", 2);
+  assert.equal(h.update(0.05, {})[0].type, "ringShattered");
+});
+
+test("ring break: a red ring reaching the lock isn't absorbed", () => {
+  const h = breakHack({ closeSeconds: 0.5 });
+  solveRing(h);
+  h.triggerAlarm();
+  const seen = eventsUntil(h, "ringPushedBack", 2);
+  assert.ok(seen.some((e) => e.type === "redHit"));
+  assert.equal(h.state.ring, 0);
+  assert.equal(h.state.breakUsed, false);
+});
+
+test("ring break: with its toggle on, the break stops a story alarm and is used up", () => {
+  const h = breakHack({ alarmAtRing: 2, ringBreakStopsStory: true });
+  solveRing(h);
+  const events = h.update(0.05, {});
+  assert.equal(events[0].type, "storyBlocked");
+  assert.equal(h.state.onRed, false);
+  assert.equal(h.state.breakUsed, true);
+  assert.equal(h.state.alarms, 0);
+  solveRing(h);
+  h.update(0.05, {});
+  assert.equal(h.state.phase, "search", "nothing left for the last ring");
+
+  const used = breakHack({ alarmAtRing: 2, ringBreakStopsStory: true });
+  used.state.breakUsed = true;
+  solveRing(used);
+  assert.equal(used.update(0.05, {})[0].type, "alarm", "once it's used, story alarms go off again");
+
+  const button = breakHack({ ringBreakStopsStory: true });
+  assert.equal(button.triggerAlarm()[0].type, "storyBlocked");
+});
+
+test("ring break: a one-ring lock doesn't open by itself, but a failure still breaks it", () => {
+  const h = breakHack({ rings: 1 });
+  for (let i = 0; i < 40; i++) h.update(0.05, {});
+  assert.equal(h.state.phase, "search");
+  h.state.arrow = h.state.gap;
+  h.update(0.01, { fit: true });
+  assert.equal(h.update(0.01, { dir: ["up", "down", "left", "right"].find((x) => x !== h.expected()) })[1].type, "ringShattered");
+  assert.ok(eventsUntil(h, "open", 2).some((e) => e.type === "open"));
+});
+
+test("ring break: it's off by default", () => {
+  const h = breakHack({ ringBreak: false, lockdown: false, rings: 2 });
+  solveRing(h);
+  for (let i = 0; i < 10; i++) h.update(0.05, {});
+  assert.equal(h.state.phase, "search");
+  h.state.arrow = h.state.gap;
+  h.update(0.01, { fit: true });
+  h.update(0.01, { dir: ["up", "down", "left", "right"].find((x) => x !== h.expected()) });
+  assert.equal(h.state.failed, 1);
+});
+
+test("search timer: none on the first ring, it runs from the second, and running out fails the ring", () => {
+  const H = require("./hack-core.js");
+  const h = H.createHack({ searchSeconds: 2, timerSeconds: 0, arrows: 1, lockdown: false, lockoutAfter: 0 });
+  assert.equal(h.searchTimerOn(), false);
+  for (let i = 0; i < 100; i++) assert.ok(!h.update(0.05, {}).some((e) => e.type === "ringFailed"), "first ring has no limit");
+  solveRing(h);
+  assert.equal(h.state.ring, 1);
+  assert.ok(h.searchTimerOn());
+  assert.equal(h.state.searchLeft, 2);
+  h.state.gap = (h.state.arrow + 180) % 360;
+  const events = eventsUntil(h, "ringFailed", 3);
+  assert.equal(events.at(-1).reason, "search timed out");
+  assert.equal(h.state.searchLeft, 2, "the next search gets a fresh clock");
+  assert.equal(h.state.ring, 1);
+});
+
+test("search timer: finding the gap stops it, it's off at 0 and for the pre-aligned version, and the red ring has its own clock", () => {
+  const H = require("./hack-core.js");
+  const h = H.createHack({ searchSeconds: 1, timerSeconds: 0, arrows: 1 });
+  h.state.ring = 1;
+  h.state.arrow = h.state.gap;
+  h.update(0.01, { fit: true });
+  const left = h.state.searchLeft;
+  for (let i = 0; i < 60; i++) assert.ok(!h.update(0.05, {}).some((e) => e.type === "ringFailed"));
+  assert.equal(h.state.searchLeft, left);
+
+  const off = H.createHack({ searchSeconds: 0 });
+  off.state.ring = 1;
+  assert.equal(off.searchTimerOn(), false);
+  const aligned = H.createHack({ searchSeconds: 1, search: false });
+  aligned.state.ring = 1;
+  assert.equal(aligned.searchTimerOn(), false);
+
+  const red = H.createHack({ searchSeconds: 1, lockdown: true, closeSeconds: 0 });
+  red.state.ring = 1;
+  red.triggerAlarm();
+  assert.equal(red.searchTimerOn(), false);
+  for (let i = 0; i < 60; i++) assert.ok(!red.update(0.05, {}).some((e) => e.type === "ringFailed"));
+});
+
+test("the demos' defaults stay off", () => {
+  const { DEFAULTS } = require("./hack-core.js");
+  assert.equal(DEFAULTS.searchSeconds, 0);
+  assert.equal(DEFAULTS.ringBreak, false);
+  assert.equal(DEFAULTS.sweep, false);
 });

@@ -1,0 +1,498 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ring hack levels</title>
+<style>
+:root {
+  --bg: #07090e; --panel: #11151d; --line: #2a3240; --fg: #e8ecf3; --muted: #93a0b4;
+  --cyan: #16e8ea; --good: #39e27d; --bad: #ff454c; --amber: #ffb020;
+}
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { background: var(--bg); color: var(--fg); font: 15px/1.45 Verdana, Arial, sans-serif; }
+.app { display: grid; grid-template-columns: minmax(0, 1fr) 320px; height: 100%; }
+.stage { position: relative; display: flex; align-items: center; justify-content: center; min-height: 0; overflow: hidden; }
+#lock { width: min(100%, 92vh); height: min(100%, 92vh); overflow: visible; }
+.ring { fill: none; stroke-width: 66; transition: transform .7s cubic-bezier(.2, .8, .2, 1), opacity .7s, stroke .25s; }
+.noise { fill: none; stroke: #fff; stroke-width: 66; stroke-dasharray: 3 37; opacity: .22; pointer-events: none; transition: transform .7s cubic-bezier(.2, .8, .2, 1); }
+.wave { animation: wave 1s ease-out both; }
+@keyframes wave { 0% { opacity: .15; } 40% { opacity: 1; } 100% { opacity: .15; } }
+.stage.alarm { animation: alarm 1s ease-in-out infinite; }
+@keyframes alarm { 0%, 100% { box-shadow: inset 0 0 40px rgba(255, 31, 46, .15); } 50% { box-shadow: inset 0 0 130px rgba(255, 31, 46, .55); } }
+@media (prefers-reduced-motion: reduce) { .stage.alarm { animation: none; box-shadow: inset 0 0 90px rgba(255, 31, 46, .4); } }
+#redRing { fill: none; stroke-width: 66; }
+#shackle { transition: transform .5s; }
+.opened #shackle { transform: translateY(-46px); }
+.hud { position: absolute; left: 20px; top: 16px; right: 20px; display: flex; justify-content: space-between; gap: 16px; pointer-events: none; font-size: clamp(15px, 1.1vw, 22px); }
+.hud b { color: var(--cyan); font-weight: 400; }
+/* A solid label, so it stays readable with the red ring passing behind it. It takes the level title's place. */
+#intruder { position: absolute; left: 50%; top: clamp(40px, 3.2vw, 58px); z-index: 2; transform: translateX(-50%); padding: .1em .7em; white-space: nowrap; pointer-events: none; font: 700 clamp(28px, 3vw, 56px) "Arial Narrow", Arial, sans-serif; letter-spacing: .06em; color: #fff; background: #d3101d; box-shadow: 0 0 22px rgba(255, 31, 46, .9); animation: intruder .7s steps(2) infinite; }
+#intruder[hidden] { display: none; }
+#intruder:not([hidden]) + #levelTitle { visibility: hidden; }
+@keyframes intruder { 50% { background: #7a0a12; } }
+@media (prefers-reduced-motion: reduce) { #intruder { animation: none; } }
+#levelTitle { position: absolute; left: 20px; right: 20px; top: clamp(44px, 3.6vw, 64px); text-align: center; pointer-events: none; font-size: clamp(20px, 1.8vw, 34px); font-weight: 700; color: var(--cyan); }
+.rumble { position: absolute; left: 20px; bottom: 18px; width: 200px; }
+.rumble small { color: var(--muted); display: block; margin-bottom: 6px; }
+#pad { width: 72px; height: 44px; display: block; margin-bottom: 8px; }
+.meter { height: 10px; background: var(--panel); border: 1px solid var(--line); }
+#rumbleFill { height: 100%; width: 0; background: var(--cyan); }
+.prompt { position: absolute; left: 240px; right: 20px; bottom: 22px; text-align: center; color: var(--fg); min-height: 1.4em; font-size: clamp(19px, 1.7vw, 32px); }
+#granted { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; padding-top: 40vh; pointer-events: none; text-shadow: 0 2px 12px #000;
+  font: 700 clamp(40px, 7vw, 92px) "Arial Narrow", Arial, sans-serif; letter-spacing: .04em; color: var(--good); }
+#granted span { opacity: 0; transform: translateY(24px); display: inline-block; }
+#granted.on span { animation: rise .45s forwards; }
+@keyframes rise { to { opacity: 1; transform: none; } }
+#overlay { position: absolute; inset: 0; z-index: 8; background: rgba(7, 9, 14, .92); display: flex; align-items: center; justify-content: center; }
+#overlay[hidden] { display: none; }
+#overlay button { font: 700 clamp(22px, 2vw, 38px) Verdana, Arial, sans-serif; padding: .7em 1.6em; background: var(--cyan); color: #04121a; border: 0; cursor: pointer; }
+.card { max-width: min(900px, 92%); padding: 20px; text-align: center; font-size: clamp(22px, 2vw, 38px); line-height: 1.35; }
+.card p { margin: 0 0 1em; }
+aside { background: var(--panel); border-left: 1px solid var(--line); padding: 16px; overflow-y: auto; }
+aside h1 { font: 700 18px Verdana, Arial, sans-serif; margin: 0 0 4px; }
+aside h2 { font: 700 13px Verdana, Arial, sans-serif; color: var(--muted); margin: 20px 0 8px; }
+.goal { color: var(--muted); font-size: 12.5px; margin: 0 0 8px; }
+#pad-status { color: var(--muted); font-size: 12.5px; overflow-wrap: anywhere; }
+label.check { display: flex; gap: 8px; align-items: center; margin-bottom: 7px; font-size: 13px; }
+label.check input { accent-color: var(--cyan); }
+label.field { display: block; font-size: 13px; margin-bottom: 8px; }
+label.field input { display: block; width: 100%; margin-top: 4px; padding: 6px; background: var(--bg); color: var(--fg); border: 1px solid var(--line); font: 13px Verdana, Arial, sans-serif; }
+.reset { width: 100%; margin-top: 8px; padding: 8px; background: none; border: 1px solid var(--line); color: var(--fg); font: 13px Verdana, Arial, sans-serif; cursor: pointer; }
+.help { color: var(--muted); font-size: 12.5px; margin: 0; }
+a { color: var(--cyan); }
+.level { display: grid; grid-template-columns: 1.9em minmax(0, 1fr) auto; gap: 0 6px; width: 100%; padding: 6px 4px; background: none; border: 0; border-bottom: 1px solid var(--line); color: var(--fg); font: 13px Verdana, Arial, sans-serif; text-align: left; cursor: pointer; }
+.level.on { background: rgba(22, 232, 234, .14); }
+.level .num { color: var(--muted); }
+.level .state { color: var(--good); }
+.level .teach { grid-column: 2 / 4; color: var(--muted); font-size: 11.5px; }
+.ep { color: var(--muted); font-size: 12px; margin: 10px 0 2px; font-weight: 700; }
+.shard { fill: none; stroke-width: 66; transform-box: fill-box; transform-origin: center; animation: shard .9s cubic-bezier(.15, .7, .3, 1) forwards; }
+@keyframes shard { 0% { opacity: 1; stroke: #fff; } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--turn)); } }
+@media (prefers-reduced-motion: reduce) { .shard { animation-name: shardFade; } }
+@keyframes shardFade { to { opacity: 0; } }
+
+/* A how-to card as a mechanic comes into play. The lock waits while it's up. */
+#tip { position: absolute; inset: 0; z-index: 6; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(7, 9, 14, .84); }
+#tip[hidden] { display: none; }
+.tip-card { width: min(980px, 100%); max-height: 100%; overflow-y: auto; background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--amber); padding: clamp(18px, 2vw, 36px); font-size: clamp(20px, 1.8vw, 34px); line-height: 1.35; }
+.tip-new { color: var(--amber); font-size: .7em; font-weight: 700; }
+#tipTitle { margin: .1em 0 .5em; font-size: 1.4em; color: var(--fg); }
+#tipBody p { margin: 0 0 .6em; }
+#tipGo { display: flex; align-items: center; gap: .5em; margin-top: 1em; color: var(--cyan); font-weight: 700; }
+
+/* End of a level */
+#endModal { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(7, 9, 14, .86); overflow-y: auto; }
+#endModal[hidden] { display: none; }
+.end-card { width: min(620px, 100%); max-height: 100%; overflow-y: auto; background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--cyan); padding: 20px 24px; }
+.end-card.failed { border-top-color: var(--bad); }
+#endTitle { font: 700 clamp(24px, 2.6vw, 38px) Verdana, Arial, sans-serif; margin: 0 0 10px; }
+table { width: 100%; border-collapse: collapse; font-size: 14px; }
+td { text-align: left; padding: 5px 0; border-bottom: 1px solid var(--line); }
+td:last-child { text-align: right; color: var(--cyan); }
+.end-card h3 { font: 700 14px Verdana, Arial, sans-serif; color: var(--muted); margin: 16px 0 8px; }
+.rate-row { display: flex; gap: 8px; }
+.rate-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 6px; background: none; border: 1px solid var(--line); color: var(--fg); font: 13px Verdana, Arial, sans-serif; cursor: pointer; }
+.rate-btn.on { background: var(--cyan); border-color: var(--cyan); color: #04121a; }
+.key { flex: none; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: 1.5px solid currentColor; border-radius: 50%; font-size: 12px; font-weight: 700; }
+#tipGo .key { width: 1.6em; height: 1.6em; font-size: .8em; }
+.end-actions { display: flex; gap: 8px; margin-top: 16px; }
+.end-actions button { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 8px; font: 700 14px Verdana, Arial, sans-serif; cursor: pointer; border: 1px solid var(--cyan); }
+#endRetry { background: none; color: var(--cyan); }
+#endNext { background: var(--cyan); color: #04121a; }
+@media (max-width: 860px) {
+  .app { grid-template-columns: 1fr; height: auto; }
+  .stage { height: 100vw; }
+  aside { border-left: 0; border-top: 1px solid var(--line); }
+}
+</style>
+</head>
+<body>
+<div class="app">
+  <main class="stage" id="stage">
+    <svg id="lock" viewBox="-700 -700 1400 1400" role="img" aria-label="Ring lock">
+      <g id="solved"></g>
+      <g id="live">
+        <circle id="ringBody" class="ring" r="390"></circle>
+        <circle id="noise" class="noise" r="390"></circle>
+      </g>
+      <circle id="redRing" r="680"></circle>
+      <path id="gapMask" fill="none" stroke-width="72"></path>
+      <path id="decoyMask" fill="none" stroke-width="72"></path>
+      <path id="piece" fill="none" stroke-width="66"></path>
+      <path id="sweepArc" fill="none" stroke-width="20"></path>
+      <g id="shards"></g>
+      <circle id="timerBack" r="342" fill="none" stroke="#1b212c" stroke-width="10"></circle>
+      <circle id="timerArc" r="342" fill="none" stroke="#16e8ea" stroke-width="10" transform="rotate(-90)"></circle>
+      <g id="lockIcon" transform="translate(-600 -600) translate(0 -20)">
+        <path id="shackle" d="M 537 574 V 542 A 63 63 0 0 1 663 542 V 574" fill="none" stroke="#16e8ea" stroke-width="28" stroke-linecap="round"></path>
+        <rect x="514" y="567" width="172" height="140" rx="18" fill="#16e8ea"></rect>
+        <circle cx="600" cy="623" r="17" fill="#000"></circle>
+        <path d="M 593 631 H 607 L 607 660 H 593 Z" fill="#000"></path>
+      </g>
+      <g id="seq"></g>
+      <polyline id="arrow" points="-30,-30 0,0 30,-30" fill="none" stroke="#16e8ea" stroke-width="13" stroke-miterlimit="4"></polyline>
+    </svg>
+    <div class="hud">
+      <span>Ring <b id="hudRing">1 / 1</b></span>
+      <span>Failed rings <b id="hudFailed">0</b></span>
+      <span>Search <b id="hudSearch">0.0 s</b></span>
+      <span>Alarm <b id="hudAlarm">-</b></span>
+      <span id="hudBreakBox">Ring break <b id="hudBreak">ready</b></span>
+    </div>
+    <div id="intruder" hidden>Intruder Alert</div>
+    <div id="levelTitle"></div>
+    <div class="rumble" id="rumbleBox">
+      <small>Rumble stand-in</small>
+      <svg id="pad" viewBox="0 0 72 44" aria-hidden="true"><path d="M16 4 H56 C66 4 71 24 70 34 C69 42 60 42 54 32 H18 C12 42 3 42 2 34 C1 24 6 4 16 4 Z" fill="none" stroke="#16e8ea" stroke-width="2.5"/></svg>
+      <div class="meter"><div id="rumbleFill"></div></div>
+    </div>
+    <div class="prompt" id="prompt" aria-live="polite"></div>
+    <div id="granted" aria-live="polite"></div>
+    <div id="tip" hidden>
+      <div class="tip-card" role="dialog" aria-modal="true" aria-labelledby="tipTitle">
+        <div class="tip-new" id="tipNew">NEW</div>
+        <h2 id="tipTitle"></h2>
+        <div id="tipBody"></div>
+        <div id="tipGo"><span class="key" data-key="a"></span>Continue</div>
+      </div>
+    </div>
+    <div id="endModal" hidden>
+      <div class="end-card" id="endCard" role="dialog" aria-modal="true" aria-labelledby="endTitle">
+        <h2 id="endTitle"></h2>
+        <table><tbody id="endStats"></tbody></table>
+        <h3>How hard was that level?</h3>
+        <div class="rate-row">
+          <button class="rate-btn" data-rate="x"><span class="key" data-key="x"></span>Too easy</button>
+          <button class="rate-btn" data-rate="y"><span class="key" data-key="y"></span>About right</button>
+          <button class="rate-btn" data-rate="b"><span class="key" data-key="b"></span>Too hard</button>
+        </div>
+        <div class="end-actions">
+          <button id="endRetry">Replay level</button>
+          <button id="endNext"><span class="key" data-key="a"></span><span id="endNextText">Next level</span></button>
+        </div>
+      </div>
+    </div>
+    <div id="overlay">
+      <div class="card">
+        <p>Connect your controller and press a button on it, then start. Each level teaches one new thing as it comes up.</p>
+        <button id="start">Start</button>
+      </div>
+    </div>
+  </main>
+  <aside>
+    <h1>Ring hack levels</h1>
+    <p class="goal">Goal: approve each level, its new mechanic and its difficulty. The hack gets harder across the game this way. The episode for each level and all the numbers are proposals. Pick any level below to jump to it.</p>
+    <div id="pad-status">No controller found yet. Press a button on it.</div>
+    <h2>Levels</h2>
+    <div id="levels"></div>
+    <h2>Options</h2>
+    <label class="check"><input type="checkbox" id="netrunner"> Play as a Netrunner (ring break)</label>
+    <label class="check"><input type="checkbox" id="showAgain"> Show every how-to card again</label>
+    <button class="reset" id="restart">Restart this level</button>
+    <h2>Controls</h2>
+    <p class="help">Controller: spin the right stick to search, R1 to fit, d-pad or left stick for arrows, A to continue. On the end screen, X, Y and B rate the level.<br>Keyboard and mouse: mouse or left and right arrows to search, E to fit and to continue, WASD or arrow keys for arrows. On the end screen, 1, 2 and 3 rate the level, and E or Enter moves on.</p>
+    <h2>Test results</h2>
+    <label class="field">Your name (optional)<input type="text" id="tester" maxlength="40" autocomplete="off"></label>
+    <button class="reset" id="download">Download results</button>
+    <button class="reset" id="clearResults">Clear results and progress</button>
+    <p class="help" style="margin-top:8px">Results stay in this browser until you download them. Nothing is sent anywhere.</p>
+    <p class="help" style="margin-top:10px"><a href="index.html">Custom version with every setting</a><br><a href="../gameplay-demos/index.html">All demos</a></p>
+  </aside>
+</div>
+<script src="hack-core.js"></script>
+<script src="hack-analytics.js"></script>
+<script src="hack-view.js"></script>
+<script src="hack-levels.js"></script>
+<script>
+"use strict";
+const $ = (id) => document.getElementById(id);
+const { LEVELS } = HackLevels;
+const PROGRESS = "ringHackLevelsProgress";
+const END_DELAY = { open: 1.5, lockout: 0.7 };
+const RATINGS = { x: "too easy", y: "about right", b: "too hard" };
+const keys = HackView.keys;
+
+let results = null;
+try { results = HackAnalytics.createLog(window.localStorage, "ringHackLevelResults"); } catch (e) { results = HackAnalytics.createLog(null, "ringHackLevelResults"); }
+
+let progress = { level: 1, opened: {}, ratings: {}, netrunner: false };
+try { Object.assign(progress, JSON.parse(localStorage.getItem(PROGRESS) || "{}")); } catch (e) {}
+function saveProgress() {
+  try { localStorage.setItem(PROGRESS, JSON.stringify(progress)); } catch (e) {}
+}
+
+const seenTips = new Set();
+let level = LEVELS[Math.max(0, Math.min(LEVELS.length - 1, progress.level - 1))];
+let hack = null;
+let settings = null;
+let tutor = null;
+let coach = null;
+let spin = null; // the spin practice, while it's running
+let tipQueue = [];
+let tipOpen = false;
+let endOpen = false;
+let endWait = 0;
+let running = false;
+let lastTime = 0;
+
+function deviceInfo() {
+  const pad = HackView.firstPad();
+  const device = HackView.device();
+  return { device: { pad: "controller", keys: "keyboard", mouse: "mouse" }[device] || device, controller: pad ? pad.id : "" };
+}
+
+function startLevel(next) {
+  if (results.current()) results.finish("abandoned");
+  level = next;
+  progress.level = level.number;
+  saveProgress();
+  settings = HackLevels.settingsFor(level, { netrunner: progress.netrunner });
+  hack = HackCore.createHack(settings);
+  tutor = HackLevels.createTutor(level, { netrunner: progress.netrunner, seen: seenTips });
+  coach = HackLevels.createCoach();
+  spin = null;
+  results.start(settings, Object.assign({ tester: $("tester").value.trim(), level: level.number }, deviceInfo()));
+  endOpen = false;
+  endWait = 0;
+  $("endModal").hidden = true;
+  closeTip();
+  tipQueue = [];
+  HackView.begin(hack, settings);
+  $("levelTitle").textContent = `Level ${level.number}: ${level.name}`;
+  drawLevels();
+  queueTip("start");
+  showNextTip();
+}
+
+// ---------- How-to cards
+function queueTip(moment) {
+  for (let tip = tutor.next(moment); tip; tip = tutor.next(moment)) tipQueue.push(tip);
+}
+
+function showNextTip() {
+  const tip = tipQueue.shift();
+  if (!tip) return;
+  tipOpen = true;
+  if (tip.practice === "spin") spin = HackLevels.createSpinPractice(360);
+  $("tipTitle").textContent = tip.title;
+  $("tipBody").innerHTML = tutor.linesFor(tip, HackView.device() === "pad").map((l) => `<p>${l}</p>`).join("");
+  drawKeys();
+  $("tip").hidden = false;
+}
+
+function closeTip() {
+  tipOpen = false;
+  $("tip").hidden = true;
+}
+
+function drawKeys() {
+  const pad = HackView.device() === "pad";
+  const labels = pad ? { x: "X", y: "Y", b: "B", a: "A" } : { x: "1", y: "2", b: "3", a: "E" };
+  document.querySelectorAll(".key").forEach((k) => { k.textContent = labels[k.dataset.key]; });
+}
+
+// ---------- Level list
+function drawLevels() {
+  const out = [];
+  let episode = 0;
+  for (const l of LEVELS) {
+    if (l.episode !== episode) {
+      episode = l.episode;
+      out.push(`<div class="ep">Episode ${episode} (proposed)</div>`);
+    }
+    const opened = progress.opened[l.number];
+    const rating = progress.ratings[l.number];
+    out.push(`<button class="level${l === level ? " on" : ""}" data-level="${l.number}"><span class="num">${l.number}</span><span>${l.name}</span><span class="state">${opened ? "opened" : ""}</span><span class="teach">${l.teaches}${rating ? `. You said: ${rating}` : ""}</span></button>`);
+  }
+  $("levels").innerHTML = out.join("");
+}
+
+$("levels").addEventListener("click", (e) => {
+  const b = e.target.closest("[data-level]");
+  if (b && running) startLevel(LEVELS[Number(b.dataset.level) - 1]);
+  if (b) b.blur();
+});
+
+// ---------- End of a level
+function nextLevel() {
+  return LEVELS[level.number] || null;
+}
+
+function drawEndRating() {
+  const a = results.last();
+  document.querySelectorAll(".rate-btn").forEach((b) => b.classList.toggle("on", !!a && a.rating === RATINGS[b.dataset.rate]));
+}
+
+function showEnd() {
+  const a = results.last();
+  const opened = hack.state.phase === "open";
+  $("endTitle").textContent = opened ? "Access granted" : "Locked out";
+  $("endTitle").style.color = opened ? "var(--good)" : "var(--bad)";
+  $("endCard").classList.toggle("failed", !opened);
+  const row = (name, value) => `<tr><td>${name}</td><td>${value}</td></tr>`;
+  const avgSearch = a.searchTimes.length ? `${(a.searchTimes.reduce((x, y) => x + y, 0) / a.searchTimes.length).toFixed(1)} s` : "-";
+  const rows = [
+    row("Level", `${level.number}: ${level.name}`),
+    row("New in this level", level.teaches),
+    row("Time", `${a.totalSeconds.toFixed(1)} s`),
+    row("Failed rings", a.ringFailures),
+    row("Average time to find the gap", avgSearch),
+    row("Wrong arrows", a.wrongArrows),
+    row("Fits missed", a.missedFits),
+  ];
+  if (a.settings.sweep) rows.push(row("Sweep catches", a.sweepCatches));
+  if (a.settings.lockdown || a.alarms) rows.push(row("Alarms", a.alarms));
+  $("endStats").innerHTML = rows.join("");
+  const next = nextLevel();
+  $("endNextText").textContent = opened ? (next ? `Next: level ${next.number}` : "Back to level 1") : "Try again";
+  drawKeys();
+  drawEndRating();
+  endOpen = true;
+  $("endModal").hidden = false;
+}
+
+function moveOn() {
+  if (hack.state.phase === "open") startLevel(nextLevel() || LEVELS[0]);
+  else startLevel(level);
+}
+
+function handle(events) {
+  for (const e of events) {
+    results.record(e, hack.state);
+    HackView.handle(e);
+    queueTip(e.type);
+    if (e.type === "fit") spin = null;
+    if (e.type === "lockout" || e.type === "open") {
+      results.finish(e.type === "open" ? "opened" : "locked out");
+      endWait = e.type === "open" ? END_DELAY.open : END_DELAY.lockout;
+      if (e.type === "open") {
+        progress.opened[level.number] = true;
+        saveProgress();
+        drawLevels();
+      }
+    }
+  }
+}
+
+function coachText(dt, input) {
+  const s = hack.state;
+  const pad = HackView.device() === "pad";
+  if (spin && s.phase === "search") {
+    spin.add(s.arrow);
+    if (!spin.done()) return `${pad ? "Spin the right stick in a full circle" : "Take the arrow all the way round"}: ${Math.round(spin.progress() * 100)}%`;
+    return `Now point the arrow at the gap in the ring and press ${pad ? "R1" : "E"}.`;
+  }
+  return coach.update(dt, { phase: s.phase, inGap: hack.inGap(), dirPressed: !!input.dir, usingPad: pad, onRed: s.onRed });
+}
+
+// ---------- Loop
+function step(now) {
+  const dt = Math.min(0.05, (now - lastTime) / 1000 || 0);
+  lastTime = now;
+  const input = HackView.readInput();
+  if (running) {
+    const confirm = keys.restart || input.fit;
+    keys.restart = false;
+    if (tipOpen) {
+      drawKeys();
+      if (confirm) {
+        closeTip();
+        HackView.beep(740, 0.06);
+        showNextTip();
+      }
+      HackView.draw(0);
+      HackView.silence();
+    } else if (endOpen) {
+      drawKeys();
+      if (keys.rate && results.rate(RATINGS[keys.rate])) {
+        HackView.beep(740, 0.06);
+        progress.ratings[level.number] = RATINGS[keys.rate];
+        saveProgress();
+        drawLevels();
+        drawEndRating();
+      }
+      if (confirm) moveOn();
+      HackView.draw(0);
+    } else {
+      const ended = hack.state.phase === "open" || hack.state.phase === "lockout";
+      if (ended) {
+        endWait -= dt;
+        if (endWait <= 0) showEnd();
+      }
+      if (results.current()) results.setDevice(deviceInfo().device, deviceInfo().controller);
+      HackView.setCoach(coachText(dt, input));
+      // The fit waits until the practice is done, so the first lesson can't be skipped by accident.
+      if (spin && !spin.done()) input.fit = false;
+      handle(hack.update(dt, input));
+      results.tick(dt, hack.state);
+      HackView.draw(dt);
+      if (!ended && tipQueue.length) showNextTip();
+    }
+    keys.rate = null;
+  } else {
+    keys.restart = false;
+  }
+  requestAnimationFrame(step);
+}
+
+$("start").addEventListener("click", () => {
+  HackView.startAudio();
+  $("overlay").hidden = true;
+  running = true;
+  startLevel(level);
+  $("start").blur();
+});
+$("restart").addEventListener("click", () => { if (running) startLevel(level); $("restart").blur(); });
+$("endRetry").addEventListener("click", () => { startLevel(level); $("endRetry").blur(); });
+$("endNext").addEventListener("click", () => { moveOn(); $("endNext").blur(); });
+document.querySelectorAll(".rate-btn").forEach((b) => b.addEventListener("click", () => { keys.rate = b.dataset.rate; b.blur(); }));
+$("netrunner").checked = !!progress.netrunner;
+$("netrunner").addEventListener("change", () => {
+  progress.netrunner = $("netrunner").checked;
+  saveProgress();
+  if (running) startLevel(level);
+  $("netrunner").blur();
+});
+$("showAgain").addEventListener("change", () => {
+  if ($("showAgain").checked) seenTips.clear();
+  if (running) startLevel(level);
+  $("showAgain").checked = false;
+  $("showAgain").blur();
+});
+$("download").addEventListener("click", () => {
+  const name = ($("tester").value.trim().replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "") || "tester").toLowerCase();
+  const date = new Date().toISOString().slice(0, 10);
+  const url = URL.createObjectURL(new Blob([results.toCsv()], { type: "text/csv" }));
+  const link = document.createElement("a");
+  link.href = url;
+  link.download = `ring-hack-levels-${name}-${date}.csv`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  setTimeout(() => URL.revokeObjectURL(url), 1000);
+  $("download").blur();
+});
+$("clearResults").addEventListener("click", () => {
+  if (window.confirm("Clear all saved results and progress from this browser? Download them first if you need them.")) {
+    results.clear();
+    progress.opened = {};
+    progress.ratings = {};
+    saveProgress();
+    drawLevels();
+  }
+  $("clearResults").blur();
+});
+try { $("tester").value = localStorage.getItem("ringHackTester") || ""; } catch (e) {}
+$("tester").addEventListener("input", () => {
+  try { localStorage.setItem("ringHackTester", $("tester").value); } catch (e) {}
+  const c = results.current();
+  if (c) c.tester = $("tester").value.trim();
+});
+window.addEventListener("pagehide", () => { if (results.current()) results.finish("abandoned"); });
+drawLevels();
+requestAnimationFrame(step);
+</script>
+</body>
+</html>

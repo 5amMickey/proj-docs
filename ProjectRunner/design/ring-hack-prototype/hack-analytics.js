@@ -2,12 +2,12 @@
 // Results stay in this browser until the tester downloads them. Nothing is sent anywhere.
 (function (root) {
   const COUNTERS = {
-    fits: 0, missedFits: 0, ringsSolved: 0, ringFailures: 0, wrongArrows: 0, timeouts: 0, corruptedWrong: 0,
+    fits: 0, missedFits: 0, ringsSolved: 0, ringFailures: 0, wrongArrows: 0, timeouts: 0, searchTimeouts: 0, ringsShattered: 0, storyAlarmsStopped: 0, corruptedWrong: 0,
     sweepCatches: 0, decoyFits: 0, gapMoves: 0, alarms: 0, storyAlarms: 0, redSolved: 0, redWrong: 0, redHits: 0, pushBacks: 0,
     totalSeconds: 0, searchSeconds: 0, arrowSeconds: 0, redSeconds: 0,
   };
-  const SETTING_KEYS = ["rings", "timerSeconds", "arrows", "gapDegrees", "lockoutAfter", "search", "hideGap", "netrun", "arrowSpeed", "cueRangeDegrees", "cueStrength", "cueGlow", "cueTone", "cueRumble", "lockdown", "closeSeconds", "redArrows", "alarmAtRing", "sweep", "sweepSpeed", "decoy", "moveGap", "moveGapSeconds", "corrupted"];
-  const COLUMNS = ["attempt", "tester", "startedAt", "device", "controller", "result", "rating", "furthestRing", ...Object.keys(COUNTERS), "ringFailureRate", "searchTimes", ...SETTING_KEYS];
+  const SETTING_KEYS = ["rings", "timerSeconds", "arrows", "gapDegrees", "lockoutAfter", "search", "searchSeconds", "ringBreak", "ringBreakStopsStory", "hideGap", "netrun", "arrowSpeed", "cueRangeDegrees", "cueStrength", "cueGlow", "cueTone", "cueRumble", "lockdown", "closeSeconds", "redArrows", "alarmAtRing", "sweep", "sweepSpeed", "sweepFirstRing", "sweepFollow", "sweepAttachSeconds", "decoy", "moveGap", "moveGapSeconds", "corrupted"];
+  const COLUMNS = ["attempt", "tester", "startedAt", "device", "controller", "result", "rating", "furthestRing", ...Object.keys(COUNTERS), "ringFailureRate", "searchTimes", ...SETTING_KEYS, "level"];
   const SECONDS = ["totalSeconds", "searchSeconds", "arrowSeconds", "redSeconds"];
 
   const round = (x, places) => {
@@ -47,7 +47,7 @@
         const nextId = attempts.reduce((m, a) => Math.max(m, a.attempt), 0) + 1;
         current = Object.assign({
           attempt: nextId, tester: i.tester || "", startedAt: i.now || new Date().toISOString(),
-          device: i.device || "", controller: i.controller || "", result: null, rating: "", furthestRing: 1, searchTimes: [],
+          device: i.device || "", controller: i.controller || "", level: i.level || "", result: null, rating: "", furthestRing: 1, searchTimes: [],
           settings: {},
         }, COUNTERS);
         SETTING_KEYS.forEach((k) => { current.settings[k] = settings[k]; });
@@ -86,10 +86,13 @@
             c.ringFailures += 1;
             if (e.reason === "wrong arrow") c.wrongArrows += 1;
             if (e.reason === "timed out") c.timeouts += 1;
+            if (e.reason === "search timed out") c.searchTimeouts += 1;
             if (e.reason === "caught by the sweep") c.sweepCatches += 1;
             if (e.reason === "fitted the decoy") c.decoyFits += 1;
             if (e.corrupted) c.corruptedWrong += 1;
             break;
+          case "ringShattered": c.ringsShattered += 1; break;
+          case "storyBlocked": c.storyAlarmsStopped += 1; break;
           case "gapMoved": c.gapMoves += 1; break;
           case "alarm":
             c.alarms += 1;

@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Week demo</title>
+<link rel="stylesheet" href="shared.css">
+<style>
+.hud { display: flex; flex-wrap: wrap; gap: 10px clamp(18px, 2vw, 40px); align-items: center; padding: 14px 20px; font-size: clamp(16px, 1.25vw, 24px); }
+.xpbox { flex: 1 1 240px; min-width: 200px; }
+.xp-track { height: 14px; margin-top: 4px; background: #1b212c; }
+.xp-fill { height: 100%; width: 0; background: var(--good); transition: width .3s; }
+/* The planner: every patient against the days of the episode, so the time can be read at a glance. */
+.plan { display: grid; gap: 4px 6px; padding: 0 20px; font-size: clamp(13px, 1.05vw, 20px); line-height: 1.25; align-items: stretch; }
+.day { padding: 6px 8px; border: 1px solid var(--line); background: var(--panel); text-align: center; }
+.day.today { border-color: var(--cyan); border-width: 2px; }
+.day.past { opacity: .4; }
+.day .dots { display: flex; justify-content: center; flex-wrap: wrap; gap: .3em; margin-top: .25em; }
+.dot { width: .95em; height: .95em; border-radius: 50%; border: 2px solid var(--cyan); }
+.dot.free { background: var(--cyan); }
+.dot.held { background: var(--amber); border-color: var(--amber); }
+.dot.used { border-color: #3a4557; }
+.day .forwho { color: var(--amber); font-size: .85em; min-height: 1.2em; }
+.who { padding: 5px 8px; border: 2px solid transparent; min-width: 0; }
+.who .name { font-weight: 700; }
+.who .cost { color: var(--muted); font-size: .88em; }
+.who.crit .name { color: var(--amber); }
+.who.sel { border-color: var(--cyan); background: rgba(22, 232, 234, .1); }
+.who.later, .span.later { opacity: .45; }
+.who.gone, .span.gone { opacity: .35; }
+.span { display: flex; align-items: center; justify-content: center; text-align: center; padding: 3px 8px; background: #1b2a3a; font-size: .9em; }
+.span.story { background: #4a3710; color: var(--amber); }
+.span.soon { background: #4a1a1e; color: #ffb4b7; }
+.span.done { background: #123524; color: var(--good); }
+.spacer { min-height: 0; }
+#why { color: var(--amber); }
+#notices { top: auto; bottom: 16px; right: auto; left: 16px; justify-items: start; }
+/* Four choices and the planner have to share the stage, so the choices are smaller here. */
+#menu .choices { --btn: clamp(26px, 2vw, 40px); }
+#menu .choice { font-size: clamp(14px, 1.15vw, 22px); }
+#menu .pill { padding: .35em 1em; }
+#menu.dialog { gap: 4px; padding: 2px 20px 8px; }
+.stage > .line { min-height: 1.6em; padding: 4px 20px; font-size: clamp(16px, 1.25vw, 24px); }
+.hud { padding: 8px 20px; }
+.who { padding: 3px 8px; }
+#scene { flex: 1 1 0; min-height: 0; width: 100%; }
+#menu.dialog { position: relative; inset: auto; flex: none; background: none; padding-top: 6px; }
+#menu.dialog .text { font-size: clamp(20px, 1.7vw, 34px); }
+#tally { position: absolute; inset: 0; z-index: 12; display: flex; flex-direction: column; align-items: center; gap: 12px; padding: 24px 20px; overflow-y: auto; background: #04080d; }
+#tally[hidden] { display: none; }
+#tally h2 { margin: 0; font-size: clamp(24px, 2.2vw, 42px); }
+#tally table { max-width: 620px; font-size: clamp(15px, 1.2vw, 22px); }
+#tally .again { color: var(--muted); font-size: clamp(16px, 1.25vw, 24px); }
+</style>
+</head>
+<body>
+<div class="app">
+  <main class="stage">
+    <div class="hud">
+      <div id="dayBox"></div>
+      <div id="freeBox"></div>
+      <div id="materials"></div>
+      <div class="xpbox"><div id="level"></div><div class="xp-track"><div class="xp-fill" id="xpFill"></div></div></div>
+    </div>
+    <div class="plan" id="board"></div>
+    <svg id="scene" viewBox="-300 -100 600 200" preserveAspectRatio="xMidYMid meet" aria-label="Treatment keys"><g id="promptLayer"></g></svg>
+    <div class="line" id="line"></div>
+    <div id="menu"></div>
+    <div id="card"></div>
+    <div id="notices"></div>
+    <div id="tally" hidden>
+      <h2>End of episode</h2>
+      <table><tbody id="tallyRows"></tbody></table>
+      <div class="again" id="again"></div>
+    </div>
+    <div id="overlay"><div class="card"><p>Connect your controller and press a button on it, then start.</p><button id="start">Start</button></div></div>
+  </main>
+  <aside>
+    <h1>Week demo</h1>
+    <p class="goal">Goal: can you see where your time goes, and is it fun to choose who gets it when you can't do everything? This is one episode with placeholder patients. Three quick keys stand in for each surgery.</p>
+    <div class="status" id="padStatus"></div>
+    <h2>Specialty</h2>
+    <label class="field">Marcus is a
+      <select id="spec" data-setting="spec">
+        <option>Netrunning</option>
+        <option>Tech</option>
+        <option>Enforcer</option>
+      </select>
+    </label>
+    <label class="field">Story patients
+      <select id="storyMode" data-setting="storyMode">
+        <option value="booked">Booked on a set day</option>
+        <option value="flexible">Any day, with time held back</option>
+      </select>
+    </label>
+    <h2>Numbers</h2>
+    <div id="sliders"></div>
+    <label class="field">When a key shows
+      <select id="assist" data-setting="assist">
+        <option value="none">Normal window</option>
+        <option value="wait">Wait for the press, with no window</option>
+        <option value="auto">Auto-complete</option>
+      </select>
+    </label>
+    <button class="reset" id="howTo">How the week works</button>
+    <button class="reset" id="restart">New episode</button>
+    <button class="reset" id="defaults">Reset settings</button>
+    <h2>The rules</h2>
+    <p class="help">Each dot is an action. Cyan dots are yours to spend, and amber dots are already set aside for a story patient. Treating a patient, breaking down gear, asking around and sending a contact each use a dot, and a story patient takes 2. Paying the Hacker Contact uses materials and no dot. A bar shows the days a patient will wait. If it ends with them untreated, they leave and you lose XP. A level never drops, and each one gives one upgrade.</p>
+    <h2>This episode</h2>
+    <table><tbody id="log"></tbody></table>
+    <h2>Controls</h2>
+    <p class="help">The d-pad or left stick picks a patient, in any direction. Choices use the buttons shown. Controller: A, B, X, Y. Keyboard: WASD or the arrow keys to pick, E for A, 1 for X, 2 for Y, 3 for B.</p>
+    <p class="help" style="margin-top:10px"><a href="index.html">All demos</a></p>
+  </aside>
+</div>
+<script src="demo-core.js"></script>
+<script src="shared.js"></script>
+<script src="week-core.js"></script>
+<script>
+"use strict";
+const { $ } = Demo;
+const settings = { days: 3, actionsPerDay: 3, xpPerLevel: 10, deliveryPerLevel: 1, startMaterials: 2, windowSeconds: 3, spec: "Netrunning", assist: "none", storyMode: "booked" };
+const SLIDERS = [
+  ["days", "Days per episode", 2, 5, 1],
+  ["actionsPerDay", "Actions per day", 2, 5, 1],
+  ["xpPerLevel", "XP per level", 5, 20, 1],
+  ["deliveryPerLevel", "Morning materials per level", 0, 3, 1],
+  ["startMaterials", "Starting materials", 0, 6, 1],
+  ["windowSeconds", "Seconds per key", 1, 5, 0.5, " s"],
+];
+const KEYS = ["x", "y", "b", "a"];
+const menu = Demo.createMenu($("menu"));
+const card = Demo.createCard($("card"));
+const keyPrompt = Demo.createKeyPrompt($("promptLayer"));
+let week = null;
+let cursor = 0;
+let mode = "menu"; // main, sub, treat, tally
+let qte = null;
+let started = false;
+let introShown = false;
+
+const plural = (n, word) => `${n} ${word}${n === 1 ? "" : "s"}`;
+const signed = (n) => (n > 0 ? `+${n}` : String(n));
+
+function newEpisode() {
+  week = WeekCore.createWeek({ days: settings.days, actionsPerDay: settings.actionsPerDay, xpPerLevel: settings.xpPerLevel, deliveryPerLevel: settings.deliveryPerLevel, startMaterials: settings.startMaterials, spec: settings.spec, storyMode: settings.storyMode });
+  cursor = 0;
+  qte = null;
+  keyPrompt.hide();
+  $("tally").hidden = true;
+  showMain();
+  if (started && !introShown) showHowTo();
+}
+
+function showHowTo() {
+  introShown = true;
+  const c = week.cfg;
+  card.show({
+    title: "How the week works",
+    lines: [
+      `You have ${c.days} days and ${c.actionsPerDay} actions a day, shown as dots. You can't help everyone, so you choose who gets your time.`,
+      "Treating someone uses one dot. So does breaking down gear for materials, or getting a fact on a story patient.",
+      "The planner shows each patient's bar across the days. If the bar ends and they're still untreated, they leave and you lose XP. So look at who runs out first.",
+      settings.storyMode === "booked"
+        ? "Story patients are in amber. Each is booked on a set day and takes 2 dots. Those dots are set aside for you in amber, so you only plan with the cyan ones. They never leave. A fact gathered before their day earns more XP."
+        : "Story patients are in amber. They take 2 dots in one day and never leave, but they have to fit in by the last day. The dots they'll need turn amber, so you only plan with the cyan ones. A fact gathered first earns more XP.",
+      "Treatments use materials. With too few you can still treat someone, but the result is rough and earns less XP. Materials also arrive each morning.",
+    ],
+    go: "Start day 1",
+  });
+}
+
+function selected() {
+  const list = week.waiting();
+  if (cursor >= list.length) cursor = Math.max(0, list.length - 1);
+  return list[cursor] || null;
+}
+
+function barFor(p, today) {
+  const days = week.cfg.days;
+  if (p.status === "treated") return { from: p.doneDay, to: p.doneDay, text: `Treated: ${p.result}`, kind: "done" };
+  if (p.status === "abandoned") return { from: week.leavesOn(p), to: week.leavesOn(p), text: "Left untreated", kind: "gone" };
+  if (p.bookedDay) return { from: p.bookedDay, to: p.bookedDay, text: `Booked: ${plural(week.actionsFor(p), "dot")}`, kind: "story" };
+  if (p.critical) return { from: p.arrives, to: days, text: `Story: never leaves, ${plural(week.actionsFor(p), "dot")}`, kind: "story" };
+  const last = week.leavesOn(p);
+  const lastChance = last === today;
+  return { from: p.arrives, to: last, text: lastChance ? "Leaves tonight" : `Leaves after day ${last}`, kind: lastChance ? "soon" : "" };
+}
+
+function dotsFor(day, plan) {
+  const s = week.state;
+  const heldFor = (plan[day] || []);
+  const held = heldFor.reduce((t, p) => t + week.actionsFor(p), 0);
+  const out = [];
+  if (day < s.day) return { dots: "", who: "" };
+  if (day === s.day) {
+    const reserved = week.heldToday();
+    for (let i = 0; i < s.actionsLeft - reserved; i++) out.push("free");
+    for (let i = 0; i < reserved; i++) out.push("held");
+    for (let i = 0; i < week.perDay() - s.actionsLeft; i++) out.push("used");
+  } else {
+    for (let i = 0; i < week.perDay() - held; i++) out.push("free");
+    for (let i = 0; i < held; i++) out.push("held");
+  }
+  return { dots: out.map((c) => `<span class="dot ${c}"></span>`).join(""), who: heldFor.map((p) => p.name).join(", ") };
+}
+
+function factText(p) {
+  if (!p.critical) return "";
+  const fact = week.state.facts[p.id];
+  if (fact === "full") return ", fact: full detail";
+  if (fact === "less") return ", fact: less detail";
+  if (week.state.contactOn === p.id) return ", fact: back tomorrow";
+  return ", no fact yet";
+}
+
+function draw() {
+  const s = week.state;
+  const days = week.cfg.days;
+  const today = Math.min(s.day, days);
+  $("dayBox").textContent = `Day ${today} of ${days}`;
+  const free = s.phase === "ended" ? 0 : week.freeToday();
+  $("freeBox").textContent = `${plural(free, "free action")} today`;
+  $("materials").textContent = `${plural(s.materials, "material")}`;
+  $("level").textContent = `Level ${s.level}: ${s.xp} of ${week.cfg.xpPerLevel} XP`;
+  $("xpFill").style.width = `${(s.xp / week.cfg.xpPerLevel) * 100}%`;
+
+  const board = $("board");
+  board.style.gridTemplateColumns = `minmax(190px, 1.7fr) repeat(${days}, minmax(0, 1fr))`;
+  const plan = s.phase === "ended" ? {} : week.storyPlan();
+  const cells = [`<div class="spacer"></div>`];
+  for (let d = 1; d <= days; d++) {
+    const { dots, who } = dotsFor(d, plan);
+    cells.push(`<div class="day${d === today ? " today" : ""}${d < today ? " past" : ""}"><div>Day ${d}</div><div class="dots">${dots}</div><div class="forwho">${who}</div></div>`);
+  }
+  const chosen = mode === "treat" ? null : selected();
+  s.patients.forEach((p, i) => {
+    const row = i + 2;
+    const later = p.status === "waiting" && p.arrives > s.day;
+    const gone = p.status !== "waiting";
+    const state = `${later ? " later" : ""}${gone ? " gone" : ""}`;
+    const xp = week.xpFor(p);
+    const cost = gone ? p.injury : `${p.injury}: ${plural(week.partsNeeded(p), "material")}, +${xp.clean} XP${factText(p)}`;
+    cells.push(`<div class="who${p.critical ? " crit" : ""}${p === chosen ? " sel" : ""}${state}" style="grid-column:1;grid-row:${row}"><div class="name">${p.name}</div><div class="cost">${cost}</div></div>`);
+    const bar = barFor(p, today);
+    const from = Math.max(1, Math.min(days, bar.from));
+    const to = Math.max(from, Math.min(days, bar.to));
+    cells.push(`<div class="span ${bar.kind}${state}" style="grid-column:${from + 1} / ${to + 2};grid-row:${row}">${bar.text}</div>`);
+  });
+  board.innerHTML = cells.join("");
+  $("log").innerHTML = s.log.length
+    ? s.log.map((e) => `<tr><td>Day ${e.day}: ${e.text}</td><td>${e.xp ? signed(e.xp) : ""}</td></tr>`).join("")
+    : "<tr><td>Nothing yet</td><td></td></tr>";
+}
+
+function showMain() {
+  mode = "main";
+  draw();
+  const held = week.blocked() || !week.canEndDay();
+  // When the time is held back, start on the story patient it's held for.
+  if (held) {
+    const story = week.waiting().findIndex((x) => x.critical && week.canTreat(x));
+    if (story >= 0 && !(selected() && selected().critical)) cursor = story;
+  }
+  const p = selected();
+  draw();
+  const why = [p ? week.whyNotTreat(p) : null, week.whyNotEndDay()].filter(Boolean);
+  const out = week.state.actionsLeft === 0 && week.canEndDay() ? "No actions left. End the day." : "";
+  $("line").innerHTML = `<span id="why">${why.join(" ") || out}</span>`;
+  const options = [
+    { button: "x", label: p && p.critical ? `Get a fact on ${p.name}` : "Get a fact", disabled: !p || !p.critical || !week.needsFact(p), run: () => showFacts(p) },
+    { button: "y", label: "End the day", disabled: !week.canEndDay(), run: endDay },
+    { button: "b", label: `Break down gear: 1 dot, +${week.breakdownGain()} materials`, disabled: !week.canAct(), run: () => { week.breakDown(); Demo.notice(`+${week.breakdownGain()} materials`); afterAction(); } },
+    { button: "a", label: p ? `Treat ${p.name}: ${plural(week.actionsFor(p), "dot")}` : "Treat", disabled: !p || !week.canTreat(p), run: () => showTreat(p) },
+  ];
+  menu.show({ options });
+}
+
+function showTreat(p) {
+  mode = "sub";
+  const need = week.partsNeeded(p);
+  menu.show({
+    speaker: p.name,
+    text: `${p.injury}. This needs ${plural(need, "material")}, and you have ${week.state.materials}.`,
+    options: [
+      { button: "x", label: `Use ${plural(need, "material")}: +${week.xpFor(p).clean} XP if clean`, disabled: !week.canUseParts(p), run: () => startTreat(p, true) },
+      { button: "y", label: "Back", run: showMain },
+      { button: "b", label: `Go without: rough, +${week.xpFor(p).rough} XP`, run: () => startTreat(p, false) },
+    ],
+  });
+}
+
+function showFacts(p) {
+  mode = "sub";
+  const talkLabel = settings.spec === "Enforcer" ? "Lean on someone: 1 dot, full detail now" : "Ask around: 1 dot, less detail now";
+  const options = [
+    { button: "x", label: talkLabel, disabled: !week.canFact(p, "talk"), run: () => fact(p, "talk") },
+    { button: "y", label: "Send the Intel Contact: 1 dot, full detail tomorrow", disabled: !week.canFact(p, "send"), run: () => fact(p, "send") },
+    { button: "a", label: "Back", run: showMain },
+  ];
+  if (settings.spec === "Netrunning") {
+    options.splice(2, 0, { button: "b", label: "Get it hacked", run: () => showHack(p) });
+  } else {
+    options.splice(2, 0, { button: "b", label: `Pay the Hacker Contact: ${week.cfg.hackerCost} materials`, disabled: !week.canFact(p, "hacker"), run: () => fact(p, "hacker") });
+  }
+  menu.show({ speaker: "AI Companion", text: `A fact on ${p.name} earns more XP when you treat them. How do you want to get it?`, options });
+}
+
+function showHack(p) {
+  menu.show({
+    speaker: "AI Companion",
+    text: "Both give full detail, right now.",
+    options: [
+      { button: "x", label: "Hack it yourself: 1 dot", disabled: !week.canFact(p, "self"), run: () => fact(p, "self") },
+      { button: "y", label: "Back", run: () => showFacts(p) },
+      { button: "b", label: `Pay the Hacker Contact: ${week.cfg.hackerCost} materials`, disabled: !week.canFact(p, "hacker"), run: () => fact(p, "hacker") },
+    ],
+  });
+}
+
+function fact(p, route) {
+  week.getFact(p.id, route);
+  afterAction();
+}
+
+function startTreat(p, withParts) {
+  week.startTreat(p.id, withParts);
+  mode = "treat";
+  const prompts = [0, 1, 2].map(() => ({ button: KEYS[Math.floor(Math.random() * KEYS.length)], type: "press", lead: 0.35 }));
+  qte = DemoCore.createQte({ prompts, windowSeconds: settings.windowSeconds, assist: settings.assist, resultSeconds: 0.2 });
+  $("line").textContent = `Treating ${p.name}${withParts ? "" : ", without parts"}.`;
+  draw();
+}
+
+function finishTreat() {
+  const results = qte.state.results;
+  const r = week.finishTreat(results.filter((x) => x.hit).length, results.length);
+  qte = null;
+  keyPrompt.hide();
+  Demo.notice(`${r.patient.name}: ${r.result}. ${signed(r.xp)} XP`);
+  if (r.levels) {
+    Demo.beep(1320, 0.2);
+    Demo.notice(`Level ${week.state.level}`);
+  }
+  afterAction();
+}
+
+// A new level is spent straight away, then play carries on.
+function afterAction() {
+  if (week.state.points > 0 && week.upgradesOffered().length) showUpgrade();
+  else showMain();
+}
+
+function showUpgrade() {
+  mode = "sub";
+  draw();
+  $("line").textContent = "";
+  const offered = week.upgradesOffered();
+  const layout = DemoCore.LAYOUTS[offered.length];
+  menu.show({
+    speaker: `Level ${week.state.level}`,
+    text: "Spend one upgrade on the shop or on Marcus's body.",
+    options: offered.map((u, i) => ({
+      button: layout[i],
+      label: `${u.group}: ${u.name}. ${u.effect}.`,
+      run: () => {
+        week.buyUpgrade(u.id);
+        afterAction();
+      },
+    })),
+  });
+}
+
+function endDay() {
+  const r = week.endDay();
+  const parts = [];
+  if (r.unused) parts.push(`${plural(r.unused, "action")} unused.`);
+  if (r.left.length) parts.push(`${r.left.join(" and ")} left untreated${r.xpLost ? `: -${r.xpLost} XP` : ""}.`);
+  if (!r.left.length && !r.unused) parts.push("Nobody left today.");
+  if (r.ended) {
+    parts.push("The episode is over.");
+  } else {
+    if (r.fact) parts.push(`The Intel Contact is back with the fact on ${r.fact}.`);
+    parts.push(`The Scavengers deliver ${plural(r.delivered, "material")}.`);
+  }
+  mode = "sub";
+  cursor = 0;
+  draw();
+  $("line").textContent = "";
+  menu.show({
+    speaker: `End of day ${r.day}`,
+    text: parts.join(" "),
+    options: [{ label: r.ended ? "See the result" : "Next morning", run: r.ended ? showTally : showMain }],
+  });
+}
+
+function showTally() {
+  mode = "tally";
+  const t = week.tally();
+  const row = (name, value) => `<tr><td>${name}</td><td>${value}</td></tr>`;
+  $("tallyRows").innerHTML = [
+    row("Clean treatments", t.clean),
+    row("Rough treatments", t.rough),
+    row("Left untreated", t.abandoned),
+    row("XP earned", t.earned),
+    row("XP lost", t.lost),
+    row("Level reached", `${t.level}, with ${t.xp} of ${week.cfg.xpPerLevel} XP`),
+    row("Upgrades", t.upgrades.join(", ") || "None"),
+    row("Materials left", t.materials),
+    row("Actions unused", t.unusedActions),
+    row("Upgrades at this pace over five episodes", `${t.fiveEpisodePace} of 10`),
+  ].join("");
+  $("again").textContent = `Press ${Demo.label("a")} to play again.`;
+  $("tally").hidden = false;
+}
+
+Demo.bindPanel(settings, SLIDERS, [], () => { if (started) newEpisode(); }, "runner-week-demo");
+$("restart").addEventListener("click", (e) => { newEpisode(); e.target.blur(); });
+$("howTo").addEventListener("click", (e) => { if (started) showHowTo(); e.target.blur(); });
+newEpisode();
+Demo.startOverlay(() => { started = true; newEpisode(); });
+
+Demo.loop((dt, input) => {
+  if (!started) return;
+  if (card.open) {
+    card.update(dt, input.press);
+    return;
+  }
+  if (mode === "tally") {
+    if (input.press.a) newEpisode();
+    return;
+  }
+  if (mode === "treat") {
+    for (const e of qte.update(dt, input)) {
+      if (e.type === "hit") Demo.beep(1040, 0.08);
+      if (e.type === "miss") Demo.beep(150, 0.2, "sawtooth");
+      if (e.type === "done") {
+        finishTreat();
+        return;
+      }
+    }
+    const p = qte.prompt();
+    if (p) {
+      const timeLeft = settings.assist === "wait" ? 1 : qte.state.windowLeft / qte.cfg.windowSeconds;
+      keyPrompt.show({ x: 0, y: -10, button: p.button, type: p.type, timeLeft, holdFill: 0 });
+    } else keyPrompt.hide();
+    return;
+  }
+  if (mode === "main") {
+    const count = week.waiting().length;
+    const move = (input.press.right || input.press.down ? 1 : 0) - (input.press.left || input.press.up ? 1 : 0);
+    if (move && count > 1) {
+      cursor = (cursor + move + count) % count;
+      menu.close();
+      showMain();
+      return;
+    }
+  }
+  menu.update(dt, input.press);
+});
+</script>
+</body>
+</html>

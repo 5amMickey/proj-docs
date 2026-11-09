@@ -1,7 +1,7 @@
 // Run with: node --test demo-core.test.js
 const test = require("node:test");
 const assert = require("node:assert");
-const { createTreatment, createProcedure, createHeart, createSurgery, createQte, createDialogue, createFighterCase } = require("./demo-core.js");
+const { createTreatment, createProcedure, createHeart, createSurgery, readingSeconds, diagnosticLog, LOG_LINES_PER_CHECK, createQte, createDialogue, createFighterCase } = require("./demo-core.js");
 
 const SURGERY_STEPS = [
   { name: "Stop the bleeding", kind: "medical", bpm: 88, ask: "Q1", answers: ["a", "b", "c"] },
@@ -15,13 +15,14 @@ function surgery(options) {
 function advance(su, until) {
   const seen = [];
   for (let i = 0; i < 5000; i++) {
-    if (su.state.phase === "treat" && su.proc.state.phase === "ready") su.proc.begin();
     const key = su.prompt();
     const input = key ? { press: { [key.button]: true }, held: { [key.button]: true } } : {};
     for (const e of su.update(0.05, input)) {
       seen.push(e.type);
       if (e.type === until) return seen;
     }
+    // The line before diagnostics has one answer, so tests that are going further give it.
+    if (su.state.phase === "diagnosticsPrompt") seen.push(...su.runDiagnostics().map((e) => e.type));
   }
   throw new Error(`never saw ${until}: ${seen.join()}`);
 }
@@ -58,7 +59,14 @@ test("heart: the rate moves to its target, an alarm makes beats irregular, and a
   assert.ok(skipped > 50);
 });
 
-test("surgery: a checkpoint waits for its answer, then the deactivate step forces the alert and the hack", () => {
+// Plays up to the choice after the alert.
+function toHackChoice(su) {
+  advance(su, "checkpoint");
+  su.answer("a");
+  return advance(su, "hackChoice");
+}
+
+test("surgery: the deactivate step sets off the alert, then asks whether to hack it or hand it to the AI", () => {
   const su = surgery();
   advance(su, "checkpoint");
   assert.equal(su.state.phase, "checkpoint");
@@ -66,60 +74,168 @@ test("surgery: a checkpoint waits for its answer, then the deactivate step force
   su.answer("a");
   assert.equal(su.state.phase, "treat");
   assert.equal(su.heart.state.target, 88);
-  const seen = advance(su, "hackStart");
+  const seen = advance(su, "hackChoice");
   assert.ok(seen.includes("alert"));
   assert.ok(su.heart.state.erratic);
-  assert.ok(su.heart.state.target > 150);
-  assert.equal(su.state.phase, "hack");
+  assert.equal(su.state.phase, "hackChoice");
   assert.ok(!su.canLeave());
+  for (let i = 0; i < 200; i++) su.update(0.05, {});
+  assert.equal(su.state.phase, "hackChoice", "it waits for the player");
+  assert.equal(su.hackChoice(true)[0].type, "hackStart");
+  assert.equal(su.state.phase, "hack");
 });
 
-test("surgery: every specialty plays the forced hack", () => {
+test("surgery: every specialty can choose the hack or the AI", () => {
   for (const spec of ["Netrunning", "Tech", "Enforcer"]) {
-    const su = surgery({ spec });
-    advance(su, "checkpoint");
-    su.answer("a");
-    advance(su, "hackStart");
-    assert.equal(su.state.phase, "hack");
+    const hack = surgery({ spec });
+    toHackChoice(hack);
+    hack.hackChoice(true);
+    assert.equal(hack.state.phase, "hack");
+    const ai = surgery({ spec });
+    toHackChoice(ai);
+    assert.equal(ai.hackChoice(false)[0].type, "aiLoadingStart");
+    assert.equal(ai.state.phase, "aiLoading");
   }
 });
 
-test("surgery: a forced hack that works carries on, and a failure brings the companion in and costs reputation", () => {
-  const good = surgery();
-  advance(good, "checkpoint");
-  good.answer("a");
-  advance(good, "hackStart");
-  assert.deepEqual(good.hackFinished(true), []);
-  assert.equal(good.state.phase, "treat");
-  assert.equal(good.heart.state.erratic, false);
-  assert.equal(good.state.repLost, 0);
+test("surgery: handing the alert to the AI charges materials, runs the loading screen and costs no XP", () => {
+  const su = surgery({ materials: 3, aiCost: 2, aiLoadSeconds: 1 });
+  toHackChoice(su);
+  assert.deepEqual(su.hackChoice(false)[0], { type: "aiLoadingStart", job: "forced", cost: 2, left: 1 });
+  assert.ok(su.barState().index < su.barState().steps.length, "the bar keeps its place");
+  const seen = advance(su, "whatHappened");
+  assert.ok(seen.includes("aiForcedDone"));
+  assert.equal(su.state.hackResult, "ai");
+  assert.equal(su.state.failedHacks, 0);
+  assert.equal(su.heart.state.erratic, false);
+});
 
+test("surgery: failures during a hack raise the heart rate and it stays up, on both hacks", () => {
+  const su = surgery();
+  toHackChoice(su);
+  su.hackChoice(true);
+  for (let i = 0; i < 100; i++) su.update(0.05, {});
+  const calm = su.heart.shownBpm();
+  assert.ok(su.hackStrike());
+  for (let i = 0; i < 100; i++) su.update(0.05, {});
+  const one = su.heart.shownBpm();
+  assert.ok(one >= calm + 15, `${calm} then ${one}`);
+  su.hackStrike();
+  assert.ok(su.heart.shownBpm() > one, "the jump is immediate");
+  for (let i = 0; i < 100; i++) su.update(0.05, {});
+  assert.ok(su.heart.shownBpm() >= one + 15);
+  assert.equal(su.state.hackFailures, 2);
+  assert.ok(su.heart.state.erratic);
+  for (let i = 0; i < 10; i++) su.hackStrike();
+  assert.ok(su.heart.state.target <= 220, "the rate has a ceiling");
+
+  const removal = toFound();
+  removal.decide("remove");
+  removal.removalChoice(true);
+  assert.ok(removal.hackStrike());
+
+  const notHacking = surgery();
+  assert.equal(notHacking.hackStrike(), false);
+  assert.equal(notHacking.state.hackFailures, 0);
+});
+
+test("surgery: a forced hack that works waits until he is stable, then asks what happened", () => {
+  const good = surgery();
+  toHackChoice(good);
+  good.hackChoice(true);
+  su_hot(good);
+  assert.deepEqual(good.hackFinished(true), []);
+  assert.equal(good.state.phase, "settling");
+  assert.equal(good.heart.state.erratic, false);
+  good.update(0.05, {});
+  assert.equal(good.state.phase, "settling", "not yet stable");
+  advance(good, "whatHappened");
+  assert.ok(good.heart.shownBpm() <= 99, "the monitor has left its warning colour");
+  for (let i = 0; i < 100; i++) good.update(0.05, {});
+  assert.equal(good.state.phase, "whatHappened", "it waits for the player");
+  assert.ok(good.answerWhatHappened("x"));
+  assert.equal(good.state.phase, "treat");
+  assert.equal(good.state.whatHappened, "x");
+  assert.equal(good.state.failedHacks, 0);
+});
+
+test("surgery: a failed forced hack brings the companion in, costs XP, and then he asks too", () => {
   const bad = surgery();
-  advance(bad, "checkpoint");
-  bad.answer("a");
-  advance(bad, "hackStart");
+  toHackChoice(bad);
+  bad.hackChoice(true);
   assert.equal(bad.hackFinished(false)[0].type, "companionStart");
   assert.equal(bad.state.phase, "companion");
   assert.ok(bad.heart.state.erratic, "the alarm runs until the companion is done");
   advance(bad, "companionDone");
-  assert.equal(bad.state.phase, "treat");
+  assert.equal(bad.state.phase, "settling");
   assert.equal(bad.heart.state.erratic, false);
-  assert.equal(bad.state.repLost, 1);
-  assert.equal(bad.proc.state.misses, 0, "the penalty is reputation, not a complication");
+  advance(bad, "whatHappened");
+  bad.answerWhatHappened("x");
+  assert.equal(bad.state.failedHacks, 1);
+  assert.equal(bad.proc.state.misses, 0, "the penalty is XP, not a complication");
   assert.equal(bad.proc.current().name, "Reconnect the cyberware");
 });
 
+test("surgery: with checkpoints off, he doesn't ask and the treatment carries on once he is stable", () => {
+  const su = surgery({ checkpoints: false });
+  advance(su, "hackChoice");
+  su.hackChoice(true);
+  su.hackFinished(true);
+  const seen = advance(su, "doubt");
+  assert.ok(!seen.includes("whatHappened"));
+});
+
+function su_hot(su) {
+  for (let i = 0; i < 40; i++) su.update(0.05, {});
+}
+
 function toDoubt(options) {
   const su = surgery(options);
-  advance(su, "checkpoint");
-  su.answer("a");
-  advance(su, "hackStart");
+  toHackChoice(su);
+  su.hackChoice(true);
   su.hackFinished(true);
+  advance(su, "whatHappened");
+  su.answerWhatHappened("a");
   const seen = advance(su, "doubt");
   assert.ok(seen.includes("diagnostics"));
   assert.ok(seen.includes("passed"));
   return su;
 }
+
+test("surgery: diagnostics wait for the player's line, and start when it's given", () => {
+  const su = surgery();
+  toHackChoice(su);
+  su.hackChoice(true);
+  su.hackFinished(true);
+  advance(su, "whatHappened");
+  su.answerWhatHappened("a");
+  advance(su, "diagnosticsPrompt");
+  assert.equal(su.state.phase, "diagnosticsPrompt");
+  assert.equal(su.state.run, 0);
+  const bar = su.barState();
+  assert.equal(bar.index, bar.steps.length - 1);
+  assert.equal(bar.progress, 0);
+  for (let i = 0; i < 200; i++) assert.equal(su.update(0.05, {}).filter((e) => e.type !== "beat").length, 0);
+  assert.equal(su.state.phase, "diagnosticsPrompt", "it waits with no timer");
+  assert.equal(su.runDiagnostics()[0].type, "diagnostics");
+  assert.equal(su.state.phase, "diagnostics");
+  assert.equal(su.state.run, 1);
+  assert.deepEqual(su.runDiagnostics(), [], "only once");
+});
+
+test("surgery: with checkpoints off, diagnostics start with no line", () => {
+  const su = surgery({ checkpoints: false });
+  advance(su, "hackChoice");
+  su.hackChoice(true);
+  su.hackFinished(true);
+  const seen = [];
+  for (let i = 0; i < 5000 && su.state.phase !== "diagnostics"; i++) {
+    const key = su.prompt();
+    su.update(0.05, key ? { press: { [key.button]: true }, held: { [key.button]: true } } : {}).forEach((e) => seen.push(e.type));
+  }
+  assert.ok(!seen.includes("diagnosticsPrompt"));
+  assert.equal(su.state.phase, "diagnostics");
+});
 
 test("surgery: saying it's fine ends the case with the malware missed", () => {
   const su = toDoubt();
@@ -144,24 +260,25 @@ test("surgery: a hacker chooses at removal, and nothing starts until they do", (
   assert.equal(su.state.removedBy, null);
 });
 
-test("surgery: doing the removal hack yourself earns more reputation than the companion", () => {
+test("surgery: doing the removal hack yourself earns more XP than the companion", () => {
   const self = toFound();
   self.decide("remove");
   assert.equal(self.removalChoice(true)[0].type, "removalHackStart");
   assert.equal(self.state.phase, "removalHack");
   self.removalHackFinished(true);
   assert.equal(self.state.removedBy, "self");
-  assert.equal(self.repGained(), 2);
+  assert.equal(self.xpGained(), 8);
 
   const helped = toFound();
   helped.decide("remove");
-  assert.equal(helped.removalChoice(false)[0].type, "companionStart");
+  assert.equal(helped.removalChoice(false)[0].type, "aiLoadingStart");
+  assert.equal(helped.state.materials, 1, "the AI is paid on this route too");
   advance(helped, "removed");
   assert.equal(helped.state.removedBy, "companion");
-  assert.equal(helped.repGained(), 1);
+  assert.equal(helped.xpGained(), 6);
 });
 
-test("surgery: a failed removal hack brings the companion in, still removes the malware, and costs reputation", () => {
+test("surgery: a failed removal hack brings the companion in, still removes the malware, and costs XP", () => {
   const su = toFound();
   su.decide("remove");
   su.removalChoice(true);
@@ -173,24 +290,24 @@ test("surgery: a failed removal hack brings the companion in, still removes the 
   assert.equal(su.state.outcome, "remove");
   assert.equal(su.state.removedBy, "companion");
   assert.equal(su.proc.state.misses, 0);
-  assert.equal(su.repGained(), 0);
+  assert.equal(su.xpGained(), 4);
   assert.equal(su.heart.state.erratic, false);
 });
 
 test("surgery: leaving the malware in still pays +1 now, and sets up the rumor", () => {
   const missed = toDoubt();
   missed.doubt(false);
-  assert.equal(missed.repGained(), 1);
+  assert.equal(missed.xpGained(), 6);
   assert.ok(missed.rumorLater());
 
   const ignored = toFound();
   ignored.decide("ignore");
-  assert.equal(ignored.repGained(), 1);
+  assert.equal(ignored.xpGained(), 6);
   assert.ok(ignored.rumorLater());
 
   const told = toFound();
   told.decide("tell");
-  assert.ok(!told.rumorLater());
+  assert.ok(!told.rumorLater(), "nothing is settled until the player answers the Fighter");
 
   const removed = toFound();
   removed.decide("remove");
@@ -201,10 +318,11 @@ test("surgery: leaving the malware in still pays +1 now, and sets up the rumor",
 
 test("surgery: failing both hacks can take reputation below zero", () => {
   const su = surgery();
-  advance(su, "checkpoint");
-  su.answer("a");
-  advance(su, "hackStart");
+  toHackChoice(su);
+  su.hackChoice(true);
   su.hackFinished(false);
+  advance(su, "whatHappened");
+  su.answerWhatHappened("a");
   advance(su, "doubt");
   su.doubt(true);
   advance(su, "found");
@@ -212,23 +330,106 @@ test("surgery: failing both hacks can take reputation below zero", () => {
   su.removalChoice(true);
   su.removalHackFinished(false);
   advance(su, "removed");
-  assert.equal(su.repGained(), -1);
+  assert.equal(su.xpGained(), 2);
 });
 
-test("surgery: for a Tech or Enforcer, the companion does the removal with no choice", () => {
+test("surgery: a Tech or Enforcer chooses too, and the paid AI charges them", () => {
   for (const spec of ["Tech", "Enforcer"]) {
     const su = toFound({ spec });
-    const events = su.decide("remove");
-    assert.equal(events[0].type, "companionStart");
-    assert.equal(events[0].failed, false);
+    assert.equal(su.decide("remove")[0].type, "removalChoice");
+    assert.equal(su.removalChoice(false)[0].type, "aiLoadingStart");
+    assert.equal(su.state.materials, 1);
     advance(su, "removed");
     assert.equal(su.state.removedBy, "companion");
-    assert.equal(su.repGained(), 1);
+    assert.equal(su.xpGained(), 6);
   }
 });
 
-test("surgery: a second run repeats the same numbers, finds the malware and skips a beat, and tell or ignore close the case", () => {
-  for (const decision of ["tell", "ignore"]) {
+test("surgery: a Tech or Enforcer does it hands on, with no materials and no hack", () => {
+  for (const spec of ["Tech", "Enforcer"]) {
+    const su = toFound({ spec, materials: 0 });
+    su.decide("remove");
+    const start = su.removalChoice(true);
+    assert.equal(start[0].type, "manualRemovalStart");
+    assert.equal(su.state.phase, "manualRemoval");
+    assert.ok(su.prompt() === null || su.prompt().button);
+    advance(su, "removed");
+    assert.equal(su.state.phase, "closed");
+    assert.equal(su.state.outcome, "remove");
+    assert.equal(su.state.removedBy, "manual");
+    assert.equal(su.state.materials, 0);
+    assert.equal(su.xpGained(), 6, "the extra XP is for the hack");
+    assert.ok(!su.rumorLater());
+    assert.equal(su.heart.state.erratic, false);
+  }
+});
+
+test("surgery: an Enforcer's method depends on the Hacker Contact, and only by hand weakens the arm", () => {
+  const talked = toFound({ spec: "Enforcer" });
+  talked.decide("remove");
+  assert.equal(talked.removalChoice(true)[0].method, "talked through by the Hacker Contact");
+  advance(talked, "removed");
+  assert.equal(talked.weakerArm(), false);
+
+  const hand = toFound({ spec: "Enforcer", hackerAvailable: false });
+  hand.decide("remove");
+  assert.equal(hand.removalChoice(true)[0].method, "pulled the controller by hand");
+  advance(hand, "removed");
+  assert.equal(hand.weakerArm(), true);
+});
+
+test("surgery: a slip in the hands-on removal adds a complication and can't fail it", () => {
+  const su = toFound({ spec: "Tech", windowSeconds: 0.1 });
+  su.decide("remove");
+  su.removalChoice(true);
+  const before = su.proc.state.misses;
+  for (let i = 0; i < 400 && su.state.phase === "manualRemoval"; i++) su.update(0.05, {});
+  assert.equal(su.state.phase, "closed");
+  assert.equal(su.state.removedBy, "manual");
+  assert.ok(su.proc.state.misses > before);
+});
+
+test("surgery: the AI stays available with no materials, and the price becomes a debt", () => {
+  const su = toFound({ materials: 1, aiCost: 2 });
+  su.decide("remove");
+  assert.equal(su.removalChoice(false)[0].type, "aiLoadingStart");
+  assert.equal(su.state.materials, -1);
+});
+
+test("surgery: the tally reports the run, including every price paid", () => {
+  const su = surgery({ materials: 3, aiCost: 2, aiLoadSeconds: 0.5 });
+  toHackChoice(su);
+  su.hackChoice(false);
+  advance(su, "whatHappened");
+  su.answerWhatHappened("a");
+  advance(su, "doubt");
+  su.doubt(true);
+  advance(su, "found");
+  su.decide("remove");
+  su.removalChoice(false);
+  advance(su, "removed");
+  const r = su.tally();
+  assert.equal(r.outcome, "remove");
+  assert.equal(r.removedBy, "companion");
+  assert.equal(r.forcedHack, "ai");
+  assert.equal(r.hackFailures, 0);
+  assert.equal(r.diagnosticsRuns, 2);
+  assert.equal(r.materialsStart, 3);
+  assert.equal(r.materialsEnd, -1);
+  assert.deepEqual(r.charges, [{ job: "forced", cost: 2 }, { job: "removal", cost: 2 }]);
+  assert.equal(r.xpGained, 6);
+  assert.equal(r.rumor, false);
+  assert.equal(r.keysTotal, r.keysHit + r.complications);
+  assert.ok(r.keysTotal > 0);
+  assert.ok(r.peakBpm >= 130, `peak ${r.peakBpm}`);
+  assert.ok(r.seconds > 0);
+  const before = r.seconds;
+  su.update(5, {});
+  assert.equal(su.tally().seconds, before, "the clock stops when the case closes");
+});
+
+test("surgery: a second run repeats the same numbers, finds the malware and skips a beat", () => {
+  for (const decision of ["remove", "ignore"]) {
     const su = toDoubt();
     const first = JSON.stringify(su.state.results);
     assert.equal(su.doubt(true)[0].run, 2);
@@ -237,13 +438,81 @@ test("surgery: a second run repeats the same numbers, finds the malware and skip
     assert.ok(su.heart.state.skipNext || su.heart.state.skipping);
     su.decide(decision);
     assert.equal(su.state.outcome, decision);
-    assert.equal(su.state.phase, "closed");
   }
+  const ignored = toFound();
+  ignored.decide("ignore");
+  assert.equal(ignored.state.phase, "closed");
+});
+
+test("surgery: a second run prints the very same log, with a fixed count of lines per check", () => {
+  const su = toDoubt();
+  const first = diagnosticLog(su.state.results);
+  su.doubt(true);
+  assert.deepEqual(diagnosticLog(su.state.results), first);
+  assert.equal(first.length, su.state.results.length * LOG_LINES_PER_CHECK);
+  su.state.results.forEach((r, i) => assert.ok(first[(i + 1) * LOG_LINES_PER_CHECK - 1].includes(`${r.name} ${r.ms} ms PASS`), "each check ends on its result"));
+});
+
+test("surgery: telling the Fighter leads to a request, and nothing moves until the player answers", () => {
+  const su = toFound();
+  assert.equal(su.decide("tell")[0].type, "fighterAsks");
+  assert.equal(su.state.phase, "fighterAsks");
+  assert.equal(su.state.told, true);
+  for (let i = 0; i < 100; i++) su.update(0.05, {});
+  assert.equal(su.state.phase, "fighterAsks");
+  assert.equal(su.state.materials, 3);
+});
+
+test("surgery: the Fighter's request, paid to the AI, charges materials and then runs the loading screen", () => {
+  const su = toFound({ materials: 3, aiCost: 2, aiLoadSeconds: 1 });
+  su.decide("tell");
+  const start = su.fighterAnswer("ai");
+  assert.deepEqual(start[0], { type: "aiLoadingStart", job: "removal", cost: 2, left: 1 });
+  assert.equal(su.state.phase, "aiLoading");
+  assert.equal(su.state.materials, 1);
+  su.update(0.5, {});
+  assert.ok(Math.abs(su.aiProgress() - 0.5) < 0.01);
+  assert.equal(su.state.phase, "aiLoading");
+  advance(su, "removed");
+  assert.equal(su.state.phase, "closed");
+  assert.equal(su.state.outcome, "remove");
+  assert.equal(su.state.removedBy, "companion");
+  assert.equal(su.xpGained(), 6);
+  assert.ok(!su.rumorLater());
+  assert.equal(su.heart.state.erratic, false);
+});
+
+test("surgery: every specialty can do the Fighter's removal, which costs no materials", () => {
+  const tech = toFound({ spec: "Tech" });
+  tech.decide("tell");
+  assert.equal(tech.fighterAnswer("self")[0].type, "manualRemovalStart");
+  assert.equal(tech.state.outcome, "remove");
+  assert.equal(tech.state.materials, 3);
+
+  const su = toFound();
+  su.decide("tell");
+  assert.equal(su.fighterAnswer("self")[0].type, "removalHackStart");
+  assert.equal(su.state.materials, 3);
+  su.removalHackFinished(true);
+  assert.equal(su.state.removedBy, "self");
+  assert.equal(su.xpGained(), 8);
+});
+
+test("surgery: refusing the Fighter closes the case with the malware in, and sets up the rumor", () => {
+  const su = toFound();
+  su.decide("tell");
+  su.fighterAnswer("refuse");
+  assert.equal(su.state.phase, "closed");
+  assert.equal(su.state.outcome, "refused");
+  assert.equal(su.state.removedBy, null);
+  assert.equal(su.state.materials, 3);
+  assert.equal(su.xpGained(), 6);
+  assert.ok(su.rumorLater());
 });
 
 test("surgery: with checkpoints off, steps close with no choice", () => {
   const su = surgery({ checkpoints: false });
-  const seen = advance(su, "hackStart");
+  const seen = advance(su, "hackChoice");
   assert.ok(!seen.includes("checkpoint"));
 });
 
@@ -491,17 +760,58 @@ test("dialogue: a timeout picks the default, and the node then plays through", (
   assert.equal(d.state.node, "three");
 });
 
-test("dialogue: the choice timer stops during a quick hack and resumes after", () => {
-  const d = createDialogue({ nodes: NODES, start: "one", spec: "Netrunning" });
+test("dialogue: the choice timer slows during a quick hack without stopping, and recovers after", () => {
+  const d = createDialogue({ nodes: NODES, start: "one", spec: "Netrunning", hackSlowdown: 0.1 });
+  const start = d.state.timeLeft;
   assert.equal(d.update(0.1, { a: true })[0].type, "specStarted");
   assert.ok(d.state.hackLive);
-  d.update(100);
-  assert.equal(d.state.node, "one");
+  assert.equal(d.state.timeLeft, start, "the press that starts the hack takes no time");
+  d.update(1);
+  assert.ok(Math.abs(d.state.timeLeft - (start - 0.1)) < 1e-9, "one second costs a tenth of a second");
+  d.hackFinished(true);
+  const after = d.state.timeLeft;
+  d.update(1);
+  assert.ok(Math.abs(d.state.timeLeft - (after - 1)) < 1e-9, "full speed once the hack ends");
+});
+
+test("dialogue: the slowed timer can still run out during a quick hack, and the hack carries on", () => {
+  const d = createDialogue({ nodes: NODES, start: "one", spec: "Netrunning", hackSlowdown: 0.1 });
+  d.update(0.1, { a: true });
+  const seconds = d.state.timeLeft;
+  const events = d.update((seconds + 0.01) / 0.1);
+  assert.equal(events[0].type, "chose");
+  assert.equal(events[0].timedOut, true);
+  assert.ok(d.state.hackLive, "the hack keeps going into the next line");
+});
+
+test("dialogue: the player can answer and use up the option during a quick hack", () => {
+  const d = createDialogue({ nodes: NODES, start: "one", spec: "Netrunning" });
+  d.update(0.1, { a: true });
   assert.equal(d.options().some((o) => o.isSpec), false, "the option is used up");
   d.update(0.1, { x: true });
   assert.ok(d.state.flags.left, "the player can still answer during the hack");
   d.hackFinished(true);
   assert.ok(d.state.flags.hackWorked);
+});
+
+test("dialogue: a held-back spec option arrives after its delay, and can't be pressed before then", () => {
+  const nodes = {
+    one: { speaker: "", text: "", seconds: 8, defaultChoice: 0, choices: [{ label: "a", next: "two" }, { label: "b", next: "two" }, { label: "c", next: "two" }] },
+    two: { speaker: "", text: "", seconds: 8, defaultChoice: 0, specDelay: 3, spec: { Netrunning: { label: "Hack", icon: "chip" } }, choices: [{ label: "a", next: null }, { label: "b", next: null }, { label: "c", next: null }] },
+  };
+  const d = createDialogue({ nodes, start: "one", spec: "Netrunning" });
+  d.update(5);
+  assert.equal(d.options().some((o) => o.isSpec), false, "a node with no spec has no option");
+  d.update(0.1, { x: true });
+  assert.equal(d.state.node, "two");
+  assert.equal(d.options().length, 3, "the time spent on the last node doesn't count");
+  assert.deepEqual(d.update(1, { a: true }), [], "too early");
+  assert.equal(d.state.specUsed, false);
+  d.update(2.1);
+  const spec = d.options().find((o) => o.isSpec);
+  assert.equal(spec.button, "a");
+  assert.equal(spec.icon, "chip");
+  assert.equal(d.update(0.1, { a: true })[0].type, "specStarted");
 });
 
 test("dialogue: the end is reported", () => {
@@ -610,10 +920,155 @@ test("case: a return job pays materials, and a Tech gets more", () => {
   assert.equal(t.doReturnJob(), 2);
 });
 
+test("case: telling the Fighter settles nothing until the player answers", () => {
+  const c = createFighterCase({});
+  c.tell();
+  assert.ok(c.state.told);
+  assert.equal(c.state.disposition, null);
+  c.choose("refused");
+  assert.equal(c.state.disposition, "refused");
+  assert.equal(c.state.removalMethod, null);
+});
+
+test("case: the AI removal is paid in materials, and can't be chosen without them", () => {
+  const c = createFighterCase({ materials: 3, aiCost: 2 });
+  assert.ok(c.removeWithAi());
+  assert.equal(c.state.materials, 1);
+  assert.equal(c.state.disposition, "removed");
+  assert.equal(c.state.removalMethod, "paid the AI Companion");
+  const poor = createFighterCase({ materials: 1, aiCost: 2 });
+  assert.equal(poor.canPayAi(), false);
+  assert.equal(poor.removeWithAi(), false);
+  assert.equal(poor.state.materials, 1);
+  assert.equal(poor.state.disposition, null);
+});
+
+test("case: every specialty has a way to do the removal itself, so no one is stuck without materials", () => {
+  assert.equal(createFighterCase({ spec: "Tech" }).selfMethod(), "himself");
+  assert.equal(createFighterCase({ spec: "Netrunning" }).selfMethod(), "himself");
+  assert.equal(createFighterCase({ spec: "Enforcer" }).selfMethod(), "talked through by the Hacker Contact");
+  assert.equal(createFighterCase({ spec: "Enforcer", hackerAvailable: false }).selfMethod(), "pulled the controller by hand");
+});
+
+test("case: a failed removal hack still takes it out, and costs XP instead of materials", () => {
+  const c = createFighterCase({ spec: "Netrunning", rep: 1, materials: 3 });
+  assert.ok(c.canRemovalHack());
+  assert.ok(!createFighterCase({ spec: "Tech" }).canRemovalHack());
+  c.removalHackFailed();
+  assert.equal(c.state.disposition, "removed");
+  assert.equal(c.state.rep, 0);
+  assert.equal(c.state.materials, 3);
+});
+
 test("case: every disposition has a next beat", () => {
-  for (const d of ["removed", "warned", "left in", "untreated"]) {
+  for (const d of ["removed", "refused", "left in", "untreated"]) {
     const c = createFighterCase({});
     c.choose(d);
     assert.ok(c.beatText().length > 10);
   }
+});
+
+const TALK_STEPS = [
+  { name: "One", kind: "medical", speaker: "Fighter", ask: "Q1", answers: ["yes", "no"], replies: { yes: "Good." }, after: [{ speaker: "AI", text: "After one." }] },
+  { name: "Two", kind: "medical", before: [{ speaker: "Marcus", text: "Before two." }] },
+];
+function talkSurgery(options) {
+  return createSurgery(Object.assign({ steps: TALK_STEPS, promptsPerStep: 2, windowSeconds: 1 }, options));
+}
+function runUntil(su, phase) {
+  const seen = [];
+  for (let i = 0; i < 5000; i++) {
+    if (su.state.phase === phase) return seen;
+    const key = su.prompt();
+    const lineNow = su.subtitle();
+    if (lineNow && seen[seen.length - 1] !== lineNow.text) seen.push(lineNow.text);
+    su.update(0.05, key ? { press: { [key.button]: true }, held: { [key.button]: true } } : {});
+  }
+  throw new Error(`never reached ${phase}: ${seen.join()}`);
+}
+
+test("reading time: longer lines stay up longer, with a floor, and the scale applies", () => {
+  assert.equal(readingSeconds("Yes."), 1.8);
+  assert.ok(readingSeconds("one two three four five six seven eight nine ten") > 3.5);
+  assert.equal(readingSeconds("Yes.", 2), 3.6);
+});
+
+test("surgery: nothing has to start a step, so the first key comes by itself", () => {
+  const su = talkSurgery();
+  assert.equal(su.state.phase, "treat");
+  const events = su.update(0.05, {});
+  assert.ok(events.some((e) => e.type === "stepStart"));
+  assert.equal(su.proc.state.phase, "process");
+});
+
+test("surgery: the briefing waits for the player, then the opening lines play, then the first step starts by itself", () => {
+  const su = talkSurgery({ briefing: true, openLines: [{ speaker: "AI", text: "Opening." }] });
+  for (let i = 0; i < 200; i++) su.update(0.05, {});
+  assert.equal(su.state.phase, "briefing");
+  assert.equal(su.state.seconds, 0, "the clock waits too");
+  assert.equal(su.subtitle(), null);
+  assert.ok(su.beginScene());
+  assert.equal(su.state.phase, "talk");
+  assert.equal(su.subtitle().text, "Opening.");
+  assert.equal(su.beginScene(), false, "only once");
+  for (let i = 0; i < 60; i++) su.update(0.05, {});
+  assert.equal(su.state.phase, "treat");
+  assert.equal(su.proc.state.phase, "process");
+});
+
+test("surgery: timed lines bridge one choice to the next step, with the answer's own reply first", () => {
+  const su = talkSurgery();
+  runUntil(su, "checkpoint");
+  assert.deepEqual(su.answer("yes").map((e) => e.type), ["stepClosed"]);
+  assert.equal(su.state.phase, "talk");
+  const lines = runUntil(su, "treat");
+  assert.deepEqual(lines, ["Good.", "After one.", "Before two."]);
+  su.update(0.05, {});
+  assert.equal(su.proc.current().name, "Two");
+  assert.equal(su.proc.state.phase, "process");
+});
+
+test("surgery: an answer with no reply of its own still gets the bridge lines", () => {
+  const su = talkSurgery();
+  runUntil(su, "checkpoint");
+  su.answer("no");
+  assert.deepEqual(runUntil(su, "treat"), ["After one.", "Before two."]);
+});
+
+test("surgery: the lines after the last step lead to the line before diagnostics", () => {
+  const steps = [{ name: "Only", kind: "medical", after: [{ speaker: "AI", text: "Done." }] }];
+  const su = createSurgery({ steps, promptsPerStep: 2, windowSeconds: 1 });
+  assert.deepEqual(runUntil(su, "diagnosticsPrompt"), ["Done."]);
+});
+
+test("surgery: the answer about what happened plays its reply and the next step's lines", () => {
+  const steps = [
+    { name: "Off", kind: "cyber", alert: true },
+    { name: "Next", kind: "medical", before: [{ speaker: "AI", text: "On to the next." }] },
+  ];
+  const su = createSurgery({ steps, promptsPerStep: 2, windowSeconds: 1 });
+  runUntil(su, "hackChoice");
+  assert.equal(su.state.talk, null, "the alert isn't talked over");
+  su.hackChoice(true);
+  su.hackFinished(true);
+  runUntil(su, "whatHappened");
+  su.answerWhatHappened("x", { speaker: "Fighter", text: "Right." });
+  assert.deepEqual(runUntil(su, "treat"), ["Right.", "On to the next."]);
+});
+
+test("surgery: with checkpoints off there are no lines at all", () => {
+  const su = talkSurgery({ checkpoints: false, briefing: true, openLines: [{ speaker: "AI", text: "Opening." }] });
+  su.beginScene();
+  assert.equal(su.state.phase, "treat");
+  assert.deepEqual(runUntil(su, "diagnostics"), []);
+});
+
+test("dialogue: a node with no timer and no choices holds until the page moves it on", () => {
+  const d = createDialogue({ start: "fight", nodes: { fight: { speaker: "" }, final: { speaker: "V", text: "Now?", seconds: 2, choices: [{ label: "Go", next: null }] } } });
+  assert.ok(d.holding());
+  for (let i = 0; i < 100; i++) assert.deepEqual(d.update(0.05, {}), []);
+  assert.equal(d.state.node, "fight");
+  assert.ok(d.goTo("final"));
+  assert.equal(d.holding(), false);
+  assert.equal(d.options().length, 1);
 });

@@ -3,6 +3,7 @@
   const DIRS = ["up", "right", "down", "left"];
   const SOLVE_SECONDS = 0.75;
   const RED_SOLVE_SECONDS = 0.5;
+  const SHATTER_SECONDS = 0.9;
   const CATCH_SECONDS = 0.2; // the sweep has to stay on the arrow this long, so a fast dodge gets through
   const OPPOSITE = { up: "down", down: "up", left: "right", right: "left" };
 
@@ -14,7 +15,12 @@
     cueRangeDegrees: 90,
     arrowSpeed: 300, // degrees per second, how fast the arrow follows the stick
     lockoutAfter: 3, // 0 turns lockout off
+    wrongRestarts: false, // true makes a wrong arrow restart the sequence instead of failing the ring
     search: true, // false places the arrow in the gap, the pre-aligned version
+    searchSeconds: 0, // time to find the gap from the second ring on, 0 is off
+    searchTimeoutAlarm: false, // true makes running out of that time set off the alarm, even with lockdown off
+    ringBreak: false, // Netrunner: one ring per lock shatters, the first one failed or else the last one
+    ringBreakStopsStory: false, // the unused break stops a story alarm and is used up
     lockdown: false, // true makes a failed ring set off the alarm instead of counting as a strike
     closeSeconds: 8, // how long the red ring takes to close in, 0 stops it moving
     redArrows: 2,
@@ -23,9 +29,13 @@
     sweep: false, // an antivirus sweep orbits the ring and catches the arrow
     sweepSpeed: 90,
     sweepWidth: 30,
+    sweepFirstRing: 2, // the sweep stays away until this ring, because the player hasn't hacked in before then
+    sweepFollow: false, // true makes the sweep chase the arrow the shortest way round, false makes it orbit
+    sweepAttachSeconds: 1.2,
     decoy: false, // a second gap gives cues but sets off the alarm if fitted
     moveGap: false, // the gap jumps if it is not found in time
     moveGapSeconds: 4,
+    moveGapWhileOn: false, // true makes the gap jump on time even with the arrow sitting on it
     corrupted: false, // one marked arrow means press the opposite direction
   };
 
@@ -53,6 +63,8 @@
       timeLeft: 0,
       solveLeft: 0,
       searchSeconds: 0,
+      searchLeft: 0,
+      breakUsed: false,
       searchTimes: [], // seconds spent searching, one entry per fitted attempt
       elapsed: 0,
       onRed: false, // the player is working the red ring, and the current ring waits
@@ -61,6 +73,7 @@
       storyFired: false,
       sweepAngle: 0,
       sweepContact: 0,
+      sweepAttach: 0, // seconds left before a following sweep is on the ring and can catch the arrow
       decoyGap: null,
       moveLeft: 0,
       corrupted: -1, // index of the marked arrow, -1 for none
@@ -104,13 +117,23 @@
       if (cfg.decoy && !s.onRed) placeDecoy();
     }
 
+    function sweepActive() {
+      return cfg.sweep && s.ring + 1 >= cfg.sweepFirstRing;
+    }
+
+    function resetSweep() {
+      s.sweepAngle = wrap(s.arrow + 180);
+      s.sweepContact = 0;
+      s.sweepAttach = sweepActive() ? cfg.sweepAttachSeconds : 0;
+    }
+
     function startSearch() {
       s.phase = "search";
       s.sequence = [];
       s.seqIndex = 0;
       s.searchSeconds = 0;
-      s.sweepAngle = wrap(s.arrow + 180);
-      s.sweepContact = 0;
+      s.searchLeft = cfg.searchSeconds;
+      resetSweep();
       s.corrupted = -1;
       placeGap();
     }
@@ -143,9 +166,43 @@
       events.push({ type: "alarm", source });
     }
 
+    function breakRing(reason, events) {
+      s.breakUsed = true;
+      s.phase = "shattering";
+      s.solveLeft = SHATTER_SECONDS;
+      events.push({ type: "ringShattered", ring: s.ring, reason });
+    }
+
+    function nextRing(events) {
+      s.ring += 1;
+      if (s.ring >= cfg.rings) {
+        s.phase = "open";
+        events.push({ type: "open" });
+      } else {
+        startSearch();
+        events.push({ type: "nextRing", ring: s.ring });
+      }
+    }
+
+    // A story alarm is only stopped if the toggle is on, and that uses the break up.
+    function storyAlarm(events) {
+      if (cfg.ringBreak && cfg.ringBreakStopsStory && !s.breakUsed) {
+        s.breakUsed = true;
+        events.push({ type: "storyBlocked" });
+      } else {
+        setOffAlarm(events, "story");
+      }
+    }
+
     function failRing(reason, events, corrupted) {
+      if (cfg.ringBreak && !s.breakUsed) {
+        // The first failure shatters the ring instead of counting against the player.
+        events.push({ type: "ringFailed", reason, corrupted: !!corrupted, absorbed: true });
+        breakRing(reason, events);
+        return;
+      }
       events.push({ type: "ringFailed", reason, corrupted: !!corrupted });
-      if (cfg.lockdown) {
+      if (cfg.lockdown || (cfg.searchTimeoutAlarm && reason === "search timed out")) {
         setOffAlarm(events, "failed ring");
       } else if (!strike(events)) {
         startSearch();
@@ -199,6 +256,18 @@
         return s.seqIndex === s.corrupted ? OPPOSITE[shown] : shown;
       },
 
+      sweepActive,
+
+      // The time limit on finding the gap runs from the second ring on, never on the red ring.
+      searchTimerOn() {
+        return cfg.search && cfg.searchSeconds > 0 && s.phase === "search" && s.ring >= 1 && !s.onRed;
+      },
+
+      // How far a following sweep has attached: 0 just appeared, 1 is on the ring.
+      sweepAttachProgress() {
+        return s.sweepAttach > 0 ? Math.max(0, 1 - s.sweepAttach / cfg.sweepAttachSeconds) : 1;
+      },
+
       // How far the red ring has closed in: 0 just appeared, 1 has reached its target.
       redProgress() {
         if (!s.onRed || cfg.closeSeconds <= 0) return 0;
@@ -208,7 +277,7 @@
       // For a story beat or the panel button. Does nothing if the lock is finished or the alarm is on.
       triggerAlarm() {
         const events = [];
-        if (!s.onRed && (s.phase === "search" || s.phase === "sequence")) setOffAlarm(events, "story");
+        if (!s.onRed && (s.phase === "search" || s.phase === "sequence")) storyAlarm(events);
         return events;
       },
 
@@ -221,7 +290,13 @@
 
         if (cfg.alarmAtRing === s.ring + 1 && !s.storyFired && s.phase === "search" && !s.onRed) {
           s.storyFired = true;
-          setOffAlarm(events, "story");
+          storyAlarm(events);
+        }
+
+        // With no failure so far the last ring breaks on its own. A story alarm due on this ring goes first.
+        if (cfg.ringBreak && !s.breakUsed && cfg.rings > 1 && s.ring === cfg.rings - 1 && s.phase === "search" && !s.onRed) {
+          breakRing("last ring", events);
+          return events;
         }
 
         if (s.onRed && cfg.closeSeconds > 0 && (s.phase === "search" || s.phase === "sequence")) {
@@ -242,8 +317,21 @@
             }
             if (i.rotate) s.arrow = wrap(s.arrow + i.rotate * dt);
           }
-          if (layersOn() && cfg.sweep) {
-            s.sweepAngle = wrap(s.sweepAngle + cfg.sweepSpeed * dt);
+          if (layersOn() && sweepActive() && s.sweepAttach > 0) {
+            // It can't move or catch anything until it has attached.
+            s.sweepAttach -= dt;
+            if (s.sweepAttach <= 0) {
+              s.sweepAttach = 0;
+              events.push({ type: "sweepAttached" });
+            }
+          } else if (layersOn() && sweepActive()) {
+            if (cfg.sweepFollow) {
+              const delta = ((s.arrow - s.sweepAngle + 540) % 360) - 180;
+              const step = cfg.sweepSpeed * dt;
+              s.sweepAngle = wrap(s.sweepAngle + Math.max(-step, Math.min(step, delta)));
+            } else {
+              s.sweepAngle = wrap(s.sweepAngle + cfg.sweepSpeed * dt);
+            }
             if (angleDistance(s.arrow, s.sweepAngle) <= cfg.sweepWidth / 2) {
               s.sweepContact += dt;
               if (s.sweepContact >= CATCH_SECONDS) {
@@ -256,7 +344,7 @@
           }
           if (layersOn() && cfg.moveGap) {
             s.moveLeft -= dt;
-            if (s.moveLeft <= 0 && !api.inGap() && !api.inDecoy()) {
+            if (s.moveLeft <= 0 && (cfg.moveGapWhileOn || (!api.inGap() && !api.inDecoy()))) {
               placeGap();
               events.push({ type: "gapMoved" });
             }
@@ -273,6 +361,10 @@
             } else {
               events.push({ type: "missedFit" });
             }
+          }
+          if (s.phase === "search" && api.searchTimerOn()) {
+            s.searchLeft -= dt;
+            if (s.searchLeft <= 0) failRing("search timed out", events);
           }
         } else if (s.phase === "sequence") {
           if (i.dir) {
@@ -293,6 +385,9 @@
               // The clock is already the punishment, so a slip on the red ring is no extra strike.
               startSearch();
               events.push({ type: "redWrong" });
+            } else if (cfg.wrongRestarts) {
+              s.seqIndex = 0;
+              events.push({ type: "arrowWrong" });
             } else {
               failRing("wrong arrow", events, s.seqIndex === s.corrupted);
             }
@@ -309,27 +404,24 @@
               startSearch();
               events.push({ type: "alarmCleared" });
             } else {
-              s.ring += 1;
-              if (s.ring >= cfg.rings) {
-                s.phase = "open";
-                events.push({ type: "open" });
-              } else {
-                startSearch();
-                events.push({ type: "nextRing", ring: s.ring });
-              }
+              nextRing(events);
             }
           }
+        } else if (s.phase === "shattering") {
+          s.solveLeft -= dt;
+          if (s.solveLeft <= 0) nextRing(events);
         }
         return events;
       },
     };
 
-    s.sweepAngle = wrap(s.arrow + 180);
+    resetSweep();
+    s.searchLeft = cfg.searchSeconds;
     placeGap();
     return api;
   }
 
-  const exported = { createHack, angleDistance, wrap, DEFAULTS, DIRS, RED_SOLVE_SECONDS };
+  const exported = { createHack, angleDistance, wrap, DEFAULTS, DIRS, RED_SOLVE_SECONDS, SHATTER_SECONDS };
   if (typeof module !== "undefined" && module.exports) module.exports = exported;
   else root.HackCore = exported;
 })(this);

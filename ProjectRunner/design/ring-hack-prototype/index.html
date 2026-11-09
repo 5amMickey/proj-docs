@@ -59,6 +59,30 @@ td:last-child, th:last-child { text-align: right; }
 .help { color: var(--muted); font-size: 12.5px; margin: 0; }
 label.field { display: block; font-size: 13px; margin-bottom: 8px; }
 label.field input { display: block; width: 100%; margin-top: 4px; padding: 6px; background: var(--bg); color: var(--fg); border: 1px solid var(--line); font: 13px Verdana, Arial, sans-serif; }
+.shard { fill: none; stroke-width: 66; transform-box: fill-box; transform-origin: center; animation: shard .9s cubic-bezier(.15, .7, .3, 1) forwards; }
+@keyframes shard { 0% { opacity: 1; stroke: #fff; } 15% { opacity: 1; } 100% { opacity: 0; transform: translate(var(--dx), var(--dy)) rotate(var(--turn)); } }
+@media (prefers-reduced-motion: reduce) { .shard { animation-name: shardFade; } }
+@keyframes shardFade { to { opacity: 0; } }
+
+/* End of a lock */
+#endModal { position: absolute; inset: 0; z-index: 5; display: flex; align-items: center; justify-content: center; padding: 16px; background: rgba(7, 9, 14, .86); overflow-y: auto; }
+#endModal[hidden] { display: none; }
+.end-card { width: min(560px, 100%); max-height: 100%; overflow-y: auto; background: var(--panel); border: 1px solid var(--line); border-top: 4px solid var(--cyan); padding: 20px 24px; }
+.end-card.failed { border-top-color: var(--bad); }
+#endTitle { font: 700 clamp(24px, 2.6vw, 38px) Verdana, Arial, sans-serif; margin: 0 0 10px; }
+.end-card table { font-size: 14px; }
+.end-card td { padding: 5px 0; }
+.end-card td:last-child { color: var(--cyan); }
+#endAll { color: var(--muted); font-size: 13px; margin: 8px 0 0; }
+.end-card h3 { font: 700 14px Verdana, Arial, sans-serif; color: var(--muted); margin: 16px 0 8px; }
+.rate-row { display: flex; gap: 8px; }
+.rate-btn { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 9px 6px; background: none; border: 1px solid var(--line); color: var(--fg); font: 13px Verdana, Arial, sans-serif; cursor: pointer; }
+.rate-btn.on { background: var(--cyan); border-color: var(--cyan); color: #04121a; }
+.key { flex: none; width: 24px; height: 24px; display: flex; align-items: center; justify-content: center; border: 1.5px solid currentColor; border-radius: 50%; font-size: 12px; font-weight: 700; }
+.end-actions { display: flex; gap: 8px; margin-top: 16px; }
+.end-actions button { flex: 1; display: flex; align-items: center; justify-content: center; gap: 8px; padding: 11px 8px; font: 700 14px Verdana, Arial, sans-serif; cursor: pointer; border: 1px solid var(--cyan); }
+#download { background: none; color: var(--cyan); }
+#endReset { background: var(--cyan); color: #04121a; }
 @media (max-width: 860px) {
   .app { grid-template-columns: 1fr; height: auto; }
   .stage { height: 100vw; }
@@ -80,6 +104,7 @@ label.field input { display: block; width: 100%; margin-top: 4px; padding: 6px; 
       <path id="decoyMask" fill="none" stroke-width="72"></path>
       <path id="piece" fill="none" stroke-width="66"></path>
       <path id="sweepArc" fill="none" stroke-width="20"></path>
+      <g id="shards"></g>
       <circle id="timerBack" r="290" fill="none" stroke="#1b212c" stroke-width="10"></circle>
       <circle id="timerArc" r="290" fill="none" stroke="#16e8ea" stroke-width="10" transform="rotate(-90)"></circle>
       <g id="lockIcon" transform="translate(-600 -600) translate(0 -20)">
@@ -96,6 +121,7 @@ label.field input { display: block; width: 100%; margin-top: 4px; padding: 6px; 
       <span>Failed rings <b id="hudFailed">0</b></span>
       <span>Search <b id="hudSearch">0.0 s</b></span>
       <span>Alarm <b id="hudAlarm">-</b></span>
+      <span id="hudBreakBox">Ring break <b id="hudBreak">ready</b></span>
     </div>
     <div class="rumble" id="rumbleBox">
       <small>Rumble stand-in</small>
@@ -104,10 +130,27 @@ label.field input { display: block; width: 100%; margin-top: 4px; padding: 6px; 
     </div>
     <div class="prompt" id="prompt" aria-live="polite"></div>
     <div id="granted" aria-live="polite"></div>
+    <div id="endModal" hidden>
+      <div class="end-card" id="endCard" role="dialog" aria-modal="true" aria-labelledby="endTitle">
+        <h2 id="endTitle"></h2>
+        <table><tbody id="endStats"></tbody></table>
+        <p id="endAll"></p>
+        <h3>How hard was that?</h3>
+        <div class="rate-row">
+          <button class="rate-btn" data-rate="x"><span class="key" data-key="x"></span>Too easy</button>
+          <button class="rate-btn" data-rate="y"><span class="key" data-key="y"></span>About right</button>
+          <button class="rate-btn" data-rate="b"><span class="key" data-key="b"></span>Too hard</button>
+        </div>
+        <div class="end-actions">
+          <button id="download">Download results</button>
+          <button id="endReset"><span class="key" data-key="a"></span>Reset</button>
+        </div>
+      </div>
+    </div>
     <div id="overlay">
       <div class="card">
         <p>Connect your controller and press a button on it, then start. The click lets the browser play the tone.</p>
-        <p>Play at least five locks and rate each one when it ends. Then use Download results in the side panel and send the file back.</p>
+        <p>Play at least five locks and rate each one when it ends. Then use Download results on the end screen and send the file back.</p>
         <button id="start">Start</button>
       </div>
     </div>
@@ -116,18 +159,15 @@ label.field input { display: block; width: 100%; margin-top: 4px; padding: 6px; 
     <h1>Ring hack prototype</h1>
     <div id="pad-status">No controller found yet. Press a button on it.</div>
 
-    <h2>Test results</h2>
-    <label class="field">Your name (optional)<input type="text" id="tester" maxlength="40" autocomplete="off"></label>
-    <table><tbody id="log"><tr><td>No attempts yet</td><td></td></tr></tbody></table>
-    <button class="reset" id="download">Download results</button>
-    <button class="reset" id="clearResults">Clear results</button>
-    <p class="help" style="margin-top:8px">Results stay in this browser until you download them. Nothing is sent anywhere.</p>
-
     <h2>Lock</h2>
     <div id="lockSliders"></div>
     <label class="check"><input type="checkbox" id="search"> Search step (off is the pre-aligned version)</label>
     <label class="check"><input type="checkbox" id="hideGap"> Hide the gap until the arrow is close</label>
     <label class="check"><input type="checkbox" id="netrun"> Netrunning look</label>
+
+    <h2>Netrunner ring break</h2>
+    <label class="check"><input type="checkbox" id="ringBreak"> One ring shatters: the first you fail, or the last if you fail none</label>
+    <label class="check"><input type="checkbox" id="ringBreakStopsStory"> An unused break also stops a story alarm</label>
 
     <h2>Lockdown</h2>
     <label class="check"><input type="checkbox" id="lockdown"> A failed ring sets off the alarm</label>
@@ -136,6 +176,7 @@ label.field input { display: block; width: 100%; margin-top: 4px; padding: 6px; 
 
     <h2>Difficulty layers</h2>
     <label class="check"><input type="checkbox" id="sweep"> Antivirus sweep: dodge the amber scanner</label>
+    <label class="check"><input type="checkbox" id="sweepFollow"> Sweep follows you the shortest way (off: it orbits)</label>
     <label class="check"><input type="checkbox" id="decoy"> Decoy gap: its cues stutter, so don't fit it</label>
     <label class="check"><input type="checkbox" id="moveGap"> Moving gap: it jumps if you take too long</label>
     <label class="check"><input type="checkbox" id="corrupted"> Corrupted arrow: press the opposite on the dashed pink one</label>
@@ -150,19 +191,25 @@ label.field input { display: block; width: 100%; margin-top: 4px; padding: 6px; 
     <button class="reset" id="defaults">Reset settings</button>
 
     <h2>Controls</h2>
-    <p class="help">Controller: right stick to search, R1 to fit, d-pad or left stick for arrows, A for a new lock.<br>Keyboard and mouse: mouse or left and right arrows to search, E to fit, WASD or arrow keys for arrows, Enter for a new lock.</p>
+    <p class="help">Controller: right stick to search, R1 to fit, d-pad or left stick for arrows. On the end screen, X, Y and B rate the lock and A resets it.<br>Keyboard and mouse: mouse or left and right arrows to search, E to fit, WASD or arrow keys for arrows. On the end screen, 1, 2 and 3 rate the lock and Enter resets it.</p>
+
+    <h2>Test results</h2>
+    <label class="field">Your name (optional)<input type="text" id="tester" maxlength="40" autocomplete="off"></label>
+    <table><tbody id="log"><tr><td>No attempts yet</td><td></td></tr></tbody></table>
+    <button class="reset" id="clearResults">Clear results</button>
+    <p class="help" style="margin-top:8px">Results stay in this browser until you download them from the end screen. Nothing is sent anywhere.</p>
   </aside>
 </div>
 <script src="hack-core.js"></script>
 <script src="hack-analytics.js"></script>
+<script src="hack-view.js"></script>
 <script>
 "use strict";
 const $ = (id) => document.getElementById(id);
-const RING_COLORS = ["#ff454c", "#f528c9", "#9846f5", "#16c9f3", "#ffb020", "#4f7dff"];
-const RED = "#ff1f2e";
-const RED_START = 680;
-const GOOD = "#39e27d";
 const STORE = "ringHackPrototype";
+const keyQueue = HackView.keys;
+const { beep, firstPad, startAudio } = HackView;
+const RATINGS = { x: "too easy", y: "about right", b: "too hard" };
 
 const SLIDERS = {
   lockSliders: [
@@ -171,6 +218,7 @@ const SLIDERS = {
     ["arrows", "Arrows per ring", 2, 6, 1, ""],
     ["gapDegrees", "Gap size", 10, 90, 1, "°"],
     ["lockoutAfter", "Failed rings to lock out (0 is off)", 0, 5, 1, ""],
+    ["searchSeconds", "Time to find the gap from ring 2 (0 is off)", 0, 20, 0.5, " s"],
   ],
   lockdownSliders: [
     ["closeSeconds", "Red ring closing time (0 stops it)", 0, 20, 0.5, " s"],
@@ -179,6 +227,8 @@ const SLIDERS = {
   ],
   layerSliders: [
     ["sweepSpeed", "Sweep speed", 30, 240, 5, "\u00b0/s"],
+    ["sweepFirstRing", "Sweep starts at ring", 1, 6, 1, ""],
+    ["sweepAttachSeconds", "Sweep attach time", 0.2, 3, 0.1, " s"],
     ["moveGapSeconds", "Gap jumps after", 2, 10, 0.5, " s"],
   ],
   cueSliders: [
@@ -188,49 +238,15 @@ const SLIDERS = {
   ],
 };
 const DEFAULTS = Object.assign({}, HackCore.DEFAULTS, {
-  cueStrength: 70, lockdown: true, hideGap: true, netrun: false, cueGlow: true, cueTone: true, cueRumble: true,
+  searchSeconds: 8, cueStrength: 70, lockdown: true, hideGap: true, netrun: false, cueGlow: true, cueTone: true, cueRumble: true,
 });
-const CHECKS = ["search", "hideGap", "netrun", "lockdown", "sweep", "decoy", "moveGap", "corrupted", "cueGlow", "cueTone", "cueRumble"];
-const LOCK_KEYS = ["rings", "timerSeconds", "arrows", "gapDegrees", "lockoutAfter", "search", "arrowSpeed", "cueRangeDegrees", "lockdown", "closeSeconds", "redArrows", "alarmAtRing", "sweep", "sweepSpeed", "decoy", "moveGap", "moveGapSeconds", "corrupted"];
+const CHECKS = ["search", "hideGap", "netrun", "ringBreak", "ringBreakStopsStory", "lockdown", "sweep", "sweepFollow", "decoy", "moveGap", "corrupted", "cueGlow", "cueTone", "cueRumble"];
+const LOCK_KEYS = ["rings", "timerSeconds", "arrows", "gapDegrees", "lockoutAfter", "search", "searchSeconds", "ringBreak", "ringBreakStopsStory", "arrowSpeed", "cueRangeDegrees", "lockdown", "closeSeconds", "redArrows", "alarmAtRing", "sweep", "sweepSpeed", "sweepFirstRing", "sweepFollow", "sweepAttachSeconds", "decoy", "moveGap", "moveGapSeconds", "corrupted"];
 
 let settings = Object.assign({}, DEFAULTS);
 try { Object.assign(settings, JSON.parse(localStorage.getItem(STORE) || "{}")); } catch (e) {}
 function saveSettings() {
   try { localStorage.setItem(STORE, JSON.stringify(settings)); } catch (e) {}
-}
-
-// ---------- Geometry
-function arcPath(radius, center, width) {
-  const a = (center - width / 2) * Math.PI / 180;
-  const b = (center + width / 2) * Math.PI / 180;
-  const large = width > 180 ? 1 : 0;
-  return `M ${radius * Math.cos(a)} ${radius * Math.sin(a)} A ${radius} ${radius} 0 ${large} 1 ${radius * Math.cos(b)} ${radius * Math.sin(b)}`;
-}
-
-// ---------- Sound
-let audio = null, osc = null, gain = null;
-function startAudio() {
-  if (audio) { audio.resume(); return; }
-  try {
-    audio = new (window.AudioContext || window.webkitAudioContext)();
-    osc = audio.createOscillator();
-    gain = audio.createGain();
-    osc.type = "triangle";
-    gain.gain.value = 0;
-    osc.connect(gain).connect(audio.destination);
-    osc.start();
-  } catch (e) { audio = null; }
-}
-function beep(freq, seconds, type) {
-  if (!audio) return;
-  const o = audio.createOscillator(), g = audio.createGain();
-  o.type = type || "square";
-  o.frequency.value = freq;
-  g.gain.setValueAtTime(0.08, audio.currentTime);
-  g.gain.exponentialRampToValueAtTime(0.001, audio.currentTime + seconds);
-  o.connect(g).connect(audio.destination);
-  o.start();
-  o.stop(audio.currentTime + seconds);
 }
 
 // ---------- Hack state and log
@@ -241,6 +257,7 @@ const TESTER_KEY = "ringHackTester";
 
 function deviceInfo() {
   const pad = firstPad();
+  const lastDevice = HackView.device();
   return { device: { pad: "controller", keys: "keyboard", mouse: "mouse" }[lastDevice] || lastDevice, controller: pad ? pad.id : "" };
 }
 
@@ -250,58 +267,8 @@ function newLock() {
   LOCK_KEYS.forEach((k) => { opts[k] = settings[k]; });
   hack = HackCore.createHack(opts);
   results.start(settings, Object.assign({ tester: $("tester").value.trim() }, deviceInfo()));
-  $("solved").innerHTML = "";
-  $("stage").classList.remove("opened");
-  $("granted").classList.remove("on");
-  $("granted").innerHTML = "";
-  prepareRing(1);
-}
-
-function prepareRing(fromScale) {
-  const body = $("ringBody");
-  body.style.transition = "none";
-  body.style.stroke = RING_COLORS[hack.state.ring % RING_COLORS.length];
-  body.style.opacity = 1;
-  body.style.transform = `scale(${fromScale})`;
-  const noise = $("noise");
-  noise.style.transition = "none";
-  noise.style.transform = `scale(${fromScale})`;
-  body.getBoundingClientRect();
-  body.style.transition = "";
-  noise.style.transition = "";
-  body.style.transform = "scale(1)";
-  noise.style.transform = "scale(1)";
-  $("live").style.display = "";
-}
-
-// The newest solved ring sits just outside the live ring. Older ones sit further out and fade.
-function layoutSolved() {
-  const rings = [...$("solved").children];
-  rings.forEach((c, i) => {
-    const step = rings.length - i;
-    c.style.transform = `scale(${1 + 0.23 * step})`;
-    c.style.opacity = Math.max(0.05, 0.36 - step * 0.08);
-  });
-}
-
-function pushSolvedRing() {
-  const c = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-  c.setAttribute("class", "ring");
-  c.setAttribute("r", "390");
-  c.style.stroke = GOOD;
-  c.style.transform = "scale(1)";
-  $("solved").appendChild(c);
-  c.getBoundingClientRect();
-  layoutSolved();
-}
-
-// The red ring stops at the newest solved ring, or at the live ring if none is solved.
-function redTarget() {
-  return $("solved").children.length ? 554 : 456;
-}
-
-function redRadius() {
-  return RED_START + (redTarget() - RED_START) * hack.redProgress();
+  closeEndModal();
+  HackView.begin(hack, settings);
 }
 
 function drawResults() {
@@ -331,6 +298,59 @@ function drawResults() {
   ].join("");
 }
 
+// ---------- End of a lock: the stats, the rating, the download and the reset
+const END_DELAY = { open: 1.5, lockout: 0.7 };
+let endModalOpen = false;
+let endWait = 0;
+
+function closeEndModal() {
+  endModalOpen = false;
+  endWait = 0;
+  $("endModal").hidden = true;
+}
+
+function drawEndRating() {
+  const a = results.last();
+  document.querySelectorAll(".rate-btn").forEach((b) => b.classList.toggle("on", !!a && a.rating === RATINGS[b.dataset.rate]));
+}
+
+function drawEndKeys() {
+  const pad = HackView.device() === "pad";
+  const labels = pad ? { x: "X", y: "Y", b: "B", a: "A" } : { x: "1", y: "2", b: "3", a: "\u21b5" };
+  document.querySelectorAll(".key").forEach((k) => { k.textContent = labels[k.dataset.key]; });
+}
+
+function showEndModal() {
+  const a = results.last();
+  const opened = hack.state.phase === "open";
+  $("endTitle").textContent = opened ? "Access granted" : "Locked out";
+  $("endTitle").style.color = opened ? "var(--good)" : "var(--bad)";
+  $("endCard").classList.toggle("failed", !opened);
+  const row = (name, value) => `<tr><td>${name}</td><td>${value}</td></tr>`;
+  const avgSearch = a.searchTimes.length ? `${(a.searchTimes.reduce((x, y) => x + y, 0) / a.searchTimes.length).toFixed(1)} s` : "-";
+  const rows = [
+    row("Time", `${a.totalSeconds.toFixed(1)} s`),
+    row("Furthest ring", `${a.furthestRing} of ${a.settings.rings}`),
+    row("Rings solved", a.ringsSolved),
+    row("Failed rings", a.ringFailures),
+    row("Average time to find the gap", avgSearch),
+    row("Wrong arrows", a.wrongArrows),
+    row("Timeouts", a.timeouts + a.searchTimeouts),
+    row("Fits missed", a.missedFits),
+  ];
+  if (a.settings.ringBreak) rows.push(row("Rings shattered", a.ringsShattered));
+  if (a.settings.sweep) rows.push(row("Sweep catches", a.sweepCatches));
+  if (a.settings.lockdown || a.alarms) rows.push(row("Alarms", a.alarms));
+  $("endStats").innerHTML = rows.join("");
+  const all = results.summary();
+  const rate = all.openRate === null ? "-" : `${Math.round(all.openRate * 100)}%`;
+  $("endAll").textContent = `All your locks so far: ${all.attempts}, with ${rate} opened. The download holds all of them.`;
+  drawEndKeys();
+  drawEndRating();
+  endModalOpen = true;
+  $("endModal").hidden = false;
+}
+
 function downloadResults() {
   const name = ($("tester").value.trim().replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "") || "tester").toLowerCase();
   const date = new Date().toISOString().slice(0, 10);
@@ -347,323 +367,18 @@ function downloadResults() {
 function handle(events) {
   for (const e of events) {
     results.record(e, hack.state);
-    if (e.type === "fit") beep(880, 0.12);
-    if (e.type === "missedFit") beep(150, 0.12);
-    if (e.type === "arrowHit") beep(1040, 0.06);
-    if (e.type === "ringFailed") { beep(110, 0.35, "sawtooth"); flash(FAIL_TEXT[e.reason] || "The ring reset."); }
-    if (e.type === "gapMoved") { beep(330, 0.1); flash("The gap moved."); }
-    if (e.type === "ringSolved") { beep(1320, 0.2); pushSolvedRing(); $("live").style.display = "none"; }
-    if (e.type === "nextRing") prepareRing(0.35);
-    if (e.type === "alarm") {
-      [0, 180, 360, 540].forEach((t, i) => setTimeout(() => beep(i % 2 ? 620 : 880, 0.16, "sawtooth"), t));
-      flash(e.source === "story" ? "Alarm. Security is awake." : "Alarm. Solve the red ring before it closes in.");
-    }
-    if (e.type === "redWrong") { beep(110, 0.25, "sawtooth"); flash("Wrong arrow. Find the red gap again."); }
-    if (e.type === "redSolved") beep(1320, 0.2);
-    if (e.type === "alarmCleared") { beep(990, 0.15); flash("Alarm cleared."); }
-    if (e.type === "redHit") beep(90, 0.5, "sawtooth");
-    if (e.type === "ringPushedBack") {
-      if (e.pushed) {
-        const last = $("solved").lastElementChild;
-        if (last) last.remove();
-        layoutSolved();
-        prepareRing(1.23);
-        flash("The red ring pushed a solved ring back. Solve it again.");
-      } else {
-        flash("The red ring reached the lock. This ring starts over.");
-      }
-    }
+    HackView.handle(e);
     if (e.type === "lockout") {
-      beep(70, 0.7, "sawtooth");
       results.finish("locked out");
       drawResults();
+      endWait = END_DELAY.lockout;
     }
     if (e.type === "open") {
-      openLock();
       results.finish("opened");
       drawResults();
+      endWait = END_DELAY.open;
     }
   }
-}
-
-const FAIL_TEXT = {
-  "timed out": "Timed out. The ring reset.",
-  "wrong arrow": "Wrong arrow. The ring reset.",
-  "caught by the sweep": "The antivirus caught you. The ring reset.",
-  "fitted the decoy": "That was the decoy. The ring reset.",
-};
-let flashText = "", flashLeft = 0;
-function flash(t) { flashText = t; flashLeft = 1.6; }
-
-function openLock() {
-  beep(660, 0.15); setTimeout(() => beep(990, 0.3), 140);
-  $("stage").classList.add("opened");
-  $("live").style.display = "none";
-  [...$("solved").children].forEach((c, i) => {
-    c.style.animationDelay = `${i * 0.12}s`;
-    c.classList.add("wave");
-  });
-  const box = $("granted");
-  box.innerHTML = [..."Access granted"].map((ch, i) =>
-    `<span style="animation-delay:${0.35 + i * 0.035}s">${ch === " " ? "&nbsp;" : ch}</span>`).join("");
-  box.classList.add("on");
-}
-
-// ---------- Input
-const held = {};
-const keyQueue = { fit: false, dir: null, restart: false, rate: null };
-const RATINGS = { x: "too easy", y: "about right", b: "too hard" };
-let mouseAngle = null;
-let lastDevice = "pad";
-const padPrev = {};
-let stickDirArmed = true;
-
-const KEY_DIRS = { KeyW: "up", KeyS: "down", KeyA: "left", KeyD: "right", ArrowUp: "up", ArrowDown: "down", ArrowLeft: "left", ArrowRight: "right" };
-
-window.addEventListener("keydown", (e) => {
-  if (e.repeat) return;
-  if (e.target && e.target.tagName === "INPUT" && e.target.type === "text") return;
-  const inField = e.target && e.target.tagName === "INPUT";
-  if (e.code === "Digit1") keyQueue.rate = "x";
-  if (e.code === "Digit2") keyQueue.rate = "y";
-  if (e.code === "Digit3") keyQueue.rate = "b";
-  if (e.code === "KeyE") keyQueue.fit = true;
-  if (e.code === "Enter" && !inField) keyQueue.restart = true;
-  if (KEY_DIRS[e.code] && !inField) {
-    lastDevice = "keys";
-    if (hack && hack.state.phase === "sequence") keyQueue.dir = KEY_DIRS[e.code];
-    e.preventDefault();
-  }
-  held[e.code] = true;
-});
-window.addEventListener("keyup", (e) => { held[e.code] = false; });
-
-$("lock").addEventListener("mousemove", (e) => {
-  const r = $("lock").getBoundingClientRect();
-  mouseAngle = Math.atan2(e.clientY - (r.top + r.height / 2), e.clientX - (r.left + r.width / 2)) * 180 / Math.PI;
-  lastDevice = "mouse";
-});
-
-function firstPad() {
-  const pads = navigator.getGamepads ? navigator.getGamepads() : [];
-  for (const p of pads) if (p && p.connected !== false) return p;
-  return null;
-}
-
-function pressed(pad, i) {
-  const b = pad.buttons[i];
-  return !!(b && (b.pressed || b.value > 0.5));
-}
-
-function edge(pad, i) {
-  const now = pressed(pad, i);
-  const was = !!padPrev[i];
-  padPrev[i] = now;
-  return now && !was;
-}
-
-function readInput() {
-  const input = {};
-  const pad = firstPad();
-  const status = $("pad-status");
-  if (pad) {
-    const text = pad.mapping === "standard" ? `Controller: ${pad.id}` : `Controller found with a non-standard mapping, so buttons may be wrong: ${pad.id}`;
-    if (status.textContent !== text) status.textContent = text;
-
-    const rx = pad.axes[2] || 0, ry = pad.axes[3] || 0;
-    if (Math.hypot(rx, ry) > 0.5) {
-      input.targetAngle = Math.atan2(ry, rx) * 180 / Math.PI;
-      lastDevice = "pad";
-    }
-    if (edge(pad, 5)) input.fit = true;
-    const restartPress = edge(pad, 0);
-    if (restartPress) keyQueue.restart = true;
-    const ratePress = { x: edge(pad, 2), y: edge(pad, 3), b: edge(pad, 1) };
-    for (const k of Object.keys(ratePress)) if (ratePress[k]) keyQueue.rate = k;
-
-    const dpad = { 12: "up", 13: "down", 14: "left", 15: "right" };
-    for (const b of Object.keys(dpad)) if (edge(pad, +b)) input.dir = dpad[b];
-
-    const lx = pad.axes[0] || 0, ly = pad.axes[1] || 0, m = Math.hypot(lx, ly);
-    if (m < 0.35) stickDirArmed = true;
-    if (m > 0.75 && stickDirArmed && !input.dir) {
-      stickDirArmed = false;
-      input.dir = Math.abs(lx) > Math.abs(ly) ? (lx > 0 ? "right" : "left") : (ly > 0 ? "down" : "up");
-    }
-  }
-  if (lastDevice === "mouse" && mouseAngle !== null) input.targetAngle = mouseAngle;
-  if (held.ArrowLeft) input.rotate = -(hack ? settings.arrowSpeed : 0);
-  if (held.ArrowRight) input.rotate = hack ? settings.arrowSpeed : 0;
-  if (keyQueue.fit) input.fit = true;
-  if (keyQueue.dir) input.dir = keyQueue.dir;
-  keyQueue.fit = false;
-  keyQueue.dir = null;
-  return input;
-}
-
-// ---------- Drawing
-let lastTick = -1;
-const CHEVRON_TURN = { up: 0, right: 90, down: 180, left: 270 };
-const CYAN = "#16e8ea";
-const CORRUPT = "#f528c9";
-let seqKey = "";
-
-function chevron(dir, y, size, opacity, corrupt) {
-  const dash = corrupt ? ' stroke-dasharray="0.454 0.14"' : "";
-  return `<polyline points="-1,0.5 0,-0.5 1,0.5" fill="none" stroke="${corrupt ? CORRUPT : CYAN}" stroke-width="0.36" stroke-miterlimit="4"${dash} opacity="${opacity}" transform="translate(0 ${y}) rotate(${CHEVRON_TURN[dir]}) scale(${size})"></polyline>`;
-}
-
-function drawSequence(s) {
-  const key = s.phase === "sequence" ? `${s.ring}:${s.seqIndex}:${s.sequence.join()}:${s.corrupted}:${settings.netrun}` : "";
-  if (key === seqKey) return;
-  seqKey = key;
-  const g = $("seq");
-  if (!key) { g.innerHTML = ""; return; }
-  const upcoming = settings.netrun ? [0.85, 0.6] : [0.6, 0.35];
-  const out = [];
-  for (let i = s.sequence.length - 1; i >= s.seqIndex; i--) {
-    const n = i - s.seqIndex;
-    if (n > 2) continue;
-    const opacity = n === 0 ? 1 : upcoming[n - 1];
-    const size = n === 0 ? 52 : 46;
-    const y = 140 - n * 140;
-    out.push(chevron(s.sequence[i], y, size, opacity, i === s.corrupted));
-  }
-  g.innerHTML = out.join("");
-}
-
-function draw(dt) {
-  const s = hack.state;
-  const close = hack.closeness();
-  const decoyCue = hack.decoyCue();
-  const stutter = Math.sin(s.elapsed * Math.PI * 6) > 0 ? 1 : 0.25;
-  const eased = close * close * (decoyCue ? stutter : 1);
-  const strength = settings.cueStrength / 100;
-  const color = RING_COLORS[s.ring % RING_COLORS.length];
-  const searching = s.phase === "search";
-  const sequencing = s.phase === "sequence";
-
-  // Ring and gap. While the alarm is on, the player works the red ring and the current ring waits.
-  const onRed = s.onRed;
-  const activeRadius = onRed ? redRadius() : 390;
-  const redSolving = onRed && s.phase === "solving";
-  const redEl = $("redRing");
-  $("stage").classList.toggle("alarm", onRed && !redSolving);
-  $("noise").style.display = settings.netrun || onRed ? "none" : "";
-  redEl.style.display = onRed ? "" : "none";
-  if (onRed) {
-    redEl.setAttribute("r", activeRadius);
-    redEl.setAttribute("stroke", redSolving ? GOOD : RED);
-    redEl.style.opacity = redSolving ? Math.max(0, s.solveLeft / HackCore.RED_SOLVE_SECONDS) : 1;
-  }
-  const mask = $("gapMask");
-  const piece = $("piece");
-  if (searching) {
-    const hidden = settings.hideGap && settings.search;
-    const nearGap = hack.nearness(s.gap);
-    const reveal = hidden ? Math.max(0, (nearGap * nearGap - 0.45) / 0.55) : 1;
-    mask.setAttribute("d", arcPath(activeRadius, s.gap, settings.gapDegrees));
-    mask.setAttribute("stroke", "#07090e");
-    mask.setAttribute("opacity", reveal);
-    piece.setAttribute("d", "");
-  } else if (sequencing) {
-    mask.setAttribute("d", "");
-    piece.setAttribute("d", arcPath(activeRadius, s.gap, settings.gapDegrees));
-    piece.setAttribute("stroke", "#fff");
-  } else {
-    mask.setAttribute("d", "");
-    piece.setAttribute("d", "");
-  }
-
-  // Glow cue, and the lit ring once fitted
-  const decoyEl = $("decoyMask");
-  if (searching && s.decoyGap !== null) {
-    const nearDecoy = hack.nearness(s.decoyGap);
-    const hidden = settings.hideGap && settings.search;
-    const reveal = hidden ? Math.max(0, (nearDecoy * nearDecoy - 0.45) / 0.55) : 1;
-    decoyEl.setAttribute("d", arcPath(activeRadius, s.decoyGap, settings.gapDegrees));
-    decoyEl.setAttribute("stroke", "#07090e");
-    decoyEl.setAttribute("opacity", reveal * stutter);
-  } else {
-    decoyEl.setAttribute("d", "");
-  }
-  const sweepEl = $("sweepArc");
-  if (searching && !onRed && settings.sweep && settings.search) {
-    sweepEl.setAttribute("d", arcPath(446, s.sweepAngle, hack.state.cfg.sweepWidth));
-    sweepEl.setAttribute("stroke", s.sweepContact > 0 ? "#ffffff" : "#ffb020");
-  } else {
-    sweepEl.setAttribute("d", "");
-  }
-
-  const body = $("ringBody");
-  const glowTarget = onRed ? redEl : body;
-  const glowColor = onRed ? RED : color;
-  let glow = settings.cueGlow && searching ? eased * strength * 50 : 0;
-  if (sequencing) glow = 16;
-  body.style.filter = "";
-  redEl.style.filter = "";
-  glowTarget.style.filter = glow > 0.5 ? `drop-shadow(0 0 ${glow}px ${glowColor}) brightness(${1 + glow / 60})` : "";
-  if (onRed) body.style.opacity = 0.2;
-  else body.style.opacity = searching ? 0.55 + (settings.cueGlow ? eased * 0.45 * strength : 0) : 1;
-
-  // Arrow, pointing in at the ring
-  const arrow = $("arrow");
-  arrow.style.display = searching ? "" : "none";
-  arrow.setAttribute("transform", `rotate(${s.arrow}) translate(${activeRadius + 46} 0) rotate(90)`);
-
-  // Timer
-  const circumference = 2 * Math.PI * 290;
-  const timerOn = sequencing && !onRed && settings.timerSeconds > 0;
-  const fraction = timerOn ? Math.max(0, s.timeLeft / settings.timerSeconds) : 0;
-  $("timerArc").style.display = timerOn ? "" : "none";
-  $("timerBack").style.display = timerOn ? "" : "none";
-  $("timerArc").setAttribute("stroke-dasharray", `${circumference * fraction} ${circumference}`);
-  $("timerArc").setAttribute("stroke", fraction < 0.3 ? "#ff454c" : "#16e8ea");
-  $("lockIcon").style.display = sequencing ? "none" : "";
-  drawSequence(s);
-
-  // Tone cue
-  if (audio && gain) {
-    const on = settings.cueTone && searching;
-    gain.gain.setTargetAtTime(on ? (0.015 + 0.11 * eased) * strength : 0, audio.currentTime, 0.02);
-    osc.frequency.setTargetAtTime(170 + 780 * eased, audio.currentTime, 0.02);
-  }
-
-  // Rumble stand-in. This page never calls the controller's vibration.
-  const rumble = settings.cueRumble && searching ? eased * strength : 0;
-  $("rumbleBox").style.visibility = settings.cueRumble ? "visible" : "hidden";
-  $("rumbleFill").style.width = `${rumble * 100}%`;
-  const shake = rumble * 5;
-  $("pad").style.transform = shake > 0.1 ? `translate(${(Math.random() - 0.5) * shake * 2}px, ${(Math.random() - 0.5) * shake * 2}px)` : "";
-
-  // Readouts
-  $("hudRing").textContent = `${Math.min(s.ring + 1, settings.rings)} / ${settings.rings}`;
-  $("hudFailed").textContent = settings.lockoutAfter > 0 ? `${s.failed} / ${settings.lockoutAfter}` : `${s.failed}`;
-  $("hudSearch").textContent = searching ? `${s.searchSeconds.toFixed(1)} s` : "-";
-  $("hudAlarm").textContent = !onRed ? "-" : settings.closeSeconds > 0 ? `${Math.max(0, s.alarmLeft).toFixed(1)} s` : "held";
-  if (onRed && !redSolving && settings.closeSeconds > 0 && s.alarmLeft < 3) {
-    const tick = Math.ceil(s.alarmLeft);
-    if (tick !== lastTick) { lastTick = tick; beep(740, 0.08); }
-  } else {
-    lastTick = -1;
-  }
-
-  flashLeft -= dt;
-  let text = "";
-  if (flashLeft > 0) text = flashText;
-  else if (searching && onRed) text = hack.inGap() ? "In the red gap. Press R1." : "Find the gap in the red ring.";
-  else if (searching) text = hack.inGap() || hack.inDecoy() ? "In a gap. Press R1." : "Find the gap with the right stick.";
-  else if (sequencing && onRed) text = "Enter the arrows before the red ring closes in.";
-  else if (sequencing && s.seqIndex === s.corrupted) text = "Corrupted arrow. Press the opposite direction.";
-  else if (sequencing) text = "Enter the arrows.";
-  else if (s.phase === "lockout" || s.phase === "open") {
-    const pad = lastDevice === "pad";
-    const lastAttempt = results.last();
-    const ask = lastAttempt && !lastAttempt.rating ? `How hard was that? ${pad ? "X" : "1"} too easy, ${pad ? "Y" : "2"} about right, ${pad ? "B" : "3"} too hard. ` : "Thanks. ";
-    text = ask + (s.phase === "lockout" ? `Locked out. ${pad ? "A" : "Enter"} to reload from the checkpoint.` : `${pad ? "A" : "Enter"} for a new lock.`);
-  }
-  const prompt = $("prompt");
-  if (prompt.textContent !== text) prompt.textContent = text;
 }
 
 // ---------- Loop
@@ -673,23 +388,29 @@ let running = false;
 function step(now) {
   const dt = Math.min(0.05, (now - lastTime) / 1000 || 0);
   lastTime = now;
-  const input = readInput();
+  const input = HackView.readInput();
   if (running) {
+    // A short wait lets the ending play, so a late press can't skip the end screen.
+    const ended = hack.state.phase === "open" || hack.state.phase === "lockout";
+    if (ended && !endModalOpen) {
+      endWait -= dt;
+      if (endWait <= 0) showEndModal();
+    }
     if (keyQueue.restart) {
       keyQueue.restart = false;
-      const phase = hack.state.phase;
-      if (phase === "open" || phase === "lockout") newLock();
+      if (endModalOpen) newLock();
     }
-    const ended = hack.state.phase === "open" || hack.state.phase === "lockout";
-    if (ended && keyQueue.rate && results.rate(RATINGS[keyQueue.rate])) {
+    if (endModalOpen && keyQueue.rate && results.rate(RATINGS[keyQueue.rate])) {
       beep(740, 0.06);
       drawResults();
+      drawEndRating();
     }
     keyQueue.rate = null;
+    if (endModalOpen) drawEndKeys();
     if (results.current()) results.setDevice(deviceInfo().device, deviceInfo().controller);
     handle(hack.update(dt, input));
     results.tick(dt, hack.state);
-    draw(dt);
+    HackView.draw(dt);
   } else {
     keyQueue.restart = false;
   }
@@ -757,6 +478,8 @@ $("defaults").addEventListener("click", () => {
 });
 
 $("download").addEventListener("click", () => { downloadResults(); $("download").blur(); });
+$("endReset").addEventListener("click", () => { newLock(); $("endReset").blur(); });
+document.querySelectorAll(".rate-btn").forEach((b) => b.addEventListener("click", () => { keyQueue.rate = b.dataset.rate; b.blur(); }));
 $("clearResults").addEventListener("click", () => {
   if (window.confirm("Clear all saved results from this browser? Download them first if you need them.")) {
     results.clear();

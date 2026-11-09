@@ -98,7 +98,7 @@ test("lockdown is counted: alarms, red solves, hits and push-backs", () => {
 
 test("layers are counted, including a wrong corrupted arrow", () => {
   const log = createLog(memoryStore());
-  const p = player({ rings: 2, arrows: 3, lockdown: false, lockoutAfter: 5, corrupted: true, decoy: true, sweep: true, moveGap: true, moveGapSeconds: 1, sweepSpeed: 90 }, log);
+  const p = player({ rings: 2, arrows: 3, lockdown: false, lockoutAfter: 5, corrupted: true, decoy: true, sweep: true, sweepFirstRing: 1, sweepAttachSeconds: 0, moveGap: true, moveGapSeconds: 1, sweepSpeed: 90 }, log);
   const h = p.h;
   h.state.sweepAngle = h.state.arrow + 180;
   h.state.arrow = h.state.decoyGap;
@@ -203,4 +203,21 @@ test("names that a spreadsheet would run as formulas are made safe", () => {
   assert.equal(csvCell("@me"), "'@me");
   assert.equal(csvCell(3), "3");
   assert.equal(csvCell(null), "");
+});
+
+test("ring break and the search timer are recorded, and a broken ring still counts its failure", () => {
+  const log = createLog(null);
+  log.start({ rings: 3, ringBreak: true, searchSeconds: 8 }, {});
+  const state = { onRed: false, searchTimes: [] };
+  log.record({ type: "ringFailed", reason: "search timed out", absorbed: true }, state);
+  log.record({ type: "ringShattered", reason: "search timed out", ring: 1 }, state);
+  log.record({ type: "storyBlocked" }, state);
+  const c = log.current();
+  assert.equal(c.searchTimeouts, 1);
+  assert.equal(c.timeouts, 0, "the ring timer has its own count");
+  assert.equal(c.ringFailures, 1);
+  assert.equal(c.ringsShattered, 1);
+  assert.equal(c.storyAlarmsStopped, 1);
+  assert.equal(c.settings.ringBreak, true);
+  assert.equal(c.settings.searchSeconds, 8);
 });

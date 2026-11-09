@@ -193,25 +193,76 @@
     return api;
   }
 
+  // How Marcus does the removal himself. Every specialty has a way, so no one is stuck without materials.
+  function removalMethod(spec, hackerAvailable) {
+    if (spec === "Tech" || spec === "Netrunning") return "himself";
+    return hackerAvailable ? "talked through by the Hacker Contact" : "pulled the controller by hand";
+  }
+  function removalLabel(spec, hackerAvailable) {
+    if (spec === "Netrunning") return "Do it yourself: start the hack";
+    if (spec === "Tech") return "Do it yourself";
+    return hackerAvailable ? "Do it yourself, talked through by the Hacker Contact" : "Do it yourself, by hand: the arm will be weaker";
+  }
+
+  // How long a subtitle stays up: long enough to read, with a floor for very short lines.
+  function readingSeconds(text, scale) {
+    const words = String(text).trim().split(/\s+/).length;
+    return Math.max(1.8, 0.8 + words * 0.33) * (scale === undefined ? 1 : scale);
+  }
+
   // ---------- The arm surgery: steps, a forced hack, diagnostics, and the malware
+  // It runs by itself: each step starts as soon as the lines before it finish.
   function createSurgery(options) {
-    const cfg = Object.assign({ spec: "Netrunning", alertSeconds: 2.5, companionSeconds: 2.5, diagnosticSeconds: 4, passedSeconds: 2, comparedSeconds: 4, checkpoints: true, random: Math.random }, options);
+    const cfg = Object.assign({ spec: "Netrunning", alertSeconds: 2.5, companionSeconds: 2.5, diagnosticSeconds: 4, passedSeconds: 2, comparedSeconds: 4, checkpoints: true, materials: 3, aiCost: 2, aiLoadSeconds: 5, hackerAvailable: true, settleSeconds: 1.5, stableBpm: 99, briefing: false, openLines: [], lineScale: 1, xp: { finish: 6, selfHack: 2, failedHack: 2 }, random: Math.random }, options);
     const proc = createProcedure(cfg);
     const heart = createHeart({ random: cfg.random });
     const NAMES = ["ACTUATOR", "NERVE BRIDGE", "POWER CELL", "GRIP SENSOR", "FIRMWARE", "BODY LINK"];
     const s = {
-      // treat, checkpoint, alert, hack, companion, diagnostics, passed, doubt, found,
-      // removalChoice, removalHack, companionRemoval, closed
-      phase: "treat",
+      // briefing, talk, treat, checkpoint, alert, hackChoice, hack, companion, settling, whatHappened, diagnostics, passed, doubt, found,
+      // diagnosticsPrompt, fighterAsks, aiLoading, removalChoice, removalHack, manualRemoval, companionRemoval, closed
+      phase: cfg.briefing ? "briefing" : "treat",
+      talk: null, // the timed lines playing now: { lines, index, left, then }
       clock: 0,
       run: 0,
-      outcome: null, // missed, remove, tell, ignore
-      hackResult: null, // worked, failed
-      removedBy: null, // self, companion
-      repLost: 0, // 1 for each failed hack the companion had to finish
+      outcome: null, // missed, remove, refused, ignore
+      told: false, // Marcus told the Fighter, who then asked for it to be removed
+      materials: cfg.materials,
+      hackResult: null, // worked, failed, ai
+      hackFailures: 0, // each one raises the heart rate during the hack
+      whatHappened: null, // the answer to the Fighter once he is stable
+      aiJob: null, // forced, removal
+      charges: [], // every price paid, shown only in the tally
+      peakBpm: 0,
+      seconds: 0,
+      removedBy: null, // self (the hack), manual (hands on), companion
+      removalMethod: null,
+      manualQte: null,
+      failedHacks: 0, // each hack the companion had to finish costs XP
       // Fixed once, so a second run shows the very same numbers.
       results: NAMES.map((name) => ({ name, ms: (0.2 + cfg.random() * 0.7).toFixed(3) })),
     };
+
+    // Plays timed lines, then carries on. With no lines it carries on straight away.
+    function say(lines, then) {
+      const list = cfg.checkpoints ? (lines || []).filter(Boolean) : [];
+      if (!list.length) {
+        then();
+        return;
+      }
+      s.talk = { lines: list, index: 0, left: lineSeconds(list[0]), then };
+      s.phase = "talk";
+    }
+    function lineSeconds(line) {
+      return line.seconds || readingSeconds(line.text, cfg.lineScale);
+    }
+    function nextStepLines() {
+      const step = proc.current();
+      return step && step.before ? step.before : [];
+    }
+    function replyLines(step, label) {
+      const reply = step.replies && step.replies[label];
+      return reply ? [{ speaker: step.speaker, text: reply }] : [];
+    }
 
     function startDiagnostics(run, events) {
       s.run = run;
@@ -219,18 +270,68 @@
       s.clock = cfg.diagnosticSeconds;
       events.push({ type: "diagnostics", run });
     }
-    function closeStep(label, events) {
+    function closeStep(label, events, quiet) {
       const step = proc.current();
       proc.choose(label || "");
       if (step.bpm) heart.setTarget(step.bpm);
       events.push({ type: "stepClosed", step });
-      if (proc.done()) startDiagnostics(1, events);
+      if (quiet) return;
+      const lines = replyLines(step, label).concat(step.after || [], nextStepLines());
+      say(lines, () => { s.phase = "treat"; });
+      if (s.phase === "treat") toDiagnosticsIfDone(events);
+    }
+    // Marcus says he is running diagnostics before they start.
+    function toDiagnosticsIfDone(events) {
+      if (!proc.done()) return;
+      if (cfg.checkpoints) {
+        s.phase = "diagnosticsPrompt";
+        events.push({ type: "diagnosticsPrompt" });
+      } else startDiagnostics(1, events);
     }
     function startCompanionRemoval(events, failed) {
       s.phase = "companionRemoval";
       s.clock = cfg.companionSeconds;
       heart.alarm(140);
       events.push({ type: "companionStart", job: "removal", failed: !!failed });
+    }
+    // A Tech or Enforcer does the removal hands on, as timed keys at the table. Slips add complications and can't fail it.
+    function startManualRemoval(events) {
+      const count = (cfg.promptsPerStep || 3) + 1;
+      const buttons = ["x", "y", "b", "a"];
+      const prompts = [];
+      let last = null;
+      for (let i = 0; i < count; i++) {
+        const open = buttons.filter((b) => b !== last);
+        last = open[Math.floor(cfg.random() * open.length)];
+        prompts.push({ lead: cfg.leadSeconds === undefined ? 0.7 : cfg.leadSeconds, type: i === count - 1 ? "hold" : "press", button: last });
+      }
+      s.manualQte = createQte({ prompts, windowSeconds: cfg.windowSeconds || 3, sceneSpeed: 1, holdSeconds: cfg.holdSeconds || 0.8, assist: cfg.assist || "none", tapIsHold: !!cfg.tapIsHold, resultSeconds: 0.35 });
+      s.removalMethod = removalMethod(cfg.spec, cfg.hackerAvailable);
+      s.phase = "manualRemoval";
+      heart.alarm(150);
+      events.push({ type: "manualRemovalStart", method: s.removalMethod });
+    }
+    // The AI is always available, since its price isn't shown until the tally. Materials can go below zero, as a debt.
+    function startAiLoading(events, job) {
+      s.materials -= cfg.aiCost;
+      s.charges.push({ job, cost: cfg.aiCost });
+      s.aiJob = job;
+      s.phase = "aiLoading";
+      s.clock = cfg.aiLoadSeconds;
+      heart.alarm(140);
+      events.push({ type: "aiLoadingStart", job, cost: cfg.aiCost, left: s.materials });
+    }
+    function startSettling() {
+      heart.setTarget(90);
+      s.phase = "settling";
+      s.clock = cfg.settleSeconds;
+    }
+    function startSelfRemoval(events) {
+      if (cfg.spec === "Netrunning") {
+        s.phase = "removalHack";
+        heart.alarm(150);
+        events.push({ type: "removalHackStart" });
+      } else startManualRemoval(events);
     }
     function finishRemoval(by, events) {
       s.removedBy = by;
@@ -244,23 +345,76 @@
       proc,
       heart,
       canHack: () => cfg.spec === "Netrunning",
-      // Every finished case earns 1, doing the removal hack yourself earns 1 more, and each failed hack costs 1.
-      repGained: () => (s.phase !== "closed" ? 0 : 1 + (s.removedBy === "self" ? 1 : 0) - s.repLost),
+      selfLabel: () => removalLabel(cfg.spec, cfg.hackerAvailable),
+      weakerArm: () => s.removedBy === "manual" && s.removalMethod === "pulled the controller by hand",
+      activeQte: () => (s.phase === "manualRemoval" ? s.manualQte : proc.state.qte),
+      aiCost: cfg.aiCost,
+      aiProgress: () => (s.phase === "aiLoading" ? 1 - s.clock / cfg.aiLoadSeconds : 0),
+      diagnosticsProgress: () => (s.phase === "diagnostics" ? 1 - s.clock / cfg.diagnosticSeconds : 0),
+      comparedProgress: () => (s.phase === "passed" && s.run === 2 ? 1 - s.clock / cfg.comparedSeconds : 0),
+      // A finished case earns XP, doing the removal hack yourself earns more, and each failed hack costs some.
+      xpGained: () => (s.phase !== "closed" ? 0 : cfg.xp.finish + (s.removedBy === "self" ? cfg.xp.selfHack : 0) - s.failedHacks * cfg.xp.failedHack),
+      // The timed line on screen now, if any.
+      subtitle: () => (s.phase === "talk" ? s.talk.lines[s.talk.index] : null),
+      // The setup is read at the player's own pace, then the scene runs by itself.
+      beginScene() {
+        if (s.phase !== "briefing") return false;
+        say(cfg.openLines, () => { s.phase = "treat"; });
+        return true;
+      },
       // Leaving the malware in pays now, but the Fighter dies later and the rumor blames Marcus.
-      rumorLater: () => s.outcome === "missed" || s.outcome === "ignore",
-      prompt: () => proc.prompt(),
+      rumorLater: () => s.outcome === "missed" || s.outcome === "ignore" || s.outcome === "refused",
+      prompt: () => (s.phase === "manualRemoval" ? s.manualQte.prompt() : proc.prompt()),
       canLeave: () => s.phase === "treat" && proc.canLeave(),
+      // Everything the end screen shows.
+      tally: () => ({
+        outcome: s.outcome,
+        removedBy: s.removedBy,
+        removalMethod: s.removalMethod,
+        weakerArm: api.weakerArm(),
+        keysHit: proc.state.hits,
+        keysTotal: proc.state.hits + proc.state.misses,
+        complications: proc.state.misses,
+        forcedHack: s.hackResult,
+        hackFailures: s.hackFailures,
+        diagnosticsRuns: s.run,
+        peakBpm: Math.round(s.peakBpm),
+        seconds: s.seconds,
+        xpGained: api.xpGained(),
+        materialsStart: cfg.materials,
+        materialsEnd: s.materials,
+        charges: s.charges.slice(),
+        rumor: api.rumorLater(),
+      }),
       barState() {
         const steps = proc.state.steps.concat([{ name: "Run diagnostics" }]);
-        if (s.phase === "treat" || s.phase === "checkpoint" || s.phase === "alert" || s.phase === "hack") {
+        if (["briefing", "talk", "treat", "checkpoint", "alert", "hackChoice", "hack", "companion", "settling", "whatHappened"].includes(s.phase) || (s.phase === "aiLoading" && s.aiJob === "forced")) {
           return { steps, index: proc.state.index, progress: proc.state.progress };
         }
+        if (s.phase === "diagnosticsPrompt") return { steps, index: steps.length - 1, progress: 0 };
         if (s.phase === "diagnostics") return { steps, index: steps.length - 1, progress: 1 - s.clock / cfg.diagnosticSeconds };
         return { steps, index: steps.length, progress: 0 };
       },
       update(dt, input) {
         const events = [];
         if (heart.update(dt)) events.push({ type: "beat" });
+        s.peakBpm = Math.max(s.peakBpm, heart.shownBpm());
+        if (s.phase !== "closed" && s.phase !== "briefing") s.seconds += dt;
+        if (s.phase === "talk") {
+          s.talk.left -= dt;
+          if (s.talk.left <= 0) {
+            s.talk.index += 1;
+            if (s.talk.index < s.talk.lines.length) s.talk.left = lineSeconds(s.talk.lines[s.talk.index]);
+            else {
+              const then = s.talk.then;
+              s.talk = null;
+              then();
+              toDiagnosticsIfDone(events);
+            }
+          }
+        }
+        // Nothing has to start a step: the next one begins as soon as the way is clear.
+        if (s.phase === "treat" && proc.state.phase === "ready" && !proc.done() && proc.begin()) events.push({ type: "stepStart", step: proc.current() });
         if (s.phase === "treat") {
           for (const e of proc.update(dt, input)) {
             if (e.type !== "checkpoint") {
@@ -269,8 +423,8 @@
               continue;
             }
             if (e.step.alert) {
-              closeStep("", events);
-              heart.alarm(190);
+              closeStep("", events, true);
+              heart.alarm(150);
               s.phase = "alert";
               s.clock = cfg.alertSeconds;
               events.push({ type: "alert" });
@@ -282,20 +436,47 @@
         } else if (s.phase === "alert") {
           s.clock -= dt;
           if (s.clock <= 0) {
-            // Every specialty plays this hack. The story reason comes later.
-            s.phase = "hack";
-            events.push({ type: "hackStart" });
+            s.phase = "hackChoice";
+            events.push({ type: "hackChoice" });
           }
         } else if (s.phase === "companion") {
           s.clock -= dt;
           if (s.clock <= 0) {
-            heart.setTarget(112);
-            s.phase = "treat";
+            startSettling();
             events.push({ type: "companionDone" });
+          }
+        } else if (s.phase === "settling") {
+          s.clock -= dt;
+          // The Fighter only speaks once he is stable.
+          if (s.clock <= 0 && heart.shownBpm() <= cfg.stableBpm) {
+            if (cfg.checkpoints) {
+              s.phase = "whatHappened";
+              events.push({ type: "whatHappened" });
+            } else s.phase = "treat";
           }
         } else if (s.phase === "companionRemoval") {
           s.clock -= dt;
           if (s.clock <= 0) finishRemoval("companion", events);
+        } else if (s.phase === "manualRemoval") {
+          for (const e of s.manualQte.update(dt, input)) {
+            if (e.type === "done") finishRemoval("manual", events);
+            else {
+              if (e.type === "hit") proc.state.hits += 1;
+              if (e.type === "miss") {
+                proc.state.misses += 1;
+                heart.bump(14);
+              }
+              events.push(e);
+            }
+          }
+        } else if (s.phase === "aiLoading") {
+          s.clock -= dt;
+          if (s.clock <= 0) {
+            if (s.aiJob === "forced") {
+              startSettling();
+              events.push({ type: "aiForcedDone" });
+            } else finishRemoval("companion", events);
+          }
         } else if (s.phase === "diagnostics") {
           s.clock -= dt;
           if (s.clock <= 0) {
@@ -326,16 +507,46 @@
         closeStep(label, events);
         return events;
       },
-      // A failed hack brings the companion in, and costs reputation instead of a complication.
+      // After the alert the player hacks it, or hands it to the AI.
+      hackChoice(self) {
+        const events = [];
+        if (s.phase !== "hackChoice") return events;
+        if (self) {
+          s.phase = "hack";
+          events.push({ type: "hackStart" });
+        } else {
+          s.hackResult = "ai";
+          startAiLoading(events, "forced");
+        }
+        return events;
+      },
+      // A failure during a hack is the security hitting his heart, so the rate climbs and stays up.
+      hackStrike() {
+        if (s.phase !== "hack" && s.phase !== "removalHack") return false;
+        s.hackFailures += 1;
+        heart.alarm(Math.min(220, heart.state.target + 20));
+        heart.bump(15);
+        return true;
+      },
+      runDiagnostics() {
+        const events = [];
+        if (s.phase === "diagnosticsPrompt") startDiagnostics(1, events);
+        return events;
+      },
+      answerWhatHappened(label, reply) {
+        if (s.phase !== "whatHappened") return false;
+        s.whatHappened = label;
+        say((reply ? [reply] : []).concat(nextStepLines()), () => { s.phase = "treat"; });
+        return true;
+      },
+      // A failed hack brings the companion in, and costs XP instead of a complication.
       hackFinished(success) {
         const events = [];
         if (s.phase !== "hack") return events;
         s.hackResult = success ? "worked" : "failed";
-        if (success) {
-          heart.setTarget(96);
-          s.phase = "treat";
-        } else {
-          s.repLost += 1;
+        if (success) startSettling();
+        else {
+          s.failedHacks += 1;
           s.phase = "companion";
           s.clock = cfg.companionSeconds;
           events.push({ type: "companionStart", job: "forced", failed: true });
@@ -352,41 +563,75 @@
         }
         return events;
       },
-      // Removing leads to a choice for a hacker, and to the companion for anyone else.
+      // Removing leads to a choice of doing it yourself or paying the AI.
+      // Telling the Fighter leads to the Fighter asking for it to be removed.
       decide(outcome) {
         const events = [];
         if (s.phase !== "found") return events;
+        if (outcome === "tell") {
+          s.told = true;
+          s.phase = "fighterAsks";
+          events.push({ type: "fighterAsks" });
+          return events;
+        }
         s.outcome = outcome;
         if (outcome !== "remove") s.phase = "closed";
-        else if (api.canHack()) {
+        else {
           s.phase = "removalChoice";
           events.push({ type: "removalChoice" });
-        } else startCompanionRemoval(events);
+        }
+        return events;
+      },
+      // The Fighter's request: do it yourself, pay for the AI, or refuse.
+      fighterAnswer(answer) {
+        const events = [];
+        if (s.phase !== "fighterAsks") return events;
+        if (answer === "self") {
+          s.outcome = "remove";
+          startSelfRemoval(events);
+        } else if (answer === "ai") {
+          s.outcome = "remove";
+          startAiLoading(events, "removal");
+        } else if (answer === "refuse") {
+          s.outcome = "refused";
+          s.phase = "closed";
+        }
         return events;
       },
       removalChoice(self) {
         const events = [];
         if (s.phase !== "removalChoice") return events;
-        if (self) {
-          s.phase = "removalHack";
-          heart.alarm(150);
-          events.push({ type: "removalHackStart" });
-        } else startCompanionRemoval(events);
+        if (self) startSelfRemoval(events);
+        else startAiLoading(events, "removal");
         return events;
       },
-      // A failed hack still ends with the malware out: the companion finishes it, and reputation drops.
+      // A failed hack still ends with the malware out: the companion finishes it, and XP drops.
       removalHackFinished(success) {
         const events = [];
         if (s.phase !== "removalHack") return events;
         if (success) finishRemoval("self", events);
         else {
-          s.repLost += 1;
+          s.failedHacks += 1;
           startCompanionRemoval(events, true);
         }
         return events;
       },
     };
     return api;
+  }
+
+  // The lines a diagnostics run prints. They come only from the results, so a second run prints the very same log.
+  const LOG_LINES_PER_CHECK = 10;
+  function diagnosticLog(results) {
+    const out = [];
+    for (const r of results) {
+      let hash = 7;
+      for (const c of r.name + r.ms) hash = (hash * 31 + c.charCodeAt(0)) % 0xffffff;
+      const addr = hash.toString(16).padStart(6, "0");
+      out.push(`CHECK ${r.name}`, `  addr 0x${addr} bound`, "  self-test start", "  bus a ok", "  bus b ok",
+        "  read 33%", "  read 66%", "  read 100%", "  self-test end", `  ${r.name} ${r.ms} ms PASS`);
+    }
+    return out;
   }
 
   // ---------- QTE timing
@@ -460,11 +705,12 @@
   const LAYOUTS = { 1: ["a"], 2: ["x", "b"], 3: ["x", "y", "b"], 4: ["x", "y", "b", "a"] };
 
   function createDialogue(options) {
-    const cfg = Object.assign({ spec: null, timerScale: 1 }, options);
-    const s = { node: cfg.start, timeLeft: 0, flags: {}, specUsed: false, hackLive: false, ended: false, history: [] };
+    const cfg = Object.assign({ spec: null, timerScale: 1, hackSlowdown: 0.1 }, options);
+    const s = { node: cfg.start, timeLeft: 0, nodeTime: 0, flags: {}, specUsed: false, hackLive: false, ended: false, history: [] };
 
     function enter(id) {
       s.node = id;
+      s.nodeTime = 0;
       if (!id || !cfg.nodes[id]) {
         s.ended = true;
         return;
@@ -483,10 +729,20 @@
         const buttons = LAYOUTS[n.choices.length];
         const out = n.choices.map((c, i) => Object.assign({ button: buttons[i], index: i }, c));
         const spec = n.spec && n.spec[cfg.spec];
-        if (spec && !s.specUsed) out.push(Object.assign({ button: "a", isSpec: true }, spec));
+        // A node can hold its spec option back, so it arrives after the player has read the others.
+        if (spec && !s.specUsed && s.nodeTime >= (n.specDelay || 0)) out.push(Object.assign({ button: "a", isSpec: true }, spec));
         return out;
       },
-      timerPaused: () => s.hackLive,
+      timerSlowed: () => s.hackLive,
+      // A node with no timer and no choices holds until something else moves the scene on, such as a fight.
+      holding() {
+        const n = api.node();
+        return !s.ended && !!n && !n.seconds && !n.choices;
+      },
+      goTo(id) {
+        enter(id);
+        return !s.ended;
+      },
       hackFinished(success) {
         s.hackLive = false;
         s.flags[success ? "hackWorked" : "hackFailed"] = true;
@@ -494,6 +750,7 @@
       update(dt, press) {
         const events = [];
         if (s.ended) return events;
+        s.nodeTime += dt;
         const n = api.node();
         const opts = api.options();
         const picked = press ? opts.find((o) => press[o.button]) : null;
@@ -511,9 +768,9 @@
           if (s.ended) events.push({ type: "end" });
           return events;
         }
-        if (s.hackLive && n.choices) return events; // A choice cannot time out during a quick hack.
         if (n.seconds) {
-          s.timeLeft -= dt;
+          // A quick hack slows the talk a lot but never stops it.
+          s.timeLeft -= dt * (s.hackLive && n.choices ? cfg.hackSlowdown : 1);
           if (s.timeLeft <= 0) {
             if (n.choices) {
               const fallback = n.choices[n.defaultChoice || 0];
@@ -538,7 +795,7 @@
   const HACKER_COST = 2;
 
   function createFighterCase(options) {
-    const cfg = Object.assign({ spec: "Tech", materials: 3, rep: 1, hackerAvailable: true }, options);
+    const cfg = Object.assign({ spec: "Tech", materials: 3, rep: 1, hackerAvailable: true, aiCost: 2 }, options);
     const s = {
       spec: cfg.spec,
       materials: cfg.materials,
@@ -554,7 +811,8 @@
       suspicion: false,
       noticed: false,
       withoutClamp: false,
-      disposition: null, // removed, warned, left in, untreated
+      disposition: null, // removed, refused, left in, untreated
+      told: false,
       removalMethod: null,
       returnJob: false,
       closed: false,
@@ -633,12 +891,29 @@
         if (s.fact === "full") return "The Gang's mark is on the code. It has a command that can stop his heart.";
         return "The Gang has been in that arm, and it can stop his heart.";
       },
+      selfMethod: () => removalMethod(s.spec, cfg.hackerAvailable),
+      selfLabel: () => removalLabel(s.spec, cfg.hackerAvailable),
+      canRemovalHack: () => s.spec === "Netrunning",
+      // A failed removal hack still ends with the malware out: the AI finishes it, for reputation and no materials.
+      removalHackFailed() {
+        s.rep -= 1;
+        s.disposition = "removed";
+        s.removalMethod = "locked out, and the AI Companion finished it";
+      },
       choose(disposition) {
         s.disposition = disposition;
-        if (disposition !== "removed") return;
-        if (s.spec === "Tech" || s.spec === "Netrunning") s.removalMethod = "himself";
-        else if (cfg.hackerAvailable) s.removalMethod = "talked through by the Hacker Contact";
-        else s.removalMethod = "pulled the controller by hand";
+        if (disposition === "removed") s.removalMethod = api.selfMethod();
+      },
+      // Telling the Fighter settles nothing: the Fighter asks for it to be removed, and the player answers.
+      tell() { s.told = true; },
+      aiCost: cfg.aiCost,
+      canPayAi: () => s.materials >= cfg.aiCost,
+      removeWithAi() {
+        if (!api.canPayAi()) return false;
+        s.materials -= cfg.aiCost;
+        s.disposition = "removed";
+        s.removalMethod = "paid the AI Companion";
+        return true;
       },
       sendAway() {
         s.disposition = "untreated";
@@ -658,9 +933,9 @@
       },
       beatText() {
         switch (s.disposition) {
-          case "removed": return "At the bar, the Gang Enforcer makes it clear that Marcus and the Fighter are both targets.";
-          case "warned": return "The Intel Contact reports what the Fighter did with the warning.";
-          case "left in": return "A line reports the match result.";
+          case "removed": return "At the bar, the Gang Enforcer makes it clear that Marcus and the Fighter are both targets. Later, Marcus can bet on the Fighter. A win buys both of them freedom from the gang leader.";
+          case "refused": return "The Fighter dies, and a rumor spreads that Marcus found the code and refused to touch it.";
+          case "left in": return "The Fighter dies, and a rumor spreads that Marcus killed him, not the gang's malware.";
           default: return "One shared report line says the patient left untreated.";
         }
       },
@@ -668,7 +943,7 @@
     return api;
   }
 
-  const exported = { createTreatment, createProcedure, createHeart, ecgSample, createSurgery, createQte, createDialogue, createFighterCase, LAYOUTS };
+  const exported = { createTreatment, createProcedure, createHeart, ecgSample, createSurgery, readingSeconds, diagnosticLog, LOG_LINES_PER_CHECK, createQte, createDialogue, createFighterCase, LAYOUTS };
   if (typeof module !== "undefined" && module.exports) module.exports = exported;
   else root.DemoCore = exported;
 })(this);

@@ -25,6 +25,7 @@
       <div class="hackline" id="hackline"></div>
       <div id="rumbleBox">Rumble stand-in<div id="rumbleTrack"><div id="rumbleFill"></div></div></div>
     </div>
+    <div id="loading" hidden></div>
     <div id="overlay"><div class="card"><p>Connect your controller and press a button on it, then start. Set the starting state in the panel first.</p><button id="start">Start</button></div></div>
   </main>
   <aside>
@@ -49,7 +50,7 @@
 <script>
 "use strict";
 const { $ } = Demo;
-const settings = { materials: 3, rep: 1, segmentSeconds: 2, choiceSeconds: 12, hackerAvailable: true };
+const settings = { materials: 3, rep: 1, segmentSeconds: 2, choiceSeconds: 12, aiCost: 2, aiLoadSeconds: 5, hackerAvailable: true };
 const room = Demo.createRoom($("room"), [
   { id: "door", x: 80, h: 180, label: "Door" },
   { id: "bench", x: 320, h: 70, label: "Bench" },
@@ -59,12 +60,15 @@ const room = Demo.createRoom($("room"), [
 const bar = Demo.createBar($("bar"));
 const menu = Demo.createMenu($("menu"));
 const ring = Demo.createRingWidget($("ring"));
+const loading = Demo.createLoading($("loading"));
 
 let cs = null;
 let t = null;
-let mode = "idle"; // idle, menu, room, hold, hack, over
+let mode = "idle"; // idle, menu, room, hold, hack, loading, over
 let awayFromTable = false;
 let holdJob = null;
+let aiClock = 0;
+let hackPurpose = "read";
 let started = false;
 let wasMenuOpen = false;
 let timeInCase = 0;
@@ -79,6 +83,7 @@ function line(text) { $("line").textContent = text; }
 function begin() {
   menu.close();
   ring.stop();
+  loading.hide();
   $("hackview").hidden = true;
   timeInCase = 0;
   holdJob = null;
@@ -99,7 +104,7 @@ function begin() {
 }
 
 function plan(spec) {
-  cs = DemoCore.createFighterCase({ spec, materials: settings.materials, rep: settings.rep, hackerAvailable: settings.hackerAvailable });
+  cs = DemoCore.createFighterCase({ spec, materials: settings.materials, rep: settings.rep, hackerAvailable: settings.hackerAvailable, aiCost: settings.aiCost });
   t = DemoCore.createTreatment({
     segmentSeconds: settings.segmentSeconds,
     tech: spec === "Tech",
@@ -145,12 +150,41 @@ function askChoice() {
       speaker: "Choice", text: "He's on your table. What do you do about the code?",
       seconds: settings.choiceSeconds, defaultIndex: 2,
       options: [
-        { label: "Remove the malware", run: () => pick("removed") },
-        { label: "Leave it and tell him", run: () => pick("warned") },
+        { label: "Remove the malware", run: () => removalMenu() },
+        { label: "Tell him", run: () => { cs.tell(); removalMenu(); } },
         { label: "Leave it and say nothing", run: () => pick("left in") },
       ],
     });
   });
+}
+
+// Both routes reach the same answers. Telling him adds his request and the option to refuse.
+function removalMenu() {
+  const told = cs.state.told;
+  const options = [
+    { label: cs.selfLabel(), run: () => (cs.canRemovalHack() ? startHack("remove") : pick("removed")) },
+    { label: `Get your AI to do it (${cs.aiCost} materials, you have ${cs.state.materials})`, disabled: !cs.canPayAi(), run: startAiRemoval },
+  ];
+  if (told) options.push({ label: "Refuse", run: () => pick("refused") });
+  menu.show({
+    speaker: told ? "The Fighter" : "AI Companion",
+    text: told ? "(Placeholder) There's what in my arm? Can you get it out?" : "(Placeholder) I can take it out, but it'll cost you. Or you can do it.",
+    options,
+  });
+}
+
+function startAiRemoval() {
+  cs.removeWithAi();
+  aiClock = 0;
+  mode = "loading";
+  loading.show(cs.aiCost, cs.state.materials);
+}
+
+function finishAiRemoval() {
+  loading.hide();
+  Demo.notice("The AI Companion took the malware out.");
+  mode = "room";
+  line("Hold at the table to finish.");
 }
 
 function pick(disposition) {
@@ -221,7 +255,7 @@ function terminalMenu() {
   if (cs.factNeeded() && settings.hackerAvailable) {
     options.push({ label: `Pay the Hacker Contact (${cs.hackerCost} materials)`, disabled: !cs.canPayHacker(), run: () => { cs.payHacker(); Demo.notice("The Hacker Contact has read the arm."); } });
   }
-  if (cs.canSelfHack()) options.push({ label: "Hack the arm yourself", run: startHack });
+  if (cs.canSelfHack()) options.push({ label: "Hack the arm yourself", run: () => startHack("read") });
   options.push({ label: "Back" });
   menu.show({ speaker: "Terminal", text: options.length > 1 ? "Who do you call?" : "Nothing to do here right now.", options });
 }
@@ -263,11 +297,21 @@ function startHold(label, seconds, done) {
 }
 
 // ---------- Hack
-function startHack() {
+// A hack either reads the arm for the fact, or is the harder one that removes the malware.
+function startHack(purpose) {
+  hackPurpose = purpose === "remove" ? "remove" : "read";
   mode = "hack";
   $("hackview").hidden = false;
-  $("hackline").textContent = "Right stick to search, R1 to fit, d-pad for arrows.";
-  ring.start({ rings: 3, timerSeconds: 6, arrows: 3, lockoutAfter: 3, lockdown: false, gapDegrees: 56 });
+  $("hackline").textContent = hackPurpose === "remove" ? "The malware is wired to his heart. Cut it out." : "Right stick to search, R1 to fit, d-pad for arrows.";
+  ring.start(hackPurpose === "remove"
+    ? { rings: 3, timerSeconds: 5, arrows: 4, lockoutAfter: 3, lockdown: false, gapDegrees: 56 }
+    : { rings: 3, timerSeconds: 6, arrows: 3, lockoutAfter: 3, lockdown: false, gapDegrees: 56 });
+}
+
+function afterRemoval(noticeText) {
+  endHack();
+  Demo.notice(noticeText);
+  line("Hold at the table to finish.");
 }
 
 function endHack() {
@@ -282,7 +326,7 @@ function lockedOut() {
   menu.show({
     speaker: "Locked out", text: "The arm's defence shut you out. Reload from before the hack, or accept the cost: less detail, and someone noticed.",
     options: [
-      { label: "Reload from checkpoint", run: startHack },
+      { label: "Reload from checkpoint", run: () => startHack("read") },
       { label: "Accept the cost", run: () => { endHack(); cs.hackAcceptCost(); Demo.notice("You were noticed."); } },
     ],
   });
@@ -312,6 +356,8 @@ Demo.bindPanel(settings, [
   ["rep", "Starting reputation", 0, 3, 1, ""],
   ["segmentSeconds", "Seconds per treatment step", 0.5, 5, 0.5, " s"],
   ["choiceSeconds", "Choice timer", 4, 30, 1, " s"],
+  ["aiCost", "AI removal cost", 0, 6, 1, " materials"],
+  ["aiLoadSeconds", "AI loading screen", 2, 12, 0.5, " s"],
 ], ["hackerAvailable"], () => {}, "demoFighter");
 
 Demo.startOverlay(() => { started = true; begin(); });
@@ -328,15 +374,28 @@ Demo.loop((dt, input) => {
   }
   if (cs && !cs.state.closed) timeInCase += dt;
 
+  if (mode === "loading") {
+    aiClock += dt;
+    loading.draw(aiClock / settings.aiLoadSeconds);
+    if (aiClock >= settings.aiLoadSeconds) finishAiRemoval();
+    return;
+  }
+
   if (mode === "hack") {
     for (const e of ring.update(dt, input)) {
-      if (e.type === "open") {
+      if (e.type === "open" && hackPurpose === "remove") {
+        cs.choose("removed");
+        afterRemoval("You cut the malware out yourself.");
+      } else if (e.type === "lockout" && hackPurpose === "remove") {
+        cs.removalHackFailed();
+        afterRemoval("Locked out. The AI Companion finished it, and that cost you reputation.");
+      } else if (e.type === "open") {
         endHack();
         cs.hackSucceeded();
         Demo.notice("The hack shows the malware and the Gang's mark.");
         line("Go back to the table.");
       }
-      if (e.type === "lockout") lockedOut();
+      else if (e.type === "lockout") lockedOut();
     }
     return;
   }
